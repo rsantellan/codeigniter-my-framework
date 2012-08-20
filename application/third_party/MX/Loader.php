@@ -82,8 +82,12 @@ class MX_Loader extends CI_Loader
 	}	
 	
 	/** Load a module config file **/
-	public function config($file = 'config', $use_sections = FALSE, $fail_gracefully = FALSE) {
-		return CI::$APP->config->load($file, $use_sections, $fail_gracefully, $this->_module);
+	public function config($file = 'config', $use_sections = FALSE, $fail_gracefully = FALSE, $module = NULL) {
+        if(is_null($module))
+        {
+          $module = $this->_module;
+        }
+		return CI::$APP->config->load($file, $use_sections, $fail_gracefully, $module);
 	}
 
 	/** Load the database drivers **/
@@ -122,8 +126,12 @@ class MX_Loader extends CI_Loader
 	}
 
 	/** Load a module language file **/
-	public function language($langfile = array(), $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '') {
-		return CI::$APP->lang->load($langfile, $idiom, $return, $add_suffix, $alt_path, $this->_module);
+	public function language($langfile = array(), $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $module = NULL) {
+        if(is_null($module))
+        {
+          $module = $this->_module;
+        }
+		return CI::$APP->lang->load($langfile, $idiom, $return, $add_suffix, $alt_path, $module);
 	}
 	
 	public function languages($languages) {
@@ -131,10 +139,13 @@ class MX_Loader extends CI_Loader
 	}
 	
 	/** Load a module library **/
-	public function library($library = '', $params = NULL, $object_name = NULL) {
+	public function library($library = '', $params = NULL, $object_name = NULL, $module = NULL) {
 		
 		if (is_array($library)) return $this->libraries($library);		
-		
+		if(is_null($module))
+        {
+          $module = $this->_module;
+        }
 		$class = strtolower(basename($library));
 
 		if (isset($this->_ci_classes[$class]) AND $_alias = $this->_ci_classes[$class])
@@ -142,11 +153,11 @@ class MX_Loader extends CI_Loader
 			
 		($_alias = strtolower($object_name)) OR $_alias = $class;
 		
-		list($path, $_library) = Modules::find($library, $this->_module, 'libraries/');
+		list($path, $_library) = Modules::find($library, $module, 'libraries/');
 		
 		/* load library config file as params */
 		if ($params == NULL) {
-			list($path2, $file) = Modules::find($_alias, $this->_module, 'config/');	
+			list($path2, $file) = Modules::find($_alias, $module, 'config/');	
 			($path2) AND $params = Modules::load_file($file, $path2, 'config');
 		}	
 			
