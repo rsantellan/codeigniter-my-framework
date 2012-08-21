@@ -11,7 +11,7 @@ class MY_Controller extends MX_Controller
   protected $data;
   
   //put your code here
-  protected $title = 'Code Igniter + ADODB + data mapper + active records';
+  protected $title = 'Code Igniter my framework';
   // The template will use this to include default.css by default
   //public $styles = array('default');
   protected $styles = array();
