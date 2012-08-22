@@ -5,12 +5,15 @@
       <title>
         <?php echo (isset($title))? $title: 'Titulo';?>
       </title>
+      
     </head>
   <body>
     <div class="header">
       <div class="logo">
         <a href="index.html"><img src="<?php echo base_url();?>assets/images/logo.png" /></a>
       </div>
+      
+      <?php echo language_menu(); ?>
     </div>
     <hr/>
     <div class="content">

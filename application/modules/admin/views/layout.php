@@ -63,7 +63,7 @@
 		</ul>
 		
 			<div id="content" class="container_16 clearfix">
-
+<?php echo language_menu(); ?>
 <!-- Filtro -->     
 <!-- 
 				<div class="grid_4">
