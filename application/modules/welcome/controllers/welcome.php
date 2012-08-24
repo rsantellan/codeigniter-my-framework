@@ -19,6 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+        //echo $this->urilang->selected_language();
 		$this->load->view('welcome_message');
 	}
 }

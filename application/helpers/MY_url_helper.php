@@ -6,7 +6,7 @@
  */
 function site_url($uri, $lang = FALSE) {
 	$CI =& get_instance();
-	$CI->load->config('language');
+	//$CI->load->config('language');
 	
     
 	if(!is_array($uri)) {

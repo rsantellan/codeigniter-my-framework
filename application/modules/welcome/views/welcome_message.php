@@ -88,7 +88,7 @@
     </div>
     <div id="id1">
       <div id="id11">
-        JavaScript
+        JavaScript <?php //echo $URILang->selected_language();?>
       </div>
     </div>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
