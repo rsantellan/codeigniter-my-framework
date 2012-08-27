@@ -337,7 +337,7 @@ class CI_Form_validation {
 					$this->_field_data[$field]['postdata'] = $_POST[$field];
 				}
 			}
-
+            
 			$this->_execute($row, explode('|', $row['rules']), $this->_field_data[$field]['postdata']);
 		}
 

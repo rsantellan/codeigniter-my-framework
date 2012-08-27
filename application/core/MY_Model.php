@@ -31,12 +31,22 @@ class MY_Model extends CI_Model{
 
   public function deleteById($id)
   {
+/*
     $ci = &get_instance();
     $ci->load->model("upload/album");
     $ci->album->deleteAllOf($id, $this->getObjectClass());
-    //die;
+*/  
+
     $this->db->where('id', $id);
-    return $this->db->delete($this->getTablename());
+    $this->db->delete($this->getTablename());
+    if($this->db->affected_rows() > 0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
   
   public function countAllRecords()
