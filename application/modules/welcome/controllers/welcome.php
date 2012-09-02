@@ -20,7 +20,9 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
         //echo $this->urilang->selected_language();
-		$this->load->view('welcome_message');
+		$this->data['content'] = 'welcome_message';
+        $this->load->view('layout', $this->data);
+		//$this->load->view('welcome_message');
 	}
 }
 
