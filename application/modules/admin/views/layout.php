@@ -30,6 +30,11 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/css/".$sheet;?>" />
       <?php endforeach; ?>
         
+      <?php if($ckeditor_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/ckeditor/ckeditor.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/ckeditor/adapters/jquery.js";?>"></script>
+      <?php endif; ?>
+        
       <!-- Menu drop down-->  
 <!--      <script type="text/javascript" src="<?php //echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->
 	</head>

@@ -9,6 +9,16 @@
       <!--[if IE 7]>
         <link rel="stylesheet" type="text/css" href="css/ie7.css" />
       <![endif]-->
+      <?php if($jquery_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
+      <?php endif; ?>
+      <?php foreach($javascript as $js): ?>
+        <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
+      <?php endforeach; ?>
+		
+      <?php foreach($stylesheet as $sheet): ?>
+	  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/".$sheet;?>" />
+      <?php endforeach; ?>      
     </head>
   <body>
     <div id="page">
@@ -18,17 +28,17 @@
           <a href="index.html"><img src="<?php echo base_url();?>assets/images/logo.gif" alt="Logo" /></a>
         </div>
         <ul>
-          <li class="current"><a href="index.html"><span>Home</span></a></li>
+          <li class="<?php echo ($menu_id == "home")? "current" : "";?>"><a href="index.html"><span>Home</span></a></li>
           <li><a href="organic.html"><span>Organic Gardening</span></a></li>
           <li><a href="tips.html"><span>Gardening Tips &amp; Useful Links</span></a></li>
-          <li><a href="blog.html"><span>Blog</span></a></li>
+          <li class="<?php echo ($menu_id == "blog")? "current" : "";?>"><a href="<?php echo site_url('blog');?>"><span>Blog</span></a></li>
           <li><a href="about.html"><span>About</span></a></li>
-          <li><a href="<?php echo site_url('contacto');?>"><span>Contact</span></a></li>
+          <li class="<?php echo ($menu_id == "contacto")? "current" : "";?>"><a href="<?php echo site_url('contacto');?>"><span>Contact</span></a></li>
         </ul>
       </div>
       <!-- Termina el header -->
       <!-- Empieza el body -->
-      <div id="body">
+      <div class="body">
 	  
       <?php if(isset($content)): ?>
         <?php echo $this->load->view($content) ?>
