@@ -32,8 +32,7 @@ function site_url($uri, $lang = FALSE) {
     }
     
 	//$lang_code = array_search($lang, $CI->config->item('language_codes'));
-	//var_dump($lang);
-    array_unshift($uri, $lang);
+	array_unshift($uri, $lang);
 	return $CI->config->site_url($uri).$query;
 }
 
@@ -50,10 +49,14 @@ function language_menu($class = "") {
 	
 	$languages = $CI->config->item('supported_languages');
 	$page = $CI->uri->uri_string() ? $CI->uri->uri_string() : $CI->router->default_controller;
+    //var_dump($CI->urilang->auxLangIsSupported('es'));
     if($page != $CI->router->default_controller)
     {
       $segment_array = $CI->uri->segment_array();
-      unset($segment_array[1]);
+      if($CI->urilang->auxLangIsSupported($segment_array[1]))
+      {
+        unset($segment_array[1]);
+      }
       $page = implode("/", $segment_array);
     }
 	$links = array();

@@ -44,7 +44,9 @@ class URILang {
 		
 		// get lang abbreviations from uri and config file
 		$this->_supported_langs = $this->_ci->config->item('supported_languages');
+        //var_dump($this->_supported_langs);
 		$this->_uri_lang = $this->_ci->uri->segment(1);
+        //var_dump($this->_uri_lang);
 		$use_session = $this->_ci->config->item('use_session');
 		// check if the language defined in the URI is supported / if it is defined
 		if ($this->_lang_is_supported($this->_uri_lang))
@@ -80,7 +82,7 @@ class URILang {
               // defined language is not supported or not specified, check for session
               $pref_lang = $this->_ci->session->userdata('pref_lang');
             }
-			
+			//var_dump($pref_lang);
 			
 			if ($pref_lang)
 			{
@@ -94,8 +96,27 @@ class URILang {
 				
 				// if browser language is supported, use it. if not, choose default lang
 				$this->_lang = ($this->_lang_is_supported($browser_lang)) ? $browser_lang : $this->_get_default_lang();
+                
+                //Saving the default lang for using on the helper.
+                if(!$use_session)
+                {
+                  // remove old cookie
+                  $this->_ci->input->set_cookie('pref_lang', null, -1);
+                  unset($_COOKIE['pref_lang']);
+
+                  // set the new one
+                  $this->_ci->input->set_cookie('pref_lang', $this->_lang, $this->_ci->config->item('sess_expiration'));
+                }
+                else
+                {
+                  //Set new lang
+                  $this->_ci->session->unset_userdata('pref_lang');
+                  $this->_ci->session->set_userdata('pref_lang', $this->_lang);
+                }
+                
 			}
 		}
+        //var_dump($this->_lang);
 		
 		// set the detected language as default
 		$this->_ci->config->set_item('language', $this->_supported_langs[$this->_lang]);
@@ -114,6 +135,11 @@ class URILang {
 		return isset($this->_supported_langs[$lang]);
 	}
 	
+    
+    public function auxLangIsSupported($lang)
+    {
+      return $this->_lang_is_supported($lang);
+    }
 	/**
 	 * Determines the default language
 	 *
