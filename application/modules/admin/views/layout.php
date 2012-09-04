@@ -34,6 +34,10 @@
         <script type="text/javascript" src="<?php echo base_url() . "assets/ckeditor/ckeditor.js";?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . "assets/ckeditor/adapters/jquery.js";?>"></script>
       <?php endif; ?>
+      
+      <?php if($tinymce_on): ?>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/tiny_mce/tiny_mce_src.js"></script>
+      <?php endif; ?>
         
       <!-- Menu drop down-->  
 <!--      <script type="text/javascript" src="<?php //echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->

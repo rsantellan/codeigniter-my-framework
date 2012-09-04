@@ -12,20 +12,20 @@ class Upload extends MY_Controller {
 	{
 		$data = array();
 		$data['album_id'] = $album_id;
-    $ckeditor = $this->input->get('CKEditor');
-    $ckeditorFuncNum = $this->input->get('CKEditorFuncNum');
-    if(!$ckeditor)
-    {
-      $ckeditor = false;
-      $ckeditorFuncNum = 0;
-    }
-    else
-    {
-      $ckeditor = true;
-    }
-    $data['ckeditor'] = $ckeditor;
-    $data['ckeditorFuncNum'] = $ckeditorFuncNum;
-		$this->load->view('upload_form', $data);
+        $ckeditor = $this->input->get('CKEditor');
+        $ckeditorFuncNum = $this->input->get('CKEditorFuncNum');
+        if(!$ckeditor)
+        {
+          $ckeditor = false;
+          $ckeditorFuncNum = 0;
+        }
+        else
+        {
+          $ckeditor = true;
+        }
+        $data['ckeditor'] = $ckeditor;
+        $data['ckeditorFuncNum'] = $ckeditorFuncNum;
+            $this->load->view('upload_form', $data);
 	}
 
 	function test()

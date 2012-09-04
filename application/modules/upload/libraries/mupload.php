@@ -211,4 +211,85 @@ class mupload {
         } 
       }
     }
+    
+    public function getFolders($path = LOCAL_PATH){
+        $array = array();
+        $path = $this->checkPathFormat($path);
+        if (is_dir($path)) {
+            if ($dh = opendir($path)) {
+                while (($file = readdir($dh)) !== false) {
+                    if(is_dir($path . $file) AND $file != '.' AND $file != '..' AND $file != '.svn'){
+                        array_push($array, $file);
+                    }
+                }
+            }
+        }
+        return $array;
+    }
+    
+    
+    public function getListByDate($path = LOCAL_PATH){
+        if(is_null($path)){ throw new Exception('path is null or LOCAL_PATH in app.yml is null'); }
+        $pics = $this->getList($path);
+        usort($pics,'cmpDate');
+        return $pics;
+    }
+    
+    public function checkPathFormat($path){
+    	return $this->checkDirectory($path);
+    }
+    
+    public function getList($path = LOCAL_PATH){
+        $array = array();
+        $path = $this->checkPathFormat($path);
+        if (is_dir($path)) {
+            if ($dh = opendir($path)) {
+                while (($file = readdir($dh)) !== false) {
+                    echo '<br>Nombre de archivo:' . $file . ' : Es un: ' . filetype($path . $file);
+                    if (is_dir($path . $file) AND $file != '.' AND $file != '..' AND $file != '.svn'){
+                       //echo '<br>Directorio:' . $path . $file;
+                       self::getList($path . $file . "/");
+                    }else {
+                        if($file != '.' AND $file != '..' AND $file != '.svn'){
+                            $mdFile = null;//mdFileFactory::retrieveMdFile($path , $file);
+                            if(!is_null($mdFile))
+                            {
+                              array_push($array, $mdFile);
+                            }
+                        }
+
+                    }
+                }
+                closedir($dh);
+            }
+        }else{
+
+            throw new Exception('invalid source');
+
+        }
+        return $array;
+    }
+}
+
+function cmpDate($a, $b){
+    if ($a->getLastModification() == $b->getLastModification()) {
+        return 0;
+    }
+    
+    if(sfConfig::get( 'sf_image_order_ascending', false ))
+    {
+        return ($a->getLastModification() < $b->getLastModification()) ? 1 : -1;
+    }
+    return ($a->getLastModification() < $b->getLastModification()) ? -1 : 1;
+
+}
+
+function cmpName($a, $b){
+
+    if (strtoupper($a->getName()) == strtoupper($b->getName())) {
+        return 0;
+    }
+
+    return (strtoupper($a->getName()) < strtoupper($b->getName())) ? -1 : 1;
+
 }
