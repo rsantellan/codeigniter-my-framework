@@ -98,33 +98,42 @@ class fileManager
 		if (is_dir($path))
         {
             $last = $path[strlen($path)-1];
-            if($last == '/')
+            if($last == DIRECTORY_SEPARATOR)
             {
                 return $path;
             }
-			return $path.'/';
+			return $path.DIRECTORY_SEPARATOR;
 		}
-		$folders = $pieces = explode("/", $path);
-		$smallPath = "/";
-		foreach($folders as $key => $folder)
+		$folders = $pieces = explode(DIRECTORY_SEPARATOR, $path);
+        
+        $list_of_paths = array();
+        array_push($list_of_paths, $path);
+        unset($folders[count($folders) - 1]);
+        $finish = false;
+        while(count($folders) > 0 && !$finish)
         {
-			$smallPath .= $folder;
-            try
-            {
-                if (!is_dir($smallPath)) {
-                    if(!mkdir($smallPath)) {
-                        if (!is_dir($smallPath)) {
-                            throw new Exception('Unable to create format directory');
-                        }
-                    }
-                    chmod($smallPath,0775);
-                }
-            }catch(Exception $e){
-                throw $e;
-            }
-            $smallPath .= '/';
-		}
-		return $path.'/';
+          $auxPath = implode(DIRECTORY_SEPARATOR, $folders);
+          if(is_dir($auxPath))
+          {
+            $finish = true;
+          }
+          else
+          {
+            array_push($list_of_paths, $auxPath);
+          }
+          unset($folders[count($folders) - 1]);
+        }
+        while(count($list_of_paths) > 0 )
+        {
+          $newDir = array_pop($list_of_paths);
+          echo ($newDir);
+          echo '<br/>';
+          if(!mkdir($newDir)) {
+            throw new Exception('Unable to create format directory');
+          }
+          chmod($newDir,0775);
+        }
+        return $path.DIRECTORY_SEPARATOR;
 	}
 
 }

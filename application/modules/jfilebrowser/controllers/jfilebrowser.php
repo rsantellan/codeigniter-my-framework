@@ -16,6 +16,7 @@ class jfilebrowser extends MY_Controller
   public function __construct() {
     parent::__construct();
     $this->load->library('upload/mupload');
+    $this->load->helper('upload/mimage');
     $this->load->model('jfilebrowser/jfilebrowser_model');
   }
   
@@ -79,18 +80,20 @@ class jfilebrowser extends MY_Controller
       $view = "list";
     }
     $archivos = $this->jfilebrowser_model->getFiles($name);
-/*
-    $this->pager = new mdArrayPager(null, sfConfig::get('app_mdImageFileGallery_list_pagerSize',30));
-    $this->pager->setResultArray($images);
-    $this->pager->setPage($this->getRequestParameter('page',1));
-    $this->pager->init();
-*/
-    
     $salida = $this->load->view('menu_categorias', array('id' => $name, 'activo' => $view), true);
     $salida .= $this->load->view($view, array('directorio' => $name, 'archivos' => $archivos), true);
     echo $salida;
-    exit();
-    return $this->renderText($this->getPartial('verCategoria', array('id' => $name, 'view' => $view, 'archivos' => $archivos)));
+  }
+  
+  public function templateSubirArchivo()
+  {
+    //Pido directorios
+    //$directorios = array();
+    //$directorios = jfilebrowser::directoryList();
+    $this->data['directorios'] = $this->jfilebrowser_model->directoryList();
+    $this->data['id'] = $this->input->post('directorio');
+    $this->load->view('templateSubirArchivo', $this->data);
+    //return $this->renderText($this->getPartial( 'templateSubirArchivo', array('directorios' => $directorios) ));
   }
   
 }

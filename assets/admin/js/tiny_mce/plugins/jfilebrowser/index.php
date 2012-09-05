@@ -19,5 +19,5 @@ if(isset($_REQUEST['uploadFile'])):
     }
 
 endif; ?>
-
+<?php //echo RELATIVE_PATH_TO_LAYOUT; ?>
 <?php require_once RELATIVE_PATH_TO_LAYOUT; ?>
