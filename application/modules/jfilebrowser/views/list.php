@@ -4,7 +4,7 @@
     <?php $i = 1; ?>
     <?php foreach($archivos as $archivo):
         //swith para las clases de los tipo de archivos
-        switch($archivo->getExtension()){
+        switch($archivo['extension']){
             case 'jpg':
             case 'jpeg':
             case 'gif':
@@ -33,11 +33,11 @@
             <div>
                 <form id="form_<?php echo $i; ?>" class="form_submit_lista" method="post" action="/backend.php/jfilebrowser/borrarArchivo" class="centrar_2" onsubmit="jFileBrowserDialog.confirmar('<?php //echo __('mdFileBrowserTiny_text_alertBorrarImagen'); ?>', '<?php echo $i; ?>'); return false">
                     <input type="hidden" name="directorio" value="<?php echo $directorio; ?>" />
-                    <input type="hidden" name="name" value="<?php echo $archivo->getName(); ?>" />
+                    <input type="hidden" name="name" value="<?php echo $archivo['original_name']; ?>" />
                     <input type="hidden" name="view" value="list" />
                     <input type="image" name="borrar_cat_bt" id="borrar_cat_bt" src="img/delete.png" />
                 </form>
-                <a href="" title="<?php echo $archivo->getName(); ?>" class="archivos_mime_<?php echo $mime_t ?>"><?php echo $archivo->getName(); ?></a>
+                <a href="" title="<?php echo $archivo['original_name']; ?>" class="archivos_mime_<?php echo $mime_t ?>"><?php echo $archivo['original_name']; ?></a>
             </div>
         </li>
     <?php $i++; ?>

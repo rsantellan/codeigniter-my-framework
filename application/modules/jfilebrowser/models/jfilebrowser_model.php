@@ -67,7 +67,6 @@ class jfilebrowser_model extends MY_Model
         }
         $ci =& get_instance();
         return $ci->mupload->checkDirectory($this->getPath(). DIRECTORY_SEPARATOR . $directory);
-        //return MdFileHandler::checkDirectory($this->getPath(). DIRECTORY_SEPARATOR . $directory);
     }
 
     public function deleteDirectory($directory)
@@ -76,10 +75,11 @@ class jfilebrowser_model extends MY_Model
         {
             throw new Exception('Directory not exist', 102);
         }
-        $files = self::getFiles($directory);
+        $files = $this->getFiles($directory);
         foreach($files as $file)
         {
-            MdFileHandler::delete($file->getName(), $this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR);
+//          var_dump($file);
+            $this->deleteFile($directory, $file["original_name"]);
         }
         if (!@rmdir($this->getPath(). DIRECTORY_SEPARATOR . $directory))
         {
@@ -89,12 +89,13 @@ class jfilebrowser_model extends MY_Model
 
     public function deleteFile($directory, $filename)
     {
-        if(!file_exists($this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $file))
+        log_message("debug", $this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $filename);
+        if(!file_exists($this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $filename))
         {
             throw new Exception('File not exist', 103);
         }
-
-        MdFileHandler::delete($filename, $this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR);
+        $ci =& get_instance();
+        $ci->mupload->deleteImage($this->getPath(). DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $filename);
     }
 
     public function find($directory, $name)

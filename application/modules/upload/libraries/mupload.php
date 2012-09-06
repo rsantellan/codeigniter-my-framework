@@ -54,48 +54,6 @@ class mupload {
           chmod($newDir,0775);
         }
         return $path.DIRECTORY_SEPARATOR;    
-    
-        //$path = str_replace('\\', '/', $path);
-        if (is_dir($path)) {
-            $last = $path[strlen($path)-1];
-            if($last == DIRECTORY_SEPARATOR){
-                return $path;
-            }
-            return $path.DIRECTORY_SEPARATOR;
-        }
-        $rootDir = FCPATH;
-        
-        $mPath = str_replace(FCPATH, "", $path);
-        
-        $folders = $pieces = explode(DIRECTORY_SEPARATOR, $mPath);
-        
-        $smallPath = FCPATH;
-        /*
-        if ('\\' == DIRECTORY_SEPARATOR)
-        {
-          $smallPath = "/";
-        }
-        */
-        foreach($folders as $key => $folder){
-            $smallPath .= $folder;
-            try{
-                if (!is_dir($smallPath)) {
-                    if(!mkdir($smallPath)) {
-                        if (!is_dir($smallPath)) {
-                            throw new Exception('Unable to create format directory');
-                        }
-                    }
-                    chmod($smallPath,0775);
-                }
-            }catch(Exception $e){
-                if(strlen($smallPath) > strlen($rootDir) ){
-                    throw $e;
-                }
-                //throw $e;
-            }
-            $smallPath .= DIRECTORY_SEPARATOR;
-        }
-        return $path.DIRECTORY_SEPARATOR;
     }
   
     
@@ -234,6 +192,16 @@ class mupload {
         return substr($file_name, 0, strrpos($file_name, '.'));
         //return substr(strrchr($file_name,'.'),0);
     }    
+    
+    public function deleteImage($path)
+    {
+      //Tendria que chequear siempre que no exista una en el cache.
+      $this->deleteImageCache($path);
+      if(file_exists($path))
+      {
+        unlink($path);
+      }
+    }
     
     public function deleteImageCache($path)
     {

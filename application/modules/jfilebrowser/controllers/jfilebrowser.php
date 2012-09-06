@@ -15,7 +15,14 @@ class jfilebrowser extends MY_Controller
   
   public function __construct() {
     parent::__construct();
+    if(!$this->isLogged())
+    {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'contactoadmin/index');
+      redirect('auth/login'); 
+    }
     $this->load->library('upload/mupload');
+    $this->load->library('mImagick/mimagick');
     $this->load->helper('upload/mimage');
     $this->load->model('jfilebrowser/jfilebrowser_model');
   }
@@ -70,6 +77,10 @@ class jfilebrowser extends MY_Controller
   {
     
     $name = $this->input->post('id');
+    if(!$name)
+    {
+      $name = $this->input->get('id');
+    }
     $view = $this->input->post('view');
     if(!$view)
     {
@@ -88,12 +99,59 @@ class jfilebrowser extends MY_Controller
   public function templateSubirArchivo()
   {
     //Pido directorios
-    //$directorios = array();
-    //$directorios = jfilebrowser::directoryList();
+    
     $this->data['directorios'] = $this->jfilebrowser_model->directoryList();
     $this->data['id'] = $this->input->post('directorio');
     $this->load->view('templateSubirArchivo', $this->data);
     //return $this->renderText($this->getPartial( 'templateSubirArchivo', array('directorios' => $directorios) ));
   }
   
+  public function borrarArchivo()
+  {
+    
+    $name = $this->input->post('name');
+    $directorio = $this->input->post('directorio');
+    $view = $this->input->post('view');
+    
+    try
+    {
+      // Borro
+      $this->jfilebrowser_model->deleteFile($directorio, $name);
+      $archivos = $this->jfilebrowser_model->getFiles($directorio);
+      if(!$view)
+      {
+        $view = 'thumbnails';
+      }
+      if($view != "thumbnails")
+      {
+        $view = "list";
+      }
+      $salida = $this->load->view($view, array('directorio' => $directorio, 'archivos' => $archivos), true);
+      echo json_encode(array('response' => 'OK', 'content' => $salida));
+    }
+    catch(Exception $e)
+    {
+      echo json_encode(array('response' => 'ERROR', 'content' => $e->getMessage()));
+    }
+  }
+  
+  public function borrarDirectorio()
+  {
+    $name = $this->input->post('nombre');
+    
+    try
+    {
+      // Borro
+      $this->jfilebrowser_model->deleteDirectory($name);
+      $this->data['directorios'] = $this->jfilebrowser_model->directoryList();
+      $this->data['id'] = $this->input->post('directorio');
+      $salida = $this->load->view('templateSubirArchivo', $this->data, true);
+      
+      echo json_encode(array('response' => 'OK', 'content' => $salida));
+    }
+    catch(Exception $e)
+    {
+      echo json_encode(array('response' => 'ERROR', 'content' => $e->getMessage()));
+    }
+  }
 }
