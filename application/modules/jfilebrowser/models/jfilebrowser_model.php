@@ -100,15 +100,21 @@ class jfilebrowser_model extends MY_Model
 
     public function find($directory, $name)
     {
-        $mdImageFiles = MdFileHandler::getList($this->getPath(). DIRECTORY_SEPARATOR . $directory);
-        foreach($mdImageFiles as $mdImageFile)
-        {
-            if($mdImageFile->getName() == $name)
-            {
-                return $mdImageFile;
-            }
-        }
-        throw new Exception('file not exist', 104);
+       $ci =& get_instance();
+       $imageList = $ci->mupload->getListByDate($this->getPath(). DIRECTORY_SEPARATOR . $directory);
+       $aux = null;
+       foreach($imageList as $image)
+       {
+         if($image["original_name"] == $name)
+         {
+           $aux = $image;
+         }
+       }
+       if(is_null($aux))
+       {
+         throw new Exception('file not exist', 104);
+       }
+       return $aux;
     }
     
     

@@ -30,14 +30,14 @@
 
         <li>
             <?php if($mime_t == 'imagen') {?>
-            <a href="javascript:void(0)" onclick="view('<?php echo $directorio; ?>', '<?php echo $archivo['original_name']; ?>'); return false;" title="<?php echo $archivo['original_name']; ?>"><img src="<?php echo base_url().thumbnail_image($archivo['original'] , 150, 150, 3);//echo mdWebImage::getUrl($archivo->getRouteWithOutPath(), array('width' => 75, 'height' => 75)); ?>" width="75" height="75" alt="" /></a>
+            <a href="javascript:void(0)" onclick="view('<?php echo $directorio; ?>', '<?php echo $archivo['original_name']; ?>'); return false;" title="<?php echo $archivo['original_name']; ?>"><img src="<?php echo base_url().thumbnail_image($archivo['original'] , 75, 75, 3);?>" width="75" height="75" alt="" /></a>
             <?php } else {?>
                 <div class="archivos_list_dv">
                    <a href="javascript:void(0)" onclick="alert('TO DO'); return false;" title="<?php echo $archivo->getName() ?>"><img src="img/<?php echo $mime_t ?>.png" alt=""  width="75" height="75" /></a>
                 </div>
             <?php } ?>
 
-            <form id="form_<?php echo $i; ?>" method="post" action="/index.php/jfilebrowser/borrarArchivo" class="centrar_2" onsubmit="jFileBrowserDialog.confirmar('<?php //echo __('mdFileBrowserTiny_text_alertBorrarImagen'); ?>', '<?php echo $i; ?>'); return false">
+            <form id="form_<?php echo $i; ?>" method="post" action="/index.php/jfilebrowser/borrarArchivo" class="centrar_2" onsubmit="jFileBrowserDialog.confirmar('<?php echo lang('jfilebrowser_confirmar borrado'); ?>', '<?php echo $i; ?>'); return false">
                 <input type="hidden" name="directorio" value="<?php echo $directorio; ?>" />
                 <input type="hidden" name="name" value="<?php echo $archivo['original_name']; ?>" />
                 <input type="hidden" name="view" value="thumbnails" />
@@ -48,4 +48,4 @@
     <?php endforeach; ?>
 
     </ul>
-<?php } else echo 'no hay archivos';//echo __('mdFileBrowserTiny_text_noArchivosEncontrados'); ?>
+<?php } else echo lang('jfilebrowser_no hay archivos');?>

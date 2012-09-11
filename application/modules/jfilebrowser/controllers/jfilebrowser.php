@@ -25,6 +25,7 @@ class jfilebrowser extends MY_Controller
     $this->load->library('mImagick/mimagick');
     $this->load->helper('upload/mimage');
     $this->load->model('jfilebrowser/jfilebrowser_model');
+    $this->loadI18n("jfilebrowser");
   }
   
   public function index()
@@ -153,5 +154,24 @@ class jfilebrowser extends MY_Controller
     {
       echo json_encode(array('response' => 'ERROR', 'content' => $e->getMessage()));
     }
+  }
+  
+  public function templateView()
+  {
+    $name = $this->input->post('name');
+    $directorio = $this->input->post('directorio'); 
+    try 
+    {
+      $archivo = $this->jfilebrowser_model->find($directorio, $name);
+      $this->data['archivo'] = $archivo;
+      $this->data['directorio'] = $directorio;
+      $salida = $this->load->view('templateView', $this->data, true);
+      echo json_encode(array('response' => 'OK', 'content' => $salida));
+    }
+    catch(Exception $e)
+    {
+      echo json_encode(array('response' => 'ERROR', 'content' => $e->getMessage()));
+    }
+    
   }
 }

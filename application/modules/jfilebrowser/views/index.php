@@ -2,14 +2,14 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <div class="contain_men_cat">
   <ul class="menu_cat">
-    <li><a href="javascript:void(0)" onclick="verCrearDirectorio();" class="crear_cat_a" title="<?php //echo __('mdFileBrowserTiny_text_crearDirectorio'); ?>"><?php //echo __('mdFileBrowserTiny_text_crearDirectorio'); ?></a></li>
+    <li><a href="javascript:void(0)" onclick="verCrearDirectorio();" class="crear_cat_a" title="<?php echo lang('jfilebrowser_crear directorio');?>"><?php echo lang('jfilebrowser_crear directorio'); ?></a></li>
   </ul>
   <div class="clear"></div>
 </div>
 
 <?php if(count($directorios) > 0): ?>
 <?php //if($num_paginas > 1) echo '<div class="paginacion">'.$paging->fetchNavegacion().'</div>'; ?>
-    <h2 class="titulo2"><?php //echo __('mdFileBrowserTiny_text_directorios'); ?></h2>
+    <h2 class="titulo2"><?php echo lang('jfilebrowser_directorios'); ?></h2>
     <ul class="lista_cat">
         <?php $i = 1; ?>
         <?php foreach($directorios as $directorio): ?>
@@ -27,5 +27,5 @@
     </ul>
 
 <?php else :?>
-    <?php //echo __('mdFileBrowserTiny_text_noExisteDirectorio'); ?>
+    <?php echo lang('jfilebrowser_no existe ningun directorio'); ?>
 <?php endif; ?>
