@@ -12,8 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>Administrador</title>
-	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.infieldlabel.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/jquery.infieldlabel.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/auth/css/style_guide_plus_base.css";?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/auth/css/login-v3.css";?>" />
 <!--    <script type="text/javascript" src="login_files/style_guide_plus_base_head.js"></script>-->

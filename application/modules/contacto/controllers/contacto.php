@@ -20,12 +20,12 @@ class contacto extends MY_Controller{
       //$this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
       //$this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
       $this->loadI18n("contacto");
-      $this->addJavascript("jquery-1.7.1.min.js");
-      $this->addJavascript("jquery.infieldlabel.min.js");
-      $this->addJavascript("basicInfieldForm.js");
+      //$this->addJavascript("jquery-1.7.1.min.js");
+      //$this->addJavascript("jquery.infieldlabel.min.js");
+      //$this->addJavascript("basicInfieldForm.js");
       //$this->addStyleSheet("infieldlabel.css");
-      $this->addJavascript("busqueda.js");
-      $this->addStyleSheet("busqueda.css");  
+      //$this->addJavascript("busqueda.js");
+      $this->addStyleSheet("contacto.css");  
     }
     
     function index()

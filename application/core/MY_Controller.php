@@ -47,7 +47,9 @@ class MY_Controller extends MX_Controller
       $this->data['jquery_on'] = false;
       $this->data['jquery_ui_on'] = false;
       $this->data['fancybox_on'] = false;
-	  
+      $this->data['menu_id'] = "home";
+	  $this->data['ckeditor_on'] = false;
+	  $this->data['tinymce_on'] = false;
 
   }
 
@@ -110,6 +112,18 @@ class MY_Controller extends MX_Controller
   protected function addFancyBox()
   {
     $this->data['fancybox_on'] = true;
+  }
+  
+  protected function addCKEditor()
+  {
+    $this->addJquery();
+    $this->data['ckeditor_on'] = true;
+  }
+  
+  protected function addTinyMce()
+  {
+    $this->addJquery();
+    $this->data['tinymce_on'] = true;
   }
 }
 

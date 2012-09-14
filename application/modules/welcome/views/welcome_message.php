@@ -1,98 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection{ background-color: #E13300; color: white; }
-	::moz-selection{ background-color: #E13300; color: white; }
-	::webkit-selection{ background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body{
-		margin: 0 15px 0 15px;
-	}
-	
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-	
-	#container{
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-      <a href="<?php echo site_url('contacto');?>">Contactos</a>
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-    
+<ul>
+  <li>
+    <h1><a href="organic.html">Organic Gardening</a></h1>
     <div>
-      <?php echo language_menu(); ?>
-      
+      <a href="organic.html"><img src="images/vegetables.jpg" alt="Image" /></a>
     </div>
-    <div id="id1">
-      <div id="id11">
-        JavaScript <?php //echo $URILang->selected_language();?>
-      </div>
+    <span>Duis Lacus Dolor Lobortis Vel Ultricies Vitae</span>
+    <p>This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text. You can remove any link to our website from this website template, you're free to use this website template without linking back to us.</p>
+    <a href="organic.html" class="readmore">Read more</a>
+  </li>
+  <li>
+    <h1><a href="tips.html">Gardening Tips &amp; Useful Links</a></h1>
+    <div>
+      <a href="tips.html"><img src="images/lettuce.jpg" alt="Image" /></a>
     </div>
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
-</div>
-
-</body>
-</html>
+    <span>Vestibulum Ut Nisl Nec Massa Interdum Tincidunt</span>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet interdum diam, vitae tristique diam feugiat id. If you're having problems editing this website template, then don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forums/">Forum</a>.</p>
+    <a href="tips.html" class="readmore">Read more</a>
+  </li>
+  <li>
+    <h1><a href="index.html">Vegetable Garden Gallery</a></h1>
+    <div>
+      <a href="index.html"><img src="images/harvesting.jpg" alt="Image" /></a>
+    </div>
+    <div>
+      <a href="index.html"><img src="images/girl-harvesting.jpg" alt="Image" /></a>
+    </div>
+    <a href="index.html" class="readmore">Read more</a>
+  </li>
+</ul>
