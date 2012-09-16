@@ -330,7 +330,7 @@ class mupload {
       $imageInfo['route']         = $image;
       $imageInfo['original_name'] = basename($image);
       $imageInfo['original'] = $image;
-      $imageInfo['extension'] = $extension;
+      $imageInfo['extension'] = strtolower($extension);
       return $imageInfo;
     }
     
@@ -350,7 +350,7 @@ class mupload {
       $fileInfo['route']         = $path;
       $fileInfo['original_name'] = $filename;
       $fileInfo['type'] = $extension;
-      $fileInfo['extension'] = $extension;
+      $fileInfo['extension'] = strtolower($extension);
       
     }
 }

@@ -3,7 +3,8 @@
     <?php $i = 1; ?>
     <?php foreach($archivos as $archivo):
         //swith para las clases de los tipo de archivos
-        switch($archivo['extension']){
+		$extension = strtolower($archivo['extension']);
+        switch($extension){
             case 'jpg':
             case 'jpeg':
             case 'gif':
@@ -26,7 +27,9 @@
                 $mime_t = 'ppt2';
             break;
             default: $mime_t = 'gen2';
-       } ?>
+       } 
+	   
+	   ?>
 
         <li>
             <?php if($mime_t == 'imagen') {?>
