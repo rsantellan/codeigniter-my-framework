@@ -83,7 +83,7 @@ $captcha = array(
 		  
 <!--          <a id="forgot-password" href="https://login.hubspot.com/login/newforgotPassword">Forgot?</a>-->
 		  </p>
-<?php echo anchor('/auth/forgot_password/', 'Forgot?', array('class' => 'forgot-password')); ?>
+		  <?php echo anchor('/auth/forgot_password/', 'Forgot?', array('class' => 'forgot-password')); ?>
           <div>
             <?php if ($show_captcha): 
                     if ($use_recaptcha):
@@ -106,17 +106,24 @@ $captcha = array(
             <div>
                 <p>Enter the code exactly as it appears:</p>
                 <?php echo $captcha_html; ?>
+				<br/>
                 <?php echo form_label('Confirmation Code', $captcha['id']); ?>
                 <?php echo form_input($captcha); ?>
-                <?php echo form_error($captcha['name']); ?>
             </div>
             <?php 
                     endif;
                   endif; ?>
           </div>
-
+		  
+		  <div class="hs-error <?php echo (count($errors)> 0 ? 'visible' : '');?>">
+			<?php foreach($errors as $error): ?>
+			  <?php echo $error; ?>
+			<?php endforeach; ?>
+		  </div>
+		  
           <div class="hs-error <?php echo (strlen(validation_errors())> 0 ? 'visible' : '');?>">
-            <?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>
+			<?php echo form_error($captcha['name']); ?><?php echo isset($errors[$captcha['name']])?$errors[$captcha['name']]:''; ?>
+			<?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>
             <?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?>
           </div>
 
