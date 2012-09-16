@@ -55,7 +55,20 @@
 }
 
 div.avatar{
-  border-color: blue;
+  border-color: #666;
   border-style: solid;
-  border-width: 3px;
+  border-width: 1px;
+  text-align: center !important;
+}
+/**
+div.avatar {
+  border-color: #666;
+  border-style: solid;
+  border-width: 1px;
+}
+**/
+.img_name label{
+
+  font-size: 13px;
+
 }

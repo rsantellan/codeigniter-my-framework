@@ -53,6 +53,7 @@ class blogadmin extends MY_Controller{
       //$this->output->enable_profiler(TRUE);
       //$this->addCKEditor();
       $this->addTinyMce();
+	  $this->addUploadModuleAssets();
       $this->load->model('blog/blog_model');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "blog/admin/edit";

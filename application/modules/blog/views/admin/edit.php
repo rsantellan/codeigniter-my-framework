@@ -19,6 +19,11 @@
   $this->load->view('blog/admin/form');
 ?>
 
+<h4>Imagenes</h4>
+
+<?php echo modules::run('upload/view', array('id' => $object->getId(), 'classname'=> $object->getObjectClass()));?>
+
+
 <hr/>
 
 <a href="<?php echo site_url('blog/blogadmin/index'); ?>"> Volver al indice </a>

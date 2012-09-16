@@ -102,17 +102,23 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 
 function uploadSuccess(file, serverData) {
 	try {
-      console.log('estoy aca?');
+		/*
+		console.log('estoy aca?');
+		console.log(file);
+		console.log(serverData);
+		*/
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setComplete();
 		progress.setStatus("Complete.");
 		progress.toggleCancel(false);
         if(typeof window.refreshAlbum == 'function') 
         {
+		  //console.log('estoy aca - 1?');
           refreshAlbum(serverData);
         }
         else
         {
+		  //console.log('estoy aca - 2?');
           if(typeof parent.refreshAlbum == 'function')
           {
             parent.refreshAlbum(serverData);

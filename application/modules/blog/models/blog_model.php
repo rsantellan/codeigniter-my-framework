@@ -25,6 +25,12 @@ class blog_model extends MY_Model
       $this->setTablename('blog');
   }    
   
+  //Metodo para utilizar para la media.
+  public function getObjectClass()
+  {
+	return get_class($this);
+  }
+  
   public function getId() {
     return $this->id;
   }
@@ -166,7 +172,13 @@ class blog_model extends MY_Model
     $data["created_at"] =  date('Y-m-d H:i:s');
     $data["updated_at"] =  date('Y-m-d H:i:s');
     $this->db->insert($this->getTablename(), $data);
-    $id = $this->db->insert_id(); 
+    $id = $this->db->insert_id();
+	if(!is_null($id) && $id != 0)
+	{
+	  $ci =& get_instance();
+	  $ci->load->model('upload/album');
+	  $ci->album->createAlbum($id, $this->getObjectClass()); 
+	}
     return $id;
   }
   

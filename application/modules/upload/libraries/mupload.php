@@ -14,7 +14,7 @@ if (!defined('BASEPATH'))
 class mupload {
   
   public function checkDirectory($path){
-    log_message("debug", $path);
+		log_message("debug", $path);
         if (is_dir($path))
         {
             $last = $path[strlen($path)-1];

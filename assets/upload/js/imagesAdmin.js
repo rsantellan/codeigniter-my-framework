@@ -37,7 +37,6 @@ function deleteFile(mUrl, itemId)
 
 function refreshAlbum(albumId)
 {
- //console.log('refreshAlbum ' + albumId);
  var mUrl = $('#refresh_album_' + albumId).val();
  $.ajax({
     url: mUrl,
@@ -54,4 +53,9 @@ function refreshAlbum(albumId)
       }
     }        
   }); 
+}
+
+function startFancyLinks()
+{
+  $("a.fancy_link").fancybox();
 }

@@ -8,3 +8,9 @@ foreach($albums as $album):
 <?php 
 endforeach;
 ?>
+
+<script type="text/javascript">
+  $(document).ready(function() { 
+	startFancyLinks();
+  });
+</script>

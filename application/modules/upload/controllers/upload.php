@@ -55,7 +55,16 @@ class Upload extends MY_Controller {
         
 		// Settings
     $ckeditor = false;
-		if($_POST['ckeditor'] != 1)
+	
+	if(isset($_POST['ckeditor']))
+	{
+	  if($_POST['ckeditor'] == 1)
+	  {
+		$ckeditor = true;
+	  }
+	}
+	
+	if(!$ckeditor)
     {
       $save_path = getcwd() . ''.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.''.$_POST['album_id'].DIRECTORY_SEPARATOR; 
     }

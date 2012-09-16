@@ -135,6 +135,7 @@ $captcha = array(
               <button type="submit" tabindex="0" id="loginBtn" class="hs-button primary">Log In</button>
           </div>
         <?php echo form_close(); ?>
+		  <?php //echo CI_VERSION;?>
         </div>
       </div>
     </div>
