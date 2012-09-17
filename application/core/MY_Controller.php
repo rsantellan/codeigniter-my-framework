@@ -125,5 +125,13 @@ class MY_Controller extends MX_Controller
     $this->addJquery();
     $this->data['tinymce_on'] = true;
   }
+  
+  protected function addUploadModuleAssets()
+  {
+	$this->addJquery();
+	$this->addFancyBox();
+	$this->addModuleStyleSheet("upload", "albums.css");
+	$this->addModuleJavascript("upload", "imagesAdmin.js");
+  }
 }
 
