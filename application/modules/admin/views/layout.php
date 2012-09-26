@@ -46,7 +46,7 @@
       <div class="header_div">
         <label>Administrador</label>
 <!--        <h1 id="head">Administrador</h1>-->
-        <img src="<?php echo base_url();?>assets/images/logo.png" width="70" height="70"/>
+        <img src="<?php echo base_url();?>assets/images/logo.png" height="70"/>
       </div>
       
       <ul id="navigation">
@@ -73,7 +73,7 @@
 		</ul>
 		
 			<div id="content" class="container_16 clearfix">
-<?php echo language_menu(); ?>
+<?php //echo language_menu(); ?>
 <!-- Filtro -->     
 <!-- 
 				<div class="grid_4">

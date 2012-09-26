@@ -33,6 +33,6 @@ $config['language_pattern'] = 1;
 $config['language_pattern_lang'] = 'english';
 
 
-$config['modules'] = array('authadmin');
+$config['modules'] = array('sitio');
 /* End of file language_editor.php */
 /* Location: ./application/config/language_editor.php */

@@ -17,6 +17,7 @@ class contacto extends MY_Controller{
     {
       parent::__construct();
       $this->data['menu_id'] = 'contacto';
+      $this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
       //$this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
       //$this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
       $this->loadI18n("contacto");
@@ -35,9 +36,6 @@ class contacto extends MY_Controller{
       $this->load->helper('url');
       
       $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
-      $this->form_validation->set_rules('institucion', 'institucion', 'max_length[255]');
-      $this->form_validation->set_rules('telefono', 'telefono', 'max_length[255]');
-      $this->form_validation->set_rules('celular', 'telefono', 'max_length[255]');
       $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');			
       $this->form_validation->set_rules('comentario', 'comentario', 'required|max_length[1000]');
 
@@ -54,10 +52,7 @@ class contacto extends MY_Controller{
 			
         $form_data = array(
                         'nombre' => set_value('nombre'),
-                        'institucion' => set_value('institucion'),
                         'email' => set_value('email'),
-                        'telefono' => set_value('telefono'),
-                        'celular' => set_value('celular'),
                         'comentario' => set_value('comentario')
                     );
         $data['form_data'] = $form_data;

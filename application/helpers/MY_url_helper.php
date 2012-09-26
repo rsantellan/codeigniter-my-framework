@@ -7,8 +7,11 @@
 function site_url($uri, $lang = FALSE) {
 	$CI =& get_instance();
 	//$CI->load->config('language');
-	
-    
+	$use_urilang = $CI->config->item('use_urilang');
+    if(!$use_urilang)
+    {
+      return $CI->config->site_url($uri);
+    }
 	if(!is_array($uri)) {
 		$uri = explode('?', $uri);
 		$query = isset($uri[1]) ? '?'.$uri[1] : '';
