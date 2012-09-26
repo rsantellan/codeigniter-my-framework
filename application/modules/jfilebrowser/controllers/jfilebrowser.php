@@ -174,4 +174,15 @@ class jfilebrowser extends MY_Controller
     }
     
   }
+  
+  public function getUrl()
+  {
+    $ancho = $this->input->post('width');
+    $alto = $this->input->post('height');
+    $directorio = $this->input->post('directory');
+    $name = $this->input->post('name');
+    $archivo = $this->jfilebrowser_model->find($directorio, $name);
+    $path = thumbnail_image($archivo['original'], $ancho, $alto);
+    echo "/".$path;
+  }
 }
