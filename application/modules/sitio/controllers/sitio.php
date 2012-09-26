@@ -11,6 +11,7 @@ class Sitio extends MY_Controller {
   function __construct() {
     parent::__construct();
     $this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
+    $this->output->cache(1);
   }
   
   public function index()
