@@ -183,6 +183,24 @@ class jfilebrowser extends MY_Controller
     $name = $this->input->post('name');
     $archivo = $this->jfilebrowser_model->find($directorio, $name);
     $path = thumbnail_image($archivo['original'], $ancho, $alto);
-    echo "/".$path;
+	log_message("debug", base_url().$path);
+	log_message("debug", "/".$path);
+	$variables = explode("/", $path);
+	$aux = array();
+	foreach($variables as $var)
+	{
+	  if($var == "..")
+	  {
+		array_pop($aux);
+	  }
+	  else
+	  {
+		$aux[] = $var;
+	  }
+	}
+	$sPath = implode("/", $aux);
+	log_message("debug", "/".$sPath);
+	echo "/".$sPath;
+    
   }
 }

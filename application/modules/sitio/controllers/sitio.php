@@ -11,7 +11,7 @@ class Sitio extends MY_Controller {
   function __construct() {
     parent::__construct();
     $this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
-    $this->output->cache(1);
+    //$this->output->cache(1);
   }
   
   public function index()
@@ -23,6 +23,7 @@ class Sitio extends MY_Controller {
   
   public function historia()
   {
+    $this->loadI18n("historia", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = 'historia';
     $this->data['content'] = 'historia';
     $this->load->view('layout', $this->data);
