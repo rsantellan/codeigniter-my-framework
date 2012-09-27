@@ -45,9 +45,9 @@ var jFileBrowserDialog = {
                     parameters: 'width=' + ancho + '&height=' + alto + '&directory=' + dir + '&name=' + title,
                     onSuccess: function (response){
                         path = response.responseText;
-                        console.info(path);
+                        //console.info(path);
 						html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' height="' + alto +'" width="' + ancho +'" />';
-						console.info(html);
+						//console.info(html);
                         tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
 						tinyMCEPopup.close();
                     }

@@ -31,6 +31,7 @@ class Sitio extends MY_Controller {
   
   public function clientes()
   {
+    $this->loadI18n("clientes", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = 'clientes';
     $this->data['content'] = 'clientes';
     $this->load->view('layout', $this->data);
