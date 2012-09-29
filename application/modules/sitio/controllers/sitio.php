@@ -39,6 +39,7 @@ class Sitio extends MY_Controller {
   
   public function certificacion()
   {
+	$this->loadI18n("certificacion", "", FALSE, TRUE, "", "sitio");
     $this->data['menu_id'] = 'certificacion';
     $this->data['content'] = 'certificacion';
     $this->load->view('layout', $this->data);

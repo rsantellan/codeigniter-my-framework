@@ -20,13 +20,15 @@ class contacto extends MY_Controller{
       $this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
       //$this->loadI18n("sitio", "", FALSE, TRUE, "", "sitio");
       //$this->loadI18n("menu", "", FALSE, TRUE, "", "sitio");
-      $this->loadI18n("contacto");
+      //$this->loadI18n("contacto");
+	  $this->loadI18n("contacto", "", FALSE, TRUE, "", "sitio");
+	  
       //$this->addJavascript("jquery-1.7.1.min.js");
       //$this->addJavascript("jquery.infieldlabel.min.js");
       //$this->addJavascript("basicInfieldForm.js");
       //$this->addStyleSheet("infieldlabel.css");
       //$this->addJavascript("busqueda.js");
-      $this->addStyleSheet("contacto.css");  
+      //$this->addStyleSheet("contacto.css");  
     }
     
     function index()
@@ -59,23 +61,31 @@ class contacto extends MY_Controller{
         
         $this->load->model('mail_db');
         $return = $this->mail_db->retrieveContactMailInfo();
-        
+        //var_dump($return);die;
         //Con estos datos preparo un email para enviar.
         $this->load->library('email');
 
         $this->email->from($return['from']['direccion'], $return['from']['nombre']);
         $this->email->to($return['to']); 
-        $this->email->cc($return['cc']); 
-        $this->email->bcc($return['bcc']);
+		if(isset($return['cc']))
+		{
+		  $this->email->cc($return['cc']); 
+		}
+        if(isset($return['bcc']))
+		{
+		  $this->email->bcc($return['bcc']);
+		}
+        
         $this->email->reply_to($form_data['email'], $form_data['nombre']);
-
+		
         $this->email->subject('Contacto desde el sitio web');
         $message = $this->load->view('memail', $form_data, true);
         $this->email->message($message); 
 
         $this->email->send();
+		//Debug
+		//echo $this->email->print_debugger();die;
 
-        //echo $this->email->print_debugger();
         redirect('contacto/success');   // or whatever logic needs to occur
         
       }
