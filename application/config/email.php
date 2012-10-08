@@ -61,7 +61,7 @@ $config['wrapchars'] = '76';
  * desc: Type of mail. If you send HTML email you must send it as a complete web page. Make sure you don't have any relative links or relative image paths otherwise they will not work.
  * opciones: text or html
  * */
-$config['mailtype'] = 'text'; 
+$config['mailtype'] = 'html'; 
 /**  
  * desc: Character set (utf-8, iso-8859-1, etc.).
  * opciones: 
