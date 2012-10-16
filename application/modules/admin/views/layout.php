@@ -64,6 +64,18 @@
         <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
       <?php endif; ?>
       
+      <?php if($menu_id == 'proyectos'): ?>
+        <li><span class="active">Proyectos</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('proyectos/proyectoadmin');?>">Proyectos</a></li>
+      <?php endif; ?>  
+      
+      <?php if($menu_id == 'categorias'): ?>
+        <li><span class="active">Categorias</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('categorias/categoriasadmin');?>">Categorias</a></li>
+      <?php endif; ?>    
+        
       <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
       <?php else: ?>

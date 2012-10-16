@@ -37,11 +37,7 @@
                 <dl class="dropdown">
                      <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="servicios"><?php echo lang('menu_Servicios');?></dt>
                      <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                         <ul>
-                            <li><a href="#">Tratamiento de superficies y aplicaci&oacute;n de pinturas</a></li>
-                            <li><a href="#">Construcci&oacute;n y recuperaci&oacute;n edilicia</a></li>
-                            <li><a href="#">Revestimientos especiales</a></li>
-                         </ul>
+                        <?php echo modules::run('sitio/serviciosOptions')?>
                      </dd>
                 </dl>
             	<dl class="dropdown">

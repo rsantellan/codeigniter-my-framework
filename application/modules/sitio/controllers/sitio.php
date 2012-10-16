@@ -44,4 +44,12 @@ class Sitio extends MY_Controller {
     $this->data['content'] = 'certificacion';
     $this->load->view('layout', $this->data);
   }
+  
+  public function serviciosOptions()
+  {
+    $this->load->model('categorias/categorias_model');
+    $data = array();
+    $data['list'] = $this->categorias_model->retrieveAll();
+    $this->load->view('servicios_menu', $data);
+  }
 }
