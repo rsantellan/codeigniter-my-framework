@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="shortcut icon" href="<?php echo base_url() . "assets/images/favicon.ico";?>" />
       <title>
         <?php echo (isset($title))? $title: 'Titulo';?>
       </title>
@@ -35,9 +36,9 @@
                 </dl>
                 
                 <dl class="dropdown">
-                     <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="servicios"><?php echo lang('menu_Servicios');?></dt>
+                     <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="servicios <?php echo ($menu_id == "servicios") ? "current" : "";?>"><?php echo lang('menu_Servicios');?></dt>
                      <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                        <?php echo modules::run('sitio/serviciosOptions')?>
+                        <?php echo modules::run('sitio/serviciosOptions', array('servicio_id' => $servicio_id))?>
                      </dd>
                 </dl>
             	<dl class="dropdown">

@@ -14,6 +14,8 @@ class proyectos_model extends MY_Model{
   private $cliente;
   private $tipo_trabajo;
   private $descripcion;
+  private $category_id;
+  private $orden;
   private $created_at;
   private $updated_at;
   
@@ -79,6 +81,26 @@ class proyectos_model extends MY_Model{
     $this->updated_at = $updated_at;
   }
 
+  public function getCategoryId() {
+    return $this->category_id;
+  }
+
+  public function setCategoryId($category_id) {
+    $this->category_id = $category_id;
+  }
+
+  public function getOrden() {
+    return $this->orden;
+  }
+
+  public function setOrden($orden) {
+    $this->orden = $orden;
+  }
+
+  public function getObjectClass()
+  {
+    return get_class($this);
+  }
   public function retrieveAll($order_by = null, $order_type = "desc")
   {
     if(is_null($order_by))
@@ -128,11 +150,28 @@ class proyectos_model extends MY_Model{
     $data["cliente"] = $this->getCliente();
     $data["tipo_de_trabajo"] = $this->getTipo_trabajo();
     $data["descripcion"] = $this->getDescripcion();
+    $data["categoria_id"] = $this->getCategoryId();
     $data["created_at"] =  date('Y-m-d H:i:s');
     $data["updated_at"] =  date('Y-m-d H:i:s');
+    $data['orden'] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
+    if(!is_null($id) && $id != 0)
+	{
+	  $ci =& get_instance();
+	  $ci->load->model('upload/album');
+	  $ci->album->createAlbum($id, $this->getObjectClass()); 
+	}
     return $id;
+  }
+  
+  private function retrieveLastOrder()
+  {
+    $sql = "SELECT max( `order` ) +1 AS MAXIMUN FROM categorias";
+    $query = $this->db->query($sql);
+
+    $row = $query->row();
+    return $row->MAXIMUN;
   }
   
   private function edit()

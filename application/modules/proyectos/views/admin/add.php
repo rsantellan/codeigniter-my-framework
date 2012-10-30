@@ -4,6 +4,7 @@
   <?php echo form_error('cliente'); ?>
   <?php echo form_error('tipo_de_trabajo'); ?>
   <?php echo form_error('descripcion'); ?>
+  <?php echo form_error('categoria_id'); ?>
   
 </div>
 <?php

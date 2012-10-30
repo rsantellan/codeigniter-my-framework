@@ -31,11 +31,18 @@ class MY_Model extends CI_Model{
 
   public function deleteById($id)
   {
-/*
-    $ci = &get_instance();
-    $ci->load->model("upload/album");
-    $ci->album->deleteAllOf($id, $this->getObjectClass());
-*/  
+    try
+    {
+      $ci = &get_instance();
+      $ci->load->model("upload/album");
+      $ci->album->deleteAllOf($id, $this->getObjectClass());
+    }
+    catch(Exception $e)
+    {
+      log_message('error', 'Album no existe');
+    }
+    
+  
 
     $this->db->where('id', $id);
     $this->db->delete($this->getTablename());

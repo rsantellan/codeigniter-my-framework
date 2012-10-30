@@ -15,19 +15,31 @@ echo form_open('proyectos/proyectoadmin/save', $attributes); ?>
 </div>
 <div class="grid_8">
   <p>
-    <label for="cliente">title <span class="required">*</span></label>
+    <label for="cliente">Cliente <span class="required">*</span></label>
     <br /><input id="cliente" type="text" name="cliente" maxlength="255" value="<?php echo $object->getCliente() ?>"  />
   </p>
 </div>
+<div class="grid_8">
+  <p>
+    <label for="category_id">Categoria<span class="required">*</span></label>
+    <select id="categoria_id" name="categoria_id">
+      <?php foreach($category_list as $category): ?>
+        <option value="<?php echo $category->id;?>" <?php echo ($object->getCategoryId() == $category->id)? "selected" : ""; ?> ><?php echo $category->name;?></option>
+      <?php endforeach; ?>
+    </select>
+  </p>
+</div>
+
+
 <div class="grid_16">
   <p>
-    <label for="tipo_de_trabajo">tipo_de_trabajo</label>
+    <label for="tipo_de_trabajo">Tipo de Trabajo</label>
 	<?php echo form_textarea( array( 'name' => 'tipo_de_trabajo', 'class' => 'myTinyMce', 'rows' => '5', 'cols' => '80', 'value' => $object->getTipo_trabajo() ) )?>  
   </p>
 </div>
 <div class="grid_16">
   <p>
-    <label for="descripcion">descripcion</label>
+    <label for="descripcion">Descripción</label>
 	<?php echo form_textarea( array( 'name' => 'descripcion', 'class' => 'myTinyMce', 'rows' => '5', 'cols' => '80', 'value' => $object->getDescripcion() ) )?>  
   </p>
 </div>
