@@ -156,7 +156,7 @@ class proyectoadmin extends MY_Controller{
     {
       $lista = $this->input->post('listItem');
       $this->load->model('proyectos/proyectos_model');
-      $this->output->enable_profiler(TRUE);
+      //$this->output->enable_profiler(TRUE);
       /*
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)

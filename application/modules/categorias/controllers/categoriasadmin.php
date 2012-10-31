@@ -140,7 +140,7 @@ class categoriasadmin extends MY_Controller{
     {
       $lista = $this->input->post('listItem');
       $this->load->model('categorias/categorias_model');
-      
+      /*
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)
       {
@@ -148,6 +148,15 @@ class categoriasadmin extends MY_Controller{
         $this->categorias_model->updateOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
+      */
+      $cantidad = 0;
+      while($cantidad <= count($lista) - 1)
+      {
+        //echo $lista[$cantidad] . " - ".$cantidad . "|";
+        $this->categorias_model->updateOrder($lista[$cantidad], (count($lista) - $cantidad));
+        $cantidad ++;
+      }
+      
       $salida = array();
       $salida['response'] = "OK";
       

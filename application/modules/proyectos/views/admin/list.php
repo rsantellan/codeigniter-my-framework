@@ -16,10 +16,10 @@
         Tipo de trabajo
       </th>      
       <th>
-        Creado
+        Categoria
       </th>
       <th>
-        Actualizado
+        Creado
       </th>
       <th>
         Acciones
@@ -44,7 +44,7 @@
           <?php echo html_entity_decode($proyectos->tipo_de_trabajo); ?>
         </td>
         <td>
-          <?php echo ($proyectos->created_at); ?>
+          <?php echo ($proyectos->name); ?>
         </td>
         <td>
           <?php echo ($proyectos->updated_at); ?>

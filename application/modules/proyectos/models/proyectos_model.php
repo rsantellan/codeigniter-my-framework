@@ -121,6 +121,7 @@ class proyectos_model extends MY_Model{
       }
       
     }
+    $this->db->join('categorias', 'categorias.id = '.$this->getTablename().'.categoria_id');
     $query = $this->db->get($this->getTablename());
     $data = array();
     if($query->num_rows() > 0)
