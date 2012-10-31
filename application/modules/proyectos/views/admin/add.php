@@ -13,4 +13,4 @@
 
 <hr/>
 
-<a href="<?php echo site_url('proyectos/proyectosadmin/index'); ?>"> Volver al indice </a>
+<a href="<?php echo site_url('proyectos/proyectoadmin/index'); ?>"> Volver al indice </a>

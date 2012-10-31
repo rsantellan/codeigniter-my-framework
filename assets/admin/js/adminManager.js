@@ -102,3 +102,11 @@ adminManager.prototype = {
       });
     }
 }
+
+/**
+ * Esta funcion es la mas basica de los fancy. Hace que todo lo que se .fancy_link se inizialice
+ */
+function startFancyLinks()
+{
+  adminManager.getInstance().startFancyInPage('fancy_link');
+}

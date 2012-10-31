@@ -67,3 +67,15 @@
 <a href="<?php echo site_url("proyectos/proyectoadmin/add");?>">
   Agregar
 </a>
+
+<a class="fancy_link iframe" href="<?php echo site_url("proyectos/proyectoadmin/sort");?>" >
+  Ordenar
+</a>
+
+<script type="text/javascript">
+
+$(document).ready(function() { 
+  adminManager.getInstance().startFancyInPage('fancy_link');
+});
+
+</script>

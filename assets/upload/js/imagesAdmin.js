@@ -37,8 +37,13 @@ function deleteFile(mUrl, itemId)
 
 function refreshAlbum(albumId)
 {
- //console.log('refreshAlbum ' + albumId);
+ /*
+ console.log('refreshAlbum ' + albumId);
+ console.log('refresh_album_' + albumId);
+ console.log($('#refresh_album_' + albumId));
+ */
  var mUrl = $('#refresh_album_' + albumId).val();
+ //console.info(mUrl);
  $.ajax({
     url: mUrl,
     type: 'post',

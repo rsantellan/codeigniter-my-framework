@@ -27,6 +27,7 @@ class proyectoadmin extends MY_Controller{
   
   function index()
   {
+      //$this->output->enable_profiler(TRUE);
       $this->load->model('proyectos/proyectos_model');
       $this->data['list'] = $this->proyectos_model->retrieveAll();
       $this->data['content'] = "proyectos/admin/list";
@@ -140,5 +141,43 @@ class proyectoadmin extends MY_Controller{
           $this->load->view("admin/layout", $this->data);
         }
       }
-    }    
+    }
+    
+    function sort()
+    {
+      //$this->output->enable_profiler(TRUE);
+      $this->load->model('proyectos/proyectos_model');
+      $this->data['sort_list'] = $this->proyectos_model->retrieveForSort();
+      
+      $this->load->view('proyectos/admin/sortable', $this->data);
+    }
+    
+    function applySort()
+    {
+      $lista = $this->input->post('listItem');
+      $this->load->model('proyectos/proyectos_model');
+      $this->output->enable_profiler(TRUE);
+      /*
+      $cantidad = count($lista) - 1;
+      while($cantidad >= 0)
+      {
+        //echo $lista[$cantidad] . " - ".$cantidad . "|";
+        $this->proyectos_model->updateOrder($lista[$cantidad], $cantidad);
+        $cantidad --;
+      }
+      */
+      $cantidad = 0;
+      while($cantidad <= count($lista) - 1)
+      {
+        //echo $lista[$cantidad] . " - ".$cantidad . "|";
+        $this->proyectos_model->updateOrder($lista[$cantidad], (count($lista) - $cantidad));
+        $cantidad ++;
+      }
+      
+      $salida = array();
+      $salida['response'] = "OK";
+      
+      echo json_encode($salida);
+      //die;
+    }
 }

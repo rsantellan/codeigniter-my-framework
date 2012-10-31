@@ -45,6 +45,7 @@ $route['clientes.html'] = 'sitio/clientes';
 $route['certificacion.html'] = 'sitio/certificacion';
 $route['contacto.html'] = 'contacto';
 $route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
+$route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
 
 /*
 $route['(\w{2})/(.*)'] = '$2';

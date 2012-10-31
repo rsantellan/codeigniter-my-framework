@@ -61,18 +61,7 @@
             </div><!--CONTENT-->
             <hr />
             <div class="content">
-                <div class="bloque">
-                    <img src="/assets/images/destacado1.jpg" class="img_destacado" />
-                    <h3>Esfera Planta La Teja</h3><a href="#" class="destacado"><?php echo lang('destacados_ver_mas');?></a>
-                </div><!--BLOQUE-->
-                <div class="bloque bloque_center">
-                    <img src="/assets/images/destacado2.jpg" class="img_destacado" />
-                    <h3>Dinacia Aeropuerto</h3><a href="#" class="destacado"><?php echo lang('destacados_ver_mas');?></a>
-                </div><!--BLOQUE-->
-                <div class="bloque">
-                    <img src="/assets/images/destacado3.jpg" class="img_destacado" />
-                    <h3>Edificio Torre del Sur</h3><a href="#" class="destacado"><?php echo lang('destacados_ver_mas');?></a>
-                </div><!--BLOQUE-->
+              <?php echo modules::run('sitio/destacados')?>
             </div><!--CONTENT-->
           </div>
           <div class="clear"></div>

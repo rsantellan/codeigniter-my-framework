@@ -101,15 +101,25 @@ class proyectos_model extends MY_Model{
   {
     return get_class($this);
   }
-  public function retrieveAll($order_by = null, $order_type = "desc")
+  
+  public function retrieveAll($order_by = null, $order_type = "desc", $limit = null)
   {
     if(is_null($order_by))
     {
-      $this->db->order_by("id", "desc"); 
+      $this->db->order_by("orden", "desc"); 
     }
     else
     {
       $this->db->order_by($order_by, $order_type);
+    }
+    if(!is_null($limit))
+    {
+      $limit_number = (int) $limit;
+      if($limit_number > 0)
+      {
+        $this->db->limit($limit);
+      }
+      
     }
     $query = $this->db->get($this->getTablename());
     $data = array();
@@ -123,6 +133,61 @@ class proyectos_model extends MY_Model{
     return $data;
   }
 
+  public function retrieveAllByCategory($category_id, $order_by = null, $order_type = "desc")
+  {
+    if(is_null($order_by))
+    {
+      $this->db->order_by("orden", "desc"); 
+    }
+    else
+    {
+      $this->db->order_by($order_by, $order_type);
+    }
+    $this->db->where('categoria_id', $category_id);
+    $query = $this->db->get($this->getTablename());
+    $data = array();
+    if($query->num_rows() > 0)
+    {
+      foreach($query->result() as $row)
+      {
+        $row->avatar = $this->retrieveAvatar("default", $row->id);
+        $data[] = $row;
+      }
+    }
+    return $data;
+  }
+  
+  public function retrieveAllWithImage($limit = 3, $order_by = null, $order_type = "desc")
+  {
+    if(is_null($order_by))
+    {
+      $this->db->order_by("orden", "desc"); 
+    }
+    else
+    {
+      $this->db->order_by($order_by, $order_type);
+    }
+    if(!is_null($limit))
+    {
+      $limit_number = (int) $limit;
+      if($limit_number > 0)
+      {
+        $this->db->limit($limit);
+      }
+    }
+    $query = $this->db->get($this->getTablename());
+    $data = array();
+    if($query->num_rows() > 0)
+    {
+      foreach($query->result() as $row)
+      {
+        $row->avatar = $this->retrieveAvatar("default", $row->id);
+        $data[] = $row;
+      }
+    }
+    return $data;
+  }
+  
   public function isNew()
   {
     if($this->getId() == "" || is_null($this->getId()))
@@ -213,6 +278,37 @@ class proyectos_model extends MY_Model{
       // None
       return NULL;
     }
+  }
+  
+  public function retrieveAvatar($albumName = "default", $id = NULL)
+  {
+    if(!is_null($id)) $this->setId($id);
+
+    if(!is_null($this->getId()) && $this->getId() != "")
+    {
+      $ci = &get_instance();
+      $ci->load->model("upload/album");
+      return $ci->album->retrieveAlbumAvatar($this->getId(), $this->getObjectClass(), $albumName);
+    }
+    return NULL;      
+  }
+  
+  function retrieveForSort()
+  {
+    $this->db->select(array('id', 'nombre', 'orden'));
+    $this->db->order_by("orden", "desc");
+    $query = $this->db->get($this->getTablename());
+
+    return $query->result();
+  }
+  
+  function updateOrder($id, $order)
+  {
+    $data = array(
+              'orden' => $order
+           );
+    $this->db->where('id', $id);
+    $this->db->update($this->getTablename(), $data);
   }
 }
 

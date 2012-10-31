@@ -1,4 +1,4 @@
-<h4>Listado de posts</h4>
+<h4>Listado de Categorias</h4>
 <?php //var_dump($list);?>
 <table>
   <thead>
