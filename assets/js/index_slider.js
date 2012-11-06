@@ -1,7 +1,7 @@
  $(document).ready(function() {
    $('#slides').slides({
 				preload: true,
-				preloadImage: '/assets/images/loading.gif',
+				preloadImage: $('#loading_image_src_location').val(),
 				play: 5000,
 				pause: 2000,
 				hoverPause: true,

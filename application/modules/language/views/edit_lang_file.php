@@ -8,7 +8,7 @@
 	<link href="<?php echo base_url();?>assets/language/css/style.css" type="text/css" rel="stylesheet"/>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     
-    <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/tiny_mce/tiny_mce_src.js"></script>
     
 	<script type="text/javascript">
 	$(document).ready(function(){

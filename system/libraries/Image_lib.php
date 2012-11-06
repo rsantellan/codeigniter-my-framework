@@ -558,6 +558,7 @@ class CI_Image_lib {
 	 */
 	function image_process_imagemagick($action = 'resize')
 	{
+        $this->library_path = 'convert';
 		//  Do we have a vaild library path?
 		if ($this->library_path == '')
 		{
@@ -599,9 +600,9 @@ class CI_Image_lib {
 		}
 
 		$retval = 1;
-
+        log_message('debug', $cmd);
 		@exec($cmd, $output, $retval);
-
+        
 		//	Did it work?
 		if ($retval > 0)
 		{

@@ -183,8 +183,8 @@ class jfilebrowser extends MY_Controller
     $name = $this->input->post('name');
     $archivo = $this->jfilebrowser_model->find($directorio, $name);
     $path = thumbnail_image($archivo['original'], $ancho, $alto);
-	log_message("debug", base_url().$path);
-	log_message("debug", "/".$path);
+	log_message("debug", "URL COMPLETA: ". base_url().$path);
+	log_message("debug", "URL con la barra: "."/".$path);
 	$variables = explode("/", $path);
 	$aux = array();
 	foreach($variables as $var)
@@ -199,8 +199,8 @@ class jfilebrowser extends MY_Controller
 	  }
 	}
 	$sPath = implode("/", $aux);
-	log_message("debug", "/".$sPath);
-	echo "/".$sPath;
+	log_message("debug", "URL final: "."/".$sPath);
+	echo base_url().$sPath;
     
   }
 }

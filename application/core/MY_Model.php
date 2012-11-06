@@ -31,8 +31,10 @@ class MY_Model extends CI_Model{
 
   public function deleteById($id)
   {
+    log_message("debug", "Deleting by id : ".$id);
     try
     {
+      log_message("debug", "Deleting images of class : ".$this->getObjectClass());
       $ci = &get_instance();
       $ci->load->model("upload/album");
       $ci->album->deleteAllOf($id, $this->getObjectClass());

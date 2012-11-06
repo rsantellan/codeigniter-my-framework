@@ -31,7 +31,7 @@
               <?php if(!is_null($proyecto->avatar)): ?>
                 <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo base_url().thumbnail_image($proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_servicios" />
               <?php else: ?>
-                <img src="/assets/images/servicio2.jpg" class="img_servicios" />
+                <img src="<?php echo base_url();?>assets/images/default_servicios.jpg" class="img_servicios" />
               <?php endif; ?>
               
             </a>

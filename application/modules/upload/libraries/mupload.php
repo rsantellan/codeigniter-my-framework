@@ -120,9 +120,19 @@ class mupload {
       }
       else
       {
-        $CI =& get_instance();
-        $CI->load->library('mgd', true, NULL, 'mgd');
-        $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height); 
+        try
+        { 
+          $CI =& get_instance();
+          $CI->load->library('mimagickexec', true, NULL, 'mImagickExec');
+          $CI->mimagickexec->basicThumbnail($path, $mPath, $type, $width, $height); 
+        }
+        catch(Exception $e)
+        {
+          $CI =& get_instance();
+          $CI->load->library('mgd', true, NULL, 'mgd');
+          $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height);
+        }
+         
       }
       
       

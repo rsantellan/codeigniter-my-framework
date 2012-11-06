@@ -14,7 +14,7 @@
         <?php $i = 1; ?>
         <?php foreach($directorios as $directorio): ?>
             <li>
-                <form name="form_<?php echo $i; ?>" method="post" action="/index.php/jfilebrowser/borrarDirectorio" class="borr_cat_fm" onsubmit="jFileBrowserDialog.confirmar('estas seguro que quieres borrar este directorio', <?php echo $i; ?>); return false;">
+                <form name="form_<?php echo $i; ?>" method="post" action="<?php echo site_url("jfilebrowser/borrarDirectorio")?>" class="borr_cat_fm" onsubmit="jFileBrowserDialog.confirmar('estas seguro que quieres borrar este directorio', <?php echo $i; ?>); return false;">
                     <input type="image" name="borrar_cat_bt" id="borrar_cat_bt" src="img/delete.png" />
                     <span class="enviar_td">
                         <input type="hidden" name="nombre" value="<?php echo $directorio->name ?>" />

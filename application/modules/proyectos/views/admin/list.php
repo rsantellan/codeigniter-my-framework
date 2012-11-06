@@ -29,7 +29,7 @@
   <tbody>
     
     <?php foreach($list as $proyectos): ?>
-    
+    <?php //var_dump($proyectos); ?>
       <tr id="table_row_<?php echo $proyectos->id;?>">
         <td>
           <?php echo ($proyectos->nombre); ?>
@@ -47,9 +47,10 @@
           <?php echo ($proyectos->name); ?>
         </td>
         <td>
-          <?php echo ($proyectos->updated_at); ?>
+          <?php echo ($proyectos->created_at); ?>
         </td>
         <td>
+          
           <a href="<?php echo site_url("proyectos/proyectoadmin/edit/".$proyectos->id);?>">
             Editar
           </a>

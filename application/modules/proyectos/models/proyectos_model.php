@@ -122,8 +122,11 @@ class proyectos_model extends MY_Model{
       
     }
     $this->db->join('categorias', 'categorias.id = '.$this->getTablename().'.categoria_id');
+    $select_string = $this->getTablename().".id, ".$this->getTablename().".nombre, ".$this->getTablename().".cliente, ".$this->getTablename().".tipo_de_trabajo, ".$this->getTablename().".descripcion, ".$this->getTablename().".created_at, categorias.name ";
+    $this->db->select($select_string);
     $query = $this->db->get($this->getTablename());
     $data = array();
+    //var_dump($query->result());
     if($query->num_rows() > 0)
     {
       foreach($query->result() as $row)

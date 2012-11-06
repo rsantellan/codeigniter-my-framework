@@ -9,7 +9,7 @@
     <?php if(!is_null($proyecto->avatar)): ?>
       <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo base_url().thumbnail_image($proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_destacado" />
     <?php else: ?>
-      <img src="/assets/images/destacado1.jpg" class="img_destacado" />
+      <img src="<?php echo base_url();?>assets/images/default.jpg" class="img_destacado" />
     <?php endif; ?>
     <h3><?php echo $proyecto->nombre;?></h3>
     <a href="<?php echo site_url('proyecto/'.$url_help); ?>" class="destacado"><?php echo lang('destacados_ver_mas');?></a>

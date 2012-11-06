@@ -31,7 +31,7 @@
 
         <li>
             <div>
-                <form id="form_<?php echo $i; ?>" class="form_submit_lista" method="post" action="/backend.php/jfilebrowser/borrarArchivo" class="centrar_2" onsubmit="jFileBrowserDialog.confirmar('<?php echo lang('jfilebrowser_confirmar borrado'); ?>', '<?php echo $i; ?>'); return false">
+                <form id="form_<?php echo $i; ?>" class="form_submit_lista" method="post" action="<?php echo site_url("jfilebrowser/borrarArchivo")?>" class="centrar_2" onsubmit="jFileBrowserDialog.confirmar('<?php echo lang('jfilebrowser_confirmar borrado'); ?>', '<?php echo $i; ?>'); return false">
                     <input type="hidden" name="directorio" value="<?php echo $directorio; ?>" />
                     <input type="hidden" name="name" value="<?php echo $archivo['original_name']; ?>" />
                     <input type="hidden" name="view" value="list" />

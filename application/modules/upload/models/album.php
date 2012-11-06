@@ -61,14 +61,16 @@ class album extends MY_Model{
   public function deleteAllOf($objectId, $objectClass)
   {
     $albums = $this->retrieveAllObjectAlbums($objectId, $objectClass);
+    log_message("debug", "Deleting images of albums - id : ".$objectId. " class : ".$objectClass);
     foreach($albums as $album)
     {
-      
+      log_message("debug", "Deleting images of albums - id : ".$album["id"]);
       $ci = &get_instance();
       $ci->load->model("upload/images");
       $images = $ci->images->retrieveAlbumImages($album["id"]);
       foreach($images as $image)
       {
+        log_message("debug", "Deleting image by id : ".$image->id);
         $ci->images->deleteFile($image->id);
       }
       $this->db->where('id', $album["id"]);
