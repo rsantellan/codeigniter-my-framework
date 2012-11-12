@@ -38,7 +38,12 @@
                 <dl class="dropdown">
                      <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="servicios <?php echo ($menu_id == "servicios") ? "current" : "";?>"><?php echo lang('menu_Servicios');?></dt>
                      <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                        <?php echo modules::run('sitio/serviciosOptions', array('servicio_id' => $servicio_id))?>
+                        <?php 
+                        if(!isset($servicio_id))
+                          $servicio_id = null;
+                        echo modules::run('sitio/serviciosOptions', array('servicio_id' => $servicio_id));
+                                
+                        ?>
                      </dd>
                 </dl>
             	<dl class="dropdown">
@@ -66,6 +71,10 @@
           </div>
           <div class="clear"></div>
         <div id="footer">
+            <div class="logos">
+            	<img src="<?php echo base_url() . "assets/images/logo_iso.jpg";?>" />
+                <img src="<?php echo base_url() . "assets/images/logo_fcr.jpg";?>" />
+            </div>
             <?php echo lang('footer_informacion');?>
         </div><!--FOOTER-->
         <div id="firm">

@@ -558,6 +558,7 @@ class CI_Image_lib {
 	 */
 	function image_process_imagemagick($action = 'resize')
 	{
+        log_message('error', "width: ".$this->width . " height:".$this->height );
         $this->library_path = 'convert';
 		//  Do we have a vaild library path?
 		if ($this->library_path == '')
@@ -596,7 +597,12 @@ class CI_Image_lib {
 		}
 		else  // Resize
 		{
-			$cmd .= " -resize ".$this->width."x".$this->height." \"$this->full_src_path\" \"$this->full_dst_path\" 2>&1";
+            $cmd .= " -resize ".$this->width."x".$this->height; 
+            if($this->maintain_ratio === FALSE)
+            {
+              $cmd .= "\!";
+            }
+			$cmd .= " \"$this->full_src_path\" \"$this->full_dst_path\" 2>&1";
 		}
 
 		$retval = 1;

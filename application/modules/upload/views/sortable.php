@@ -4,10 +4,10 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Sortable</title>
-        <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-1.7.1.min.js";?>"></script>
-        <script type="text/javascript" src="<?php echo base_url() . "assets/js/jquery-ui-1.8.16.custom.min.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery-1.7.1.min.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery-ui-1.8.16.custom.min.js";?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/eggplant/jquery-ui-1.8.18.custom.css";?>" />
         <script type="text/javascript" src="<?php echo base_url() . "assets/upload/js/sortable.js";?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/eggplant/jquery-ui-1.8.18.custom.css";?>" />
         <style>
 /*          #sortable { 
             list-style-type: none; 

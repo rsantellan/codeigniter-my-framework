@@ -30,6 +30,8 @@ class mimagickexec {
     {
       throw new Exception("Invalid thumbnail type check class imagickExecThumbnailTypes");
     }
+    log_message('error', "el tipo es el siguiente: ".$type);
+    //die('aca');
     //var_dump($cacheFile);
     log_message('error',$cacheFile);
     $config = array();
@@ -37,7 +39,12 @@ class mimagickexec {
     $config['source_image'] = $file;
     $config['new_image'] = $cacheFile;
     //$config['create_thumb'] = TRUE;
-    //$config['maintain_ratio'] = FALSE;
+    if($type == imagickExecThumbnailTypes::FIXED)
+    {
+      $config['maintain_ratio'] = FALSE;
+    }
+
+    
     $config['width'] = $width;
     $config['height'] = $height;
     log_message('error', "width: ".$width . " height:".$height );
@@ -51,7 +58,15 @@ class mimagickexec {
     {
       $CI->load->library('image_lib', $config); 
     }
-    $CI->image_lib->resize();
+    if($type == imagickExecThumbnailTypes::CROP)
+    {
+      $CI->image_lib->crop();
+    }
+    else 
+    {
+      $CI->image_lib->resize();
+    }
+    
     
   }  
 }
