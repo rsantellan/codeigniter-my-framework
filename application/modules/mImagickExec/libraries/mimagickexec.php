@@ -41,6 +41,7 @@ class mimagickexec {
     //$config['create_thumb'] = TRUE;
     if($type == imagickExecThumbnailTypes::FIXED)
     {
+      return $this->actualCropResizeFunction($file, $cacheFile, $width, $height);
       $config['maintain_ratio'] = FALSE;
     }
 
@@ -66,9 +67,34 @@ class mimagickexec {
     {
       $CI->image_lib->resize();
     }
+  }
+  
+  private function actualCropResizeFunction($file, $cacheFile, $width = 200, $height = 200)
+  {
+    $cmd = "convert -quality 90";
     
-    
-  }  
+    $maximun = $width;
+    if($width < $height)
+    {
+      $maximun = $height;
+    }
+    $cmd .= " -resize ".$maximun;
+    $cmd .= " -gravity center -crop ".$width."x".$height."+0+0";
+    $cmd .= " \"$file\" \"$cacheFile\" 2>&1";
+    $retval = 1;
+    log_message('debug', $cmd);
+    @exec($cmd, $output, $retval);
+    //	Did it work?
+    if ($retval > 0)
+    {
+        $this->set_error('imglib_image_process_failed');
+        return FALSE;
+    }
+    // Set the file to 777
+    @chmod($cacheFile, FILE_WRITE_MODE);
+
+    return TRUE;
+  }
 }
 
 class imagickExecThumbnailTypes {

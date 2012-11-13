@@ -558,7 +558,7 @@ class CI_Image_lib {
 	 */
 	function image_process_imagemagick($action = 'resize')
 	{
-        log_message('error', "width: ".$this->width . " height:".$this->height );
+        log_message('debug', "width: ".$this->width . " height:".$this->height );
         $this->library_path = 'convert';
 		//  Do we have a vaild library path?
 		if ($this->library_path == '')
