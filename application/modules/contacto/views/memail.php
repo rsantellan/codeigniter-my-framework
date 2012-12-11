@@ -7,7 +7,7 @@
 <body>
 	<table cellpadding="0" cellspacing="0" style="width:800px; margin:25px;">
     	<tr>
-        	<td style="width:800px"><img src="<?php echo base_url();?>assets/images/logo.jpg" /></td>
+        	<td style="width:800px"><img src="<?php echo base_url();?>assets/images/logo.png" /></td>
         </tr>
         <tr>
         	<td style="padding:15px 0 10px 0; font-size:13px; font-weight:bold;text-transform:uppercase; font-family:Lucida Grande, Lucida Sans Unicode, sans-serif; color:#AB1917;">CONTACTO</td>

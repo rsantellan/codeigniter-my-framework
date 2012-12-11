@@ -171,6 +171,11 @@ class categorias_model extends MY_Model{
     $this->db->where('id', $id);
     $this->db->update($this->getTablename(), $data);
   }
+  
+  public function getObjectClass()
+  {
+    return get_class($this);
+  }
 }
 
 

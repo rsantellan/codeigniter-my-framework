@@ -18,3 +18,4 @@ $lang['contacto_texto'] = '<iframe width="300" height="160" frameborder="0" scro
                 <li><img src="/assets/images/mail.jpg" /></li>
                 <li><a href="mailto:contacto@metalizadorauruguaya.com.uy?subject=Consulta desde sitio web" target="_blank">contacto@metalizadorauruguaya.com.uy</a></li>
             </ul>';
+$lang["contacto_mensaje_enviado"] = "Su mensaje sera respondido en la brevedad";

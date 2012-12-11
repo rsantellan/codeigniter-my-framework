@@ -236,7 +236,7 @@ class proyectos_model extends MY_Model{
   
   private function retrieveLastOrder()
   {
-    $sql = "SELECT max( `order` ) +1 AS MAXIMUN FROM categorias";
+    $sql = "SELECT max( `orden` ) +1 AS MAXIMUN FROM proyectos";
     $query = $this->db->query($sql);
 
     $row = $query->row();
