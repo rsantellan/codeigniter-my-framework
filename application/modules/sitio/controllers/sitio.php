@@ -64,6 +64,7 @@ class Sitio extends MY_Controller {
     //var_dump($id);
     $this->loadI18n("servicios", "", FALSE, TRUE, "", "sitio");
     $this->load->helper('htmlpurifier');
+    $this->load->helper('text');
     $this->load->helper('upload/mimage');
     $this->load->library('upload/mupload');
     $this->load->model('categorias/categorias_model');

@@ -36,7 +36,7 @@
               
             </a>
             <h3>
-            <a href="<?php echo site_url('proyecto/'.$url_help); ?>"><?php echo $proyecto->nombre?></a></h3>
+            <a href="<?php echo site_url('proyecto/'.$url_help); ?>"><?php echo character_limiter($proyecto->nombre, 45)?></a></h3>
           </div><!--BLOQUE-->
           <?php 
             $counter ++;
