@@ -10,19 +10,45 @@ class Sitio extends MY_Controller {
   
   function __construct() {
     parent::__construct();
-    $this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
+    //$this->loadI18n("global", "", FALSE, TRUE, "", "sitio");
     //$this->output->cache(1);
     $this->data['servicio_id'] = "";
   }
   
   public function index()
   {
-    $this->data['slider'] = true;
+    //$this->data['slider'] = true;
     $this->data['content'] = 'home';
     $this->addStyleSheet('global.css');
-    $this->addJavascript("jquery.min.js");
-    $this->addJavascript("slides.min.jquery.js");
+    $this->addJavascript("jquery.panelgallery-2.0.0.js");
     $this->addJavascript("index_slider.js");
+    $this->addJquery();
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function quienesSomos()
+  {
+    $this->data['content'] = 'quienessomos';
+    $this->data['menu_id'] = 'quienessomos';
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function obras()
+  {
+    $this->data['content'] = 'obras';
+    $this->data['menu_id'] = 'obras';
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function proyectos()
+  {
+    $this->data['content'] = 'proyectos';
+    $this->data['menu_id'] = 'proyectos';
+    $this->addJquery();
+    $this->addJavascript("proyectos.js");
+    $this->addJavascript("jquery.fancybox-1.3.4.pack.js");
+    $this->addJavascript("jquery.mousewheel-3.0.4.pack.js");
+    $this->addStyleSheet("jquery.fancybox-1.3.4.css");
     $this->load->view('layout', $this->data);
   }
   

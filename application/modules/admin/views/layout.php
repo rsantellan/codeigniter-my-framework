@@ -56,25 +56,34 @@
         <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
       <?php endif; ?>
       
-        <li><a href="<?php echo site_url('language/index');?>">Textos</a></li>
+      <?php if(false): ?>
+          <li><a href="<?php //echo site_url('language/index');?>">Textos</a></li>
+          <?php if($menu_id == 'users'): ?>
+            <li><span class="active">Usuarios</span></li>
+          <?php else: ?>
+            <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
+          <?php endif; ?>
+
+          <?php if($menu_id == 'proyectos'): ?>
+            <li><span class="active">Proyectos</span></li>
+          <?php else: ?>
+            <li><a href="<?php echo site_url('proyectos/proyectoadmin');?>">Proyectos</a></li>
+          <?php endif; ?>  
+
+          <?php if($menu_id == 'categorias'): ?>
+            <li><span class="active">Categorias</span></li>
+          <?php else: ?>
+            <li><a href="<?php echo site_url('categorias/categoriasadmin');?>">Categorias</a></li>
+          <?php endif; ?>
       
-      <?php if($menu_id == 'users'): ?>
-        <li><span class="active">Usuarios</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
       <?php endif; ?>
+        
       
-      <?php if($menu_id == 'proyectos'): ?>
-        <li><span class="active">Proyectos</span></li>
+      <?php if($menu_id == 'propiedades'): ?>
+        <li><span class="active">Propiedades</span></li>
       <?php else: ?>
-        <li><a href="<?php echo site_url('proyectos/proyectoadmin');?>">Proyectos</a></li>
-      <?php endif; ?>  
-      
-      <?php if($menu_id == 'categorias'): ?>
-        <li><span class="active">Categorias</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('categorias/categoriasadmin');?>">Categorias</a></li>
-      <?php endif; ?>    
+        <li><a href="<?php echo site_url('propiedades/propiedadesadmin');?>">Propiedades</a></li>
+      <?php endif; ?>
         
       <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
@@ -84,40 +93,8 @@
         <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
 		</ul>
 		
-			<div id="content" class="container_16 clearfix">
-<?php //echo language_menu(); ?>
-<!-- Filtro -->     
-<!-- 
-				<div class="grid_4">
-					<p>
-						<label>Username<small>Alpha-numeric values</small></label>
-						<input type="text" />
-					</p>
-				</div>
-        <div class="grid_5">
-					<p>
-						<label>Email Address</label>
-						<input type="text" />
-					</p>
-				</div>
-				<div class="grid_5">
-					<p>
-						<label>Department</label>
-						<select>
-							<option>Development</option>
-							<option>Marketing</option>
-							<option>Design</option>
-							<option>IT</option>
-						</select>
-					</p>
-				</div>
-				<div class="grid_2">
-					<p>
-						<label>&nbsp;</label>
-						<input type="submit" value="Search" />
-					</p>
-				</div>
--->
+          <div id="content" class="container_16 clearfix">
+
 <!-- Filtro -->
 <!-- Contenido -->
         <!-- pongo un if para el grid 16 por los form -->

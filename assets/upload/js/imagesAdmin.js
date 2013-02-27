@@ -64,7 +64,7 @@ function refreshAlbum(albumId)
 function startUploadFancyLinks()
 {
   //var album_id = null;
-
+  $(".img_edit .fancy_link").fancybox();
   $(".fancy_link_upload").fancybox({
     onClosed: function(){
       if ( $.browser.msie ) {
