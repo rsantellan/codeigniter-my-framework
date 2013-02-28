@@ -55,10 +55,11 @@
           </li>
 
           <li>
-            <a  href="alquileres.html">Alquileres</a>
+            <a class="<?php echo ($menu_id == "alquileres") ? "current" : "";?>" href="<?php echo site_url('alquileres'); ?>">Alquileres</a>
           </li>
           <li>
-            <a  href="ventas.html">Ventas</a>
+            
+            <a class="<?php echo ($menu_id == "ventas") ? "current" : "";?>" href="<?php echo site_url('ventas'); ?>">Ventas</a>
           </li>
           <li>
             <a  href="contacto.html">Contactenos</a>

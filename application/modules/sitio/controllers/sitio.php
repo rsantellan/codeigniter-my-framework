@@ -52,6 +52,56 @@ class Sitio extends MY_Controller {
     $this->load->view('layout', $this->data);
   }
   
+  
+  public function alquileres()
+  {
+    $this->data['menu_id'] = 'alquileres';
+    $this->data['content'] = 'alquiler';
+    $this->load->model('propiedades/propiedad_model');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveAllWithImage(true, false, NULL);
+    //$this->output->enable_profiler(TRUE);
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function ventas()
+  {
+    $this->data['menu_id'] = 'ventas';
+    $this->data['content'] = 'ventas';
+    $this->load->model('propiedades/propiedad_model');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveAllWithImage(false, true, NULL);
+    //$this->output->enable_profiler(TRUE);
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function alquiler($id)
+  {
+    $this->data['menu_id'] = 'alquileres';
+    $this->data['content'] = 'detalleAlquiler';
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->model('propiedades/propiedad_model');
+    $this->load->model('upload/album');
+    $this->load->model('upload/images');
+    
+    $this->data['propiedad'] = $this->propiedad_model->getById($id, FALSE);
+    $album = $this->album->retrieveObjectAlbum($id, $this->propiedad_model->getObjectClass(), "default");
+    
+    $this->data["images"] = $this->images->retrieveAlbumImages($album->id);
+    //$this->output->enable_profiler(TRUE);
+    $this->addJquery();
+    $this->addJavascript("propiedad.js");
+    $this->addJavascript("jquery.fancybox-1.3.4.pack.js");
+    $this->addJavascript("jquery.mousewheel-3.0.4.pack.js");
+    $this->addStyleSheet("jquery.fancybox-1.3.4.css");
+    $this->load->view('layout', $this->data);
+  }
+  
   public function historia()
   {
     $this->loadI18n("historia", "", FALSE, TRUE, "", "sitio");

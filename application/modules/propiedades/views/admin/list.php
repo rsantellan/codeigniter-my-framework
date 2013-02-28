@@ -1,25 +1,31 @@
-<h4>Listado de proyectos</h4>
+<h4>Listado de propiedades</h4>
 <?php //var_dump($list);?>
 <table>
   <thead>
     <tr>
     <th>
-        Nombre
+        Titulo
       </th>
 	  <th>
-        Cliente
+        Detalle
       </th>
      <th>
-        Descripcion
+        Ubicación
       </th>
      <th>
-        Tipo de trabajo
+        Precio de venta
       </th>      
       <th>
-        Categoria
+        Precio de alquiler
       </th>
       <th>
-        Creado
+        Alquilada
+      </th>
+      <th>
+        Vendida
+      </th>
+      <th>
+        Visibilidad
       </th>
       <th>
         Acciones
@@ -28,33 +34,41 @@
   </thead>
   <tbody>
     
-    <?php foreach($list as $proyectos): ?>
+    <?php foreach($list as $propiedad): ?>
     <?php //var_dump($proyectos); ?>
-      <tr id="table_row_<?php echo $proyectos->id;?>">
+      <tr id="table_row_<?php echo $propiedad->id;?>">
         <td>
-          <?php echo ($proyectos->nombre); ?>
+          <?php echo ($propiedad->titulo); ?>
         </td>
         <td>
-          <?php echo ($proyectos->cliente); ?>
+          <?php echo html_entity_decode($propiedad->detalle); ?>
         </td>
         <td>
-          <?php echo html_entity_decode($proyectos->descripcion); ?>
+          <?php echo html_entity_decode($propiedad->ubicacion); ?>
         </td>
         <td>
-          <?php echo html_entity_decode($proyectos->tipo_de_trabajo); ?>
+          <?php echo ($propiedad->moneda_venta == 0) ? "U\$S" : "\$" ; ?>
+          <?php echo $propiedad->precio_venta; ?>
         </td>
         <td>
-          <?php echo ($proyectos->name); ?>
+            <?php echo ($propiedad->moneda_alquiler == 0) ? "U\$S" : "\$" ; ?>
+            <?php echo ($propiedad->precio_alquiler); ?>
         </td>
         <td>
-          <?php echo ($proyectos->created_at); ?>
+          <?php echo ($propiedad->esta_alquilada == 0) ? "No" : "Si" ; ?>
+        </td>
+        <td>
+          <?php echo ($propiedad->esta_vendida == 0) ? "No" : "Si" ; ?>
+        </td>
+        <td>
+          <?php echo ($propiedad->visibilidad == 0) ? "No" : "Si" ; ?>
         </td>
         <td>
           
-          <a href="<?php echo site_url("propiedades/propiedadesadmin/edit/".$proyectos->id);?>">
+          <a href="<?php echo site_url("propiedades/propiedadesadmin/edit/".$propiedad->id);?>">
             Editar
           </a>
-          <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $proyectos->id;?>, 'Esta seguro de querer eliminar el registro?', '<?php echo site_url("propiedades/propiedadesadmin/delete/".$proyectos->id);?>');">
+          <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $propiedad->id;?>, 'Esta seguro de querer eliminar el registro?', '<?php echo site_url("propiedades/propiedadesadmin/delete/".$propiedad->id);?>');">
             Eliminar
           </a>
         </td>

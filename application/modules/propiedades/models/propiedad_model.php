@@ -234,8 +234,17 @@ class propiedad_model extends MY_Model{
     return $data;
   }
 
-  public function retrieveAllWithImage($limit = 3, $order_by = null, $order_type = "desc")
+  public function retrieveAllWithImage($is_alquiler = null, $is_venta = null, $limit = 3, $order_by = null, $order_type = "desc")
   {
+    $this->db->where("visibilidad", true);
+    if(!is_null($is_alquiler) && $is_alquiler)
+    {
+      $this->db->where("alquiler", true);
+    }
+    if(!is_null($is_venta) && $is_venta)
+    {
+      $this->db->where("venta", true);
+    }
     if(is_null($order_by))
     {
       $this->db->order_by("orden", "desc"); 

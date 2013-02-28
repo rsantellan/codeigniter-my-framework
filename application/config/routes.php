@@ -43,6 +43,9 @@ $route['404_override'] = '';
 $route['quienes-somos.html'] = 'sitio/quienessomos';
 $route['obras.html'] = 'sitio/obras';
 $route['proyectos.html'] = 'sitio/proyectos';
+$route['alquileres'] = 'sitio/alquileres';
+$route['ventas'] = 'sitio/ventas';
+$route['alquiler/(:num)/(:any)'] = 'sitio/alquiler/$1';
 
 $route['historia.html'] = 'sitio/historia';
 $route['clientes.html'] = 'sitio/clientes';

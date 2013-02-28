@@ -82,8 +82,8 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
     <label for="moneda_venta">Moneda Venta</label>
     <?php // Change the values in this array to populate your dropdown as required ?>
     <?php $options = array(
-                                                  'U$S'  => 'Dolares',
-                                                  '$'    => 'Pesos'
+                                                  '0'  => 'Dolares',
+                                                  '1'    => 'Pesos'
                                                 ); ?>
 
     <br /><?php echo form_dropdown('moneda_venta', $options, $object->getMonedaVenta())?>
@@ -102,8 +102,8 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
     <label for="moneda_alquiler">Moneda Alquiler</label>
     <?php // Change the values in this array to populate your dropdown as required ?>
     <?php $options = array(
-                                                  'U$S'  => 'Dolares',
-                                                  '$'    => 'Pesos'
+                                                 '0'  => 'Dolares',
+                                                  '1'    => 'Pesos'
                                                 ); ?>
 
     <br /><?php echo form_dropdown('moneda_alquiler', $options, $object->getMonedaAlquiler())?>
@@ -144,6 +144,30 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
     <?php echo form_dropdown('venta', $options, $object->getVenta())?>
   </p>
 </div>
+<div class="grid_8">
+  <p>
+    <label for="esta_alquilada">Esta alquilada?</label>
+    <br />
+	    <?php $options = array(
+            '0'    => 'No',
+            '1'  => 'Si'
+                                                  
+                                                ); ?>
+    <?php echo form_dropdown('esta_alquilada', $options, $object->getEstaAlquilada())?>
+  </p>
+</div>
+<div class="grid_8">
+  <p>
+    <label for="esta_vendida">Esta vendida?</label>
+    <br />
+	    <?php $options = array(
+            '0'    => 'No',
+            '1'  => 'Si'
+                                                  
+                                                ); ?>
+    <?php echo form_dropdown('esta_vendida', $options, $object->getVenta())?>
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>
@@ -151,3 +175,4 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
 </div>
 <?php echo form_close(); ?>
 
+<div class="clear"></div>
