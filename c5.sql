@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2013 at 06:24 PM
+-- Generation Time: Feb 27, 2013 at 10:37 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `c5`
 --
+DROP DATABASE `c5`;
 CREATE DATABASE `c5` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `c5`;
 
@@ -174,18 +176,18 @@ CREATE TABLE IF NOT EXISTS `propiedad` (
   `banos` int(11) DEFAULT NULL,
   `calefaccion` varchar(255) DEFAULT NULL,
   `garage` varchar(255) DEFAULT NULL,
-  `precio` int(11) NOT NULL,
-  `moneda` int(11) NOT NULL,
+  `precio_alquiler` int(11) NOT NULL DEFAULT '0',
+  `moneda_alquiler` int(11) NOT NULL DEFAULT '0',
+  `precio_venta` int(11) NOT NULL,
+  `moneda_venta` int(11) NOT NULL,
+  `visibilidad` tinyint(1) NOT NULL DEFAULT '0',
+  `alquiler` tinyint(1) NOT NULL DEFAULT '0',
+  `venta` tinyint(1) NOT NULL DEFAULT '0',
+  `esta_alquilada` tinyint(1) NOT NULL,
+  `esta_vendida` tinyint(1) NOT NULL,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `propiedad`
---
-
-INSERT INTO `propiedad` (`id`, `titulo`, `detalle`, `ubicacion`, `garantia`, `metros`, `dormitorios`, `banos`, `calefaccion`, `garage`, `precio`, `moneda`, `orden`) VALUES
-(1, 'Soy el test', 'Soy el test', 'Soy el test', 'Soy el test', 120, 0, 12, 'Soy el test', 'SI', 120000, 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -289,6 +291,7 @@ ALTER TABLE `images`
 --
 ALTER TABLE `proyectos`
   ADD CONSTRAINT `fk_proyectos_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

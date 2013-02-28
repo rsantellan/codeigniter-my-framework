@@ -20,8 +20,15 @@ class propiedad_model extends MY_Model{
   private $banios;
   private $calefaccion;
   private $garage;
-  private $precio;
-  private $moneda;
+  private $precio_alquiler;
+  private $moneda_alquiler;
+  private $precio_venta;
+  private $moneda_venta;
+  private $visible;
+  private $venta;
+  private $alquiler;
+  private $esta_vendida;
+  private $esta_alquilada;
   private $orden;
   
   function __construct()
@@ -110,20 +117,77 @@ class propiedad_model extends MY_Model{
     $this->garage = $garage;
   }
 
-  public function getPrecio() {
-    return $this->precio;
+  public function getPrecioAlquiler() {
+	return $this->precio_alquiler;
   }
 
-  public function setPrecio($precio) {
-    $this->precio = $precio;
+  public function setPrecioAlquiler($precio_alquiler) {
+	$this->precio_alquiler = $precio_alquiler;
   }
 
-  public function getMoneda() {
-    return $this->moneda;
+  public function getMonedaAlquiler() {
+	return $this->moneda_alquiler;
   }
 
-  public function setMoneda($moneda) {
-    $this->moneda = $moneda;
+  public function setMonedaAlquiler($moneda_alquiler) {
+	$this->moneda_alquiler = $moneda_alquiler;
+  }
+
+  public function getPrecioVenta() {
+	return $this->precio_venta;
+  }
+
+  public function setPrecioVenta($precio_venta) {
+	$this->precio_venta = $precio_venta;
+  }
+
+  public function getMonedaVenta() {
+	return $this->moneda_venta;
+  }
+
+  public function setMonedaVenta($moneda_venta) {
+	$this->moneda_venta = $moneda_venta;
+  }
+
+  public function getVenta() {
+	return $this->venta;
+  }
+
+  public function setVenta($venta) {
+	$this->venta = $venta;
+  }
+
+  public function getAlquiler() {
+	return $this->alquiler;
+  }
+
+  public function setAlquiler($alquiler) {
+	$this->alquiler = $alquiler;
+  }
+  
+  public function getEstaVendida() {
+	return $this->esta_vendida;
+  }
+
+  public function setEstaVendida($esta_vendida) {
+	$this->esta_vendida = $esta_vendida;
+  }
+
+  public function getEstaAlquilada() {
+	return $this->esta_alquilada;
+  }
+
+  public function setEstaAlquilada($esta_alquilada) {
+	$this->esta_alquilada = $esta_alquilada;
+  }
+
+  
+  public function getVisible() {
+	return $this->visible;
+  }
+
+  public function setVisible($visible) {
+	$this->visible = $visible;
   }
 
   public function getOrden() {
@@ -233,8 +297,17 @@ class propiedad_model extends MY_Model{
     $data["banos"] = $this->getBanios();
     $data["calefaccion"] = $this->getCalefaccion();
     $data["garage"] = $this->getGarage();
-    $data["precio"] = $this->getPrecio();
-    $data["moneda"] = $this->getMoneda();
+    $data["precio_alquiler"] = $this->getPrecioAlquiler();
+    $data["moneda_alquiler"] = $this->getMonedaAlquiler();
+	$data["precio_venta"] = $this->getPrecioVenta();
+    $data["moneda_venta"] = $this->getMonedaVenta();
+    $data["visibilidad"] = $this->getVisible();
+    $data["alquiler"] = $this->getAlquiler();
+    $data["venta"] = $this->getVenta();
+	
+	$data["esta_alquilada"] = $this->getEstaAlquilada();
+    $data["esta_vendida"] = $this->getEstaVendida();
+	
     $data['orden'] = $this->retrieveLastOrder();
     
     $this->db->insert($this->getTablename(), $data);
@@ -254,7 +327,7 @@ class propiedad_model extends MY_Model{
     $query = $this->db->query($sql);
 
     $row = $query->row();
-    $return = 0;
+    $return = 1;
     if(!is_null($row->MAXIMUN))
     {
       $return = $row->MAXIMUN;
@@ -274,8 +347,16 @@ class propiedad_model extends MY_Model{
     $data["banos"] = $this->getBanios();
     $data["calefaccion"] = $this->getCalefaccion();
     $data["garage"] = $this->getGarage();
-    $data["precio"] = $this->getPrecio();
-    $data["moneda"] = $this->getMoneda();
+    $data["precio_alquiler"] = $this->getPrecioAlquiler();
+    $data["moneda_alquiler"] = $this->getMonedaAlquiler();
+	$data["precio_venta"] = $this->getPrecioVenta();
+    $data["moneda_venta"] = $this->getMonedaVenta();
+	$data["alquiler"] = $this->getAlquiler();
+    $data["venta"] = $this->getVenta();
+    $data["esta_alquilada"] = $this->getEstaAlquilada();
+    $data["esta_vendida"] = $this->getEstaVendida();
+	$data["visibilidad"] = $this->getVisible();
+	
     
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -304,9 +385,16 @@ class propiedad_model extends MY_Model{
         $aux->setBanios($obj->banos);
         $aux->setCalefaccion($obj->calefaccion);
         $aux->setGarage($obj->garage);
-        $aux->setPrecio($obj->precio);
-        $aux->setMoneda($obj->moneda);
+        $aux->setPrecioAlquiler($obj->precio_alquiler);
+        $aux->setMonedaAlquiler($obj->moneda_alquiler);
+		$aux->setPrecioVenta($obj->precio_venta);
+        $aux->setMonedaVenta($obj->moneda_venta);
+		$aux->setVisible($obj->visibilidad);
+		$aux->setAlquiler($obj->alquiler);
+		$aux->setVenta($obj->venta);
         $aux->setOrden($obj->orden);
+		$aux->setEstaAlquilada($obj->esta_alquilada);
+		$aux->setEstaVendida($obj->esta_vendida);
         return $aux;
       }
       return $obj;

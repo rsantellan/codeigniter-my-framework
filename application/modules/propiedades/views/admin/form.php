@@ -61,7 +61,6 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
 <div class="grid_8">
   <p>
     <label for="garage">Garage</label>
-    <br />
     <?php // Change the values in this array to populate your dropdown as required ?>
     <?php $options = array(
                                                   'SI'  => 'Si',
@@ -74,28 +73,77 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
 <div class="clear"></div>
 <div class="grid_8">
   <p>
-    <label for="precio">Precio</label>
-    <br /><input id="precio" type="text" name="precio" maxlength="255" value="<?php echo $object->getPrecio() ?>"  />
+    <label for="precio_venta">Precio Venta</label>
+    <br /><input id="precio_venta" type="text" name="precio_venta" maxlength="255" value="<?php echo $object->getPrecioVenta() ?>"  />
   </p>
 </div>
-<div class="clear"></div>
 <div class="grid_8">
   <p>
-    <label for="moneda">Moneda</label>
-    <br />
+    <label for="moneda_venta">Moneda Venta</label>
     <?php // Change the values in this array to populate your dropdown as required ?>
     <?php $options = array(
                                                   'U$S'  => 'Dolares',
                                                   '$'    => 'Pesos'
                                                 ); ?>
 
-    <br /><?php echo form_dropdown('moneda', $options, $object->getMoneda())?>
+    <br /><?php echo form_dropdown('moneda_venta', $options, $object->getMonedaVenta())?>
   </p>
 </div>
 <div class="clear"></div>
 
+<div class="grid_8">
+  <p>
+    <label for="precio_alquiler">Precio Alquiler</label>
+    <br /><input id="precio_alquiler" type="text" name="precio_alquiler" maxlength="255" value="<?php echo $object->getPrecioAlquiler() ?>"  />
+  </p>
+</div>
+<div class="grid_8">
+  <p>
+    <label for="moneda_alquiler">Moneda Alquiler</label>
+    <?php // Change the values in this array to populate your dropdown as required ?>
+    <?php $options = array(
+                                                  'U$S'  => 'Dolares',
+                                                  '$'    => 'Pesos'
+                                                ); ?>
 
+    <br /><?php echo form_dropdown('moneda_alquiler', $options, $object->getMonedaAlquiler())?>
+  </p>
+</div>
 
+<div class="clear"></div>
+<div class="grid_8">
+  <p>
+    <label for="visibilidad">Visible</label>
+    <br />
+	    <?php $options = array(
+                                                  '1'  => 'Si',
+                                                  '0'    => 'No'
+                                                ); ?>
+    <?php echo form_dropdown('visibilidad', $options, $object->getVisible())?>
+  </p>
+</div>
+<div class="grid_8">
+  <p>
+    <label for="alquiler">Esta para alquilar</label>
+    <br />
+	    <?php $options = array(
+                                                  '1'  => 'Si',
+                                                  '0'    => 'No'
+                                                ); ?>
+    <?php echo form_dropdown('alquiler', $options, $object->getAlquiler())?>
+  </p>
+</div>
+<div class="grid_8">
+  <p>
+    <label for="venta">Esta para vender</label>
+    <br />
+	    <?php $options = array(
+                                                  '1'  => 'Si',
+                                                  '0'    => 'No'
+                                                ); ?>
+    <?php echo form_dropdown('venta', $options, $object->getVenta())?>
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

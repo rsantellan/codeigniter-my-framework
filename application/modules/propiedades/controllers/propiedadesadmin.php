@@ -96,9 +96,15 @@ class propiedadesadmin extends MY_Controller{
       $this->form_validation->set_rules('banos', 'Baños', 'is_numeric');			
       $this->form_validation->set_rules('calefaccion', 'Calefacción', 'max_length[255]');			
       $this->form_validation->set_rules('garage', 'Garage', '');			
-      $this->form_validation->set_rules('precio', 'precio', 'is_numeric');			
-      $this->form_validation->set_rules('moneda', 'moneda', '');
-      
+      $this->form_validation->set_rules('precio_alquiler', 'precio_alquiler', 'is_numeric');			
+      $this->form_validation->set_rules('moneda_alquiler', 'moneda_alquiler', '');
+      $this->form_validation->set_rules('precio_venta', 'precio_venta', 'is_numeric');			
+      $this->form_validation->set_rules('moneda_venta', 'moneda_venta', '');
+      $this->form_validation->set_rules('visibilidad', 'visibilidad', '');
+      $this->form_validation->set_rules('alquiler', 'alquiler', '');
+      $this->form_validation->set_rules('venta', 'venta', '');
+	  $this->form_validation->set_rules('esta_alquilada', 'esta_alquilada', '');
+      $this->form_validation->set_rules('esta_vendida', 'esta_vendida', '');
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       $is_valid = false;
       if (!$this->form_validation->run() == FALSE) 
@@ -114,10 +120,16 @@ class propiedadesadmin extends MY_Controller{
       $banos = set_value('banos');
       $calefaccion = set_value('calefaccion');
       $garage = set_value('garage');
-      $precio = set_value('precio');
-      $moneda = set_value('moneda');
-      
-      
+      $precio_alquiler = set_value('precio_alquiler');
+      $moneda_alquiler = set_value('moneda_alquiler');
+      $precio_venta = set_value('precio_venta');
+      $moneda_venta = set_value('moneda_venta');
+      $visibilidad = set_value('visibilidad');
+      $alquiler = set_value('alquiler');
+      $venta = set_value('venta');
+      $esta_alquilada = set_value('esta_alquilada');
+      $esta_vendida = set_value('esta_vendida');
+	  
       $obj = new $this->propiedad_model;
       $obj->setTitulo($titulo);
       $obj->setDetalle($detalle);
@@ -128,8 +140,16 @@ class propiedadesadmin extends MY_Controller{
       $obj->setBanios($banos);
       $obj->setCalefaccion($calefaccion);
       $obj->setGarage($garage);
-      $obj->setPrecio($precio);
-      $obj->setMoneda($moneda);
+	  $obj->setPrecioAlquiler($precio_alquiler);
+	  $obj->setMonedaAlquiler($moneda_alquiler);
+	  $obj->setPrecioVenta($precio_venta);
+	  $obj->setMonedaVenta($moneda_venta);
+      $obj->setVisible($visibilidad);
+      $obj->setAlquiler($alquiler);
+      $obj->setVenta($venta);
+	  $obj->setEstaAlquilada($esta_alquilada);
+	  $obj->setEstaVendida($esta_vendida);
+	  
       $obj->setId($id);
       
       if($is_valid)
