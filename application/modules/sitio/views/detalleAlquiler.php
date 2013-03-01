@@ -55,7 +55,7 @@
         <li>Garage: <?php echo $propiedad->garage;?> </li>
         <li class="rojo gris">Precio: : <?php echo ($propiedad->moneda_alquiler == 0) ? "U\$S" : "\$" ; ?><?php echo number_format($propiedad->precio_alquiler, 0, ",", "."); ?></li>
       </ul>
-      <a class="boton-back" href="../alquileres.html">< Volver a las propiedades</a>
+      <a class="boton-back" href="<?php echo site_url('alquileres'); ?>">< Volver a las propiedades</a>
     </div>
   </div> 
 
