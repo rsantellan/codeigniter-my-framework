@@ -62,7 +62,7 @@
             <a class="<?php echo ($menu_id == "ventas") ? "current" : "";?>" href="<?php echo site_url('ventas'); ?>">Ventas</a>
           </li>
           <li>
-            <a  href="contacto.html">Contactenos</a>
+            <a class="<?php echo ($menu_id == "ventas") ? "current" : "";?>" href="<?php echo site_url('contacto.html'); ?>">Contactenos</a>
           </li>
         </ul>
       </div>

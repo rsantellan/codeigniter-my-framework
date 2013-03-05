@@ -13,9 +13,9 @@
         </div>
         <div class="alquileres-info float_left">
           <h3><?php echo $apartamento->titulo ?></h3>
-          <span class="rojo">Detalle: </span><span><?php echo character_limiter($apartamento->detalle, 100) ?></span>
+          <span class="rojo">Detalle: </span><span><?php echo character_limiter($apartamento->detalle, 70) ?></span>
           <div class="clear"></div>
-          <span class="rojo">Valor:  <?php echo ($apartamento->moneda_alquiler == 0) ? "U\$S" : "\$" ; ?> <?php echo number_format($apartamento->precio_alquiler, 0, ",", "."); ?></span>
+          <span class="rojo">Valor:  <?php echo ($apartamento->moneda_venta == 0) ? "U\$S" : "\$" ; ?> <?php echo number_format($apartamento->precio_venta, 0, ",", "."); ?></span>
           <div class="clear"></div>
           <a class="boton-detalle" href="alquileres/alquiler1.html">Detalles</a>
         </div>

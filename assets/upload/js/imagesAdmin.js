@@ -1,6 +1,7 @@
 $(document).ready(function() { 
   hoversImages();
   startUploadFancyLinks();
+  startFancyLinks();
 });
 
 function hoversImages()
