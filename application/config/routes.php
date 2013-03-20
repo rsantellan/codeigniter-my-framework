@@ -46,6 +46,7 @@ $route['proyectos.html'] = 'sitio/proyectos';
 $route['alquileres'] = 'sitio/alquileres';
 $route['ventas'] = 'sitio/ventas';
 $route['alquiler/(:num)/(:any)'] = 'sitio/alquiler/$1';
+$route['venta/(:num)/(:any)'] = 'sitio/venta/$1';
 
 $route['historia.html'] = 'sitio/historia';
 $route['clientes.html'] = 'sitio/clientes';

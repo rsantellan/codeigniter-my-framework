@@ -17,7 +17,8 @@
           <div class="clear"></div>
           <span class="rojo">Valor:  <?php echo ($apartamento->moneda_venta == 0) ? "U\$S" : "\$" ; ?> <?php echo number_format($apartamento->precio_venta, 0, ",", "."); ?></span>
           <div class="clear"></div>
-          <a class="boton-detalle" href="alquileres/alquiler1.html">Detalles</a>
+          <?php $url_help = $apartamento->id."/".url_title($apartamento->titulo, '-', TRUE).".html";?>
+          <a class="boton-detalle" href="<?php echo site_url('venta/'.$url_help); ?>">Detalles</a>
         </div>
       </div>
    <?php endforeach; ?>

@@ -41,7 +41,7 @@
           <?php echo ($propiedad->titulo); ?>
         </td>
         <td>
-          <?php echo html_entity_decode($propiedad->detalle); ?>
+          <?php echo html_entity_decode(character_limiter($propiedad->detalle, 150)); ?>
         </td>
         <td>
           <?php echo html_entity_decode($propiedad->ubicacion); ?>

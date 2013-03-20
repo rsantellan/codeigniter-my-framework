@@ -31,7 +31,7 @@ class propiedadesadmin extends MY_Controller{
       $this->load->model('propiedades/propiedad_model');
       $this->data['list'] = $this->propiedad_model->retrieveAll();
       $this->data['content'] = "propiedades/admin/list";
-      
+      $this->load->helper('text');
       $this->addJquery();
       $this->addFancyBox();
       //$this->addModuleJavascript("registros", "list.js");
