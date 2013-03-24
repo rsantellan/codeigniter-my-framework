@@ -51,7 +51,6 @@
         <li>Dormitorios: <?php echo $propiedad->dormitorios;?></li>
         <li class="gris">Baños: <?php echo $propiedad->banos;?></li>
         <li>Calefacción: <?php echo $propiedad->calefaccion;?></li>
-        <li class="gris">Garantia: <?php echo $propiedad->garantia;?></li>
         <li>Garage: <?php echo $propiedad->garage;?> </li>
         <li class="rojo gris">Precio: : <?php echo ($propiedad->moneda_alquiler == 0) ? "U\$S" : "\$" ; ?><?php echo number_format($propiedad->precio_alquiler, 0, ",", "."); ?></li>
       </ul>

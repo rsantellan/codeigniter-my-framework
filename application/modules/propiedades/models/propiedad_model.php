@@ -15,6 +15,7 @@ class propiedad_model extends MY_Model{
   private $detalle;
   private $ubicacion;
   private $garantia;
+  private $financia;
   private $metros;
   private $dormitorios;
   private $banios;
@@ -75,6 +76,14 @@ class propiedad_model extends MY_Model{
 
   public function setGarantia($garantia) {
     $this->garantia = $garantia;
+  }
+
+  public function getFinancia() {
+	return $this->financia;
+  }
+
+  public function setFinancia($financia) {
+	$this->financia = $financia;
   }
 
   public function getMetros() {
@@ -301,6 +310,7 @@ class propiedad_model extends MY_Model{
     $data["detalle"] = $this->getDetalle();
     $data["ubicacion"] = $this->getUbicacion();
     $data["garantia"] = $this->getGarantia();
+	$data["financia"] = $this->getFinancia();
     $data["metros"] = $this->getMetros();
     $data["dormitorios"] = $this->getDormitorios();
     $data["banos"] = $this->getBanios();
@@ -351,6 +361,7 @@ class propiedad_model extends MY_Model{
     $data["detalle"] = $this->getDetalle();
     $data["ubicacion"] = $this->getUbicacion();
     $data["garantia"] = $this->getGarantia();
+	$data["financia"] = $this->getFinancia();
     $data["metros"] = $this->getMetros();
     $data["dormitorios"] = $this->getDormitorios();
     $data["banos"] = $this->getBanios();
@@ -389,6 +400,7 @@ class propiedad_model extends MY_Model{
         $aux->setDetalle($obj->detalle);
         $aux->setUbicacion($obj->ubicacion);
         $aux->setGarantia($obj->garantia);
+		$aux->setFinancia($obj->financia);
         $aux->setMetros($obj->metros);
         $aux->setDormitorios($obj->dormitorios);
         $aux->setBanios($obj->banos);

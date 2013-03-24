@@ -91,6 +91,7 @@ class propiedadesadmin extends MY_Controller{
       $this->form_validation->set_rules('detalle', 'Detalle', 'required|max_length[1000]');			
       $this->form_validation->set_rules('ubicacion', 'Ubicacion', 'required|max_length[255]');			
       $this->form_validation->set_rules('garantia', 'Garantia', 'max_length[255]');			
+      $this->form_validation->set_rules('financia', 'Financia', 'max_length[255]');			
       $this->form_validation->set_rules('metros', 'Metros', 'is_numeric');			
       $this->form_validation->set_rules('dormitorios', 'Dormitorios', 'max_length[255]');			
       $this->form_validation->set_rules('banos', 'Baños', 'is_numeric');			
@@ -115,6 +116,7 @@ class propiedadesadmin extends MY_Controller{
       $detalle = set_value('detalle');
       $ubicacion = set_value('ubicacion');
       $garantia = set_value('garantia');
+      $financia = set_value('financia');
       $metros = set_value('metros');
       $dormitorios = set_value('dormitorios');
       $banos = set_value('banos');
@@ -135,6 +137,7 @@ class propiedadesadmin extends MY_Controller{
       $obj->setDetalle($detalle);
       $obj->setUbicacion($ubicacion);
       $obj->setGarantia($garantia);
+	  $obj->setFinancia($financia);
       $obj->setMetros($metros);
       $obj->setDormitorios($dormitorios);
       $obj->setBanios($banos);

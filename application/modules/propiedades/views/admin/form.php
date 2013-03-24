@@ -34,6 +34,12 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
 </div>
 <div class="grid_8">
   <p>
+    <label for="financia">Financia</label>
+    <br /><input id="financia" type="text" name="financia" maxlength="255" value="<?php echo $object->getFinancia() ?>"  />
+  </p>
+</div>
+<div class="grid_8">
+  <p>
     <label for="metros">Metros <span class="required">*</span></label>
     <br /><input id="metros" type="text" name="metros" maxlength="255" value="<?php echo $object->getMetros() ?>"  />
   </p>
@@ -64,7 +70,8 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
     <?php // Change the values in this array to populate your dropdown as required ?>
     <?php $options = array(
                                                   'SI'  => 'Si',
-                                                  'NO'    => 'No'
+                                                  'NO'    => 'No',
+                                                  'OPCIONAL'    => 'Opcional'
                                                 ); ?>
 
     <br /><?php echo form_dropdown('garage', $options, $object->getGarage())?>

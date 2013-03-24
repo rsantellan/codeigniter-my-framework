@@ -46,12 +46,11 @@
       <span class="rojo">Caracteristicas:</span>
       <ul class="ul-detalle">
         <li class="gris">Ubicacion: <?php echo $propiedad->ubicacion;?></li>
-        <li>Garantia: <?php echo $propiedad->garantia;?></li>
+        <li>Financia: <?php echo $propiedad->financia;?></li>
         <li class="gris">Metros: <?php echo $propiedad->metros;?> mts</li>
         <li>Dormitorios: <?php echo $propiedad->dormitorios;?></li>
         <li class="gris">Baños: <?php echo $propiedad->banos;?></li>
         <li>Calefacción: <?php echo $propiedad->calefaccion;?></li>
-        <li class="gris">Garantia: <?php echo $propiedad->garantia;?></li>
         <li>Garage: <?php echo $propiedad->garage;?> </li>
         <li class="rojo gris">Precio: : <?php echo ($propiedad->moneda_venta == 0) ? "U\$S" : "\$" ; ?><?php echo number_format($propiedad->precio_venta, 0, ",", "."); ?></li>
       </ul>

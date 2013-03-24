@@ -172,7 +172,7 @@ p{
 					ul.menu li{
 						border-right: 1px solid #FFFFFF;
 						height:37px;
-   						line-height:25px;
+Â Â Â 						line-height:25px;
 						float:left;
 						text-align:center;
 						}
@@ -295,6 +295,23 @@ p{
 											margin:12px 5px -8px 2px;
 											}
 /*ALQUILERES*/
+.filtro-div{
+			width:770px;
+			height:80px;
+			border: 1px solid #333333; 
+			margin: 38px 0 0 41px;
+			}
+			.filtro-div label{
+							float: left;
+							font-size: 13px;
+							line-height: 18px;
+							margin: 10px 0 0 21px;
+							}
+							select {
+									float: left;
+									margin: 10px 14px;
+									width: auto;
+									}
 .alquileres-div{
 			width:377px;
 			height:152px;
@@ -399,7 +416,7 @@ p{
 				float: right;
 				font-size: 13px;
 				height: 24px;
-				margin-top: 20px;
+				margin-top: 4px;
 				padding: 5px 0 0 11px;
 				text-decoration: none;
 				width: 166px;
