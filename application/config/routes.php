@@ -45,16 +45,18 @@ $route['obras.html'] = 'sitio/obras';
 $route['proyectos.html'] = 'sitio/proyectos';
 $route['alquileres'] = 'sitio/alquileres';
 $route['ventas'] = 'sitio/ventas';
+$route['abusqueda'] = 'sitio/searchAlquiler';
 $route['alquiler/(:num)/(:any)'] = 'sitio/alquiler/$1';
 $route['venta/(:num)/(:any)'] = 'sitio/venta/$1';
-
+$route['vbusqueda'] = 'sitio/searchVentas';
+/*
 $route['historia.html'] = 'sitio/historia';
 $route['clientes.html'] = 'sitio/clientes';
 $route['certificacion.html'] = 'sitio/certificacion';
 $route['contacto.html'] = 'contacto';
 $route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
 $route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
-
+*/
 /*
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];

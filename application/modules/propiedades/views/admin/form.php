@@ -142,6 +142,17 @@ echo form_open('propiedades/propiedadesadmin/save', $attributes); ?>
 </div>
 <div class="grid_8">
   <p>
+    <label for="alquiler">Esta para alquilar temporal</label>
+    <br />
+	    <?php $options = array(
+                                                  '1'  => 'Si',
+                                                  '0'    => 'No'
+                                                ); ?>
+    <?php echo form_dropdown('alquiler_temporal', $options, $object->getAlquilerTemporal())?>
+  </p>
+</div>
+<div class="grid_8">
+  <p>
     <label for="venta">Esta para vender</label>
     <br />
 	    <?php $options = array(

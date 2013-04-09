@@ -28,6 +28,7 @@ class propiedad_model extends MY_Model{
   private $visible;
   private $venta;
   private $alquiler;
+  private $alquiler_temporal = 0;
   private $esta_vendida;
   private $esta_alquilada;
   private $orden;
@@ -174,6 +175,14 @@ class propiedad_model extends MY_Model{
 	$this->alquiler = $alquiler;
   }
   
+  public function getAlquilerTemporal() {
+    return $this->alquiler_temporal;
+  }
+
+  public function setAlquilerTemporal($alquiler_temporal) {
+    $this->alquiler_temporal = $alquiler_temporal;
+  }
+
   public function getEstaVendida() {
 	return $this->esta_vendida;
   }
@@ -283,6 +292,59 @@ class propiedad_model extends MY_Model{
     return $data;
   }
   
+  public function retrieveSearchWithImage($parameters = array(), $limit = 3, $order_by = null, $order_type = "desc")
+  {
+    $this->db->where("visibilidad", true);
+    if(isset($parameters['operacion']))
+    {
+      switch ($parameters['operacion']) {
+        case '1':
+          $this->db->where("alquiler", true);
+          break;
+        case '2':
+          $this->db->where("alquiler_temporal", true);
+          break;        
+        default:
+          $where = "(alquiler = 1 OR alquiler_temporal = 1)";
+          $this->db->where($where);
+          break;
+      }
+      unset($parameters['operacion']);
+    }
+    else
+    {
+      $this->db->where("venta", true);
+    }
+    $this->db->where($parameters);
+    if(is_null($order_by))
+    {
+      $this->db->order_by("orden", "desc"); 
+    }
+    else
+    {
+      $this->db->order_by($order_by, $order_type);
+    }
+    if(!is_null($limit))
+    {
+      $limit_number = (int) $limit;
+      if($limit_number > 0)
+      {
+        $this->db->limit($limit);
+      }
+    }
+    $query = $this->db->get($this->getTablename());
+    $data = array();
+    if($query->num_rows() > 0)
+    {
+      foreach($query->result() as $row)
+      {
+        $row->avatar = $this->retrieveAvatar("default", $row->id);
+        $data[] = $row;
+      }
+    }
+    return $data;
+  }
+  
   public function isNew()
   {
     if($this->getId() == "" || is_null($this->getId()))
@@ -322,6 +384,7 @@ class propiedad_model extends MY_Model{
     $data["moneda_venta"] = $this->getMonedaVenta();
     $data["visibilidad"] = $this->getVisible();
     $data["alquiler"] = $this->getAlquiler();
+    $data["alquiler_temporal"] = $this->getAlquilerTemporal();
     $data["venta"] = $this->getVenta();
 	
 	$data["esta_alquilada"] = $this->getEstaAlquilada();
@@ -372,6 +435,7 @@ class propiedad_model extends MY_Model{
 	$data["precio_venta"] = $this->getPrecioVenta();
     $data["moneda_venta"] = $this->getMonedaVenta();
 	$data["alquiler"] = $this->getAlquiler();
+    $data["alquiler_temporal"] = $this->getAlquilerTemporal();
     $data["venta"] = $this->getVenta();
     $data["esta_alquilada"] = $this->getEstaAlquilada();
     $data["esta_vendida"] = $this->getEstaVendida();
@@ -412,6 +476,7 @@ class propiedad_model extends MY_Model{
         $aux->setMonedaVenta($obj->moneda_venta);
 		$aux->setVisible($obj->visibilidad);
 		$aux->setAlquiler($obj->alquiler);
+        $aux->setAlquilerTemporal($obj->alquiler_temporal);
 		$aux->setVenta($obj->venta);
         $aux->setOrden($obj->orden);
 		$aux->setEstaAlquilada($obj->esta_alquilada);
@@ -445,6 +510,13 @@ class propiedad_model extends MY_Model{
     $query = $this->db->get($this->getTablename());
 
     return $query->result();
+  }
+  
+  function retrieveDistinct($field)
+  {
+    $this->db->select($field);
+    $this->db->distinct();
+    return $this->db->get($this->getTablename())->result();
   }
   
   function updateOrder($id, $order)

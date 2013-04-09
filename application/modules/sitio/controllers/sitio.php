@@ -58,10 +58,79 @@ class Sitio extends MY_Controller {
     $this->data['menu_id'] = 'alquileres';
     $this->data['content'] = 'alquiler';
     $this->load->model('propiedades/propiedad_model');
+    $this->data['zonas'] = $this->propiedad_model->retrieveDistinct("ubicacion");
+    $this->data['dormitorios'] = $this->propiedad_model->retrieveDistinct("dormitorios");
+    $this->data['banos'] = $this->propiedad_model->retrieveDistinct("banos");
+    $this->data['garage'] = $this->propiedad_model->retrieveDistinct("garage");
     $this->load->helper('upload/mimage');
     $this->load->library('upload/mupload');
     $this->load->helper('text');
     $this->data['apartamentos_list'] = $this->propiedad_model->retrieveAllWithImage(true, false, NULL);
+    //$this->output->enable_profiler(TRUE);
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function searchAlquiler()
+  {
+    $this->data['menu_id'] = 'alquileres';
+    $this->data['content'] = 'alquiler';
+    $this->load->model('propiedades/propiedad_model');
+    
+    /***
+     * Obtengo los datos de la consulta
+     **/
+    $operacion = $this->input->get('operacion');
+    $type = $this->input->get('type');
+    $zone = $this->input->get('zone');
+    $price = $this->input->get('price');
+    $bedroom = $this->input->get('bedroom');
+    $bathroom = $this->input->get('bathroom');
+    $garage = $this->input->get('garage');
+    
+    $parameteres = array(
+        'operacion' => $operacion,
+        //'type' => $type,
+        'ubicacion' => $zone,
+        'dormitorios' => $bedroom,
+        'banos' => $bathroom,
+        'garage' => $garage,
+    );
+    if($zone == "0")
+    {
+      unset($parameteres['ubicacion']);
+    }
+    if($bedroom == "0")
+    {
+      unset($parameteres['dormitorios']);
+    }
+    if($bathroom == "0")
+    {
+      unset($parameteres['banos']);
+    }
+    if($garage == "0")
+    {
+      unset($parameteres['garage']);
+    }
+    $precio_order = 'desc';
+    if($price == "1")
+    {
+      $precio_order = 'asc';
+    }
+    $this->data['searchOperacion'] = $operacion;
+    $this->data['searchZone'] = $zone;
+    $this->data['searchPrice'] = $price;
+    $this->data['searchBedroom'] = $bedroom;
+    $this->data['searchBathroom'] = $bathroom;
+    $this->data['searchGarage'] = $garage;
+    //$this->data['searchType'] = $type;
+    $this->data['zonas'] = $this->propiedad_model->retrieveDistinct("ubicacion");
+    $this->data['dormitorios'] = $this->propiedad_model->retrieveDistinct("dormitorios");
+    $this->data['banos'] = $this->propiedad_model->retrieveDistinct("banos");
+    $this->data['garage'] = $this->propiedad_model->retrieveDistinct("garage");
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveSearchWithImage($parameteres, NULL, 'precio_alquiler', $precio_order);
     //$this->output->enable_profiler(TRUE);
     $this->load->view('layout', $this->data);
   }
@@ -71,10 +140,79 @@ class Sitio extends MY_Controller {
     $this->data['menu_id'] = 'ventas';
     $this->data['content'] = 'ventas';
     $this->load->model('propiedades/propiedad_model');
+    
+    $this->data['zonas'] = $this->propiedad_model->retrieveDistinct("ubicacion");
+    $this->data['dormitorios'] = $this->propiedad_model->retrieveDistinct("dormitorios");
+    $this->data['banos'] = $this->propiedad_model->retrieveDistinct("banos");
+    $this->data['garage'] = $this->propiedad_model->retrieveDistinct("garage");
+    
     $this->load->helper('upload/mimage');
     $this->load->library('upload/mupload');
     $this->load->helper('text');
     $this->data['apartamentos_list'] = $this->propiedad_model->retrieveAllWithImage(false, true, NULL);
+    //$this->output->enable_profiler(TRUE);
+    $this->load->view('layout', $this->data);
+  }
+  
+  public function searchVentas()
+  {
+    $this->data['menu_id'] = 'ventas';
+    $this->data['content'] = 'ventas';
+    $this->load->model('propiedades/propiedad_model');
+    
+    /***
+     * Obtengo los datos de la consulta
+     **/
+    $operacion = $this->input->get('operacion');
+    $type = $this->input->get('type');
+    $zone = $this->input->get('zone');
+    $price = $this->input->get('price');
+    $bedroom = $this->input->get('bedroom');
+    $bathroom = $this->input->get('bathroom');
+    $garage = $this->input->get('garage');
+    
+    $parameteres = array(
+        //'type' => $type,
+        'ubicacion' => $zone,
+        'dormitorios' => $bedroom,
+        'banos' => $bathroom,
+        'garage' => $garage,
+    );
+    if($zone == "0")
+    {
+      unset($parameteres['ubicacion']);
+    }
+    if($bedroom == "0")
+    {
+      unset($parameteres['dormitorios']);
+    }
+    if($bathroom == "0")
+    {
+      unset($parameteres['banos']);
+    }
+    if($garage == "0")
+    {
+      unset($parameteres['garage']);
+    }
+    $precio_order = 'desc';
+    if($price == "1")
+    {
+      $precio_order = 'asc';
+    }
+    $this->data['searchOperacion'] = $operacion;
+    $this->data['searchZone'] = $zone;
+    $this->data['searchPrice'] = $price;
+    $this->data['searchBedroom'] = $bedroom;
+    $this->data['searchBathroom'] = $bathroom;
+    $this->data['searchGarage'] = $garage;
+    $this->data['zonas'] = $this->propiedad_model->retrieveDistinct("ubicacion");
+    $this->data['dormitorios'] = $this->propiedad_model->retrieveDistinct("dormitorios");
+    $this->data['banos'] = $this->propiedad_model->retrieveDistinct("banos");
+    $this->data['garage'] = $this->propiedad_model->retrieveDistinct("garage");
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveSearchWithImage($parameteres, NULL, 'precio_alquiler', $precio_order);
     //$this->output->enable_profiler(TRUE);
     $this->load->view('layout', $this->data);
   }

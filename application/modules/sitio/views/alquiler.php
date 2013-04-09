@@ -3,70 +3,73 @@
 </div>
 <div class="clear"></div>
 <div  class="filtro-div">
-  <label>
-	Operacion
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected">   Venta  </option>
-  </select>
-  <label>
-	Tipo de Inmueble
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="apartamento">Apartamento</option>
-	<option value="casa">Casa</option>
-	<option value="apartamento.amue">Apartamento Amueblado</option>
-	<option value="casa-amue">Casa Amueblada</option>
-  </select>
-  <label>
-	Zona
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="barrio1">Pocitos</option>
-	<option value="barrio2">Buceo</option>
-	<option value="barrio3">Centro</option>
-	<option value="barrio4">Punta Carretas</option>
-  </select> </br>
-  <label>
-	Ordenar Precio
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="barrio1">de mayor a menor</option>
-	<option value="barrio2">de menor a mayor</option>
-  </select>
-  <label>
-	Dormitorios
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="barrio1">1</option>
-	<option value="barrio2">2</option>
-	<option value="barrio2">3</option>
-	<option value="barrio2">4</option>
-	<option value="barrio2">5</option>
-  </select>
-  <label>
-	Baños
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="barrio1">1</option>
-	<option value="barrio2">2</option>
-	<option value="barrio2">3</option>
-  </select>
-  <label>
-	Garage
-  </label>
-  <select id="search_sort_by">
-	<option value="-1" selected="selected"></option>
-	<option value="barrio1">0</option>
-	<option value="barrio2">1</option>
-	<option value="barrio2">2</option>
-	<option value="barrio2">Opcional</option>
-  </select>
+  <form action="<?php echo site_url('abusqueda'); ?>" method="GET">
+    <label>
+      Operacion
+    </label>
+    <select id="search_sort_by" name="operacion">
+      <option value="0" <?php echo !isset($searchOperacion)? 'selected="selected"' : '';?>>Todos</option>
+      <option value="1" <?php echo (isset($searchOperacion) && $searchOperacion == '1')? 'selected="selected"' : '';?>>Alquiler</option>
+      <option value="2" <?php echo (isset($searchOperacion) && $searchOperacion == '2')? 'selected="selected"' : '';?>>Alquiler Temporal</option>
+    </select>
+    <!--
+    <label>
+      Tipo de Inmueble
+    </label>
+    <select id="search_sort_by"  name="type">
+      <option value="0" selected="selected"></option>
+      <option value="apartamento">Apartamento</option>
+      <option value="casa">Casa</option>
+      <option value="apartamento.amue">Apartamento Amueblado</option>
+      <option value="casa-amue">Casa Amueblada</option>
+    </select>
+    -->
+    <label>
+      Zona
+    </label>
+      <select id="search_sort_by" name="zone">
+      <option value="0" <?php echo !isset($searchZone)? 'selected="selected"' : '';?>></option>
+      <?php foreach($zonas as $zona): ?>
+        <option value="<?php echo $zona->ubicacion; ?>" <?php echo (isset($searchZone) && $searchZone == $zona->ubicacion)? 'selected="selected"' : '';?>><?php echo $zona->ubicacion; ?></option>
+      <?php endforeach; ?>
+    </select> </br>
+    <label>
+      Ordenar Precio
+    </label>
+    <select id="search_sort_by" name="price">
+      <option value="1" <?php echo (!isset($searchPrice) || (isset($searchPrice) && $searchPrice == '1'))? 'selected="selected"' : '';?>>de mayor a menor</option>
+      <option value="2" <?php echo (isset($searchPrice) && $searchPrice == '2')? 'selected="selected"' : '';?>>de menor a mayor</option>
+    </select>
+    <label>
+      Dormitorios
+    </label>
+    <select id="search_sort_by" name="bedroom">
+      <option value="0" <?php echo !isset($searchBedroom)? 'selected="selected"' : '';?>></option>
+      <?php foreach($dormitorios as $dormitorio): ?>
+      <option value="<?php echo $dormitorio->dormitorios;?>" <?php echo (isset($searchBedroom) && $searchBedroom == $dormitorio->dormitorios)? 'selected="selected"' : '';?>><?php echo $dormitorio->dormitorios;?></option>
+      <?php endforeach;?>
+    </select>
+    <label>
+      Baños
+    </label>
+    <select id="search_sort_by" name="bathroom">
+      <option value="0" <?php echo !isset($searchBathroom)? 'selected="selected"' : '';?>></option>
+      <?php foreach($banos as $bano): ?>
+      <option value="<?php echo $bano->banos;?>" <?php echo (isset($searchBathroom) && $searchBathroom == $bano->banos)? 'selected="selected"' : '';?>><?php echo $bano->banos;?></option>
+      <?php endforeach;?>
+    </select>
+    <label>
+      Garage
+    </label>
+    <select id="search_sort_by" name="garage">
+      <option value="0" <?php echo !isset($searchGarage)? 'selected="selected"' : '';?>></option>
+      <?php foreach($garage as $gar): ?>
+        <option value="<?php echo $gar->garage;?>" <?php echo (isset($searchGarage) && $searchGarage == $gar->garage)? 'selected="selected"' : '';?>><?php echo $gar->garage;?></option>
+      <?php endforeach; ?>
+    </select>
+    <div class="clear"></div>
+    <input type="submit" value="buscar"/>
+  </form>
 </div>
 <div class="clear"></div>
 <div class="obras">

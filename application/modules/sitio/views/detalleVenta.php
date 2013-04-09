@@ -51,8 +51,15 @@
         <li>Dormitorios: <?php echo $propiedad->dormitorios;?></li>
         <li class="gris">Baños: <?php echo $propiedad->banos;?></li>
         <li>Calefacción: <?php echo $propiedad->calefaccion;?></li>
-        <li>Garage: <?php echo $propiedad->garage;?> </li>
-        <li class="rojo gris">Precio: : <?php echo ($propiedad->moneda_venta == 0) ? "U\$S" : "\$" ; ?><?php echo number_format($propiedad->precio_venta, 0, ",", "."); ?></li>
+        <li class="gris">Garage: <?php echo $propiedad->garage;?> </li>
+        <?php
+			$precio = "Consultar";
+			if ($propiedad->precio_venta > 0) {
+			  $precio = ($propiedad->moneda_venta == 0) ? "U\$S" : "\$";
+			  $precio .= number_format($propiedad->precio_venta, 0, ",", ".");
+			}
+			?>
+		  <span class="rojo">Precio:  <?php echo $precio; ?></span>
       </ul>
       <a class="boton-back" href="<?php echo site_url('ventas'); ?>">< Volver a las propiedades</a>
     </div>

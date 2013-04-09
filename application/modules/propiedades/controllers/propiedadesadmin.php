@@ -103,6 +103,7 @@ class propiedadesadmin extends MY_Controller{
       $this->form_validation->set_rules('moneda_venta', 'moneda_venta', '');
       $this->form_validation->set_rules('visibilidad', 'visibilidad', '');
       $this->form_validation->set_rules('alquiler', 'alquiler', '');
+      $this->form_validation->set_rules('alquiler_temporal', 'alquiler_temporal', '');
       $this->form_validation->set_rules('venta', 'venta', '');
 	  $this->form_validation->set_rules('esta_alquilada', 'esta_alquilada', '');
       $this->form_validation->set_rules('esta_vendida', 'esta_vendida', '');
@@ -128,6 +129,7 @@ class propiedadesadmin extends MY_Controller{
       $moneda_venta = set_value('moneda_venta');
       $visibilidad = set_value('visibilidad');
       $alquiler = set_value('alquiler');
+      $alquiler_temporal = set_value('alquiler_temporal');
       $venta = set_value('venta');
       $esta_alquilada = set_value('esta_alquilada');
       $esta_vendida = set_value('esta_vendida');
@@ -149,6 +151,7 @@ class propiedadesadmin extends MY_Controller{
 	  $obj->setMonedaVenta($moneda_venta);
       $obj->setVisible($visibilidad);
       $obj->setAlquiler($alquiler);
+      $obj->setAlquilerTemporal($alquiler_temporal);
       $obj->setVenta($venta);
 	  $obj->setEstaAlquilada($esta_alquilada);
 	  $obj->setEstaVendida($esta_vendida);

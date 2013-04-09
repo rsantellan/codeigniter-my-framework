@@ -45,14 +45,20 @@
       <div class="clear"></div>
       <span class="rojo">Caracteristicas:</span>
       <ul class="ul-detalle">
-        <li class="gris">Ubicacion: <?php echo $propiedad->ubicacion;?></li>
-        <li>Garantia: <?php echo $propiedad->garantia;?></li>
+        <li class="">Ubicacion: <?php echo $propiedad->ubicacion;?></li>
         <li class="gris">Metros: <?php echo $propiedad->metros;?> mts</li>
         <li>Dormitorios: <?php echo $propiedad->dormitorios;?></li>
         <li class="gris">Baños: <?php echo $propiedad->banos;?></li>
         <li>Calefacción: <?php echo $propiedad->calefaccion;?></li>
-        <li>Garage: <?php echo $propiedad->garage;?> </li>
-        <li class="rojo gris">Precio: : <?php echo ($propiedad->moneda_alquiler == 0) ? "U\$S" : "\$" ; ?><?php echo number_format($propiedad->precio_alquiler, 0, ",", "."); ?></li>
+        <li class="gris">Garage: <?php echo $propiedad->garage;?> </li>
+        <?php
+		$precio = "Consultar";
+		if ($propiedad->precio_alquiler > 0) {
+		  $precio = ($propiedad->moneda_alquiler == 0) ? "U\$S" : "\$";
+		  $precio .= number_format($propiedad->precio_alquiler, 0, ",", ".");
+		}
+		?>
+        <li class="rojo">Precio: <?php echo $precio; ?></li>
       </ul>
       <a class="boton-back" href="<?php echo site_url('alquileres'); ?>">< Volver a las propiedades</a>
     </div>
