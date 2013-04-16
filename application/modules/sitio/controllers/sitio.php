@@ -195,7 +195,7 @@ class Sitio extends MY_Controller {
       unset($parameteres['garage']);
     }
     $precio_order = 'desc';
-    if($price == "1")
+    if($price == "2")
     {
       $precio_order = 'asc';
     }
@@ -212,7 +212,7 @@ class Sitio extends MY_Controller {
     $this->load->helper('upload/mimage');
     $this->load->library('upload/mupload');
     $this->load->helper('text');
-    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveSearchWithImage($parameteres, NULL, 'precio_alquiler', $precio_order);
+    $this->data['apartamentos_list'] = $this->propiedad_model->retrieveSearchWithImage($parameteres, NULL, 'precio_venta', $precio_order);
     //$this->output->enable_profiler(TRUE);
     $this->load->view('layout', $this->data);
   }

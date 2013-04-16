@@ -49,11 +49,12 @@ $route['abusqueda'] = 'sitio/searchAlquiler';
 $route['alquiler/(:num)/(:any)'] = 'sitio/alquiler/$1';
 $route['venta/(:num)/(:any)'] = 'sitio/venta/$1';
 $route['vbusqueda'] = 'sitio/searchVentas';
+$route['contacto.html'] = 'contacto';
 /*
 $route['historia.html'] = 'sitio/historia';
 $route['clientes.html'] = 'sitio/clientes';
 $route['certificacion.html'] = 'sitio/certificacion';
-$route['contacto.html'] = 'contacto';
+
 $route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
 $route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
 */

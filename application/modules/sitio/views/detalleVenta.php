@@ -3,7 +3,7 @@
 </div>
 <div class="clear"></div>
 <div class="obras">
-  <h3>Alquiler</h3>
+  <h3>Venta</h3>
   <div class="obras-div">
     <div class="fotos float_left">
       <?php 
