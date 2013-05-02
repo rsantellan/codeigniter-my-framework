@@ -1,0 +1,350 @@
+/* CSS Document */
+
+
+/*RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, font, img,
+ins, kbd, q, s, samp, small, strike,
+sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+center, u, b, i {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     outline: 0;
+     font-weight: normal;
+     font-style: normal;
+     font-size: 100%;
+     font-family: inherit;
+     vertical-align: baseline
+}
+
+:focus {
+     outline: 0
+}
+
+ol, ul {
+     list-style: none
+}
+.float_left{
+	float:left;
+	}
+.float_right{
+	float:right;
+	}
+.clear{
+	clear:both;
+	}
+body{
+	font-family:Verdana;
+	color:#343434;
+	font-size:13px;
+	}
+#wrapper{
+	width:100%;
+	overflow:hidden;
+	margin:0 auto;
+	}
+h1{
+	font-size:22px;
+	line-height:29px;
+	color:#0066CC;
+	margin-bottom:15px;
+	}
+h2{
+	font-size:18px;
+	line-height:29px;
+	color:#0066CC;
+	margin-top:25px;
+	}
+p{
+	color:#343434;
+	font-size:12px;
+	line-height:18px;
+	margin:10px 0;
+	text-align:justify;
+	}
+/*HEADER*/
+#header_top{
+	width:960px;
+	margin:0 auto;
+	height:69px;
+	background:url(../../images/roche/bg_header_top.jpg) left top no-repeat;
+	/*position:relative;*/
+	}
+	#logo_accu{
+		margin:23px 0 0 18px;
+		float:left;
+		}
+	#logo_roche{
+		margin:18px 18px 0 0;
+		float:right;
+		}
+#header_bottom{
+	width:100%;
+	height:59px;
+	background:url(../../images/roche//bg_header_bottom.png) left top repeat-x;
+	margin-top:-20px;
+	}
+	#menu{
+		width:960px;
+		margin:0 auto;
+		}
+	ul.menu{
+		list-style-type:none;
+		padding-top:29px;
+		}
+		ul.menu li{
+			color:#515151;
+			font-size:11px;
+			font-weight:bold;
+			text-transform:uppercase;
+			border-left:1px solid #C1C1C1;
+			border-right:1px solid #FFFFFF;
+			padding:8px 32px;
+			float:left;
+			}
+			ul.menu li.logout{
+				float: right;
+				}
+				ul.menu li.logout a{
+					color:#0066CC;
+					}
+			ul.menu li a{
+				color:#515151;
+				font-weight:bold;
+				text-decoration:none;
+				}
+				ul.menu li a:hover{
+					color:#0066CC;
+					}
+				ul.menu li a.current{
+					color:#0066CC;
+					}
+#content{
+	width:960px;
+	margin:30px auto 0 auto;
+	padding:0 10px;
+	}
+
+/*INGRESO*/
+label{
+	text-align:left;
+	font-size:13px;
+	line-height: 18px;
+	float:left;
+	margin-right:10px;
+	}
+input{
+	border:1px solid #CCCCCC;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-khtml-border-radius:5px;
+	-ms-border-radius: 5px;		
+	height: 10px;
+	padding: 5px;
+	float:left;
+	margin-bottom:15px;
+	}
+form.login{
+	border:1px solid #A2A2A2;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-khtml-border-radius:5px;
+	-ms-border-radius: 5px;	
+	margin:30px auto;
+	padding: 15px;
+	width: 300px;
+	}
+	form.login label{
+		width:80px;
+		}
+	form.login input{
+		width:190px;
+		}
+		input.submit{
+			float: right;
+			padding: 5px 10px;
+			text-transform: uppercase;
+			text-align: center;
+			color: #515151;
+			font-weight: bold;
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+			border-radius:5px;
+			-khtml-border-radius:5px;
+			-ms-border-radius: 5px;	
+			border:1px solid #CCCCCC;
+			margin-bottom: 0;
+			background: #a8acaf;
+			background: -moz-linear-gradient(center bottom , #a8acaf 0%, #e6e7e9 100%) repeat scroll 0 0 transparent;
+			background: -webkit-gradient(linear, bottom center, top center, color-stop(0%,#a8acaf), color-stop(100%,#e6e7e9));
+			background: -webkit-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+			background: -o-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+			background: -ms-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8acaf', endColorstr='#e6e7e9',GradientType=0 );
+			background: linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+			cursor: pointer;
+			}
+			form.login input.submit,
+			form.registro input.submit{
+				height: auto;
+				width: auto;
+				}	
+form.registro{
+	width: 670px;
+	margin-top: 30px;
+	}
+	form.registro label{
+		width:180px;
+		}
+	form.registro input{
+		width:465px;
+		}	
+		form.registro input.file{
+			border:none;
+			width: auto;
+			height: auto;
+			padding: 0;
+			}
+form.registro a{
+	color: #0066CC;
+	text-decoration: none;
+	margin-bottom: 10px;
+	}
+.busqueda_contenedor{
+	width: 940px;
+	padding: 10px;
+	margin: 15px auto;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-khtml-border-radius:5px;
+	-ms-border-radius: 5px;	
+	border:1px solid #CCCCCC;
+	overflow: hidden;
+	}
+	.busqueda_contenedor a{
+		float: right;
+		text-decoration: underline;
+		color: #0066CC;
+		}
+form.busqueda{
+	width: 940px;
+	margin-top: 10px;
+	}
+	.div_busqueda{
+		float: left;
+		margin-right: 10px;
+		}
+	form.busqueda label{
+		width: 70px;
+		}
+	form.busqueda input{
+		width: 130px;
+		}
+	form.busqueda input.submit{
+		float: right;
+		width: auto;
+		height: auto;
+		margin-top: 0;
+		}
+/*FICHA*/
+.datos_usuario{
+	margin-bottom: 10px;
+	overflow: hidden;
+	color:#343434;
+	font-size:12px;
+	line-height:18px;
+	clear: both;
+	}
+	span.tipo_dato{
+		float: left;
+		width: 180px;
+		margin-right: 10px;
+		font-weight: bold;
+		}
+	span.resultado_dato{
+		float: left;
+		}
+.acciones{
+	float: right;
+	margin-top: 15px;
+	}
+	.acciones a{
+		display: block;
+		text-decoration: none;
+		float: left;
+		margin:0 0 15px 10px;
+		padding: 5px 10px;
+		font-size: 11px;
+		text-transform: uppercase;
+		text-align: center;
+		color: #515151;
+		font-weight: bold;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		-khtml-border-radius:5px;
+		-ms-border-radius: 5px;	
+		border:1px solid #CCCCCC;		
+		background: #a8acaf;
+		background: -moz-linear-gradient(center bottom , #a8acaf 0%, #e6e7e9 100%) repeat scroll 0 0 transparent;
+		background: -webkit-gradient(linear, bottom center, top center, color-stop(0%,#a8acaf), color-stop(100%,#e6e7e9));
+		background: -webkit-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		background: -o-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		background: -ms-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8acaf', endColorstr='#e6e7e9',GradientType=0 );
+		background: linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);		
+		}
+table{
+	width: 960px;
+	margin-top: 20px;
+	}
+	table th{
+		border:1px solid #CCCCCC;
+		font-weight: bold;
+		color: #515151;
+		text-align:center;
+		padding: 5px 0;		
+		}
+		table th img{
+			padding-left: 3px;
+		}
+	table td{
+		border:1px solid #CCCCCC;
+		color:#343434;
+		text-align:center;
+		padding: 5px 0;
+		}
+	table td a.verficha{
+		display: block;
+		text-decoration: none;
+		padding: 5px 10px;
+		width: 70px;
+		margin:0 auto; 
+		font-size: 10px;
+		text-transform: uppercase;
+		text-align: center;
+		color: #515151;
+		font-weight: bold;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		-khtml-border-radius:5px;
+		-ms-border-radius: 5px;	
+		border:1px solid #CCCCCC;		
+		background: #a8acaf;
+		background: -moz-linear-gradient(center bottom , #a8acaf 0%, #e6e7e9 100%) repeat scroll 0 0 transparent;
+		background: -webkit-gradient(linear, bottom center, top center, color-stop(0%,#a8acaf), color-stop(100%,#e6e7e9));
+		background: -webkit-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		background: -o-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		background: -ms-linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8acaf', endColorstr='#e6e7e9',GradientType=0 );
+		background: linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);				
+		}

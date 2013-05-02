@@ -38,6 +38,13 @@
 |
 */
 
+$route['default_controller'] = "roche";
+$route['404_override'] = '';
+$route[""] = 'roche/index';
+$route["inicio.html"] = 'roche/index';
+$route["buscar.html"] = 'roche/buscar';
+/*
+ Metalurgica
 $route['default_controller'] = "sitio";
 $route['404_override'] = '';
 $route['historia.html'] = 'sitio/historia';
@@ -46,7 +53,7 @@ $route['certificacion.html'] = 'sitio/certificacion';
 $route['contacto.html'] = 'contacto';
 $route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
 $route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
-
+*/
 /*
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];

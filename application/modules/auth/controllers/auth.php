@@ -110,8 +110,13 @@ class Auth extends MX_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-
-			$this->load->view('auth/login_form', $data);
+            $used_view = $this->config->item('auth_view', 'tank_auth');
+            if(trim($used_view) == "")
+            {
+              $used_view = "auth";
+            }
+            $used_view .= "/login_form";
+			$this->load->view($used_view, $data);
 		}
 	}
 
