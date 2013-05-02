@@ -34,7 +34,9 @@
     <div id="wrapper">
       <div id="header_top">
       <div id="logo_accu">
+        <a href="<?php echo site_url(''); ?>">
          <img src="<?php echo base_url();?>assets/images/roche/logo.jpg" />
+        </a>
       </div>
       <div id="logo_roche">
         <img src="<?php echo base_url();?>assets/images/roche/logo_roche.jpg" />
@@ -44,7 +46,7 @@
       <div id="menu">
           <ul class="menu">
             <li>
-              <a href="<?php echo site_url(''); ?>" class="<?php echo ($menu_id == "ingreso") ? "current" : "";?>">Ingresar usuario</a>
+              <a href="<?php echo site_url('ingresar.html'); ?>" class="<?php echo ($menu_id == "ingreso") ? "current" : "";?>">Ingresar usuario</a>
             </li>
             <li>
               <a href="<?php echo site_url('buscar.html'); ?>" class="<?php echo ($menu_id == "busqueda") ? "current" : "";?>">B&uacute;squeda de usuario</a>

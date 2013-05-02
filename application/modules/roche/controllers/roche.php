@@ -32,6 +32,14 @@ class Roche extends MY_Controller{
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function ingresar()
+  {
+    $this->data['content'] = 'form_usuario';
+    $this->data["menu_id"] = "ingreso";
+    $this->addJqueryUI();
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function buscar()
   {
     $this->data['content'] = 'buscar';

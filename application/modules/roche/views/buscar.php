@@ -22,7 +22,7 @@
           <label>Fecha:</label>
             <div class="datepiker">
                 <div class="datepiker_input">
-                  <input type="text" id="datepicker" />
+                  <input type="text" id="datepicker" name="date"/>
                 </div><!--DATEPIKER INPUT-->
                  <script>
 $(function() {

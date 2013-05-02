@@ -43,6 +43,7 @@ $route['404_override'] = '';
 $route[""] = 'roche/index';
 $route["inicio.html"] = 'roche/index';
 $route["buscar.html"] = 'roche/buscar';
+$route["ingresar.html"] = 'roche/ingresar';
 /*
  Metalurgica
 $route['default_controller'] = "sitio";
