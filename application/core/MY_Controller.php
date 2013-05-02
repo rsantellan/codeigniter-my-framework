@@ -11,7 +11,7 @@ class MY_Controller extends MX_Controller
   protected $data;
   
   //put your code here
-  protected $title = 'Code Igniter my framework';
+  protected $title = null;//'Code Igniter my framework';
   // The template will use this to include default.css by default
   //public $styles = array('default');
   protected $styles = array();
@@ -21,6 +21,11 @@ class MY_Controller extends MX_Controller
   public function __construct()
   {
 	  parent::__construct();
+      if(is_null($this->title))
+      {
+        //$this->config->load('views');
+        $this->title = $this->config->item('app_title');
+      }
 	  $this->data["title"] = $this->title;
 	  $is_logged_in = $this->session->userdata('is_logged_in');
 	  if(isset($is_logged_in) && $is_logged_in == true)
@@ -53,6 +58,11 @@ class MY_Controller extends MX_Controller
 
   }
 
+  public function setTitle($title)
+  {
+    $this->data['title'] = $title;
+  }
+  
   public function loadI18n($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')
   {
 	if($langfile != "")

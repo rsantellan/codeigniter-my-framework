@@ -14,7 +14,7 @@ if (!defined('BASEPATH'))
 class mupload {
   
   public function checkDirectory($path){
-    log_message("debug", $path);
+        log_message("debug", $path);
         if (is_dir($path))
         {
             $last = $path[strlen($path)-1];
@@ -33,6 +33,7 @@ class mupload {
         while(count($folders) > 0 && !$finish)
         {
           $auxPath = implode(DIRECTORY_SEPARATOR, $folders);
+          log_message("debug", "Directorio a chequear que exista: ". $auxPath);
           if(is_dir($auxPath))
           {
             $finish = true;
@@ -46,7 +47,7 @@ class mupload {
         while(count($list_of_paths) > 0 )
         {
           $newDir = array_pop($list_of_paths);
-          
+          log_message("debug", "Directorio a crear: ". $newDir);
           if(!mkdir($newDir)) {
             log_message("error", $newDir);
             throw new Exception('Unable to create format directory');
@@ -119,9 +120,19 @@ class mupload {
       }
       else
       {
-        $CI =& get_instance();
-        $CI->load->library('mgd', true, NULL, 'mgd');
-        $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height); 
+        try
+        { 
+          $CI =& get_instance();
+          $CI->load->library('mimagickexec', true, NULL, 'mImagickExec');
+          $CI->mimagickexec->basicThumbnail($path, $mPath, $type, $width, $height); 
+        }
+        catch(Exception $e)
+        {
+          $CI =& get_instance();
+          $CI->load->library('mgd', true, NULL, 'mgd');
+          $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height);
+        }
+         
       }
       
       

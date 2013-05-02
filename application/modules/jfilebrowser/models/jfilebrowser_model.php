@@ -17,7 +17,22 @@ class jfilebrowser_model extends MY_Model
   
     private function getPath()
     {
-      return dirname(__FILE__).DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."assets".DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."jfilebrowser";
+      $path = dirname(__FILE__).DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."assets".DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."jfilebrowser";
+      $pieces = explode(DIRECTORY_SEPARATOR, $path);
+      $aux = array();
+      foreach($pieces as $var)
+      {
+        if($var == "..")
+        {
+          array_pop($aux);
+        }
+        else
+        {
+          $aux[] = $var;
+        }
+      }
+      $path = implode(DIRECTORY_SEPARATOR, $aux);
+      return  $path;
     }
     
     public function directoryList()

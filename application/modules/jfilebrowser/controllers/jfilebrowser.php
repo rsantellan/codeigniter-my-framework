@@ -174,4 +174,33 @@ class jfilebrowser extends MY_Controller
     }
     
   }
+  
+  public function getUrl()
+  {
+    $ancho = $this->input->post('width');
+    $alto = $this->input->post('height');
+    $directorio = $this->input->post('directory');
+    $name = $this->input->post('name');
+    $archivo = $this->jfilebrowser_model->find($directorio, $name);
+    $path = thumbnail_image($archivo['original'], $ancho, $alto);
+	log_message("debug", "URL COMPLETA: ". base_url().$path);
+	log_message("debug", "URL con la barra: "."/".$path);
+	$variables = explode("/", $path);
+	$aux = array();
+	foreach($variables as $var)
+	{
+	  if($var == "..")
+	  {
+		array_pop($aux);
+	  }
+	  else
+	  {
+		$aux[] = $var;
+	  }
+	}
+	$sPath = implode("/", $aux);
+	log_message("debug", "URL final: "."/".$sPath);
+	echo base_url().$sPath;
+    
+  }
 }

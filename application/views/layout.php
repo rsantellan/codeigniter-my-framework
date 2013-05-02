@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="shortcut icon" href="<?php echo base_url() . "assets/images/favicon.ico";?>" />
       <title>
         <?php echo (isset($title))? $title: 'Titulo';?>
       </title>
-      <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/style.css";?>" />
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/styles.css";?>" />
       <!--[if IE 7]>
         <link rel="stylesheet" type="text/css" href="css/ie7.css" />
       <![endif]-->
@@ -18,101 +19,67 @@
 		
       <?php foreach($stylesheet as $sheet): ?>
 	  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/".$sheet;?>" />
-      <?php endforeach; ?>      
+      <?php endforeach; ?>
+      <script type="text/javascript" src="<?php echo base_url() . "assets/js/dropdown.js";?>"></script>
     </head>
   <body>
-    <div id="page">
-      <!-- Empieza el header -->
+    <div id="wrapper">
       <div id="header">
-        <div>
-          <a href="index.html"><img src="<?php echo base_url();?>assets/images/logo.gif" alt="Logo" /></a>
+        	<?php echo lang('header');?>
+        </div><!--HEADER-->
+        <div id="menu">
+            	<dl class="dropdown">
+                	<dt><a href="<?php echo site_url(''); ?>" class="<?php echo ($menu_id == "home") ? "current" : "";?>"><?php echo lang('menu_inicio');?></a></dt>
+                </dl>
+            	<dl class="dropdown">
+                	<dt><a href="<?php echo site_url('historia.html'); ?>"  class="<?php echo ($menu_id == "historia") ? "current" : "";?>"><?php echo lang('menu_historia');?></a></dt>
+                </dl>
+                
+                <dl class="dropdown">
+                     <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" class="servicios <?php echo ($menu_id == "servicios") ? "current" : "";?>"><?php echo lang('menu_Servicios');?></dt>
+                     <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
+                        <?php 
+                        if(!isset($servicio_id))
+                          $servicio_id = null;
+                        echo modules::run('sitio/serviciosOptions', array('servicio_id' => $servicio_id));
+                                
+                        ?>
+                     </dd>
+                </dl>
+            	<dl class="dropdown">
+                	<dt><a href="<?php echo site_url('clientes.html'); ?>" class="<?php echo ($menu_id == "clientes") ? "current" : "";?>"><?php echo lang('menu_clientes');?></a></dt>
+                </dl>
+            	<dl class="dropdown">
+                	<dt><a href="<?php echo site_url('certificacion.html'); ?>" class="<?php echo ($menu_id == "certificacion") ? "current" : "";?>"><?php echo lang('menu_certificacion');?></a></dt>
+                </dl>
+            	<dl class="dropdown">
+                	<dt><a href="<?php echo site_url('contacto.html'); ?>"><?php echo lang('menu_contacto');?></a></dt>
+                </dl>
+        </div><!--MENU-->
+        <div class="clear"></div>
+        <?php if(isset($content)): ?>
+          <?php echo $this->load->view($content) ?>
+        <?php endif; ?>        
+          <div class="content_ext">
+            <div class="content">
+                <h1><?php echo lang('destacados_titulo');?></h1>
+            </div><!--CONTENT-->
+            <hr />
+            <div class="content">
+              <?php echo modules::run('sitio/destacados')?>
+            </div><!--CONTENT-->
+          </div>
+          <div class="clear"></div>
+        <div id="footer">
+            <div class="logos">
+            	<img src="<?php echo base_url() . "assets/images/logo_iso.jpg";?>" />
+                <img src="<?php echo base_url() . "assets/images/logo_fcr.jpg";?>" />
+            </div>
+            <?php echo lang('footer_informacion');?>
+        </div><!--FOOTER-->
+        <div id="firm">
+        	Diseño | <a href="http://www.loopitadesign.com" target="_blank">LoopitaDesgin</a>
         </div>
-        <ul>
-          <li class="<?php echo ($menu_id == "home")? "current" : "";?>"><a href="index.html"><span>Home</span></a></li>
-          <li><a href="organic.html"><span>Organic Gardening</span></a></li>
-          <li><a href="tips.html"><span>Gardening Tips &amp; Useful Links</span></a></li>
-          <li class="<?php echo ($menu_id == "blog")? "current" : "";?>"><a href="<?php echo site_url('blog');?>"><span>Blog</span></a></li>
-          <li><a href="about.html"><span>About</span></a></li>
-          <li class="<?php echo ($menu_id == "contacto")? "current" : "";?>"><a href="<?php echo site_url('contacto');?>"><span>Contact</span></a></li>
-        </ul>
-      </div>
-      <!-- Termina el header -->
-      <!-- Empieza el body -->
-      <div class="body">
-	  
-      <?php if(isset($content)): ?>
-        <?php echo $this->load->view($content) ?>
-      <?php endif; ?>
-      </div>
-      <!-- Termina el body -->
-      <!-- Empieza el footer -->
-      <div id="footer">
-        <ul>
-          
-          <li>
-            <h3>Magazine &amp; Books</h3>
-            <div id="magazine">
-              <p>Fusce interdum vestibulum lacus, sagittis sagittis mauris</p>
-              <a href="index.html"><img src="<?php echo base_url();?>assets/images/magazine.jpg" alt="Image" /></a>
-            </div>
-          </li>
-          
-          <li>
-            <h3>Gallery</h3>
-            <div id="gallery">
-              <b>Donec a quam quis est</b>
-              <a href="index.html"><img src="<?php echo base_url();?>assets/images/family-harvesting.jpg" alt="Image" /></a>
-              <p>Nam eu tellus a sem laoreet vel pulvinarid nisi at risus sit <br />by: Lizah</p>
-              <a href="index.html" class="viewall">View all Photos</a>
-            </div>
-          </li>
-          <li>
-            <h3>Suppliers Directory</h3>
-            <div>
-              <b>Lorem ipsum dolor</b>
-              <span>Vivamus placerat eros aligula vulpu</span>
-              <p>(+36) 924-068-207</p>
-              <b>Molestie Faucibus</b>
-              <span>Proin magna velit, mattis portitor</span>
-              <p>(+36) 924-068-207</p>
-              <b>Vestibulum Matti</b>
-              <p>(+36) 924-068-207</p>
-              <a href="index.html" class="viewall">View all Suppliers</a>
-            </div>
-          </li>
-          <li>
-            <h3>Get in Touch</h3>
-            <div>
-              <p>Email:<br />company@email.com<br /><br /></p>
-              <p>Address:<br />189 Lorem Ipsum Pellentes<br />Mauris Etiam ut velit odio<br />Proin nisi 0000<br /><br /></p>
-              <p>Phone:<br /> 117-683-9187-000</p>
-            </div>
-          </li>
-        </ul>
-        <div>
-          <p class="connect">Join us on <a href="http://facebook.com/freewebsitetemplates" target="_blank">Facebook</a> &amp; <a href="http://twitter.com/fwtemplates" target="_blank">Twitter</a></p>
-          <p class="footnote">Copyright &copy;. All right reserved.</p>
-        </div>
-      </div>
-      <!-- Termina el footer -->
-      
-      
     </div>
-	
-<!--	<div class="header">
-      <div class="logo">
-        <a href="index.html"><img src="<?php echo base_url();?>assets/images/logo.png" /></a>
-      </div>
-      
-      <?php //echo language_menu(); ?>
-    </div>
-    <hr/>
-    <div class="content">
-      
-    </div>
-    <hr/>
-    <div class="footer">
-        Footer
-    </div>-->
   </body>
 </html>

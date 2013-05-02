@@ -46,7 +46,7 @@
       <div class="header_div">
         <label>Administrador</label>
 <!--        <h1 id="head">Administrador</h1>-->
-        <img src="<?php echo base_url();?>assets/images/logo.png" width="70" height="70"/>
+        <img src="<?php echo base_url();?>assets/images/logo.png" height="70"/>
       </div>
       
       <ul id="navigation">
@@ -64,6 +64,18 @@
         <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
       <?php endif; ?>
       
+      <?php if($menu_id == 'proyectos'): ?>
+        <li><span class="active">Proyectos</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('proyectos/proyectoadmin');?>">Proyectos</a></li>
+      <?php endif; ?>  
+      
+      <?php if($menu_id == 'categorias'): ?>
+        <li><span class="active">Categorias</span></li>
+      <?php else: ?>
+        <li><a href="<?php echo site_url('categorias/categoriasadmin');?>">Categorias</a></li>
+      <?php endif; ?>    
+        
       <?php if($menu_id == 'contacto'): ?>
         <li><span class="active">Contacto</span></li>
       <?php else: ?>
@@ -73,7 +85,7 @@
 		</ul>
 		
 			<div id="content" class="container_16 clearfix">
-<?php echo language_menu(); ?>
+<?php //echo language_menu(); ?>
 <!-- Filtro -->     
 <!-- 
 				<div class="grid_4">

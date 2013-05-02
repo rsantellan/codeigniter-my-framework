@@ -8,3 +8,4 @@ $lang["contacto_celular"] = "Celular";
 $lang["contacto_email"] = "Correo Electrónico *";
 $lang["contacto_consulta"] = "Consulta";
 $lang["contacto_denuncias"] = "Descargar formulario de denunacias";
+$lang["contacto_mensaje_enviado"] = "Su mensaje sera respondido en la brevedad";

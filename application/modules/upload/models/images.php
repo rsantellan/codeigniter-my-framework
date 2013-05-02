@@ -160,12 +160,16 @@ class images extends MY_Model{
   
   public function deleteFile($id)
   {
+    log_message("debug", "Deleting images : ".$id);
     $file = $this->getFile($id);
     $file = $file[0];
     $ci = &get_instance();
+    log_message("debug", "Deleting cache images of : ".$id);
     $ci->load->library("upload/mupload");
     $ci->mupload->deleteImageCache($file->path);
+    log_message("debug", "Deleting actual file of image : ".$id);
     unlink($file->path);
+    log_message("debug", "Deleting db of image : ".$id);
     $this->db->where('id', $id);
     $this->db->delete($this->getTablename());
   }

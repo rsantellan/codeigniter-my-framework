@@ -58,7 +58,6 @@ class Model_language extends CI_Model {
           
         }
         
-        
 		return (!empty($files))?$files:FALSE;
 	}
 

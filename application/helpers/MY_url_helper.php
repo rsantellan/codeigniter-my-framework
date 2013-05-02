@@ -1,5 +1,31 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+function url_title($str, $separator = '-', $lowercase = FALSE)
+{
+    if ($separator == 'dash') 
+    {
+        $separator = '-';
+    }
+    else if ($separator == 'underscore')
+    {
+        $separator = '_';
+    }
+
+    $str = strip_tags($str);
+    $str = preg_replace("`\[.*\]`U", "", $str);
+    $str = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $str);
+    $str = htmlentities($str, ENT_COMPAT, 'utf-8');
+    $str = preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig|quot|rsquo);`i", "\\1", $str);
+    $str = preg_replace(array("`[^a-z0-9]`i", "`[-]+`"), "-", $str);
+    
+    if ($lowercase === TRUE)
+    {
+        $str = strtolower($str);
+    }
+
+    return trim($str, $separator);
+}
+
 /**
  * Site URL
  * Used when creating internal anchors, translates a uri into the current language
@@ -7,8 +33,11 @@
 function site_url($uri, $lang = FALSE) {
 	$CI =& get_instance();
 	//$CI->load->config('language');
-	
-    
+	$use_urilang = $CI->config->item('use_urilang');
+    if(!$use_urilang)
+    {
+      return $CI->config->site_url($uri);
+    }
 	if(!is_array($uri)) {
 		$uri = explode('?', $uri);
 		$query = isset($uri[1]) ? '?'.$uri[1] : '';

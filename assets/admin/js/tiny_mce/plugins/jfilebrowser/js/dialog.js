@@ -40,22 +40,28 @@ var jFileBrowserDialog = {
                     return;
                 }
 
-                new Ajax.Request('/index.php/jfilebrowser/getUrl', {
+                new Ajax.Request(site_get_url+'jfilebrowser/getUrl', {
                     method: 'post',
                     parameters: 'width=' + ancho + '&height=' + alto + '&directory=' + dir + '&name=' + title,
                     onSuccess: function (response){
                         path = response.responseText;
-                        html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' height="' + alto +'" width="' + ancho +'" />';
+                        //console.info(path);
+						html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' height="' + alto +'" width="' + ancho +'" />';
+						//console.info(html);
                         tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
-                        tinyMCEPopup.close();
+						tinyMCEPopup.close();
                     }
                 });
 
             }else{
                 //path = path.replace("/backend.php", "").replace("/backend_dev.php", "");
                 //html = '<span class="mceIcon mce_spellchecker"></span>';
+                //console.info(path);
                 html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' />';
-                tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
+                //console.info(html);
+                //console.info(tinyMCEPopup.editor);
+                tinyMCEPopup.editor.execCommand('mceInsertContent', null, html);
+                //tinyMCEPopup.editor.execCommand('mceInsertRawHTML', null, html);
                 tinyMCEPopup.close();
             }
 

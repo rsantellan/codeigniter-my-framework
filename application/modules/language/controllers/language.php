@@ -268,7 +268,7 @@ class Language extends MY_Controller {
               $comments[$key] = '';
             }
             $f .= '$lang[\'' . $key . '\']=\''; ///for language array
-            $f .= addslashes($this->input->post($key, TRUE)) . '\';' . "\n";  ///for language array		, add escaping "
+            $f .= $this->sanitateData($this->input->post($key, TRUE)) . '\';' . "\n";  ///for language array		, add escaping "
           } elseif ($pos = strpos($key, 'new_key_') !== FALSE) { /// check if there is new key -> strpos is faster than substr
             $new_key = $this->prepare_str(trim($this->input->post($key, TRUE)));
             if (!empty($new_key)) {
@@ -314,6 +314,15 @@ class Language extends MY_Controller {
     }
   }
 
+  private function sanitateData($input)
+  {
+	//Esto estaba por default
+	$data = addslashes($input);
+	//Esto es sacandole las simples por dobles.
+	$data = str_replace("'",'"',$input);
+
+	return $data;
+  }
   /**
    * Create new file
    * If file was created by form - create new empty file.

@@ -3,6 +3,7 @@
 <head>
 <title>{#jfilebrowser_dlg.title}</title>
 <link rel="stylesheet" type="text/css" href="css/style1.css" />
+<script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 <script type="text/javascript" src="js/dialog.js"></script>
 <script type="text/javascript" src="js/prototype.js"></script>

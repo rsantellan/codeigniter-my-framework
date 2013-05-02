@@ -1,6 +1,6 @@
 $(document).ready(function() { 
   hoversImages();
-  
+  startUploadFancyLinks();
 });
 
 function hoversImages()
@@ -37,8 +37,13 @@ function deleteFile(mUrl, itemId)
 
 function refreshAlbum(albumId)
 {
- //console.log('refreshAlbum ' + albumId);
+ /*
+ console.log('refreshAlbum ' + albumId);
+ console.log('refresh_album_' + albumId);
+ console.log($('#refresh_album_' + albumId));
+ */
  var mUrl = $('#refresh_album_' + albumId).val();
+ //console.info(mUrl);
  $.ajax({
     url: mUrl,
     type: 'post',
@@ -50,8 +55,27 @@ function refreshAlbum(albumId)
       {
         $('#album_' + albumId).replaceWith(obj.content.album);
         hoversImages();
-        startFancyLinks();
+        startUploadFancyLinks(albumId);
       }
     }        
   }); 
+}
+
+function startUploadFancyLinks()
+{
+  //var album_id = null;
+
+  $(".fancy_link_upload").fancybox({
+    onClosed: function(){
+      if ( $.browser.msie ) {
+        $('.single_album_container').each(function(indice, elemento){
+          //console.log(indice);
+          //console.log(elemento);
+          var element_id = $(elemento).attr('id').replace('album_', '');
+          //console.info(element_id);
+          refreshAlbum(element_id);
+        });
+      }
+    }
+  });
 }

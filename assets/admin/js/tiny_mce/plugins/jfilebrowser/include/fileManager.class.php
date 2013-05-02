@@ -77,9 +77,11 @@ class fileManager
             throw new Exception('Invalid file extension');
 
         }
-
+		/*
         $randName = md5(rand() * time());
         $file_name = $randName . "." . $file_extension;
+        */
+		//$file_name = $file_name . "." . $file_extension;
 
         if (! @move_uploaded_file ( $FILES [$upload_name] ["tmp_name"][0], $save_path . $file_name )) {
 

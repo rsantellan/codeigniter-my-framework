@@ -2248,8 +2248,7 @@ tinymce.create('static tinymce.util.XHR', {
 
 		processHTML : function(h) {
 			var t = this, s = t.settings, codeBlocks = [];
-
-			if (!s.process_html)
+            if (!s.process_html)
 				return h;
 
 			if (isIE) {
@@ -2338,8 +2337,7 @@ tinymce.create('static tinymce.util.XHR', {
 							// Is attribute one that needs special treatment
 							if (mceAttribs[name] && attrs.indexOf('_mce_' + name) == -1) {
 								mceValue = t.decode(value);
-
-								// Convert URLs to relative/absolute ones
+                                // Convert URLs to relative/absolute ones
 								if (s.url_converter && (name == "src" || name == "href"))
 									mceValue = s.url_converter.call(s.url_converter_scope || t, mceValue, name, elm_name);
 
@@ -2355,7 +2353,7 @@ tinymce.create('static tinymce.util.XHR', {
 					});
 				};
 
-				h = processTags(h);
+				//h = processTags(h);
 
 				// Restore script blocks
 				h = h.replace(/MCE_SCRIPT:([0-9]+)/g, function(val, idx) {
@@ -4254,7 +4252,6 @@ tinymce.create('static tinymce.util.XHR', {
 			// Dispatch before set content event
 			t.onBeforeSetContent.dispatch(t, s);
 			h = s.content;
-
 			if (r.insertNode) {
 				// Make caret marker since insertNode places the caret in the beginning of text after insert
 				h += '<span id="__caret">_</span>';

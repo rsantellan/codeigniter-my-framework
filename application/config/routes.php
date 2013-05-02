@@ -38,11 +38,18 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "sitio";
 $route['404_override'] = '';
+$route['historia.html'] = 'sitio/historia';
+$route['clientes.html'] = 'sitio/clientes';
+$route['certificacion.html'] = 'sitio/certificacion';
+$route['contacto.html'] = 'contacto';
+$route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
+$route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
 
+/*
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];
-
+*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

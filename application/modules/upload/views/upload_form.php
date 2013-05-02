@@ -28,7 +28,7 @@
 					progressTarget : "fsUploadProgress",
 					cancelButtonId : "btnCancel"
 				},
-				debug: true,
+				debug: false,
 
 				// Button settings
 				button_image_url: "<?php echo base_url(); ?>assets/upload/images/TestImageNoText_65x29.png",

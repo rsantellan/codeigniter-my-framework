@@ -61,7 +61,7 @@
 		getInfo : function() {
 			return {
 				longname : 'jfilebrowser plugin',
-				author : 'Some author',
+				author : 'Rodrigo Santellan',
 				authorurl : 'http://tinymce.moxiecode.com',
 				infourl : 'http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/jfilebrowser',
 				version : "1.0"
