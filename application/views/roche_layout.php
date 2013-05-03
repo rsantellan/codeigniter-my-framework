@@ -20,6 +20,7 @@
       <?php endif; ?>
       <?php if($jquery_ui_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/roche/js/jquery-ui-1.10.2.custom.min.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/roche/js/jquery.ui.datepicker-es.js";?>"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/roche/jquery-ui-1.10.2-overcast/jquery-ui-1.10.2.custom.min.css";?>" />
       <?php endif; ?>  
       <?php foreach($javascript as $js): ?>
