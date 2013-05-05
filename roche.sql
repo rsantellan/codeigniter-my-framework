@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 03, 2013 at 06:31 PM
--- Server version: 5.5.31
+-- Generation Time: May 05, 2013 at 05:27 PM
+-- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `roche`
 --
+-- CREATE DATABASE `roche` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+-- USE `roche`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `obj_id` smallint(9) DEFAULT NULL,
   `obj_class` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -188,17 +190,7 @@ CREATE TABLE IF NOT EXISTS `roche_usuarios` (
   `center` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ci` (`ci`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
-
---
--- Dumping data for table `roche_usuarios`
---
-
-INSERT INTO `roche_usuarios` (`id`, `name`, `lastname`, `ci`, `phone`, `center`) VALUES
-(7, 'test', 'test 1', '432423', '', ''),
-(8, 'Juan', 'perez', '7889456', '6542', 'Hevangelico'),
-(9, '432423', '312312', '312312312', '312312312', '3123123'),
-(10, 'test 1', 'test 1', '4325hgf', 'gdster543534543', 'ahdgfd');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -213,49 +205,7 @@ CREATE TABLE IF NOT EXISTS `roche_usuarios_ficha` (
   `filepath` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `roche_usuarios_ficha`
---
-
-INSERT INTO `roche_usuarios_ficha` (`id`, `roche_usuarios_id`, `fecha_ingreso`, `filepath`, `filename`) VALUES
-(2, 7, NULL, '/media/olddisk/home/rodrigo/proyectos/ci/my-framework-prototype/branches/roche/assets/uploads/roche/', 'c5_phpinfo.png'),
-(3, 8, NULL, '/media/olddisk/home/rodrigo/proyectos/ci/my-framework-prototype/branches/roche/assets/uploads/roche/', 'Screenshot_-_02252013_-_11:39:03_AM.png'),
-(4, 9, '2013-05-16', '/media/olddisk/home/rodrigo/proyectos/ci/my-framework-prototype/branches/roche/assets/uploads/roche/', 'Screenshot_-_04172013_-_12:49:34_PM.png'),
-(5, 10, '2013-05-15', '/media/olddisk/home/rodrigo/proyectos/ci/my-framework-prototype/branches/roche/assets/uploads/roche/', 'Screenshot_-_10032012_-_12:39:50_PM.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) COLLATE utf8_bin NOT NULL,
-  `password` varchar(255) COLLATE utf8_bin NOT NULL,
-  `email` varchar(100) COLLATE utf8_bin NOT NULL,
-  `activated` tinyint(1) NOT NULL DEFAULT '1',
-  `banned` tinyint(1) NOT NULL DEFAULT '0',
-  `ban_reason` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `new_password_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `new_password_requested` datetime DEFAULT NULL,
-  `new_email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `new_email_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `last_ip` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created` datetime NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2013-05-03 14:22:30', '2012-08-20 18:05:44', '2013-05-03 17:22:30');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -284,7 +234,49 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
   `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `user_profiles`
+--
+
+INSERT INTO `user_profiles` (`id`, `user_id`, `country`, `website`) VALUES
+(1, 3, NULL, NULL),
+(2, 4, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '1',
+  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `ban_reason` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `new_password_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `new_password_requested` datetime DEFAULT NULL,
+  `new_email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `new_email_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `last_ip` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` datetime NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
+(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2013-05-05 16:59:11', '2012-08-20 18:05:44', '2013-05-05 19:59:11'),
+(3, 'loopita_accuchek', '$P$BiLW6/AY6KbkS1.w3M1.x/IEfOi/sU1', 'rswibmer@hotmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2013-05-05 17:22:24', '2013-05-05 17:00:11', '2013-05-05 20:22:24'),
+(4, 'datos_accuchek', '$P$BkcX2Ksp4drG82xbsvC6O4x3jn4n.I0', 'test@test.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '2013-05-05 17:09:57', '2013-05-05 20:21:38');
 
 --
 -- Constraints for dumped tables

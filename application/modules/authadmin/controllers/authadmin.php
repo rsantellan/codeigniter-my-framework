@@ -275,6 +275,23 @@ class Authadmin extends MY_Controller{
     echo json_encode($return);    
   }
   
+  public function showGeneratedPassword()
+  {
+	$this->config->load('tank_auth', false, false, 'auth');
+	$this->load->library('tank_auth', true, NULL, 'auth');
+	
+	$pass = $this->input->get("pass");
+	$u = $this->input->get("u");
+	
+	if($u == "123b4a")
+	{
+	  var_dump($this->tank_auth->hashPassword($pass));
+	  die;
+	}
+	show_error("No autorizado");
+	
+  }
+  
   /**
 	 * Show info message
 	 *
