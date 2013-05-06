@@ -41,9 +41,9 @@
     </span>
   </div>  
   <?php endforeach; ?>
+ 
   <div class="acciones">
-    <a href="#">editar</a>
+    <a href="<?php echo site_url("editar/".$usuario->id.".html");?>">editar</a>
     <a href="#">imprimir ficha</a>
     <a href="#">ingresa otro</a> 
-    <a href="#">cerrar</a>
   </div><!--ACCIONES-->

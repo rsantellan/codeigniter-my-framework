@@ -76,6 +76,7 @@ class roche_usuario_model extends MY_Model{
     {
       return true;
     }
+    return false;
   }
   
   public function save()
@@ -98,22 +99,30 @@ class roche_usuario_model extends MY_Model{
     $data["ci"] = $this->getCi();
     $data["phone"] = $this->getPhone();
     $data["center"] = $this->getCenter();
-    $this->db->insert($this->getTablename(), $data);
-    $id = $this->db->insert_id(); 
+    $res = $this->db->insert($this->getTablename(), $data);
+    if(!$res)
+    {
+      throw new Exception($this->db->_error_message());
+    }
+    $id = $this->db->insert_id();
+    
     return $id;
   }
   
   private function edit()
   {
     $data = array();
-    $data["nombre"] = $this->getNombre();
-    $data["cliente"] = $this->getCliente();
-    $data["tipo_de_trabajo"] = $this->getTipo_trabajo();
-    $data["descripcion"] = $this->getDescripcion();
-    $data["updated_at"] =  date('Y-m-d H:i:s');
+    $data["name"] = $this->getName();
+    $data["lastname"] = $this->getLastname();
+    $data["ci"] = $this->getCi();
+    $data["phone"] = $this->getPhone();
+    $data["center"] = $this->getCenter();
     $this->db->where('id', $this->getId());
-    $this->db->update($this->getTablename(), $data);
-
+    $res = $this->db->update($this->getTablename(), $data);
+    if(!$res)
+    {
+      throw new Exception($this->db->_error_message());
+    }
     return $this->getId();
   }
 
@@ -134,12 +143,28 @@ class roche_usuario_model extends MY_Model{
     return $resultado;
   }
   
-  public function retrieveById($id)
+  public function retrieveById($id, $retrieve_object = false)
   {
     $this->db->where('id', $id);
     $query = $this->db->get($this->getTablename());
     if( $query->num_rows() == 1 ){
-      return $query->row(); 
+      if(!$retrieve_object)
+      {
+        return $query->row(); 
+      }
+      else
+      {
+        $aux = $query->row();
+        $obj = new roche_usuario_model();
+        $obj->setName($aux->name);
+        $obj->setLastname($aux->lastname);
+        $obj->setCi($aux->ci);
+        $obj->setPhone($aux->phone);
+        $obj->setCenter($aux->center);
+        $obj->setId($aux->id);
+        return $obj;
+      }
+      
     }else{
       return NULL;
     }

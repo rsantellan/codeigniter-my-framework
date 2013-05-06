@@ -22,7 +22,18 @@
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/roche/js/jquery-ui-1.10.2.custom.min.js";?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . "assets/js/roche/js/jquery.ui.datepicker-es.js";?>"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/css/roche/jquery-ui-1.10.2-overcast/jquery-ui-1.10.2.custom.min.css";?>" />
-      <?php endif; ?>  
+      <?php endif; ?>
+        
+      <?php if($use_noty): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/jquery.noty.js";?>"></script>
+        
+        <!-- <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/layouts/top.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/layouts/topLeft.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/layouts/topRight.js";?>"></script>
+        -->
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/layouts/center.js";?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/js/noty/themes/default.js";?>"></script>
+      <?php endif; ?>
       <?php foreach($javascript as $js): ?>
         <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
       <?php endforeach; ?>

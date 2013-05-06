@@ -102,13 +102,21 @@ class Roche extends MY_Controller{
       {
         $upload_data = $this->upload->data();
         //Como es valido lo salvo
-        $id = $usuario->save();
-        $ficha->setRocheUsuarioFicha($id);
-        $ficha->save($upload_data);
         
-        $this->session->set_flashdata("salvado", "ok");
-        redirect('roche/ficha/'.$id);
-        die;
+        try{
+          $id = $usuario->save();
+          $ficha->setRocheUsuarioFicha($id);
+          $ficha->save($upload_data);
+
+          $this->session->set_flashdata("salvado", "ok");
+          redirect('roche/ficha/'.$id);
+          die;
+        }catch(Exception $e)
+        {
+          $is_valid = false;
+          $errores[] = "<p>CI duplicada</p>";
+        }
+        
       }
     }
     $this->data['usuario'] = $usuario;
@@ -212,6 +220,8 @@ class Roche extends MY_Controller{
     if($date == false && $center == false && $phone == false && $ci == false && $lastname == false && $name == false)
     {
       $parameters = unserialize($this->session->userdata('search_parameters'));
+      if($parameters == false)
+        $parameters = array();
       if(isset($parameters['name'])){
         $name = $parameters['name'];
       }else{
@@ -274,7 +284,7 @@ class Roche extends MY_Controller{
         unset($parameters['date']);
       }
     }
-    
+    //var_dump($parameters);die;
     /***
      * 
      * Vuelvo a pasar los datos
@@ -331,6 +341,79 @@ class Roche extends MY_Controller{
     $this->data['menu_id'] = 'ingreso';
     $this->data['content'] = 'fichas';
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function editar($id)
+  {
+    $this->output->enable_profiler(TRUE);
+    $this->data['use_noty'] = true;
+    $this->load->model('roche_usuario_model');
+    $this->load->model('roche_usuario_ficha_model');
+    $usuario = $this->roche_usuario_model->retrieveById($id, true);
+    if(is_null($usuario))
+    {
+      show_error("El usuario no existe");
+    }
+    $fichas = $this->roche_usuario_ficha_model->retrieveByUsuarioId($id);
+    //var_dump($fichas);
+    $this->data['path'] = $this->roche_usuario_ficha_model->retrieveUploadPath();
+    $this->data['usuario'] = $usuario;
+    $this->data['fichas'] = $fichas;
+    $this->data['menu_id'] = 'ingreso';
+    $this->data['content'] = 'editar';
+    $this->addJavascript("roche/editUserFile.js");
+    $this->addJqueryUI();
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function salvarUsuarioSimple()
+  {
+    if( $this->input->is_ajax_request())
+    {
+      $this->load->library('form_validation');
+      $this->load->model('roche_usuario_model');
+      
+      $this->form_validation->set_rules('name', 'nombre', 'required|trim|max_length[255]');			
+      $this->form_validation->set_rules('lastname', 'apellido', 'required|max_length[255]');			
+      $this->form_validation->set_rules('ci', 'cedula', 'required|max_length[255]');			
+      $this->form_validation->set_rules('phone', 'telefono', 'max_length[255]');			
+      $this->form_validation->set_rules('center', 'mutualista', 'max_length[255]');      
+      $is_valid = false;
+      $errores = "";
+      if (!$this->form_validation->run() == FALSE) 
+      {
+        $is_valid = true;
+        $name =set_value('name'); 
+        $lastname = set_value('lastname');
+        $ci = set_value('ci');
+        $phone = set_value('phone');
+        $center = set_value('center');
+        // Get ID from form
+        $id = $this->input->post('id', true);
+        
+        //var_dump($date);die;
+        $usuario = new $this->roche_usuario_model;
+        $usuario->setName($name);
+        $usuario->setLastname($lastname);
+        $usuario->setCi($ci);
+        $usuario->setPhone($phone);
+        $usuario->setCenter($center);
+        $usuario->setId($id);
+        try{
+          $usuario->save();
+        }catch(Exception $e)
+        {
+          $is_valid = false;
+          $errores = "<p>CI duplicada</p>";
+        }
+        
+        
+      }else{
+        $errores = validation_errors();
+      }
+      echo json_encode(array('response' => ($is_valid)? "OK": "ERROR", 'errores' => $errores));
+      die(0);
+    }
   }
 }
 
