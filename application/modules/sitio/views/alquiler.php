@@ -44,7 +44,7 @@
       Dormitorios
     </label>
     <select id="search_sort_by" name="bedroom">
-      <option value="0" <?php echo !isset($searchBedroom)? 'selected="selected"' : '';?>></option>
+      <option value="-1" <?php echo !isset($searchBedroom)? 'selected="selected"' : '';?>></option>
       <?php foreach($dormitorios as $dormitorio): ?>
       <option value="<?php echo $dormitorio->dormitorios;?>" <?php echo (isset($searchBedroom) && $searchBedroom == $dormitorio->dormitorios)? 'selected="selected"' : '';?>><?php echo $dormitorio->dormitorios;?></option>
       <?php endforeach;?>

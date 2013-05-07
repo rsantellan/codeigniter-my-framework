@@ -51,7 +51,7 @@
       Baños
     </label>
     <select id="search_sort_by" name="bathroom">
-      <option value="0" <?php echo !isset($searchBathroom)? 'selected="selected"' : '';?>></option>
+      <option value="-1" <?php echo !isset($searchBathroom)? 'selected="selected"' : '';?>></option>
       <?php foreach($banos as $bano): ?>
       <option value="<?php echo $bano->banos;?>" <?php echo (isset($searchBathroom) && $searchBathroom == $bano->banos)? 'selected="selected"' : '';?>><?php echo $bano->banos;?></option>
       <?php endforeach;?>
