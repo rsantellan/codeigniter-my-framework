@@ -348,3 +348,15 @@ table{
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8acaf', endColorstr='#e6e7e9',GradientType=0 );
 		background: linear-gradient(bottom, #a8acaf 0%, #e6e7e9 100%);				
 		}
+        
+/***
+
+Date styles
+
+***/
+
+.datepiker{
+  float:left;
+  margin:0;
+  padding:0;
+}

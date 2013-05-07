@@ -10,8 +10,10 @@ if (!defined('BASEPATH'))
 class roche_usuario_ficha_model extends MY_Model{
   
   private $id;
-  private $roche_usuario_ficha;
   private $fecha_ingreso;
+  private $filepath;
+  private $filename;
+  private $roche_usuario_ficha;
   
   function __construct()
   {
@@ -27,6 +29,14 @@ class roche_usuario_ficha_model extends MY_Model{
     $this->id = $id;
   }
 
+  public function getFechaIngreso() {
+    return $this->fecha_ingreso;
+  }
+
+  public function setFechaIngreso($fecha_ingreso) {
+    $this->fecha_ingreso = $fecha_ingreso;
+  }
+
   public function getRocheUsuarioFicha() {
     return $this->roche_usuario_ficha;
   }
@@ -35,14 +45,23 @@ class roche_usuario_ficha_model extends MY_Model{
     $this->roche_usuario_ficha = $roche_usuario_ficha;
   }
 
-  public function getFechaIngreso() {
-    return $this->fecha_ingreso;
+
+  public function getFilepath() {
+    return $this->filepath;
   }
 
-  public function setFechaIngreso($fecha_ingreso) {
-    $this->fecha_ingreso = $fecha_ingreso;
+  public function setFilepath($filepath) {
+    $this->filepath = $filepath;
   }
-  
+
+  public function getFilename() {
+    return $this->filename;
+  }
+
+  public function setFilename($filename) {
+    $this->filename = $filename;
+  }
+
   public function retrieveUploadPath()
   {
     return "./assets/uploads/roche/";
@@ -56,7 +75,7 @@ class roche_usuario_ficha_model extends MY_Model{
     }
   }
   
-  public function save($upload_data)
+  public function save($upload_data = array())
   {
     if($this->isNew())
     {
@@ -82,16 +101,43 @@ class roche_usuario_ficha_model extends MY_Model{
   
   private function edit($upload_data)
   {
+    
     $data = array();
-    $data["nombre"] = $this->getNombre();
-    $data["cliente"] = $this->getCliente();
-    $data["tipo_de_trabajo"] = $this->getTipo_trabajo();
-    $data["descripcion"] = $this->getDescripcion();
-    $data["updated_at"] =  date('Y-m-d H:i:s');
+    $data["roche_usuarios_id"] = $this->getRocheUsuarioFicha();
+    $data["fecha_ingreso"] = $this->getFechaIngreso();
+    $data["filepath"] = $this->getFilepath();// $upload_data["file_path"];
+    $data["filename"] = $this->getFilename();// $upload_data["file_name"];
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
-
     return $this->getId();
+  }
+  
+  public function retrieveById($id, $retrieve_object = false)
+  {
+    $this->db->where('id', $id);
+    $query = $this->db->get($this->getTablename());
+    
+    if( $query->num_rows() == 1 ){
+      
+      if(!$retrieve_object)
+      {
+        return $query->row(); 
+      }
+      else
+      {
+        $aux = $query->row();
+        $obj = new roche_usuario_ficha_model();
+        $obj->setFechaIngreso($aux->fecha_ingreso);
+        $obj->setRocheUsuarioFicha($aux->roche_usuarios_id);
+        $obj->setFilepath($aux->filepath);
+        $obj->setFilename($aux->filename);
+        $obj->setId($aux->id);
+        return $obj;
+      }
+      
+    }else{
+      return NULL;
+    }
   }
   
   public function retrieveByUsuarioId($usuario_id)
@@ -107,6 +153,15 @@ class roche_usuario_ficha_model extends MY_Model{
       }
     }
     return $data;
+  }
+  
+  public function deletePhisicalFile()
+  {
+    $file = $this->getFilepath().$this->getFilename();
+    if (file_exists($file)) { 
+      @unlink ($file); 
+    }
+    return true;
   }
 
 

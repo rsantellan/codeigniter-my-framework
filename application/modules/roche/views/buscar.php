@@ -36,7 +36,9 @@
 $(function() {
   
   $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
-  $( "#datepicker" ).datepicker();
+  $( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
   //$( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd');
   
   
@@ -117,7 +119,7 @@ else:
     <td><?php echo $usuario->ci;?></td>
     <td><?php echo $usuario->phone;?></td>
     <td><?php echo $usuario->center;?></td>
-    <td><?php echo $usuario->fecha_ingreso;?></td>   
+    <td><?php echo my_format_mysql_date($usuario->fecha_ingreso);?></td>   
     <td><a href="<?php echo site_url("ficha/".$usuario->roche_usuarios_id.".html");?>" class="verficha">ver ficha</a></td>           
   </tr>
   <?php endforeach; ?>

@@ -324,7 +324,7 @@ class Roche extends MY_Controller{
   public function ficha($id)
   {
     
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $this->load->model('roche_usuario_model');
     $this->load->model('roche_usuario_ficha_model');
     $usuario = $this->roche_usuario_model->retrieveById($id);
@@ -345,7 +345,7 @@ class Roche extends MY_Controller{
   
   public function editar($id)
   {
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $this->data['use_noty'] = true;
     $this->load->model('roche_usuario_model');
     $this->load->model('roche_usuario_ficha_model');
@@ -354,11 +354,67 @@ class Roche extends MY_Controller{
     {
       show_error("El usuario no existe");
     }
+    $errores = array();
+    $is_valid = false;
+    if($this->input->server('REQUEST_METHOD') == "POST")
+    {
+      //Como es post obtenga la ficha a la cual subir el archivo
+      $ficha_id = $this->input->post('ficha_id');
+      $obj = $this->roche_usuario_ficha_model->retrieveById($ficha_id, true);
+      if(is_null($obj))
+      {
+        $is_valid = false;
+      }
+      else
+      {
+        //Chequeo los archivos a subir.
+        $config['upload_path'] = $this->roche_usuario_ficha_model->retrieveUploadPath();
+        $config['allowed_types'] = 'jpg|png|JPG|PNG';
+        $this -> load -> library('upload', $config);
+        
+        $upload_data = array();
+        if (!$this->upload->do_upload('certificado')) 
+        {
+          $errores[$ficha_id] = $this->upload->display_errors();
+          //$this->upload->clean_errors();
+          $is_valid = false;
+        }
+        else
+        {
+          $is_valid = true;
+          $upload_data = $this->upload->data();
+          //Como es valido lo salvo
+          
+          //Primero borro el archivo anterior
+          $obj->deletePhisicalFile();
+          
+          try{
+            //$id = $usuario->save();
+            //$ficha->setRocheUsuarioFicha($id);
+            $obj->setFilepath($upload_data["file_path"]);
+            $obj->setFilename($upload_data["file_name"]);
+            $obj->save();
+
+            $this->session->set_flashdata("salvado", "ok");
+            //redirect('roche/edit/'.$id);
+            //die;
+          }catch(Exception $e)
+          {
+            $is_valid = false;
+            $errores[] = "<p>CI duplicada</p>";
+          }
+        }
+      }
+      //var_dump($is_valid);
+      //var_dump($errores);
+    }
     $fichas = $this->roche_usuario_ficha_model->retrieveByUsuarioId($id);
     //var_dump($fichas);
     $this->data['path'] = $this->roche_usuario_ficha_model->retrieveUploadPath();
     $this->data['usuario'] = $usuario;
     $this->data['fichas'] = $fichas;
+    $this->data['errores'] = $errores;
+    $this->data['is_valid'] = $is_valid;
     $this->data['menu_id'] = 'ingreso';
     $this->data['content'] = 'editar';
     $this->addJavascript("roche/editUserFile.js");
@@ -414,6 +470,141 @@ class Roche extends MY_Controller{
       echo json_encode(array('response' => ($is_valid)? "OK": "ERROR", 'errores' => $errores));
       die(0);
     }
+  }
+  
+  public function salvarFechaSimple()
+  {
+    if( $this->input->is_ajax_request())
+    {
+      $this->load->library('form_validation');
+      $this->load->model('roche_usuario_ficha_model');
+
+      $this->form_validation->set_rules('date', 'Fecha', '');
+
+      $is_valid = false;
+      if (!$this->form_validation->run() == FALSE) 
+      {
+        $is_valid = true;
+      }
+      
+      $date = $this->input->post('date');
+      if(trim($date) == "") 
+        $date = NULL;
+      $id = $this->input->post('id');
+      $obj = $this->roche_usuario_ficha_model->retrieveById($id, true);
+      
+      if(is_null($obj))
+      {
+        $is_valid = false;
+      }
+      else
+      {
+        
+        $obj->setFechaIngreso($date);
+        $obj->save();
+      }
+      $errores = "";
+      echo json_encode(array('response' => ($is_valid)? "OK": "ERROR", 'errores' => $errores));
+      die(0);
+    }
+  }
+  
+  public function agregarCertificado($id)
+  {
+    //$this->output->enable_profiler(TRUE);
+    $this->load->library('form_validation');
+    $this->load->model('roche_usuario_ficha_model');
+
+    $this->form_validation->set_rules('date', 'Fecha', '');
+
+    $is_valid = false;
+    if (!$this->form_validation->run() == FALSE) 
+    {
+      $is_valid = true;
+    }
+    $date = set_value('date');
+    
+    if(trim($date) == "") 
+      $date = NULL;
+    
+    $ficha = new $this->roche_usuario_ficha_model;
+    $ficha->setFechaIngreso($date);
+    $errores = array();
+    if($is_valid)
+    {
+      // La primera parte es valida por lo tanto chequeo el archivo subido
+      
+      //Chequeo los archivos a subir.
+      $config['upload_path'] = $this->roche_usuario_ficha_model->retrieveUploadPath();
+      $config['allowed_types'] = 'jpg|png|JPG|PNG';
+      $this -> load -> library('upload', $config);
+      
+      $upload_data = array();
+      if (!$this->upload->do_upload('certificado')) 
+      {
+        $errores['cursos_upload'] = $this->upload->display_errors();
+        //$this->upload->clean_errors();
+        $is_valid = false;
+      }
+      else
+      {
+        $upload_data = $this->upload->data();
+        //Como es valido lo salvo
+        
+        try{
+          $ficha->setRocheUsuarioFicha($id);
+          $ficha->save($upload_data);
+
+          $this->session->set_flashdata("ficha_salvada", "ok");
+          redirect('roche/ficha/'.$id);
+          die;
+        }catch(Exception $e)
+        {
+          $is_valid = false;
+          $errores[] = "<p>CI duplicada</p>";
+        }
+        
+      }
+    }
+    $this->addJqueryUI();
+    $this->data['errores'] = $errores;
+    $this->data["id"] = $id;
+    $this->data['ficha'] = $ficha;
+    $this->data['menu_id'] = 'ingreso';
+    $this->data['content'] = 'form_certificado';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function imprimir($id)
+  {
+    $this->load->model('roche_usuario_model');
+    $this->load->model('roche_usuario_ficha_model');
+    $usuario = $this->roche_usuario_model->retrieveById($id);
+    if(is_null($usuario))
+    {
+      show_error("El usuario no existe");
+    }
+    
+    $fichas = $this->roche_usuario_ficha_model->retrieveByUsuarioId($id);
+    //var_dump($id);
+    $this->load->library('fpdf');
+    $this->load->library('mypdf');
+    $this->mypdf->pdf = new mypdf();
+    
+    $this->mypdf->loadUser($usuario);
+    
+    foreach($fichas as $ficha)
+    {
+      $this->mypdf->loadFile($ficha);
+    }
+    
+    //$this->mypdf->AddPage('P');
+    
+    //$m = 'something';
+    //$this->mypdf->MultiCell(250, 4, $m, 0, "C");
+    $file_name = $usuario->id." ".$usuario->name." ".$usuario->lastname.".pdf";
+    $this->mypdf->Output($file_name, "D");
+    exit(0);
   }
 }
 

@@ -9,6 +9,11 @@ $(document).ready(function() {
     }
   });
 
+  $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
+  $( ".fecha_input" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+  //$( ".fecha_input" ).datepicker( "option", "dateFormat", 'yy-mm-dd');
 });
 
 function sendUserForm(form)
@@ -21,7 +26,35 @@ function sendUserForm(form)
       success: function(json){
           if(json.response == "OK")
           {
-            
+            callNoty("Cambios guardados correctamente", 'success');
+          }
+          else
+          {
+            callNoty(json.errores, 'alert');
+          }
+      }, 
+      complete: function(){
+        
+      }
+  });
+  return false;
+}
+
+function sendDateForm(form)
+{
+  $.ajax({
+      url: $(form).attr('action'),
+      data: $(form).serialize(),
+      type: 'post',
+      dataType: 'json',
+      success: function(json){
+          if(json.response == "OK")
+          {
+            callNoty("Cambios guardados correctamente", 'success');
+          }
+          else
+          {
+            callNoty(json.errores, 'alert');
           }
       }, 
       complete: function(){

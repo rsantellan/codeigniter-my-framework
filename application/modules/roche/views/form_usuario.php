@@ -30,8 +30,10 @@
 <script>
 $(function() {
 $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
-$( "#datepicker" ).datepicker();
-$( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd');
+$( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+//$( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd');
 
 $( "#center" ).autocomplete({
   source: '<?php echo site_url('roche/searchCenter'); ?>',

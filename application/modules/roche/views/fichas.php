@@ -7,8 +7,13 @@
    if($this->session->flashdata('salvado') == "ok"):
   ?>
  <p>El usuario fue ingresado correctamente.</p> 
-
 <?php endif; ?>
+<?php
+   if($this->session->flashdata('ficha_salvada') == "ok"):
+  ?>
+ <p>El certificado fue ingresado correctamente.</p> 
+<?php endif; ?>
+ 
   <div class="datos_usuario">
     <span class="tipo_dato">Nombre:</span>
     <span class="resultado_dato"><?php echo $usuario->name;?></span>
@@ -32,7 +37,7 @@
   <?php foreach($fichas as $ficha): ?>
   <div class="datos_usuario">
     <span class="tipo_dato">Fecha de Adquirido:</span>
-    <span class="resultado_dato"><?php echo $ficha->fecha_ingreso;?></span>
+    <span class="resultado_dato"><?php echo my_format_mysql_date($ficha->fecha_ingreso);?></span>
   </div>            
   <div class="datos_usuario">
     <span class="tipo_dato">Certificado:</span>
@@ -44,6 +49,8 @@
  
   <div class="acciones">
     <a href="<?php echo site_url("editar/".$usuario->id.".html");?>">editar</a>
-    <a href="#">imprimir ficha</a>
-    <a href="#">ingresa otro</a> 
+    <a href="<?php echo site_url("imprimir/".$usuario->id.".html");?>">imprimir ficha</a>
+    <a href="<?php echo site_url("agregar/certificado/".$usuario->id.".html");?>">ingresa otro</a> 
   </div><!--ACCIONES-->
+  
+  

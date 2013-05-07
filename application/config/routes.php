@@ -46,6 +46,8 @@ $route["buscar.html"] = 'roche/buscar';
 $route["busqueda"] = 'roche/aBuscar';
 $route['ficha/(:num).html'] = 'roche/ficha/$1';
 $route['editar/(:num).html'] = 'roche/editar/$1';
+$route['imprimir/(:num).html'] = 'roche/imprimir/$1';
+$route['agregar/certificado/(:num).html'] = 'roche/agregarCertificado/$1';
 $route["ingresar.html"] = 'roche/ingresar';
 /*
  Metalurgica
