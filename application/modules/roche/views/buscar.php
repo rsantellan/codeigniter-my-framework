@@ -100,8 +100,8 @@ $(function() {
 <?php
 else:
   //var_dump($listado);
-  var_dump($order);
-  var_dump($order_type);
+  //var_dump($order);
+  //var_dump($order_type);
 ?>  
 <h2>Listado de Usuarios</h2>
 <table cellpadding="0" cellspacing="0" border="none" style="width:960px;">
