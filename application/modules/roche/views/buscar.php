@@ -100,16 +100,58 @@ $(function() {
 <?php
 else:
   //var_dump($listado);
+  var_dump($order);
+  var_dump($order_type);
 ?>  
 <h2>Listado de Usuarios</h2>
 <table cellpadding="0" cellspacing="0" border="none" style="width:960px;">
   <tr>
-    <th>Nombre <!-- <a href="#"><img src="images/down.jpg"/></a> --></th>
-    <th>Apellido<!--<a href="#"><img src="images/down.jpg"/></a>--></th>
+    <th>Nombre 
+      <?php if($order == "name" && $order_type == "desc"):?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=name&type=asc">
+          <img src="<?php echo base_url();?>assets/images/roche/up.jpg"/>
+        </a>        
+      <?php else: ?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=name&type=desc">
+          <img src="<?php echo base_url();?>assets/images/roche/down.jpg"/>
+        </a>      
+      <?php endif; ?>
+    </th>
+    <th>Apellido
+      <?php if($order == "lastname" && $order_type == "desc"):?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=lastname&type=asc">
+          <img src="<?php echo base_url();?>assets/images/roche/up.jpg"/>
+        </a>        
+      <?php else: ?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=lastname&type=desc">
+          <img src="<?php echo base_url();?>assets/images/roche/down.jpg"/>
+        </a>      
+      <?php endif; ?>
+    </th>
     <th>Cédula de Id.</th>
     <th>Télefono</th>
-    <th>Mutualista<!--<a href="#"><img src="images/down.jpg"/></a>--></th> 
-    <th>Fecha<!--<a href="#"><img src="images/up.jpg"/></a>--></th>
+    <th>Mutualista
+      <?php if($order == "center" && $order_type == "desc"):?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=center&type=asc">
+          <img src="<?php echo base_url();?>assets/images/roche/up.jpg"/>
+        </a>        
+      <?php else: ?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=center&type=desc">
+          <img src="<?php echo base_url();?>assets/images/roche/down.jpg"/>
+        </a>      
+      <?php endif; ?>
+    </th> 
+    <th>Fecha
+      <?php if($order == "fecha" && $order_type == "desc"):?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=fecha&type=asc">
+          <img src="<?php echo base_url();?>assets/images/roche/up.jpg"/>
+        </a>        
+      <?php else: ?>
+        <a href="<?php echo site_url('busqueda'); ?>?order=fecha&type=desc">
+          <img src="<?php echo base_url();?>assets/images/roche/down.jpg"/>
+        </a>      
+      <?php endif; ?>
+    </th>
     <th>Ficha</th>
   </tr>
   <?php foreach($listado as $usuario): ?>

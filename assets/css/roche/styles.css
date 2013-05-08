@@ -360,3 +360,13 @@ Date styles
   margin:0;
   padding:0;
 }
+
+/**
+
+Errores
+
+**/
+
+.form_error p {
+    color: red;
+}

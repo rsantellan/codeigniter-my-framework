@@ -170,8 +170,14 @@ class roche_usuario_model extends MY_Model{
     }
   }
   
-  public function retrieveSearch($parameters = array(), $order_by = null, $order_type = "desc", $limit = null)
+  public function retrieveSearch($parameters = array(), $order_by = "roche_usuarios.name", $order_type = "desc", $limit = null)
   {
+    if(isset($parameters['date']))
+    {
+      $parameters['roche_usuarios_ficha.fecha_ingreso'] = $parameters['date'];
+      unset($parameters['date']);
+    }
+    
     $this->db->where($parameters);
     if(is_null($order_by))
     {

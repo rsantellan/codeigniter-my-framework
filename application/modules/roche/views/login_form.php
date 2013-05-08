@@ -74,11 +74,18 @@ $captcha = array(
           <?php echo form_open($this->uri->uri_string(), array('class' => 'login', 'id' => 'hs-login')); ?>
             <label for="login">Usuario</label>
             <?php echo form_input($login); ?>
-            <?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>
+            <div class="form_error">
+              <?php echo form_error($login['name']); ?>
+              <?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>  
+            </div>
+            
             <div class="clear"></div>
             <label for="password">Contrase&ntilde;a</label>
             <?php echo form_password($password); ?>
-            <?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?>
+            <div class="form_error">
+              <?php echo form_error($password['name']); ?>
+              <?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?>
+            </div>
             <div class="clear"></div>
             <input type="submit" class="submit" value="ingresar">
             <div class="clear"></div>

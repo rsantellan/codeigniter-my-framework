@@ -1,6 +1,7 @@
 <h1>Ingreso de usuario</h1>
 <p>Completar los siguientes campos para ingresar al usuario. Los marcos marcados(*) son obligatorios para la creación del mismo.</p>
-<?php echo form_error('name'); ?>
+<div class="form_error">
+  <?php echo form_error('name'); ?>
 <?php echo form_error('lastname'); ?>
 <?php echo form_error('ci'); ?>
 <?php echo form_error('phone'); ?>
@@ -10,7 +11,9 @@
  if(count($errores) > 0):
    echo $errores['cursos_upload'];
  endif;
-?>
+?>  
+</div>
+
 <?php echo form_open_multipart('roche/salvarIngreso', array('class' => 'registro'));?>
   <label>Nombre*:</label><input type="text" name="name" maxlength="255" value="<?php echo $usuario->getName();?>"><div class="clear"></div>
   <label>Apellido*:</label><input type="text" name="lastname" maxlength="255" value="<?php echo $usuario->getLastname();?>"><div class="clear"></div>

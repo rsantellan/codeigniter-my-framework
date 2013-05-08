@@ -204,7 +204,7 @@ class Roche extends MY_Controller{
   
   public function aBuscar()
   {
-    $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $this->load->model('roche_usuario_model');
     
     /***
@@ -216,6 +216,8 @@ class Roche extends MY_Controller{
     $phone = $this->input->get('phone');
     $center = $this->input->get('center');
     $date = $this->input->get('date');
+    $order_aux = $this->input->get('order');
+    $order_type = $this->input->get('type');
     
     if($date == false && $center == false && $phone == false && $ci == false && $lastname == false && $name == false)
     {
@@ -284,12 +286,43 @@ class Roche extends MY_Controller{
         unset($parameters['date']);
       }
     }
+    if($order_aux == false || is_null($order_aux))
+    {
+      $order = "roche_usuarios.name";
+      $order_type = "desc";
+      $order_aux = 'name';
+    }
+    else
+    {
+      $order = "";
+      switch ($order_aux) {
+        case "name":
+          $order = "roche_usuarios.name";
+          break;
+        case "lastname":
+          $order = "roche_usuarios.lastname";
+          break;
+        case "center":
+          $order = "roche_usuarios.center";
+          break;
+        case "fecha":
+          $order = "roche_usuarios_ficha.fecha_ingreso";
+          break;
+        default:
+          $order = "roche_usuarios.name";
+          break;
+      }
+      //var_dump($order_aux);
+      //var_dump($order_type);
+    }
     //var_dump($parameters);die;
     /***
      * 
      * Vuelvo a pasar los datos
      * 
      **/
+    $this->data['order'] = $order_aux;
+    $this->data['order_type'] = $order_type;
     $this->data['name'] = $name;
     $this->data['lastname'] = $lastname;
     $this->data['ci'] = $ci;
@@ -305,7 +338,7 @@ class Roche extends MY_Controller{
     $listado = array();
     if(count($parameters) > 0)
     {
-      $listado = $this->roche_usuario_model->retrieveSearch($parameters);
+      $listado = $this->roche_usuario_model->retrieveSearch($parameters, $order, $order_type);
       $this->data['noParameters'] = false;
       $this->session->set_userdata('search_parameters', serialize($parameters));
     }
