@@ -30,7 +30,7 @@ class myPdf extends FPDF
   
   function loadUser($user)
   {
-    $this->AddFont('courierb');
+    $this->AddFont('helveticab');
     $this->AddFont('helvetica');
     $this->SetFont('helvetica', 'B', 20);
     $this->SetTextColor(0, 102, 204);
@@ -72,6 +72,7 @@ class myPdf extends FPDF
   
   function loadFile($file)
   {
+    $this->AddFont('helveticab');
     $this->AddFont('helvetica');
     $this->SetFont('helvetica', 'B', 20);
     $this->SetTextColor(0, 102, 204);
