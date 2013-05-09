@@ -53,4 +53,7 @@
     <a href="<?php echo site_url("agregar/certificado/".$usuario->id.".html");?>">ingresa otro</a> 
   </div><!--ACCIONES-->
   
+  <hr/>
+  
+  <a href="<?php echo site_url("busqueda"); ?>" class="go_back"> < Volver</a>
   

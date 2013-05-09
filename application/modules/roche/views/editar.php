@@ -59,4 +59,4 @@
 
 <hr/>
 
-<a href="<?php echo site_url("ficha/".$usuario->getId().".html"); ?>">Volver</a>
+<a href="<?php echo site_url("ficha/".$usuario->getId().".html"); ?>" class="go_back"> < Volver</a>

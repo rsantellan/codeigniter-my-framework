@@ -370,3 +370,16 @@ Errores
 .form_error p {
     color: red;
 }
+
+/**
+
+Go back link
+
+**/
+
+a.go_back{
+  color: #0066CB;
+  font-size:15px;
+  font-weight:bold;
+  text-decoration:none; 
+}
