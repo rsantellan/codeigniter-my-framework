@@ -89,7 +89,9 @@ class Roche extends MY_Controller{
       //Chequeo los archivos a subir.
       $config['upload_path'] = $this->roche_usuario_ficha_model->retrieveUploadPath();
       $config['allowed_types'] = 'jpg|png|JPG|PNG';
+      //var_dump($config);
       $this -> load -> library('upload', $config);
+      //$this->upload->initialize($config);
       
       $upload_data = array();
       if (!$this->upload->do_upload('certificado')) 
@@ -625,10 +627,11 @@ class Roche extends MY_Controller{
     $this->mypdf->pdf = new mypdf();
     
     $this->mypdf->loadUser($usuario);
-    
+    $add_page = false;
     foreach($fichas as $ficha)
     {
-      $this->mypdf->loadFile($ficha);
+      $this->mypdf->loadFile($ficha, $add_page);
+      $add_page = true;
     }
     
     //$this->mypdf->AddPage('P');

@@ -17,7 +17,7 @@ class myPdf extends FPDF
       */
       // Logo
       //$this->Image('assets/images/roche/bg_header_top.jpg',20,6,180);
-      $this->Image('assets/images/roche/bg_header_top.jpg');
+      $this->Image('assets/images/roche/header_top_pdf.jpg', 15, null, 180);
       // Arial bold 15
       //$this->SetFont('Arial','B',15);
       // Move to the right
@@ -25,59 +25,65 @@ class myPdf extends FPDF
       // Title
       //$this->Cell(30,10,'Reporte de cantidad de pines generados por beneficio',1,0,'C');
       // Line break
-      $this->Ln(40);
+      $this->Ln(10);
   }  
   
   function loadUser($user)
   {
     $this->AddFont('helveticab');
     $this->AddFont('helvetica');
-    $this->SetFont('helvetica', 'B', 20);
+    $this->SetFont('helvetica', 'B', 16);
     $this->SetTextColor(0, 102, 204);
     $this->AddPage('P', "A4");
-    $this->Cell(200, 20, "Ficha de Usuario", 0);
+    $this->Cell(200, 20, utf8_decode("Ficha de Usuario"), 0);
     $this->Ln();
     $this->SetTextColor(0, 0, 0);
     $this->SetFont('helvetica', 'B', 12);
     $this->Cell(40,10,utf8_decode("Nombre:"),0);
     $this->Cell(40,10,"",0);
     $this->SetFont('helvetica', '', 12);
-    $this->Cell(40,10,$user->name,0);
+    $this->Cell(40,10,utf8_decode($user->name),0);
     $this->Ln();
     $this->SetFont('helvetica', 'B', 12);
-    $this->Cell(40,10,"Apellido:",0);
+    $this->Cell(40,10,utf8_decode("Apellido:"),0);
     $this->Cell(40,10,"",0);
     $this->SetFont('helvetica', '', 12);
-    $this->Cell(40,10,$user->lastname,0);
+    $this->Cell(40,10,utf8_decode($user->lastname),0);
     $this->Ln();
     $this->SetFont('helvetica', 'B', 12);
     $this->Cell(40,10,utf8_decode("Cédula de Identidad:"),0);
     $this->Cell(40,10,"",0);
     $this->SetFont('helvetica', '', 12);
-    $this->Cell(40,10,$user->ci,0);
+    $this->Cell(40,10,utf8_decode($user->ci),0);
     $this->Ln();
     $this->SetFont('helvetica', 'B', 12);
     $this->Cell(40,10,utf8_decode("Télefono:"),0);
     $this->Cell(40,10,"",0);
     $this->SetFont('helvetica', '', 12);
-    $this->Cell(40,10,$user->phone,0);
+    $this->Cell(40,10,utf8_decode($user->phone),0);
     $this->Ln();
     $this->SetFont('helvetica', 'B', 12);
-    $this->Cell(40,10,"Mutualista:",0);
+    $this->Cell(40,10,utf8_decode("Mutualista:"),0);
     $this->Cell(40,10,"",0);
     $this->SetFont('helvetica', '', 12);
-    $this->Cell(40,10,$user->center,0);
+    $this->Cell(40,10,utf8_decode($user->center),0);
     $this->Ln();
   }
   
-  function loadFile($file)
+  function loadFile($file, $add_page = true)
   {
     $this->AddFont('helveticab');
     $this->AddFont('helvetica');
-    $this->SetFont('helvetica', 'B', 20);
-    $this->SetTextColor(0, 102, 204);
-    $this->AddPage('P', "A4");
+    if($add_page)
+    {
+        $this->AddPage('P', "A4");
+    }
+    //$this->SetFont('helvetica', 'B', 20);
+    //$this->SetTextColor(0, 102, 204);
+    //$this->Cell(200, 20, utf8_decode("Certificado"), 0);
+    
     $this->SetTextColor(0, 0, 0);
+    
     $this->SetFont('helvetica', 'B', 12);
     $this->Cell(40,10,utf8_decode("Fecha:"),0);
     $this->Cell(40,10,"",0);
