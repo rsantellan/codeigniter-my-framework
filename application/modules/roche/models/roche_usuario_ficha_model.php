@@ -140,7 +140,7 @@ class roche_usuario_ficha_model extends MY_Model{
     }
   }
   
-  public function retrieveByUsuarioId($usuario_id)
+  public function retrieveByUsuarioId($usuario_id, $retrieve_object = false)
   {
     $this->db->where('roche_usuarios_id', $usuario_id);
     $query = $this->db->get($this->getTablename());
@@ -149,10 +149,32 @@ class roche_usuario_ficha_model extends MY_Model{
     {
       foreach($query->result() as $row)
       {
-        $data[] = $row;
+        if(!$retrieve_object)
+        {
+          $data[] = $row;
+        }
+        else
+        {
+          $obj = new roche_usuario_ficha_model();
+          $obj->setFechaIngreso($row->fecha_ingreso);
+          $obj->setRocheUsuarioFicha($row->roche_usuarios_id);
+          $obj->setFilepath($row->filepath);
+          $obj->setFilename($row->filename);
+          $obj->setId($row->id);
+          $data[] = $obj;
+        }
+        
       }
     }
     return $data;
+  }
+  
+  public function delete()
+  {
+    if($this->deletePhisicalFile())
+    {
+      return parent::simpleDeleteById($this->getId());
+    }
   }
   
   public function deletePhisicalFile()

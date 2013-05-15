@@ -35,23 +35,36 @@
     <span class="resultado_dato"><?php echo $usuario->center;?></span>
   </div>
   <?php foreach($fichas as $ficha): ?>
-  <div class="datos_usuario">
-    <span class="tipo_dato">Fecha de Adquirido:</span>
-    <span class="resultado_dato"><?php echo my_format_mysql_date($ficha->fecha_ingreso);?></span>
-  </div>            
-  <div class="datos_usuario">
-    <span class="tipo_dato">Certificado:</span>
-    <span class="resultado_dato">
-      <img src="<?php echo base_url() .$path.$ficha->filename ?>" height="276"/>
-    </span>
-  </div>  
+ <div id="certificado_<?php echo $ficha->id;?>">
+    <div class="datos_usuario">
+      <span class="tipo_dato">Fecha de Adquirido:</span>
+      <span class="resultado_dato"><?php echo my_format_mysql_date($ficha->fecha_ingreso);?></span>
+    </div>            
+    <div class="datos_usuario">
+      <span class="tipo_dato">Certificado:</span>
+      <span class="resultado_dato">
+        <img src="<?php echo base_url() .$path.$ficha->filename ?>" height="276"/>
+      </span>
+    </div>
+
+    <div class="acciones">
+      <a href="javascript:void(0)" onclick="return deleteFicha('<?php echo site_url("eliminarCertificado/".$ficha->id.".html");?>', <?php echo $ficha->id?>)">eliminar certificado</a>
+    </div>
+   <div class="clear"></div>
+ </div>
   <?php endforeach; ?>
  
   <div class="acciones">
     <a href="<?php echo site_url("editar/".$usuario->id.".html");?>">editar</a>
     <a href="<?php echo site_url("imprimir/".$usuario->id.".html");?>">imprimir ficha</a>
     <a href="<?php echo site_url("agregar/certificado/".$usuario->id.".html");?>">ingresa otro</a> 
+    
   </div><!--ACCIONES-->
+  
+  <div class="clear"></div>
+  <div class="acciones">
+    <a href="javascript:void(0)" onclick="return deleteUser('<?php echo site_url("eliminar/".$usuario->id.".html");?>', '<?php echo site_url("busqueda"); ?>');">eliminar usuario</a>
+  </div>
   
   <hr/>
   

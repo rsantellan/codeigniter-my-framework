@@ -375,6 +375,9 @@ class Roche extends MY_Controller{
     $this->data['fichas'] = $fichas;
     $this->data['menu_id'] = 'ingreso';
     $this->data['content'] = 'fichas';
+    $this->addJquery();
+    $this->data['use_noty'] = true;
+    $this->addJavascript("roche/fichas.js");
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
@@ -641,6 +644,58 @@ class Roche extends MY_Controller{
     $file_name = $usuario->id." ".$usuario->name." ".$usuario->lastname.".pdf";
     $this->mypdf->Output($file_name, "D");
     exit(0);
+  }
+  
+  public function eliminar($id){
+    
+    $this->load->model('roche_usuario_model');
+    $this->load->model('roche_usuario_ficha_model');
+    $usuario = $this->roche_usuario_model->retrieveById($id, true);
+    if(is_null($usuario))
+    {
+      show_error("El usuario no existe");
+    }
+    $fichas = $this->roche_usuario_ficha_model->retrieveByUsuarioId($id, true);
+    $errores = "";
+    $is_valid = false;
+    $do_delete = true;
+    foreach($fichas as $ficha){
+      if($do_delete)
+      {
+        $is_valid = $ficha->delete();
+        if(!$is_valid)
+        {
+          $do_delete = false;
+          $errores = "Error borrando los certificados";
+        }  
+      }
+    }
+    if($do_delete)
+    {
+      $is_valid = $usuario->simpleDeleteById($usuario->getId());
+    }
+    echo json_encode(array('response' => ($is_valid)? "OK": "ERROR", 'errores' => $errores));
+    die(0);
+  }
+  
+  public function eliminarCertificado($id){
+    $this->load->model('roche_usuario_ficha_model');
+    $ficha = $this->roche_usuario_ficha_model->retrieveById($id, true);
+    $errores = "";
+    $is_valid = false;
+    if(is_null($ficha))
+    {
+      // error
+      $errores = "No existe el certificado a eliminar";
+    }
+    else 
+    {
+      //Ok
+      //Delete object
+      $is_valid = $ficha->delete();
+    }
+    echo json_encode(array('response' => ($is_valid)? "OK": "ERROR", 'errores' => $errores));
+    die(0);
   }
 }
 
