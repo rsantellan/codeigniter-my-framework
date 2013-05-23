@@ -64,7 +64,7 @@
               <a href="<?php echo site_url('buscar.html'); ?>" class="<?php echo ($menu_id == "busqueda") ? "current" : "";?>">B&uacute;squeda de usuario</a>
             </li>
             <li class="logout">
-              <a href="<?php echo site_url(''); ?>">Cerrar sesi&oacute;n</a>
+              <a href="<?php echo site_url('auth/logout');?>">Cerrar sesi&oacute;n</a>
             </li>
          </ul>
       </div>

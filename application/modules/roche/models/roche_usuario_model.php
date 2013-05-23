@@ -170,6 +170,11 @@ class roche_usuario_model extends MY_Model{
     }
   }
   
+  public function retrieveStatics()
+  {
+      return $this->db->count_all($this->getTablename());
+  }
+  
   public function retrieveSearch($parameters = array(), $order_by = "roche_usuarios.name", $order_type = "desc", $limit = null)
   {
     if(isset($parameters['date']))

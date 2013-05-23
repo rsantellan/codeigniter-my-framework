@@ -196,9 +196,15 @@ class Roche extends MY_Controller{
   
   public function buscar()
   {
+    //$this->output->enable_profiler(TRUE);
+    $this->load->model('roche_usuario_model');
+    $this->load->model('roche_usuario_ficha_model');
     $this->data['content'] = 'buscar';
     $this->data["menu_id"] = "busqueda";
     $this->data['showListado'] = false;
+    $this->data['usuarios_count'] = $this->roche_usuario_model->retrieveStatics();
+    $this->data['fichas_count'] = $this->roche_usuario_ficha_model->retrieveStatics();
+    
     $this->addJqueryUI();
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
@@ -208,7 +214,10 @@ class Roche extends MY_Controller{
   {
     //$this->output->enable_profiler(TRUE);
     $this->load->model('roche_usuario_model');
+    $this->load->model('roche_usuario_ficha_model');
     
+    $this->data['usuarios_count'] = $this->roche_usuario_model->retrieveStatics();
+    $this->data['fichas_count'] = $this->roche_usuario_ficha_model->retrieveStatics();
     /***
      * Obtengo los datos de la consulta
      **/

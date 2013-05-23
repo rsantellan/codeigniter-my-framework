@@ -186,6 +186,10 @@ class roche_usuario_ficha_model extends MY_Model{
     return true;
   }
 
+  public function retrieveStatics()
+  {
+      return $this->db->count_all($this->getTablename());
+  }
 
   
 }

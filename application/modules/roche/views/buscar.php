@@ -1,7 +1,8 @@
 <h1>Búsqueda de Usuario</h1>
   <p>Ingrese algunos de los siguientes datos para poder buscar al usuario.</p>
   <div class="busqueda_contenedor">
-    <!-- <a href="listado.php">Ver listado de usuarios</a><div class="clear"></div> -->
+     <label style="color: #0066CC;float: right;">La cantidad de usuarios ingresados es de <?php echo $usuarios_count;?></label>
+     <div class="clear"></div> 
       
       <form action="<?php echo site_url('busqueda'); ?>" method="GET" class="busqueda">
         <div class="div_busqueda">
