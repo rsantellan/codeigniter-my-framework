@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "sitio";
 $route['404_override'] = '';
+$route['pre-ventas.html'] = 'sitio/preventa';
 $route['quienes-somos.html'] = 'sitio/quienessomos';
 $route['obras.html'] = 'sitio/obras';
 $route['proyectos.html'] = 'sitio/proyectos';

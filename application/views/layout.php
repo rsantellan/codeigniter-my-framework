@@ -26,7 +26,7 @@
 
     <div id="wrapper">
       <div class="logo">
-        <a href="index.html"><h1>Emprendimiento Inmobiliarios</h1></a>
+        <a href="<?php echo site_url(''); ?>"><h1>Emprendimiento Inmobiliarios</h1></a>
       </div>
       <div class="img-head">
 

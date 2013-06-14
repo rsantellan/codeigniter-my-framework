@@ -21,7 +21,7 @@
 </div>
 <div class="float_left banners-home">
   <div class="box-shadow">
-    <a href="pre-ventas.html" ><img src="<?php echo base_url() . "assets/images/";?>banner-alquileres.jpg" /></a>
+    <a href="<?php echo site_url('pre-ventas.html'); ?>" ><img src="<?php echo base_url() . "assets/images/";?>banner-alquileres.jpg" /></a>
   </div>
   <div class="clear"></div>
   <div class="box-shadow">

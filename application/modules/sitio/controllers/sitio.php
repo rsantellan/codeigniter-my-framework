@@ -263,4 +263,10 @@ class Sitio extends MY_Controller {
     $this->load->view('layout', $this->data);
   }
   
+  public function preventa()
+  {
+    $this->data['content'] = 'preventas';  
+    $this->load->view('layout', $this->data);  
+  }
+  
 }
