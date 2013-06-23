@@ -1,0 +1,453 @@
+/* CSS Document */
+
+
+/*RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, font, img,
+ins, kbd, q, s, samp, small, strike,
+sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+center, u, b, i {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     outline: 0;
+     font-weight: normal;
+     font-style: normal;
+     font-size: 100%;
+     font-family: inherit;
+     vertical-align: baseline
+}
+
+:focus {
+     outline: 0
+}
+
+ol, ul {
+     list-style: none
+}
+.float_left{
+	float:left;
+	}
+.float_right{
+	float:right;
+	}
+.marginRight_off{
+	margin-right:0 !Important;
+	}
+.clear{
+	clear:both;
+	}
+body{
+	background:#171717;
+	background-image:url(../images/bg-body.jpg)left top repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+#wrapper{
+	width:860px;
+	height:120px;
+	overflow:hidden;
+	margin:15px auto 0;
+	background-color:#FFFFFF;
+	}
+a h1{
+	background:url(../images/logo.jpg) left top no-repeat;
+	margin:8px;
+	width:231px;
+	height:109px;
+	color:#000000;
+	text-indent:-9999px;
+	display:block;
+	}
+h2{
+	background:url(../images/bg_h2.jpg) left top repeat-x;
+	color:#FFFFFF;
+	font-size:15px;
+	display:block;
+	height:17px;
+	-moz-border-radius-topright:8px;
+	-moz-border-radius-topleft:8px;
+	-webkit-border-top-right-radius:8px;
+	-webkit-border-top-left-radius:8px;
+	behavior:url(border-radius.htc);
+	padding:8px 10px;
+	}
+h3{
+	font-size:12px;
+	margin-bottom:5px;
+	color:#f70009;
+	}
+h4{
+	font-size:14px;
+	color:#FFFFFF;
+	}
+input{
+	border:none;
+	background:#FFFFFF;
+	color:#000000;
+	font-size:11px;
+	cursor: pointer;
+	}
+p{
+	font-size:11px;
+	color:#494545;
+	}
+/*INDEX*/
+.logo{
+	width:231px;
+	height:109px;
+	float:left;
+	}
+	.img-head{
+		float:right;
+		margin-top:35px;
+		}
+.menu{
+	width:895px;
+	background:url(../images/bg_menu.jpg) left top repeat-x;
+	height:54px;
+	margin:0 auto;
+	}
+.contenido{
+	width:860px;
+	overflow:hidden;
+	margin:-17px auto  0 auto;
+	background-color:#FFFFFF;
+	}
+.home_text{
+	width:580px;
+	float:left;
+	margin:22px;
+	}
+	.home_text p{
+		font-size:13px;
+		font-family:Arial, Helvetica, sans-serif;
+		margin-bottom:12px;
+		color:#4d4b4b;
+		text-align:justify;
+		}
+		.banner_home{
+			box-shadow: 0 7px 11px 0 #888888;
+			}
+			.banners-home{
+				margin-top:20px;
+				}
+				.box-shadow{
+					box-shadow: 0 7px 6px 0 #888888;
+					margin-bottom:15px;
+					}
+					#container{
+			box-shadow: 0 7px 11px 0 #888888;
+			}
+.bottom{
+	width:860px;
+	height:30px;
+	overflow:hidden;
+	margin:0 auto 10px;
+	background-color:#e30404;
+	font-size:10px;
+	color:#FFFFFF;
+	
+	}
+	.bottom span {
+		float: left;
+		line-height: 16px;
+		padding: 0 8px 0 8px;
+		margin-top:6px;
+		font-variant: small-caps
+		}
+		.bottom img{
+			margin: 6px 6px 0 0;
+			}
+			.menu-div{
+				width:585px;
+				height:1px;
+				}
+				 ul.menu{
+					height:37px;
+					}
+					ul.menu li{
+						border-right: 1px solid #FFFFFF;
+						height:37px;
+   						line-height:25px;
+						float:left;
+						text-align:center;
+						}
+						ul.menu li a.current {
+							background-color:#000000;
+							}
+							ul.menu li a{
+								color:#FFFFFF;
+								font-size:14px;
+								text-decoration:none;
+								font-variant: small-caps;
+								height:29px;
+								display:block;
+								padding:5px 11px;
+								}
+								ul.menu li a:hover{
+									background-color:#000000;
+									}
+									ul.menu li img{
+										 margin-left: 10px;
+   										 padding: 5px 10px 0 0;
+										}
+										a.home_img {
+										 margin-left: 10px;
+   										 padding: 0 1px 0 0 !important;
+										 height: 38px !important;
+										}
+/*QUIEN SOMOS*/
+.quien_text{
+	width:814px;
+	float:left;
+	margin:22px 22px 0 22px;
+	}
+	.quien_text h2{
+		color: #4D4B4B;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 13px;
+		margin-left: -9px;
+		font-weight:bold;
+		text-decoration: underline;
+		}
+	.quien_text p{
+		font-size:13px;
+		font-family:Arial, Helvetica, sans-serif;
+		margin-bottom:12px;
+		color:#4d4b4b;
+		text-align:justify;
+			}
+			.div_personal{
+				width:814px;
+				float:left;
+				margin:0 22px 22px 22px;
+				}
+				.div_personal h2{
+					font-size:13px;
+					color:#1d1d1e;
+					}
+					.staff{
+						width:241px;
+						padding:22px 0 22px 0;
+						margin-left:111px;
+						}
+						.staff span{
+							font-size:12px;
+							color:#343232;
+							margin-left:10px;
+							}
+							span.rojo{
+								color:#e30404;
+								}
+	/*OBRAS*/
+.obras{
+	padding:15px 35px 10px 35px;
+	width:790px;
+	}
+	.obras h3{
+		font-size:15px;
+		color:e30404;
+		}
+		.obras-div{
+			width:772px;
+			border: 1px solid #333333; 
+			margin-bottom: 15px;
+			overflow: hidden;
+			}
+			.obras-div img{
+				margin:15px 0 15px 15px
+				}
+				.obras-info{
+					margin:15px;
+					width:376px;
+					}
+					.obras-info span{
+						font-size:12px;
+						color:#343232;
+						}
+						span.rojo{
+							color:#e30404;
+							}
+							a.boton-detalle{
+								background:#FF0000;
+								color: #FFFFFF;
+								float: right;
+								font-size: 13px;
+								height: 24px;
+								margin-top: 20px;
+								padding: 5px 0 0 18px;
+								text-decoration: none;
+								width: 69px;
+								}
+								a.boton-detalle:hover{
+									background-color:#000000;
+									}
+									span.link{
+										text-decoration:none;
+										font-size:13px;
+										color:#343232;
+										}
+										.obras-info img{
+											margin:12px 5px -8px 2px;
+											}
+/*ALQUILERES*/
+.filtro-div{
+			width:770px;
+			height:80px;
+			border: 1px solid #333333; 
+			margin: 38px 0 0 41px;
+			}
+			.filtro-div label{
+							float: left;
+							font-size: 13px;
+							line-height: 18px;
+							margin: 10px 0 0 21px;
+							}
+							select {
+									float: left;
+									margin: 10px 14px;
+									width: auto;
+									}
+.alquileres-div{
+			width:377px;
+			height:152px;
+			border: 1px solid #333333; 
+			margin: 6px;
+			}
+			.alquileres-div img{
+				margin:8px 0 15px 8px;
+				}
+				.alquileres-info{
+					margin:8px;
+					width:209px;
+					}
+					.alquileres-info span{
+						font-size:12px;
+						color:#343232;
+						}
+						span.rojo{
+							color:#e30404;
+							}
+/*CONTACTO*/
+.formulario{
+	width:363px;
+	}
+	.formulario input{
+		width:345px;
+		height:27px;
+		margin: 0 0 0 5px;
+		font-size:14px;
+		border:1px solid #535151;
+			}
+		.formulario label{
+			margin: 5px 0 2px 7px;
+			display:block;
+			font-size:13px;
+			color: #2f2e2e;
+			}
+		label.error{
+			margin: 5px 0 2px 7px;
+			display:block;
+			font-size:14px;
+			color:#FF0000 !important;
+			}
+
+		.formulario textarea{
+			width:347px;
+			height:179px;
+			margin: 0 0 0 5px;
+			font-size:14px;
+			border:1px solid #535151;
+			
+			}
+		input.formulario{
+			background:#FF0000;
+			color: #FFFFFF;
+			float: right;
+			font-size: 13px;
+			margin-top: 20px;
+			text-decoration: none;
+			width: 69px;
+			border:none;
+			}
+			input.formulario:hover{
+				background-color:#000000;
+				}
+				.contacto_datos{
+					padding: 5px 0 0 15px;
+					}
+					.contacto_datos span{
+						margin: 15px 0 0 0;
+						display:block;
+						font-size:15px;
+						color: #e30404;
+						}
+						.contacto_datos p{
+							display:block;
+							font-size:12px;
+							color: #4b4949;
+							margin-bottom: 1px !important;
+							}
+							.mailenviado{
+								font-size:15px;
+								color: #e30404;
+								}
+	
+/*VENTAS*/
+
+.propiedades-detalle{
+	margin: 10px;
+    width: 377px;
+	}
+	.propiedades-detalle span{
+		font-size:12px;
+		color:#343232;
+		}
+		span.rojo{
+			color:#e30404;
+			}
+			a.boton-back{
+				background:#FF0000;
+				color: #FFFFFF;
+				float: right;
+				font-size: 13px;
+				height: 24px;
+				margin-top: 4px;
+				padding: 5px 0 0 11px;
+				text-decoration: none;
+				width: 166px;
+				}
+				.ul-detalle{
+					margin-left:90px;
+					font-size:12px;
+					color:#171717;
+					width: 255px;
+					}
+					.gris{
+						background-color:#dad6d6;
+						}
+						.ul-detalle li{
+							padding:3px;
+							}
+							.contacto-propiedades{
+								font-size:12px;
+								margin-left:50px;
+								}
+								.contacto-propiedades span.mail{
+									margin-left:58px;
+									}
+									.fotos img{	
+										margin:2px 0 2px 1px;
+										}
+										.fotos{
+											padding:13px;
+											width:326px;
+											}
+	
+				
+					
+			

@@ -1,0 +1,29 @@
+<?php
+
+$lang["jfilebrowser_crear directorio"]  = "Crear directorio";
+$lang["jfilebrowser_directorios"]  = "Directorios";
+$lang["jfilebrowser_no existe ningun directorio"]  = "No existe ningun directorio";
+$lang["jfilebrowser_subir archivo"]  = "Subir archivo";
+$lang["jfilebrowser_archivos permitidos"]  = "Tipos de archivos permitidos: ";
+$lang["jfilebrowser_archivos permitidos extensiones"]  = "*.*";
+$lang["jfilebrowser_archivo"]  = "Archivo: ";
+$lang["jfilebrowser_directorio"]  = "Directorio: ";
+$lang["jfilebrowser_seleccione un directorio"]  = "Seleccione un directorio";
+$lang["jfilebrowser_esperar"]  = "Esperar...";
+$lang["jfilebrowser_texto alternativo"]  = "Texto Alternativo";
+$lang["jfilebrowser_alineacion"]  = "Alineación";
+$lang["jfilebrowser_alineacion ninguna"]  = "Ninguna";
+$lang["jfilebrowser_alineacion izquierda"]  = "Izquierda";
+$lang["jfilebrowser_alineacion centrar"]  = "Centro";
+$lang["jfilebrowser_alineacion derecha"]  = "Derecha";
+$lang["jfilebrowser_size"]  = "Tamaño";
+$lang["jfilebrowser_size width"]  = "Ancho";
+$lang["jfilebrowser_size height"]  = "Alto";
+$lang["jfilebrowser_upload file"]  = "Subir";
+$lang["jfilebrowser_insertar"]  = "Agregar";
+$lang["jfilebrowser_confirmar borrado"]  = "Esta seguro de querer eliminar la imagen?";
+$lang["jfilebrowser_no hay archivos"]  = "No hay ningun archivo en este directorio";
+$lang["jfilebrowser_thumbnails"]  = "Miniaturas";
+$lang["jfilebrowser_lista"]  = "Lista";
+$lang["jfilebrowser_crear directorio"]  = "Crear directorio";
+$lang["jfilebrowser_crear"]  = "Crear";
