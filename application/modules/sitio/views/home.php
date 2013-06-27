@@ -25,6 +25,6 @@
   </div>
   <div class="clear"></div>
   <div class="box-shadow">
-    <a href="ventas.html" ><img src="<?php echo base_url() . "assets/images/";?>banner-ventas.jpg" /></a>
+    <a href="<?php echo site_url('ventas.html'); ?>" ><img src="<?php echo base_url() . "assets/images/";?>banner-ventas.jpg" /></a>
   </div>
 </div>

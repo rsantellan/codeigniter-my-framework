@@ -30,7 +30,7 @@
       <?php foreach($zonas as $zona): ?>
         <option value="<?php echo $zona->ubicacion; ?>" <?php echo (isset($searchZone) && $searchZone == $zona->ubicacion)? 'selected="selected"' : '';?>><?php echo $zona->ubicacion; ?></option>
       <?php endforeach; ?>
-    </select> </br>
+    </select>
     <label>
       Ordenar Precio
     </label>
@@ -42,7 +42,7 @@
       Dormitorios
     </label>
     <select id="search_sort_by" name="bedroom">
-      <option value="0" <?php echo !isset($searchBedroom)? 'selected="selected"' : '';?>></option>
+      <option value="-1" <?php echo !isset($searchBedroom)? 'selected="selected"' : '';?>></option>
       <?php foreach($dormitorios as $dormitorio): ?>
       <option value="<?php echo $dormitorio->dormitorios;?>" <?php echo (isset($searchBedroom) && $searchBedroom == $dormitorio->dormitorios)? 'selected="selected"' : '';?>><?php echo $dormitorio->dormitorios;?></option>
       <?php endforeach;?>
@@ -66,7 +66,7 @@
       <?php endforeach; ?>
     </select>
     <div class="clear"></div>
-    <input type="submit" value="buscar"/>
+    <input type="submit" value="buscar" class="filtrar"/>
   </form>
 </div>
 <div class="clear"></div>

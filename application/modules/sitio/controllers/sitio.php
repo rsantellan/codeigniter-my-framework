@@ -182,7 +182,7 @@ class Sitio extends MY_Controller {
     {
       unset($parameteres['ubicacion']);
     }
-    if($bedroom == "0")
+    if($bedroom == "-1")
     {
       unset($parameteres['dormitorios']);
     }
