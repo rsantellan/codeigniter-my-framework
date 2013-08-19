@@ -157,13 +157,14 @@ else:
   </tr>
   <?php foreach($listado as $usuario): ?>
   <tr>
+      <?php //var_dump($usuario); ?>
     <td><?php echo $usuario->name;?></td>
     <td><?php echo $usuario->lastname;?></td>
     <td><?php echo $usuario->ci;?></td>
     <td><?php echo $usuario->phone;?></td>
     <td><?php echo $usuario->center;?></td>
     <td><?php echo my_format_mysql_date($usuario->fecha_ingreso);?></td>   
-    <td><a href="<?php echo site_url("ficha/".$usuario->roche_usuarios_id.".html");?>" class="verficha">ver ficha</a></td>           
+    <td><a href="<?php echo site_url("ficha/".$usuario->id.".html");?>" class="verficha">ver ficha</a></td>           
   </tr>
   <?php endforeach; ?>
 </table>

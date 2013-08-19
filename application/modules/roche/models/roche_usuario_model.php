@@ -200,7 +200,8 @@ class roche_usuario_model extends MY_Model{
         $this->db->limit($limit);
       }
     }
-    $this->db->join('roche_usuarios_ficha', 'roche_usuarios_ficha.roche_usuarios_id = roche_usuarios.id');
+    $this->db->select($this->getTablename().'.*, roche_usuarios_ficha.roche_usuarios_id, roche_usuarios_ficha.fecha_ingreso,roche_usuarios_ficha.filepath,roche_usuarios_ficha.filename ');
+    $this->db->join('roche_usuarios_ficha', 'roche_usuarios_ficha.roche_usuarios_id = roche_usuarios.id', 'left');
     $query = $this->db->get($this->getTablename());
     $data = array();
     if($query->num_rows() > 0)
