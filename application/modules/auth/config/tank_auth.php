@@ -150,6 +150,6 @@ $config['db_table_prefix'] = '';
 |--------------------------------------------------------------------------
 */
 
-$config['auth_view'] = 'roche';
+$config['auth_view'] = '';
 /* End of file tank_auth.php */
 /* Location: ./application/config/tank_auth.php */

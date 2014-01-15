@@ -47,12 +47,16 @@ adminManager.prototype = {
     
     startSortable: function(sortable_id, sortable_url)
     {
+      var usingArguments = arguments;
       $("#"+sortable_id).sortable(
       {
         axis: 'y', 
         update : function () { 
           var order = $('#'+sortable_id).sortable('serialize'); 
           parent.$.fancybox.showActivity();
+          for (var i=2; i < usingArguments.length; i++) {
+            order = order + "&" + usingArguments[i];
+          }
           $.ajax({
             url: sortable_url,
             data: order,

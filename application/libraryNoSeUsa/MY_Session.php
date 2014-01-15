@@ -33,6 +33,7 @@ class MY_Session {
      * @author Simon Emms <simon@simonemms.com>
      */
     public function __construct() {
+        die('estoy aca??');
         /* Set the timeout time */
         $objCI = &get_instance();
         $objCI->load->config('session', false, true);

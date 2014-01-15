@@ -6,25 +6,12 @@
  * @author Simon Emms <simon@simonemms.com>
  */
 class MY_Session {
-
-    
-    
-    
     /* How we can identify flash sessions */
     const flash = 'FLASH_';
-
-    
-    
-    
     
     /* Do not delete this time round */
     private static $_arrFlashDND = array();
-
-    
-    
-    
-    
-    
+   
     /**
      * Construct
      *
@@ -33,6 +20,7 @@ class MY_Session {
      * @author Simon Emms <simon@simonemms.com>
      */
     public function __construct() {
+        
         /* Set the timeout time */
         $objCI = &get_instance();
         $objCI->load->config('session', false, true);
@@ -43,13 +31,6 @@ class MY_Session {
 
         $this->start();
     }
-
-    
-    
-    
-    
-    
-    
 
     /**
      * Destruct
@@ -79,11 +60,6 @@ class MY_Session {
 	  }
 	}
     
-    
-    
-    
-    
-    
     /**
      *	Start()
      *
@@ -100,12 +76,6 @@ class MY_Session {
         }
     }
 
-    
-    
-    
-    
-    
-    
     /**
      *	Is Session
      *
@@ -120,13 +90,6 @@ class MY_Session {
             return false;
         }
     }
-
-    
-    
-    
-    
-    
-    
     
     /**
      *	Set Session()
@@ -150,16 +113,9 @@ class MY_Session {
             }
             $_SESSION[$name] = $value;
         }
+        //var_dump($name);die;
     }
 
-
-    
-    
-    
-    
-    
-    
-    
     /**
      * Redo Session
      *
@@ -172,14 +128,6 @@ class MY_Session {
         $value = $this->flashdata($name);
         if($value) { $this->set_userdata($name, $value); }
     }
-
-
-    
-    
-    
-    
-    
-    
     
     /**
      * Get Session()
@@ -206,12 +154,6 @@ class MY_Session {
         }
         return $_arrDetails;
     }
-
-    
-    
-    
-    
-    
     
     /**
      * All Userdata
@@ -229,28 +171,9 @@ class MY_Session {
         }
     }
     
-    
-    
-    
-    
-    
-    
     public function set_flashdata($item, $value) { $this->set_userdata($item, $value, true); }
     
-    
-    
-    
-    
-    
-    
-    
-    public function flashdata($item) { return $this->userdata($item, false, true); }
-
-    
-    
-    
-    
-    
+    public function flashdata($item) { return $this->userdata(self::flash.$item); }
     
     
     /**
@@ -273,12 +196,6 @@ class MY_Session {
             unset($_SESSION[$name]);
         }
     }
-
-    
-    
-    
-    
-    
     
     /**
      * ID
@@ -292,4 +209,3 @@ class MY_Session {
     
 }
 
-?>
