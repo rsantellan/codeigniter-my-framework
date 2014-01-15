@@ -63,17 +63,21 @@ class MY_Session {
      * @author Simon Emms <simon@simonemms.com>
      */
     public function  __destruct() {
-        $arrSession = $this->all_userdata();
-        if(count($arrSession) > 0) {
-            foreach($arrSession as $key => $value) {
-                if(!in_array($key, self::$_arrFlashDND) && preg_match('/^'.self::flash.'/', $key)) {
-                    $this->unset_userdata($key);
-                }
-            }
-        }
+      $this->sess_destroy();  
     }
 
 
+	public function sess_destroy()
+	{
+	  $arrSession = $this->all_userdata();
+	  if(count($arrSession) > 0) {
+		  foreach($arrSession as $key => $value) {
+			  if(!in_array($key, self::$_arrFlashDND) && preg_match('/^'.self::flash.'/', $key)) {
+				  $this->unset_userdata($key);
+			  }
+		  }
+	  }
+	}
     
     
     

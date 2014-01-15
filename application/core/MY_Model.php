@@ -29,6 +29,19 @@ class MY_Model extends CI_Model{
     $this->table_name = $tablename;
   }
 
+  public function simpleDeleteById($id){
+    $this->db->where('id', $id);
+    $this->db->delete($this->getTablename());
+    if($this->db->affected_rows() > 0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  
   public function deleteById($id)
   {
     log_message("debug", "Deleting by id : ".$id);
@@ -44,18 +57,7 @@ class MY_Model extends CI_Model{
       log_message('error', 'Album no existe');
     }
     
-  
-
-    $this->db->where('id', $id);
-    $this->db->delete($this->getTablename());
-    if($this->db->affected_rows() > 0)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    return $this->simpleDeleteById($id);
   }
   
   public function countAllRecords()

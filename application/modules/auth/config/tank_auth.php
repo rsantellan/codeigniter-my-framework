@@ -7,8 +7,8 @@
 | These details are used in emails sent by authentication library.
 |--------------------------------------------------------------------------
 */
-$config['website_name'] = 'Your project';
-$config['webmaster_email'] = 'webmaster@your-site.com';
+$config['website_name'] = 'Roche';
+$config['webmaster_email'] = 'rsantellan@gmail.com';
 
 /*
 |--------------------------------------------------------------------------
@@ -141,5 +141,15 @@ $config['recaptcha_private_key'] = '';
 $config['db_table_prefix'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| View settings
+|
+| Change the default view of change
+| 
+|--------------------------------------------------------------------------
+*/
+
+$config['auth_view'] = 'roche';
 /* End of file tank_auth.php */
 /* Location: ./application/config/tank_auth.php */

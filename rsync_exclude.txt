@@ -3,6 +3,7 @@ assets/uploads/*
 application/config/database.php
 assets/admin/js/tiny_mce/plugins/jfilebrowser/js/config.js
 assets/admin/js/tiny_mce/plugins/jfilebrowser/include/config.php
+assets/admin/js/tiny_mce/*
 application/logs/log*
 application/language/*
 application/modules/language/language/*
@@ -10,11 +11,19 @@ application/modules/admin/language/*
 application/modules/auth/language/*
 application/modules/authadmin/language/*
 application/modules/jfilebrowser/language/*
+application/modules/jfilebrowser/*
+application/modules/proyectos/*
+application/modules/testmulti/*
+application/modules/welcome/*
+application/modules/blog/*
+application/modules/tags/*
 application/modules/sitio/language/*
 application/modules/blog/language/*
 application/modules/contacto/language/*
 assets/language/*
 system/language/*
+*.sql
+rsync_exclude.txt
 
 # SCM files
 .arch-params
@@ -26,5 +35,8 @@ _darcs
 .svn
 CVS
 
+#Metalizadora
+#rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
 
+#Roche
 #rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta

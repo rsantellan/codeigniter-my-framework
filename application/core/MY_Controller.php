@@ -55,6 +55,7 @@ class MY_Controller extends MX_Controller
       $this->data['menu_id'] = "home";
 	  $this->data['ckeditor_on'] = false;
 	  $this->data['tinymce_on'] = false;
+	  $this->data['use_noty'] = false;
 
   }
 

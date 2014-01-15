@@ -38,6 +38,21 @@
 |
 */
 
+$route['default_controller'] = "roche";
+$route['404_override'] = '';
+$route[""] = 'roche/index';
+$route["inicio.html"] = 'roche/index';
+$route["buscar.html"] = 'roche/buscar';
+$route["busqueda"] = 'roche/aBuscar';
+$route['ficha/(:num).html'] = 'roche/ficha/$1';
+$route['editar/(:num).html'] = 'roche/editar/$1';
+$route['imprimir/(:num).html'] = 'roche/imprimir/$1';
+$route['agregar/certificado/(:num).html'] = 'roche/agregarCertificado/$1';
+$route["ingresar.html"] = 'roche/ingresar';
+$route['eliminar/(:num).html'] = 'roche/eliminar/$1';
+$route['eliminarCertificado/(:num).html'] = 'roche/eliminarCertificado/$1';
+/*
+ Metalurgica
 $route['default_controller'] = "sitio";
 $route['404_override'] = '';
 $route['historia.html'] = 'sitio/historia';
@@ -46,7 +61,7 @@ $route['certificacion.html'] = 'sitio/certificacion';
 $route['contacto.html'] = 'contacto';
 $route['servicios/(:num)/(:any)'] = 'sitio/servicios/$1';
 $route['proyecto/(:num)/(:any)'] = 'sitio/proyecto/$1';
-
+*/
 /*
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];
