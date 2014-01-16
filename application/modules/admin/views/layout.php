@@ -39,8 +39,11 @@
         <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/tiny_mce/tiny_mce_src.js"></script>
       <?php endif; ?>
         
-      <!-- Menu drop down-->  
-<!--      <script type="text/javascript" src="<?php //echo base_url() . "assets/admin/js/dropdown_menu.js";?>"></script>-->
+      <!-- Menu drop down-->
+	  <script type="text/javascript" src="<?php echo base_url() ."assets/admin/superfish/js/hoverIntent.js"; ?>"></script>
+      <script type="text/javascript" src="<?php echo base_url() ."assets/admin/superfish/js/superfish.js"; ?>"></script>
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/admin/superfish/css/superfish.css";?>" />    
+
 	</head>
 	<body>
       <div class="header_div">
@@ -48,42 +51,43 @@
 <!--        <h1 id="head">Administrador</h1>-->
         <img src="<?php echo base_url();?>assets/images/logo.png" height="70"/>
       </div>
-      
-      <ul id="navigation">
-      <?php if($menu_id == 'dashboard'): ?>
-        <li><span class="active">Dashboard</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
-      <?php endif; ?>
-      
-        <li><a href="<?php echo site_url('language/index');?>">Textos</a></li>
-      
-      <?php if($menu_id == 'users'): ?>
-        <li><span class="active">Usuarios</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('authadmin/index');?>">Usuarios</a></li>
-      <?php endif; ?>
-      
-      <?php if($menu_id == 'proyectos'): ?>
-        <li><span class="active">Proyectos</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('proyectos/proyectoadmin');?>">Proyectos</a></li>
-      <?php endif; ?>  
-      
-      <?php if($menu_id == 'categorias'): ?>
-        <li><span class="active">Categorias</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('categorias/categoriasadmin');?>">Categorias</a></li>
-      <?php endif; ?>    
-        
-      <?php if($menu_id == 'contacto'): ?>
-        <li><span class="active">Contacto</span></li>
-      <?php else: ?>
-        <li><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
-      <?php endif; ?>        
-        <li style="float: right;"><a href="<?php echo site_url('auth/logout');?>">Salir</a></li>	
-		</ul>
-		
+	  <div class="menu_container">
+        <ul id="superfish-menu" class="sf-menu">
+          <li class="<?php echo ($menu_id == 'dashboard')? "current": "";?>"><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
+          <li class="<?php echo ($menu_id == 'fsadfx')? "current": "";?>"><a href="<?php echo site_url('language/index');?>">Textos</a></li>
+
+          <li class="<?php echo ($menu_id == 'radios' || $menu_id == 'banners' || $menu_id == 'intereses' )? "current": "";?>">
+            <a href="javascript:void(0)">Radio y Promotores</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'radios')? "current": "";?>"><a href="<?php echo site_url('radios/index');?>">Radios</a></li>
+              <li class="<?php echo ($menu_id == 'banners')? "current": "";?>"><a href="<?php echo site_url('banners/index');?>">Promotores</a></li>
+              <li class="<?php echo ($menu_id == 'intereses' )? "current": "";?>"><a href="<?php echo site_url('interesesadmin/index');?>">Intereses</a></li>
+            </ul>
+          </li>
+          <li class="<?php echo ($menu_id == 'campeonesadmin' || $menu_id == 'deportistaadmin' || $menu_id == 'presidenteadmin' )? "current": "";?>">
+            <a href="javascript:void(0)">Historia</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'campeonesadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/campeonesadmin/index');?>">Campeones</a></li>
+              <li class="<?php echo ($menu_id == 'deportistaadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/deportistaadmin/index');?>">Deportista del año</a></li>
+              <li class="<?php echo ($menu_id == 'presidenteadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/presidenteadmin/index');?>">Presidentes</a></li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionNextToExpire');?>">Registro Personas cerca de expirar</a></li>
+              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionInactive');?>">Registro Personas inactivas</a></li>
+              <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>"><a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a></li>
+            </ul>
+          </li>
+          <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
+            <a href="javascript:void(0)">Configuraciones</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>"><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
+              <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="<?php echo site_url('auth/logout');?>">Salir</a>
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>      
 			<div id="content" class="container_16 clearfix">
 <?php //echo language_menu(); ?>
 <!-- Filtro -->     

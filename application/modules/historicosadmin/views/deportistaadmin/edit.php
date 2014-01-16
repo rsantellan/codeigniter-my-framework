@@ -1,11 +1,11 @@
 <div class="grid_16">
-  <h2>Editar radio</h2>
+  <h2>Editar Deportista</h2>
   <?php echo form_error('name'); ?>
-  <?php echo form_error('link'); ?>
+  <?php echo form_error('periodo'); ?>
   <?php
    if($this->session->flashdata('salvado') == "ok"):
   ?>
-  	<p id="salvado_ok" class="success">Radio salvada</p>
+  	<p id="salvado_ok" class="success">Deportista salvado</p>
   	
   	<script type="text/javascript">
  		$(document).ready(function() {
@@ -16,7 +16,7 @@
 </div>
 <?php if(!is_null($object)): ?>
 <?php
-  $this->load->view('form');
+  $this->load->view('deportistaadmin/form');
 ?>
 
 <hr/>
@@ -26,7 +26,7 @@
 <?php echo modules::run('upload/view', array('id' => $object->getId(), 'classname'=> $object->getObjectClass()));?>
 <?php endif; ?>
 <hr/>
-<a href="<?php echo site_url('radios/index'); ?>"> Volver al listado </a>
+<a href="<?php echo site_url('historicosadmin/deportistaadmin/index'); ?>"> Volver al listado </a>
 
 <script type="text/javascript">
     $(document).ready(function() {

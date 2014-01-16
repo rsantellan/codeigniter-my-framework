@@ -1,4 +1,4 @@
-<h3>Listado de Radios</h3>
+<h3>Listado de Promotores</h3>
 <table>
   <thead>
     <tr>
@@ -17,31 +17,31 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($radios_list as $radio): ?>
-    <tr id="table_row_<?php echo $radio->id;?>">
+    <?php foreach($objects_list as $object): ?>
+    <tr id="table_row_<?php echo $object->id;?>">
     <td>
           <?php 
             $imgType = 3;
             $width = 100;
             $height = 100;
             ?>
-          <?php if(!is_null($radio->avatar)): ?>
-            <img alt="<?php echo $radio->name;?>" src="<?php echo base_url().thumbnail_image($radio->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
+          <?php if(!is_null($object->avatar)): ?>
+            <img alt="<?php echo $object->name;?>" src="<?php echo base_url().thumbnail_image($object->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
             <?php else: ?>
             <img src="<?php echo base_url();?>assets/images/default_servicios.jpg" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
         <?php endif; ?>
       </td>
       <td>
-        <?php echo ($radio->name); ?>
+        <?php echo ($object->name); ?>
       </td>
       <td>
-        <?php echo ($radio->link); ?>
+        <?php echo ($object->link); ?>
       </td>
       <td>
-        <a href="<?php echo site_url("radios/edit/".$radio->id);?>">
+        <a href="<?php echo site_url("banners/edit/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $radio->id;?>, 'Esta seguro de querer eliminar la radio?', '<?php echo site_url("radios/delete/".$radio->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar la radio?', '<?php echo site_url("banners/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>
@@ -52,11 +52,11 @@
 </table>
 
 
-<a href="<?php echo site_url("radios/add");?>">
+<a href="<?php echo site_url("banners/add");?>">
   Agregar
 </a>
 
-<a class="fancy_link iframe" href="<?php echo site_url("ordenable/sort/radios/radio/name");?>" >
+<a class="fancy_link iframe" href="<?php echo site_url("ordenable/sort/banners/banner/name");?>" >
   Ordenar
 </a>
 

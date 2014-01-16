@@ -7,20 +7,20 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Description of radios
+ * Description of deportistas
  *
  * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
  */
-class radios extends MY_Controller{
+class deportistaadmin extends MY_Controller{
   
     function __construct()
     {
       parent::__construct();
-      $this->data['menu_id'] = 'radios';
+      $this->data['menu_id'] = 'deportistaadmin';
       if(!$this->isLogged())
       {
         //Si no esta logeado se tiene que ir a loguear
-        $this->session->set_userdata('url_to_direct_on_login', 'radios/index');
+        $this->session->set_userdata('url_to_direct_on_login', 'historicosadmin/deportistaadmin/index');
         redirect('auth/login'); 
       }
 
@@ -28,9 +28,9 @@ class radios extends MY_Controller{
     
     function index(){
       //$this->output->enable_profiler(TRUE);  
-      $this->load->model('radios/radio');
-      $this->data['radios_list'] = $this->radio->retrieveAll(false, true);
-      $this->data['content'] = "radios/list";
+      $this->load->model('historicosadmin/deportista');
+      $this->data['objects_list'] = $this->deportista->retrieveAll(false, true);
+      $this->data['content'] = "historicosadmin/deportistaadmin/list";
       $this->load->helper('upload/mimage');
       $this->load->library('upload/mupload');
       
@@ -43,10 +43,10 @@ class radios extends MY_Controller{
     
     function add()
     {
-      $this->load->model('radios/radio');
+      $this->load->model('historicosadmin/deportista');
       $this->data['use_grid_16'] = false;
-      $this->data['content'] = "radios/add";
-      $this->data['object'] = new $this->radio;
+      $this->data['content'] = "historicosadmin/deportistaadmin/add";
+      $this->data['object'] = new $this->deportista;
       $this->load->view("admin/layout", $this->data);
     }
     
@@ -58,23 +58,23 @@ class radios extends MY_Controller{
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
       
-      $this->load->model('radios/radio');
+      $this->load->model('historicosadmin/deportista');
       $this->data['use_grid_16'] = false;
-      $this->data['content'] = "radios/edit";
-      $this->data['object'] = $this->radio->getById($id);
+      $this->data['content'] = "historicosadmin/deportistaadmin/edit";
+      $this->data['object'] = $this->deportista->getById($id);
       $this->load->view("admin/layout", $this->data);
     }
     
     function save()
     {
       $this->load->library('form_validation');
-      $this->load->model('radios/radio');
+      $this->load->model('historicosadmin/deportista');
       // Get ID from form
       $id = $this->input->post('id', true);
       
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
-      $this->form_validation->set_rules('link', 'link', 'required|max_length[255]');      
+      $this->form_validation->set_rules('periodo', 'periodo', 'required|max_length[255]');      
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -84,11 +84,11 @@ class radios extends MY_Controller{
         $is_valid = true;
       }
       $name = set_value('name');
-      $link = set_value('link');
+      $periodo = set_value('periodo');
       //var_dump($nombre);
-      $obj = new $this->radio;
+      $obj = new $this->deportista;
       $obj->setName($name);
-      $obj->setLink($link);
+      $obj->setPeriodo($periodo);
       $obj->setId($id);
       //var_dump($obj);
       
@@ -97,21 +97,21 @@ class radios extends MY_Controller{
         //Como es valido lo salvo
         $id = $obj->save();
         $this->session->set_flashdata("salvado", "ok");
-        redirect('radios/edit/'.$id);
+        redirect('historicosadmin/deportistaadmin/edit/'.$id);
       }
       else
       {
         if($obj->isNew())
         {
           $this->data['use_grid_16'] = false;
-          $this->data['content'] = "radios/add";
+          $this->data['content'] = "historicosadmin/deportistaadmin/add";
           $this->data['object'] = $obj;
           $this->load->view("admin/layout", $this->data);
         }
         else
         {
           $this->data['use_grid_16'] = false;
-          $this->data['content'] = "radios/edit";
+          $this->data['content'] = "historicosadmin/deportistaadmin/edit";
           $this->data['object'] = $obj;
           $this->load->view("admin/layout", $this->data);
         }
@@ -120,8 +120,8 @@ class radios extends MY_Controller{
     
     function delete($id)
     {
-      $this->load->model('radios/radio');
-      $result = $this->radio->deleteById($id);
+      $this->load->model('historicosadmin/deportista');
+      $result = $this->deportista->deleteById($id);
       $salida['response'] = "OK";
       $this->output
        ->set_content_type('application/json')
