@@ -67,7 +67,7 @@ class MY_Model extends CI_Model{
   
   function retrieveForSort($showField)
   {
-    $this->db->select(array('id', $showField, 'ordinal'));
+    $this->db->select(array('id', "name", 'ordinal'));
     $this->db->order_by("ordinal", "desc");
     $query = $this->db->get($this->getTablename());
 

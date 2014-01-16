@@ -70,9 +70,15 @@
               <li class="<?php echo ($menu_id == 'campeonesadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/campeonesadmin/index');?>">Campeones</a></li>
               <li class="<?php echo ($menu_id == 'deportistaadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/deportistaadmin/index');?>">Deportista del año</a></li>
               <li class="<?php echo ($menu_id == 'presidenteadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/presidenteadmin/index');?>">Presidentes</a></li>
-              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionNextToExpire');?>">Registro Personas cerca de expirar</a></li>
-              <li class="<?php echo ($menu_id == 'registros_personas' )? "current": "";?>"><a href="<?php echo site_url('registros/acreditacionInactive');?>">Registro Personas inactivas</a></li>
-              <li class="<?php echo ($menu_id == 'registros_instituciones')? "current": "";?>"><a href="<?php echo site_url('registros/instituciones');?>">Registro Instituciones</a></li>
+            </ul>
+          </li>
+          <li class="<?php echo ($menu_id == 'documents' || $menu_id == 'documents1' || $menu_id == 'documents2' )? "current": "";?>">
+            <a href="javascript:void(0)">Documentos</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'documents' )? "current": "";?>"><a href="<?php echo site_url('documents/index');?>">Documentos</a></li>
+              <li class="<?php echo ($menu_id == 'documents' )? "current": "";?>"><a href="<?php echo site_url('documents/formularios');?>">Formularios</a></li>
+              <li class="<?php echo ($menu_id == 'deportistaadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/deportistaadmin/index');?>">Deportista del año</a></li>
+              <li class="<?php echo ($menu_id == 'presidenteadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/presidenteadmin/index');?>">Presidentes</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
