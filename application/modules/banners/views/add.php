@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h2>Agregar Promotor</h2>
+  <h2>Agregar Laboratorio</h2>
   <?php echo form_error('name'); ?>
   <?php echo form_error('link'); ?>
 </div>
@@ -9,4 +9,4 @@
 
 <hr/>
 
-<a href="<?php echo site_url('banners/index'); ?>"> Volver al listado </a>
+<a href="<?php echo site_url('laboratorios/index'); ?>"> Volver al listado </a>
