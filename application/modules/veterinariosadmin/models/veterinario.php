@@ -63,8 +63,7 @@ class veterinario extends MY_Model{
     
     if(!$returnObjects)
     {
-      $data = array();
-      return $data;
+      return $query->result();
     }
     else
     {

@@ -36,6 +36,9 @@ class banners extends MY_Controller{
       
       $this->addJquery();
       $this->addFancyBox();
+      $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->load->view("admin/layout", $this->data);

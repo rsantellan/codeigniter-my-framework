@@ -29,7 +29,7 @@ class veterinariosadmin extends MY_Controller{
     function index(){
       //$this->output->enable_profiler(TRUE);  
       $this->load->model('veterinariosadmin/veterinario');
-      $this->data['objects_list'] = $this->veterinario->retrieveAll(false, true);
+      $this->data['objects_list'] = $this->veterinario->retrieveAll(false);
       $this->data['content'] = "veterinariosadmin/list";
       $this->load->helper('upload/mimage');
       $this->load->library('upload/mupload');
@@ -38,6 +38,9 @@ class veterinariosadmin extends MY_Controller{
       $this->addFancyBox();
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->addModuleJavascript("admin", "adminManager.js");
+      $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
+      $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
+      $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
       $this->load->view("admin/layout", $this->data);
     }
     
@@ -85,11 +88,13 @@ class veterinariosadmin extends MY_Controller{
         $is_valid = true;
       }
       $name = set_value('name');
-      $link = set_value('contacto');
+      $contacto = set_value('contacto');
+      $boss = set_value('boss');
       //var_dump($nombre);
       $obj = new $this->veterinario;
       $obj->setName($name);
-      $obj->setLink($link);
+      $obj->setContacto($contacto);
+      $obj->setIsboss($boss);
       $obj->setId($id);
       //var_dump($obj);
       

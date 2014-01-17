@@ -1,11 +1,11 @@
 <div class="grid_16">
-  <h2>Editar Promotor</h2>
+  <h2>Editar Veterinario</h2>
   <?php echo form_error('name'); ?>
-  <?php echo form_error('link'); ?>
+  <?php echo form_error('contacto'); ?>
   <?php
    if($this->session->flashdata('salvado') == "ok"):
   ?>
-  	<p id="salvado_ok" class="success">Promotor salvado</p>
+  	<p id="salvado_ok" class="success">Veterinario salvado</p>
   	
   	<script type="text/javascript">
  		$(document).ready(function() {
@@ -18,18 +18,6 @@
 <?php
   $this->load->view('form');
 ?>
-
-<hr/>
-
-<h4>Archivos</h4>
-
-<?php echo modules::run('upload/view', array('id' => $object->getId(), 'classname'=> $object->getObjectClass()));?>
 <?php endif; ?>
 <hr/>
-<a href="<?php echo site_url('banners/index'); ?>"> Volver al listado </a>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        startFancyLinks()
-    });
-</script>
+<a href="<?php echo site_url('veterinariosadmin/index'); ?>"> Volver al listado </a>
