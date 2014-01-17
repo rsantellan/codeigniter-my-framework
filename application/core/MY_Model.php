@@ -73,6 +73,16 @@ class MY_Model extends CI_Model{
 
     return $query->result();
   }
+  
+  function retrieveForSortWithParameter($sort_attribute, $parameterid)
+  {
+    $this->db->select(array('id', "name", 'ordinal'));
+    $this->db->order_by("ordinal", "desc");
+    $this->db->where($sort_attribute, $parameterid);
+    $query = $this->db->get($this->getTablename());
+
+    return $query->result();
+  }
     
   function updateOrder($id, $order)
   {

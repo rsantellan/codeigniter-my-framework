@@ -38,6 +38,32 @@ class ordenable extends MY_Controller{
         $this->load->view('ordenable/sortable', $this->data);
     }
     
+    function sortWithParameters($sortModule, $sortModel, $sortAttribute, $parameterModule, $parameterModel)
+    {
+        //$this->load->model($sortModule.'/'.$sortModel);
+        $this->load->model($parameterModule.'/'.$parameterModel);
+        $this->data['parameter_list_data'] = $this->$parameterModel->retrieveAllForSelect();
+        $this->data['sort_module'] = $sortModule;
+        $this->data['sort_model'] = $sortModel;
+        $this->data['sort_attribute'] = $sortAttribute;
+        $this->load->view('ordenable/sortableAttributes', $this->data);
+    }
+    
+    function retrieveData()
+    {
+        $parameterid = $this->input->post('parameterid');
+        $module = $this->input->post('sort_module');
+        $model = $this->input->post('sort_model');
+        $sort_attribute = $this->input->post('sort_attribute');
+        $this->load->model($module.'/'.$model);
+        $list = $this->$model->retrieveForSortWithParameter($sort_attribute, $parameterid);
+        $salida['response'] = "OK";
+        $salida['list'] = $list;
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($salida));
+    }
+    
     function applySort()
     {
         $lista = $this->input->post('listItem');

@@ -32,12 +32,10 @@
       
       <?php foreach($sort_list as $object): ?>
         <li id="listItem_<?php echo $object->id;?>" class="ui-state-default">
-          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $object->name;?> <?php //echo $acta->ordinal; ?>
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $object->name;?>
         </li>
       <?php endforeach; ?>
     </ul>
-    
-    <input type="hidden" id="sort_ajax" value="<?php echo site_url("proyectos/proyectoadmin/applySort");?>" />
     
     <script type="text/javascript">
 

@@ -45,6 +45,14 @@ adminManager.prototype = {
       $("."+fancy_class).fancybox({});
     },
     
+    destroySortable: function(sortable_id)
+    {
+      // Remove the sortable feature to prevent bad state caused by unbinding all
+      $("#"+sortable_id).sortable('destroy');
+      // Unbind all event handlers!
+      $("#"+sortable_id).unbind();  
+    },
+    
     startSortable: function(sortable_id, sortable_url)
     {
       var usingArguments = arguments;

@@ -7,20 +7,23 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Description of departamento
+ * Description of club
  *
  * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
  */
-class departamento extends MY_Model{
+class club extends MY_Model{
   
   private $id;
-  private $description;
+  private $link;
   private $name;
+  private $description;
+  private $location;
+  private $departmentid;
   
   function __construct()
   {
     parent::__construct();
-    $this->setTablename('departamento');
+    $this->setTablename('club');
   }
     
   public function getId() {
@@ -31,12 +34,12 @@ class departamento extends MY_Model{
     $this->id = $id;
   }
 
-  public function getDescription() {
-    return $this->description;
+  public function getLink() {
+    return $this->link;
   }
 
-  public function setDescription($description) {
-    $this->description = $description;
+  public function setLink($link) {
+    $this->link = $link;
   }
 
   public function getName() {
@@ -46,38 +49,63 @@ class departamento extends MY_Model{
   public function setName($name) {
     $this->name = $name;
   }
-
-  public function retrieveAllForSelect()
-  {
-    $this->db->order_by("ordinal", "desc");
-    $query = $this->db->get($this->getTablename());
-    $salida = array();
-    foreach($query->result() as $obj)
-    {
-        $salida[$obj->id] = $obj->name;
-    }
-    return $salida;
-  }
   
-  public function retrieveAll($returnObjects = FALSE)
+  public function getDescription() {
+      return $this->description;
+  }
+
+  public function setDescription($description) {
+      $this->description = $description;
+  }
+
+  public function getLocation() {
+      return $this->location;
+  }
+
+  public function setLocation($location) {
+      $this->location = $location;
+  }
+
+  public function getDepartmentid() {
+      return $this->departmentid;
+  }
+
+  public function setDepartmentid($departmentid) {
+      $this->departmentid = $departmentid;
+  }
+
+  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE)
   {
-    $this->db->order_by("ordinal", "desc");
+    $this->db->order_by("departmentid, ordinal", "desc");
     $query = $this->db->get($this->getTablename());
     
     if(!$returnObjects)
     {
-      
-      return $query->result();
+      if(!$retrieveAvatar)
+      {
+        return $query->result();
+      }
+      $data = array();
+      foreach($query->result() as $row)
+      {
+        
+        $row->avatar = $this->retrieveAvatar("default", $row->id);
+        $data[] = $row;
+      }
+      return $data;
     }
     else
     {
       $salida = array();
       foreach($query->result() as $obj)
       {
-        $aux = new departamento();
+        $aux = new club();
         $aux->setId($obj->id);
         $aux->setName($obj->name);
+        $aux->setLink($obj->link);
         $aux->setDescription($obj->description);
+        $aux->setLocation($obj->location);
+        $aux->setDepartmentid($obj->departmentid);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -107,10 +135,20 @@ class departamento extends MY_Model{
   {
     $data = array();
     $data["name"] = $this->getName();
-    $data["description"] = $this->getDescription();
+    $data["link"] = $this->getLink();
     $data["ordinal"] = $this->retrieveLastOrder();
+    $data["description"] = $this->getDescription();
+    $data["location"] = $this->getLocation();
+    $data["departmentid"] = $this->getDepartmentid();
+    
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
+    if(!is_null($id) && $id != 0)
+    {
+      $ci =& get_instance();
+      $ci->load->model('upload/album');
+      $ci->album->createAlbum($id, $this->getObjectClass()); 
+    }
     return $id;
   }
 
@@ -118,7 +156,10 @@ class departamento extends MY_Model{
   {
     $data = array(
         'name' => $this->getName(),
+        'link' => $this->getLink(),
         'description' => $this->getDescription(),
+        'location' => $this->getLocation(),
+        'departmentid' => $this->getDepartmentid(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -136,10 +177,13 @@ class departamento extends MY_Model{
         $obj = $query->row();        
         if($return_obj)
         {
-          $aux = new departamento();
+          $aux = new club();
           $aux->setId($obj->id);
           $aux->setName($obj->name);
+          $aux->setLink($obj->link);
           $aux->setDescription($obj->description);
+          $aux->setLocation($obj->location);
+          $aux->setDepartmentid($obj->departmentid);
           return $aux;
         }
         return $obj;

@@ -80,6 +80,7 @@
               <li class="<?php echo ($menu_id == 'veterinariosadmin' )? "current": "";?>"><a href="<?php echo site_url('veterinariosadmin/index');?>">Veterinarios</a></li>
               <li class="<?php echo ($menu_id == 'laboratorios' )? "current": "";?>"><a href="<?php echo site_url('laboratorios/index');?>">Laboratorios</a></li>
               <li class="<?php echo ($menu_id == 'departamentos' )? "current": "";?>"><a href="<?php echo site_url('departamentos/index');?>">Departamentos</a></li>
+              <li class="<?php echo ($menu_id == 'clubes' )? "current": "";?>"><a href="<?php echo site_url('clubes/index');?>">Clubes</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">

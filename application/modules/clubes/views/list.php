@@ -1,12 +1,21 @@
-<h3>Listado de departamentos</h3>
+<h3>Listado de Clubes</h3>
 <table id="table_data">
   <thead>
     <tr>
       <th>
+        Imagen
+      </th>  
+      <th>
         Nombre
       </th>
       <th>
-        Descripción
+        Link
+      </th>
+      <th>
+        Localidad
+      </th>
+      <th>
+        Departamento
       </th>
       <th>
         Acciones
@@ -16,17 +25,35 @@
   <tbody>
     <?php foreach($objects_list as $object): ?>
     <tr id="table_row_<?php echo $object->id;?>">
+    <td>
+          <?php 
+            $imgType = 3;
+            $width = 100;
+            $height = 100;
+            ?>
+          <?php if(!is_null($object->avatar)): ?>
+            <img alt="<?php echo $object->name;?>" src="<?php echo base_url().thumbnail_image($object->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
+            <?php else: ?>
+            <img src="<?php echo base_url();?>assets/images/default_servicios.jpg" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
+        <?php endif; ?>
+      </td>
       <td>
         <?php echo ($object->name); ?>
       </td>
       <td>
-        <?php echo character_limiter(html_purify(html_entity_decode($object->description)), 100); ?>
+        <?php echo ($object->link); ?>
       </td>
       <td>
-        <a href="<?php echo site_url("departamentos/edit/".$object->id);?>">
+        <?php echo ($object->location); ?>
+      </td>
+      <td>
+        <?php echo $departments_list[$object->departmentid]; ?>
+      </td>
+      <td>
+        <a href="<?php echo site_url("clubes/edit/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("departamentos/delete/".$object->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("clubes/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>
@@ -37,11 +64,11 @@
 </table>
 
 <hr/>
-<a href="<?php echo site_url("departamentos/add");?>">
+<a href="<?php echo site_url("clubes/add");?>">
   Agregar
 </a>
 
-<a class="fancy_link iframe" href="<?php echo site_url("ordenable/sort/departamentos/departamento/name");?>" >
+<a class="fancy_link iframe" href="<?php echo site_url("ordenable/sortWithParameters/clubes/club/departmentid/departamentos/departamento");?>" >
   Ordenar
 </a>
 
