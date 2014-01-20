@@ -6,7 +6,7 @@
 /**
  * Description of admin
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class admin extends MY_Controller{
   

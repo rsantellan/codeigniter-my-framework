@@ -8,7 +8,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Description of mgd
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class mgd {
     

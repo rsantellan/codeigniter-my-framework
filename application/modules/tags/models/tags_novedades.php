@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of tags_novedades
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class tags_novedades extends MY_Model{
   

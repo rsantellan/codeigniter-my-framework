@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of documents
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class documents extends MY_Controller{
   

@@ -3,7 +3,7 @@
 /**
  * Description of myPdf
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan 
  */
 class myPdf extends FPDF
 {

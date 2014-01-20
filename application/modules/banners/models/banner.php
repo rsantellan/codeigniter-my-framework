@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of banner
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class banner extends MY_Model{
   

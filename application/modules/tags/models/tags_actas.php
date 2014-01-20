@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of tags_actas
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class tags_actas extends MY_Model{
   

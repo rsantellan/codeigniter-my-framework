@@ -11,7 +11,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of mimagick
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class mimagick {
 

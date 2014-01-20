@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of actaadmin
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class tags extends MY_Controller{
   

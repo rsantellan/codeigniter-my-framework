@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of jornadatemas
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class jornadatemas extends MY_Controller{
   

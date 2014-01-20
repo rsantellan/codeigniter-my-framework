@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of veterinario
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class veterinario extends MY_Model{
   

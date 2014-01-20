@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of presidentes
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class presidenteadmin extends MY_Controller{
   

@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of deportista
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class deportista extends MY_Model{
   

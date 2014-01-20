@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of contacto
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class contacto extends MY_Controller{
   

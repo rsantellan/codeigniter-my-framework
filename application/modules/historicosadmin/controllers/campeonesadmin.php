@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of campeons
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class campeonesadmin extends MY_Controller{
   

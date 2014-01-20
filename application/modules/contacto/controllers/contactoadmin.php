@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of contactoadmin
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class contactoadmin extends MY_Controller{
   function __construct()

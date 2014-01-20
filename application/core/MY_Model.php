@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of MY_Model
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan 
  */
 class MY_Model extends CI_Model{
   

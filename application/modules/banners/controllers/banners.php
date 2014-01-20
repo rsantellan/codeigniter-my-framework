@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of banners
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class banners extends MY_Controller{
   

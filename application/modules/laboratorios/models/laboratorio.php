@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of laboratorio
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class laboratorio extends MY_Model{
   

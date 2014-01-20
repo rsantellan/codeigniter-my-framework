@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of departamentos
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class departamentos extends MY_Controller{
   

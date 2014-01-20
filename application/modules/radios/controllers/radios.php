@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of radios
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class radios extends MY_Controller{
   

@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of club
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class club extends MY_Model{
   

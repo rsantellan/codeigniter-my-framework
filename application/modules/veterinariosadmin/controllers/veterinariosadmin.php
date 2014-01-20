@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of veterinariosadmin
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class veterinariosadmin extends MY_Controller{
   

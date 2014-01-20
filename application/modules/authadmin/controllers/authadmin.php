@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of authAdmin
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class Authadmin extends MY_Controller{
   

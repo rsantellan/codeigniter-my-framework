@@ -61,7 +61,7 @@
             <ul>
               <li class="<?php echo ($menu_id == 'radios')? "current": "";?>"><a href="<?php echo site_url('radios/index');?>">Radios</a></li>
               <li class="<?php echo ($menu_id == 'banners')? "current": "";?>"><a href="<?php echo site_url('banners/index');?>">Promotores</a></li>
-              <li class="<?php echo ($menu_id == 'intereses' )? "current": "";?>"><a href="<?php echo site_url('interesesadmin/index');?>">Intereses</a></li>
+              <li class="<?php echo ($menu_id == 'galerias' )? "current": "";?>"><a href="<?php echo site_url('galerias/index');?>">Galerias</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'campeonesadmin' || $menu_id == 'deportistaadmin' || $menu_id == 'presidenteadmin' )? "current": "";?>">
@@ -83,6 +83,7 @@
               <li class="<?php echo ($menu_id == 'clubes' )? "current": "";?>"><a href="<?php echo site_url('clubes/index');?>">Clubes</a></li>
               <li class="<?php echo ($menu_id == 'jornadas' )? "current": "";?>"><a href="<?php echo site_url('jornadas/index');?>">Jornadas</a></li>
               <li class="<?php echo ($menu_id == 'jornadatemas' )? "current": "";?>"><a href="<?php echo site_url('jornadatemas/index');?>">Temas de Jornadas</a></li>
+              <li class="<?php echo ($menu_id == 'noticias' )? "current": "";?>"><a href="<?php echo site_url('noticias/index');?>">Noticias</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">

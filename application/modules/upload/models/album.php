@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of album
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class album extends MY_Model{
   

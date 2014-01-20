@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of mail_db
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class mail_db extends MY_Model{
   

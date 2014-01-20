@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 /**
  * Description of clubes
  *
- * @author Rodrigo Santellan <rodrigo.santellan at inswitch.us>
+ * @author Rodrigo Santellan
  */
 class clubes extends MY_Controller{
   
