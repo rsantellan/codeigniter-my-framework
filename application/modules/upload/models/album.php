@@ -13,11 +13,15 @@ if (!defined('BASEPATH'))
  */
 class album extends MY_Model{
   
+  const IMAGEALBUM='images';
+  const MIXEDALBUM='mixed';  
+  const YOUTUBEALBUM='youtube';
 
   private $id;
   private $obj_id;
   private $obj_class;
   private $name;
+  private $type;
   
   function __construct()
   {
@@ -58,20 +62,28 @@ class album extends MY_Model{
     $this->name = $name;
   }
 
+  public function getType() {
+      return $this->type;
+  }
+
+  public function setType($type) {
+      $this->type = $type;
+  }
+
   public function deleteAllOf($objectId, $objectClass)
   {
     $albums = $this->retrieveAllObjectAlbums($objectId, $objectClass);
-    log_message("debug", "Deleting images of albums - id : ".$objectId. " class : ".$objectClass);
+    log_message("debug", "Deleting albumcontent of albums - id : ".$objectId. " class : ".$objectClass);
     foreach($albums as $album)
     {
-      log_message("debug", "Deleting images of albums - id : ".$album["id"]);
+      log_message("debug", "Deleting albumcontent of albums - id : ".$album["id"]);
       $ci = &get_instance();
-      $ci->load->model("upload/images");
-      $images = $ci->images->retrieveAlbumImages($album["id"]);
-      foreach($images as $image)
+      $ci->load->model("upload/albumcontent");
+      $albumcontent = $ci->albumcontent->retrieveAlbumImages($album["id"]);
+      foreach($albumcontent as $image)
       {
         log_message("debug", "Deleting image by id : ".$image->id);
-        $ci->images->deleteFile($image->id);
+        $ci->albumcontent->deleteFile($image->id);
       }
       $this->db->where('id', $album["id"]);
       $this->db->delete($this->getTablename());
@@ -111,6 +123,7 @@ class album extends MY_Model{
         $aux->setName($obj->name);
         $aux->setObjClass($obj->obj_class);
         $aux->setObjId($obj->obj_id);
+        $aux->setType($obj->atype);
         return $aux;
       }
       return $obj;
@@ -120,13 +133,14 @@ class album extends MY_Model{
     }
   }
     
-  public function createAlbum($objectId, $objectClass, $albumName = "default")
+  public function createAlbum($objectId, $objectClass, $albumName = "default", $type = self::IMAGEALBUM)
   {
     
     $data = array(
         'obj_id' => $objectId,
         'obj_class' => $objectClass,
         'name' => $albumName,
+        'atype' => $type,
     );
     $this->db->insert($this->getTablename(), $data);
     return $this->db->insert_id(); 
@@ -138,13 +152,13 @@ class album extends MY_Model{
     $album = $this->retrieveObjectAlbum($objectId, $objectClass, $albumName);
     
     $ci = &get_instance();
-    $ci->load->model("upload/images");
+    $ci->load->model("upload/albumcontent");
     
 	if(is_null($album) || count($album) == 0)
 	{
 	  return 0;
 	}
-    $quantity = $ci->images->retrieveQuantity($album->id);
+    $quantity = $ci->albumcontent->retrieveQuantity($album->id);
     
     if($quantity == 0)
     {
@@ -158,9 +172,9 @@ class album extends MY_Model{
     $album = $this->retrieveObjectAlbum($objectId, $objectClass, $albumName);
     
     $ci = &get_instance();
-    $ci->load->model("upload/images");
+    $ci->load->model("upload/albumcontent");
     
-    return $ci->images->retrieveAvatar($album->id);
+    return $ci->albumcontent->retrieveAvatar($album->id);
   }
   
   public function getObjectClass()

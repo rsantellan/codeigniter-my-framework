@@ -10,8 +10,14 @@ class Upload extends MY_Controller {
 
 	function index($album_id = '')
 	{
-		$data = array();
+		//var_dump($album_id);
+        $this->load->model('upload/album');
+        $album = $this->album->getById($album_id, false);
+        //var_dump($album);
+        //die;
+        $data = array();
 		$data['album_id'] = $album_id;
+		$data['album'] = $album;
         $ckeditor = $this->input->get('CKEditor');
         $ckeditorFuncNum = $this->input->get('CKEditorFuncNum');
         if(!$ckeditor)
@@ -25,7 +31,7 @@ class Upload extends MY_Controller {
         }
         $data['ckeditor'] = $ckeditor;
         $data['ckeditorFuncNum'] = $ckeditorFuncNum;
-            $this->load->view('upload_form', $data);
+        $this->load->view('upload_form', $data);
 	}
 
 	function test()
@@ -38,6 +44,34 @@ class Upload extends MY_Controller {
 		$this->load->view("admin/layout", $this->data);
 	}
 
+    function do_video_upload()
+    {
+        $album_id = $this->input->post('albumId', true);
+        $url = $this->input->post('url', true);
+        var_dump($album_id);
+        var_dump($url);
+        $this->load->model('albumcontent');
+        $obj = new $this->albumcontent;
+        $obj->setUrl($url);
+        $obj->youtubePopulateDataByUrl();
+        $obj->setAlbumId($album_id);
+        $obj->save();
+        echo $album_id;
+        sleep(1);
+		exit(0);
+        var_dump($obj);
+        die;
+        $obj->setPath($save_path.$file_name);
+        $obj->setName($file);
+        $obj->setType($type);
+        
+        
+        echo $_POST['album_id'];
+        
+        sleep(1);
+		exit(0);
+    }
+    
 	function do_upload()
 	{
 		// Check post_max_size (http://us3.php.net/manual/en/features.file-upload.php#73762)
@@ -167,11 +201,12 @@ class Upload extends MY_Controller {
       }
       else
       {
-        $this->load->model('images');
-        $obj = new $this->images;
+        $this->load->model('albumcontent');
+        $obj = new $this->albumcontent;
         $obj->setPath($save_path.$file_name);
         $obj->setName($file);
         $obj->setType($type);
+        $obj->setContenttype(albumcontent::ISIMAGE);
         $obj->setAlbumId($_POST['album_id']);
         $obj->save();
         echo $_POST['album_id'];
@@ -204,7 +239,7 @@ class Upload extends MY_Controller {
       $id = $parameters["id"];
       $classname = $parameters["classname"];
       $this->load->model('upload/album');
-      $this->load->model('upload/images');
+      $this->load->model('upload/albumcontent');
       $this->load->library('upload/mupload');
       $this->load->helper('upload/mimage');
 
@@ -215,7 +250,7 @@ class Upload extends MY_Controller {
         $aux = array();
         $aux["id"] = $album["id"];
         $aux["name"] = $album["name"];
-        $aux["images"] = $this->images->retrieveAlbumImages($album["id"]);
+        $aux["images"] = $this->albumcontent->retrieveAlbumImages($album["id"]);
         
         $aux['completo'] = $this->load->view('upload/single_album', $aux, true);
         $salida[] = $aux;
@@ -228,14 +263,14 @@ class Upload extends MY_Controller {
     public function viewAlbum($albumId)
     {
       $this->load->model('upload/album');
-      $this->load->model('upload/images');
+      $this->load->model('upload/albumcontent');
       $this->load->library('upload/mupload');
       $this->load->helper('upload/mimage');
       $album = $this->album->getById($albumId);
       $aux = array();
       $aux['id'] = $album->getId();
       $aux['name'] = $album->getName();
-      $aux["images"] = $this->images->retrieveAlbumImages($album->getId());
+      $aux["images"] = $this->albumcontent->retrieveAlbumImages($album->getId());
       $contenido = $this->load->view('upload/single_album', $aux, true);
       $salida = array();
       $salida['response'] = "OK";
@@ -247,8 +282,8 @@ class Upload extends MY_Controller {
     
     public function editFile($fileId)
     {
-      $this->load->model('upload/images');
-      $file = $this->images->getFile($fileId);
+      $this->load->model('upload/albumcontent');
+      $file = $this->albumcontent->getFile($fileId);
       
       $data['file'] = $file[0];
       //var_dump($file[0]);
@@ -259,8 +294,8 @@ class Upload extends MY_Controller {
     
     public function deleteFile($fileId)
     {
-      $this->load->model('upload/images');
-      $this->images->deleteFile($fileId);
+      $this->load->model('upload/albumcontent');
+      $this->albumcontent->deleteFile($fileId);
       $salida['response'] = "OK";
       $this->output
        ->set_content_type('application/json')
@@ -269,8 +304,8 @@ class Upload extends MY_Controller {
     
     public function downloadFile($fileId)
     {
-      $this->load->model('upload/images');
-      $file = $this->images->getFile($fileId);
+      $this->load->model('upload/albumcontent');
+      $file = $this->albumcontent->getFile($fileId);
       $aux = $file[0];
       $this->load->helper('download');
       $data = file_get_contents($aux->path); // Read the file's contents
@@ -280,11 +315,11 @@ class Upload extends MY_Controller {
     
     function sort($albumId){
       //$this->output->enable_profiler(TRUE);
-      $this->load->model('upload/images');
+      $this->load->model('upload/albumcontent');
       $this->load->library('upload/mupload');
       $this->load->helper('upload/mimage');
       
-      $this->data['files_list'] = $this->images->retrieveAlbumImages($albumId);
+      $this->data['files_list'] = $this->albumcontent->retrieveAlbumImages($albumId);
       $this->data['album_id'] = $albumId;
       $this->load->view('upload/sortable', $this->data);
     }
@@ -300,13 +335,13 @@ class Upload extends MY_Controller {
       */
       $lista = $this->input->post('listItem');
       $album_id = $this->input->post('listItem');
-      $this->load->model('upload/images');
+      $this->load->model('upload/albumcontent');
       
       $cantidad = count($lista) - 1;
       while($cantidad >= 0)
       {
         //echo $lista[$cantidad] . " - ".$cantidad;
-        $this->images->updateOrder($lista[$cantidad], $cantidad);
+        $this->albumcontent->updateOrder($lista[$cantidad], $cantidad);
         $cantidad --;
       }
       $salida = array();

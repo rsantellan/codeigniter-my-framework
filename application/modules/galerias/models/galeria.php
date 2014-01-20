@@ -115,7 +115,7 @@ class galeria extends MY_Model{
     {
       $ci =& get_instance();
       $ci->load->model('upload/album');
-      $ci->album->createAlbum($id, $this->getObjectClass()); 
+      $ci->album->createAlbum($id, $this->getObjectClass(), "default", album::MIXEDALBUM); 
     }
     return $id;
   }

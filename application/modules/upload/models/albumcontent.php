@@ -23,6 +23,7 @@ class albumcontent extends MY_Model{
     private $code;
     private $description;
     private $extradata;
+    private $_metadata = NULL; 
     
     const ISIMAGE = 'content-image';
     const ISYOUTUBE = 'content-youtube';
@@ -71,6 +72,14 @@ class albumcontent extends MY_Model{
 
     public function setAlbum_id($album_id) {
         $this->album_id = $album_id;
+    }
+    
+    public function setAlbumId($album_id) {
+        $this->album_id = $album_id;
+    }
+    
+    public function getAlbumId() {
+        return $this->album_id;
     }
 
     public function getContenttype() {
@@ -237,4 +246,70 @@ class albumcontent extends MY_Model{
     $this->db->where('id', $file_id);
     $this->db->update($this->getTablename(), $data);
   }
+  
+  
+  /***
+   * 
+   * Youtube functions
+   * 
+   ***/
+  
+  public function youtubePopulateDataByUrl()
+  {
+      $this->setCode($this->retrieveYoutubeId());
+      $this->retrieveYoutubeMetaData();
+      $this->setName($this->_metadata->title);
+      $this->setDescription($this->_metadata->content);
+      $this->setExtradata($this->_metadata->author);
+      $this->setPath($this->youtubeGetImageUrl());
+      $this->setContenttype(albumcontent::ISYOUTUBE);
+      $this->setType("youtube");
+      
+      
+  }
+  
+  public function youtubeGetImageUrl()
+  {
+    return "http://img.youtube.com/vi/".$this->getCode()."/2.jpg";
+  }
+  
+  public function retrieveYoutubeId()
+  {
+    $video_id = null;
+    if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $this->getUrl(), $match)) {
+        $video_id = $match[1];
+    }
+    return $video_id;
+  }
+  
+  public function retrieveYoutubeMetaData()
+  {
+    if(is_null($this->_metadata))
+    {
+      //
+      $url = "http://gdata.youtube.com/feeds/api/videos/".$this->getCode();
+      $xml = simplexml_load_file($url);
+      $children = $xml->children("http://www.w3.org/2005/Atom");
+      //var_dump($children);
+      $stdObject = new stdClass();
+      $stdObject->title = (string)$children->title;
+      $stdObject->published = (string)$children->published;
+      $stdObject->content = (string)$children->content;
+      $stdObject->author = (string)$children->author->name;
+      $this->_metadata = $stdObject;
+      //
+    }
+    return $this->_metadata;
+  }
+  
+  public function youtubeRetrieveEmbeddedCode($options = array())
+  {
+        $width = 480;
+        $height = 390;
+        if(isset($options['width'])) $width = $options['width'];
+        if(isset($options['height'])) $height = $options['height'];
+        $code = '<iframe title="YouTube video player" width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$this->getCode().'" frameborder="0" allowfullscreen></iframe>';
+        return $code;
+  }
+  
 }

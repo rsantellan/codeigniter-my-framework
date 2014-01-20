@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+ALTER TABLE `albums` ADD `atype` VARCHAR( 64 ) NOT NULL DEFAULT 'images';
 -- --------------------------------------------------------
 
 --

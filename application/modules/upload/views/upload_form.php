@@ -7,6 +7,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/swfupload.queue.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/fileprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/handlers.js"></script>
+<script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery-1.7.1.min.js";?>"></script>
 <script type="text/javascript">
 		var swfu;
 
@@ -58,6 +59,26 @@
 </head>
 <body>
 <div id="content">
+    
+    <?php //var_dump($album);?>
+    
+    <?php
+        if($album->atype == "mixed" || $album->atype == "youtube"):
+    ?>
+    
+    <form action="<?php echo site_url("upload/do_video_upload"); ?>" method="POST">
+        <label for="url">Ingrese la url de youtube</label>
+        <input type="input" value="" name="url" />
+        
+        <input type="hidden" value="<?php echo $album_id; ?>" name="albumId" />
+        
+        <input type="submit" value="enviar" />
+        
+    </form>
+    <?php
+        endif;
+    ?>
+    
 	<h2>Subir archivos</h2>
 	<?php echo form_open_multipart('upload/do_upload');?>
 			<div class="fieldset flash" id="fsUploadProgress">
