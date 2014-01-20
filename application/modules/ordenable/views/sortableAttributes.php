@@ -59,13 +59,18 @@
                     if(json.response == "OK")
                     {
                         adminManager.getInstance().destroySortable('sortable');
-                        var li_data = '<li id="listItem_#id" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>name</li>';
-                        console.log(json.list);
-                        
+                        $("#sortable").empty();
+                        for(var k in json.list)
+                        {
+                            var jsonObject = json.list[k];
+                            var li_data = '<li id="listItem_'+jsonObject.id+'" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>'+jsonObject.name+'</li>';
+                            $("#sortable").append(li_data);
+                            adminManager.getInstance().startSortable('sortable', '<?php echo site_url("ordenable/applySort");?>', 'module=<?php echo $sort_module;?>', 'model=<?php echo $sort_model;?>');
+                        }
                     }
                     else 
                     {
-
+                        alert('Un error ocurrio en el servidor intente mas tarde.');
                     }
                   }, 
                   complete: function()

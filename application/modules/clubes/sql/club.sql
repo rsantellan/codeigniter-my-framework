@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS `club` (
 
 ALTER TABLE `club` ADD INDEX ( `departmentid` );
 
-ALTER TABLE `club` ADD FOREIGN KEY ( `departmentid` ) REFERENCES `feu`.`departamento` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+ALTER TABLE `club` ADD FOREIGN KEY ( `departmentid` ) REFERENCES `departamento` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 

@@ -72,7 +72,7 @@
               <li class="<?php echo ($menu_id == 'presidenteadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/presidenteadmin/index');?>">Presidentes</a></li>
             </ul>
           </li>
-          <li class="<?php echo ($menu_id == 'documents' || $menu_id == 'veterinariosadmin' || $menu_id == 'laboratorios' )? "current": "";?>">
+          <li class="<?php echo ($menu_id == 'documents' || $menu_id == 'veterinariosadmin' || $menu_id == 'jornadas' )? "current": "";?>">
             <a href="javascript:void(0)">Documentos</a>
             <ul>
               <li class="<?php echo ($menu_id == 'documents' )? "current": "";?>"><a href="<?php echo site_url('documents/index');?>">Documentos</a></li>
@@ -81,6 +81,8 @@
               <li class="<?php echo ($menu_id == 'laboratorios' )? "current": "";?>"><a href="<?php echo site_url('laboratorios/index');?>">Laboratorios</a></li>
               <li class="<?php echo ($menu_id == 'departamentos' )? "current": "";?>"><a href="<?php echo site_url('departamentos/index');?>">Departamentos</a></li>
               <li class="<?php echo ($menu_id == 'clubes' )? "current": "";?>"><a href="<?php echo site_url('clubes/index');?>">Clubes</a></li>
+              <li class="<?php echo ($menu_id == 'jornadas' )? "current": "";?>"><a href="<?php echo site_url('jornadas/index');?>">Jornadas</a></li>
+              <li class="<?php echo ($menu_id == 'jornadatemas' )? "current": "";?>"><a href="<?php echo site_url('jornadatemas/index');?>">Temas de Jornadas</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
