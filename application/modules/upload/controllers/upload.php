@@ -8,8 +8,51 @@ class Upload extends MY_Controller {
 		$this->load->helper(array('form', 'url'));
 	}
 
+    function changepaths()
+    {
+        die('not allowed here');
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
+        $new_path = "/soy/un/test/de/lo/que/deberia/ser";
+        $old_path = "/home/rodrigo/proyectos/ci/my-framework-prototype/branches/feu";
+        $this->load->model('albumcontent');
+        $contents = $this->albumcontent->retrieveAll();
+        foreach($contents as $content)
+        {
+            
+            echo $content->path;
+            echo '<hr/>';
+            if (filter_var($content->path, FILTER_VALIDATE_URL) === false)
+            {
+                echo 'cambiando';
+                echo '<hr/>';
+                $changed_path = str_replace($old_path, $new_path, $content->path);
+                echo $changed_path;
+                echo '<hr/>';
+                $this->albumcontent->changePathOfId($changed_path, $content->id);
+            }
+            else
+            {
+                echo 'no cambia';
+                echo '<hr/>';
+            }
+        }
+        die('aca');
+    }
+    
+        
 	function index($album_id = '')
 	{
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
 		//var_dump($album_id);
         $this->load->model('upload/album');
         $album = $this->album->getById($album_id, false);
@@ -36,6 +79,12 @@ class Upload extends MY_Controller {
 
 	function test()
 	{
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
 		$this->data['content'] = "upload/test";
 
 		$this->addJquery();
@@ -46,6 +95,12 @@ class Upload extends MY_Controller {
 
     function do_video_upload()
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
         $album_id = $this->input->post('albumId', true);
         $url = $this->input->post('url', true);
         //var_dump($album_id);
@@ -253,6 +308,12 @@ class Upload extends MY_Controller {
 	
     public function view($parameters)
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       //$this->output->enable_profiler(TRUE);
       $id = $parameters["id"];
       $classname = $parameters["classname"];
@@ -280,6 +341,12 @@ class Upload extends MY_Controller {
     
     public function viewAlbum($albumId)
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       $this->load->model('upload/album');
       $this->load->model('upload/albumcontent');
       $this->load->library('upload/mupload');
@@ -300,6 +367,12 @@ class Upload extends MY_Controller {
     
     public function editFile($fileId)
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       $this->load->model('upload/albumcontent');
       $file = $this->albumcontent->getFile($fileId, true);
       
@@ -312,6 +385,12 @@ class Upload extends MY_Controller {
     
     public function deleteFile($fileId)
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       $this->load->model('upload/albumcontent');
       $this->albumcontent->deleteFile($fileId);
       $salida['response'] = "OK";
@@ -322,6 +401,12 @@ class Upload extends MY_Controller {
     
     public function downloadFile($fileId)
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       $this->load->model('upload/albumcontent');
       $file = $this->albumcontent->getFile($fileId);
       $aux = $file[0];
@@ -332,6 +417,12 @@ class Upload extends MY_Controller {
     }
     
     function sort($albumId){
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       //$this->output->enable_profiler(TRUE);
       $this->load->model('upload/albumcontent');
       $this->load->library('upload/mupload');
@@ -344,6 +435,12 @@ class Upload extends MY_Controller {
     
     function applySort()
     {
+        if(!$this->isLogged())
+        {
+          //Si no esta logeado se tiene que ir a loguear
+          $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+          redirect('auth/login'); 
+        }
       /*
       $salida = array();
       $salida['response'] = "OK";
