@@ -48,16 +48,34 @@ class Upload extends MY_Controller {
     {
         $album_id = $this->input->post('albumId', true);
         $url = $this->input->post('url', true);
-        var_dump($album_id);
-        var_dump($url);
+        //var_dump($album_id);
+        //var_dump($url);
         $this->load->model('albumcontent');
         $obj = new $this->albumcontent;
         $obj->setUrl($url);
-        $obj->youtubePopulateDataByUrl();
-        $obj->setAlbumId($album_id);
-        $obj->save();
-        echo $album_id;
+        //var_dump($obj->retrieveYoutubeId());
+        $salida = array();
+        $salida['response'] = "OK";
+        if($obj->retrieveYoutubeId() == null)
+        {
+            $salida['response'] = "ERROR";
+            $salida['message'] = "No es una url de youtube valida";
+            //throw new Exception("error");
+        }
+        else
+        {
+            $obj->youtubePopulateDataByUrl();
+            $obj->setAlbumId($album_id);
+            $obj->save();
+            $salida['message'] = "Video guardado";
+            $salida['albumId'] = $album_id;
+        }
+        //echo $album_id;
         sleep(1);
+        
+        //$salida['content'] = array('album' => $contenido);
+        echo json_encode($salida);
+        die;
 		exit(0);
         var_dump($obj);
         die;

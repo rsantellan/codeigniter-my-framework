@@ -54,7 +54,7 @@
 	  <div class="menu_container">
         <ul id="superfish-menu" class="sf-menu">
           <li class="<?php echo ($menu_id == 'dashboard')? "current": "";?>"><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
-          <li class="<?php echo ($menu_id == 'fsadfx')? "current": "";?>"><a href="<?php echo site_url('language/index');?>">Textos</a></li>
+          
 
           <li class="<?php echo ($menu_id == 'radios' || $menu_id == 'banners' || $menu_id == 'intereses' )? "current": "";?>">
             <a href="javascript:void(0)">Radio y Promotores</a>
@@ -90,7 +90,8 @@
             <a href="javascript:void(0)">Configuraciones</a>
             <ul>
               <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>"><a href="<?php echo site_url('contacto/contactoadmin');?>">Contacto</a></li>
-              <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>
+              <li class="<?php echo ($menu_id == 'fsadfx')? "current": "";?>"><a href="<?php echo site_url('language/index');?>">Textos</a></li>
+<!--              <li><a href="<?php echo site_url('admin/backup');?>" onclick="return confirm('Esta seguro de querer generar el respaldo?')">Generar Respaldo</a></li>-->
             </ul>
           </li>
           <li>

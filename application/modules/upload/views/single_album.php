@@ -8,7 +8,7 @@
   <?php $firstImage = true; ?>  
   <?php foreach($images as $image): ?>
     
-    <li id="file_container_<?php echo $image->id;?>" class="img_thumb_li">
+    <li id="file_container_<?php echo $image->id;?>" class="img_thumb_li <?php if($firstImage) echo 'avatar_li';?>">
       <div class="img_thumb_container <?php if($firstImage) echo 'avatar';?>">
         <div class="img_edit">
           <a href="<?php echo site_url('upload/editFile/'.$image->id);?>" class="fancy_link">
@@ -27,17 +27,14 @@
             
         </div>
           <?php
-          
           ?>
           <?php if( in_array($image->type, array('pdf', 'doc', 'docx', 'xls', 'ppt', 'xlsx', 'pptx'))):
-          
           ?>
           <br/>
           <label style="font-size: 10px"><?php echo $image->name;?></label>
           <?php
           endif;
           ?>
-          
       </div>
     </li>
     <?php $firstImage = false; ?>  

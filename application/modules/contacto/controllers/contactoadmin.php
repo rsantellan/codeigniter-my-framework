@@ -59,7 +59,7 @@ class contactoadmin extends MY_Controller{
       
       $this->addJquery();
       $this->addFancyBox();
-      $this->addModuleJavascript("registros", "list.js");
+      $this->addModuleJavascript("admin", "admin-basic-list.js");
       $this->load->view("admin/layout", $this->data);
     }
     

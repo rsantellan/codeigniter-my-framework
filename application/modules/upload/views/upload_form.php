@@ -55,6 +55,48 @@
 
 			swfu = new SWFUpload(settings);
 		 };
+         
+         function sendYoutubeUrl(form)
+         {
+            //parent.$.fancybox.showActivity();
+            $.ajax({
+                url: $(form).attr('action'),
+                data: $(form).serialize(),
+                type: 'post',
+                dataType: 'json',
+                success: function(json){
+                    if(json.response == "OK")
+                    {
+                      if(typeof window.refreshAlbum == 'function') 
+                      {
+                        console.info('refresh album of the window');
+                        refreshAlbum(json.albumId);
+                      }
+                      else
+                      {
+                        if(typeof parent.refreshAlbum == 'function')
+                        {
+                          console.info('refresh album of the parent window');
+                          parent.refreshAlbum(json.albumId);
+                        }
+                      }
+                    }
+                    else
+                    {
+                        $("#youtubeformerrorcontainer").html(json.message);
+                    }
+
+                }
+                , 
+                complete: function()
+                {
+                  //$.fancybox.hideActivity();
+                  //$.fancybox.resize();
+                }
+            });
+            return false;    
+          }
+         
 	</script>
 </head>
 <body>
@@ -62,35 +104,40 @@
     
     <?php //var_dump($album);?>
     
+    <div id="youtubeformcontainer">
     <?php
         if($album->atype == "mixed" || $album->atype == "youtube"):
     ?>
-    
-    <form action="<?php echo site_url("upload/do_video_upload"); ?>" method="POST">
+     
+    <form action="<?php echo site_url("upload/do_video_upload"); ?>" method="POST" onsubmit="return sendYoutubeUrl(this)">
         <label for="url">Ingrese la url de youtube</label>
         <input type="input" value="" name="url" />
         
         <input type="hidden" value="<?php echo $album_id; ?>" name="albumId" />
         
         <input type="submit" value="enviar" />
-        
     </form>
+        <div id="youtubeformerrorcontainer">
+            
+        </div>
     <?php
         endif;
     ?>
-    
-	<h2>Subir archivos</h2>
-	<?php echo form_open_multipart('upload/do_upload');?>
-			<div class="fieldset flash" id="fsUploadProgress">
-			<span class="legend">Cola de archivos</span>
-			</div>
-		<div id="divStatus">0 Archivos subidos</div>
-			<div>
-				<span id="spanButtonPlaceHolder"></span>
-				<input id="btnCancel" type="button" value="Cancelar" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
-			</div>
+    </div>
+    <div id="fileuploadcontainer">
+        <h2>Subir archivos</h2>
+        <?php echo form_open_multipart('upload/do_upload');?>
+                <div class="fieldset flash" id="fsUploadProgress">
+                <span class="legend">Cola de archivos</span>
+                </div>
+            <div id="divStatus">0 Archivos subidos</div>
+                <div>
+                    <span id="spanButtonPlaceHolder"></span>
+                    <input id="btnCancel" type="button" value="Cancelar" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
+                </div>
 
-	</form>
+        </form>
+    </div>
 </div>
 </body>
 </html>
