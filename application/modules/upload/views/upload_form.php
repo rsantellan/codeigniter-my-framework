@@ -80,6 +80,7 @@
                           parent.refreshAlbum(json.albumId);
                         }
                       }
+                      $("#youtubeformerrorcontainer").html(json.message);
                     }
                     else
                     {
@@ -104,27 +105,38 @@
     
     <?php //var_dump($album);?>
     
-    <div id="youtubeformcontainer">
+    
     <?php
         if($album->atype == "mixed" || $album->atype == "youtube"):
     ?>
-     
-    <form action="<?php echo site_url("upload/do_video_upload"); ?>" method="POST" onsubmit="return sendYoutubeUrl(this)">
-        <label for="url">Ingrese la url de youtube</label>
-        <input type="input" value="" name="url" />
-        
-        <input type="hidden" value="<?php echo $album_id; ?>" name="albumId" />
-        
-        <input type="submit" value="enviar" />
-    </form>
+    <h2><a href="javascript:void(0)" onclick="$('#youtubeformcontainer').toggle();">Subir video Youtube</a></h2>
+    <div id="youtubeformcontainer" style="display:none;">
+        <form action="<?php echo site_url("upload/do_video_upload"); ?>" method="POST" onsubmit="return sendYoutubeUrl(this)">
+            <label for="url">Ingrese la url de youtube</label>
+            <input type="input" value="" name="url" />
+
+            <input type="hidden" value="<?php echo $album_id; ?>" name="albumId" />
+
+            <input type="submit" value="enviar" />
+        </form>
         <div id="youtubeformerrorcontainer">
             
         </div>
+    </div>
     <?php
         endif;
     ?>
-    </div>
-    <div id="fileuploadcontainer">
+    
+    <?php
+        $style = "";
+        if($album->atype == "mixed" || $album->atype == "youtube"):
+        $style = "display:none";
+    ?>
+        <h2><a href="javascript:void(0)" onclick="$('#fileuploadcontainer').toggle();">Subir archivos</a></h2>
+    <?php
+        endif;
+    ?>
+    <div id="fileuploadcontainer" style="<?php echo $style;?>">
         <h2>Subir archivos</h2>
         <?php echo form_open_multipart('upload/do_upload');?>
                 <div class="fieldset flash" id="fsUploadProgress">

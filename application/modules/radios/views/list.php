@@ -28,7 +28,7 @@
           <?php if(!is_null($radio->avatar)): ?>
             <img alt="<?php echo $radio->name;?>" src="<?php echo thumbnail_image(base_url(), $radio->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
             <?php else: ?>
-            <img src="<?php echo base_url();?>assets/images/default_servicios.jpg" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
+            <img src="<?php echo base_url();?>assets/images/noimage.png" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
         <?php endif; ?>
       </td>
       <td>
