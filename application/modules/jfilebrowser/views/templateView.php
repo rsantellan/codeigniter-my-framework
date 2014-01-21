@@ -27,7 +27,7 @@ switch($archivo['extension']){
 
 //tipos de archivos
 $tipo_arch = ($mime_t == 'imagen') ? 1 : 2;
-$path = base_url().thumbnail_image($archivo['original'] , 350, 250, 3);
+$path = thumbnail_image(base_url(), $archivo['original'] , 350, 250, 3);
 ?>
 
 <div class="archiv_indiv_dv">

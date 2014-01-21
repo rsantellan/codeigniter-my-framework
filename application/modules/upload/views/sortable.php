@@ -36,7 +36,7 @@
       
       <?php foreach($files_list as $file): ?>
         <li id="listItem_<?php echo $file->id;?>">
-          <img src="<?php echo base_url().thumbnail_image($file->path , 75, 75); ?>" />
+          <img src="<?php echo thumbnail_image(base_url(), $file->path , 75, 75); ?>" width="75" height="75"/>
 <!--          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>-->
           <?php //echo $file->nombre;?>
         </li>

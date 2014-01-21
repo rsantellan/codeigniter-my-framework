@@ -213,12 +213,45 @@ class albumcontent extends MY_Model{
     }
   }
   
-  public function getFile($id)
+  public function getFile($id, $object = false)
   {
     $this->db->where('id', $id);
     $this->db->limit(1);
     $query = $this->db->get($this->getTablename());
-    return $query->result_object();
+    $obj = $query->first_row();
+    if(!$object)
+    {
+        return $obj;
+    }
+    else
+    {
+        $aux = new albumcontent();
+        $aux->setId($obj->id);
+        $aux->setName($obj->name);
+        $aux->setPath($obj->path);
+        $aux->setAlbumId($obj->album_id);
+        $aux->setType($obj->type);
+        $aux->setContenttype($obj->contenttype);
+        $aux->setUrl($obj->url);
+        $aux->setCode($obj->code);
+        $aux->setDescription($obj->description);
+        $aux->setExtradata($obj->extradata);
+        
+/*        
+ object(stdClass)#21 (11) { 
+ * ["id"]=> string(2) "15" 
+ * ["path"]=> string(43) "http://img.youtube.com/vi/0e441O5MpA0/2.jpg" 
+ * ["name"]=> string(56) "Episodes Season 3: Tease - Episodes...Everybody Has Them" 
+ * ["type"]=> string(7) "youtube" 
+ * ["contenttype"]=> string(15) "content-youtube" 
+ * ["url"]=> string(59) "http://www.youtube.com/watch?v=0e441O5MpA0&feature=youtu.be" 
+ * ["code"]=> string(11) "0e441O5MpA0" 
+ * ["description"]=> string(95) "Matt LeBlanc is back. Don't miss season 3 of Episodes premiering January 12th at 10:30PM ET/PT." 
+ * ["extradata"]=> string(8) "Showtime" ["album_id"]=> string(2) "23" ["ordinal"]=> string(1) "3" }  
+ 
+ */      
+        return $aux;
+    }
   }
   
   public function deleteFile($id)

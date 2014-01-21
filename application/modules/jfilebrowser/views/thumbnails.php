@@ -30,7 +30,7 @@
 
         <li>
             <?php if($mime_t == 'imagen') {?>
-            <a href="javascript:void(0)" onclick="view('<?php echo $directorio; ?>', '<?php echo $archivo['original_name']; ?>'); return false;" title="<?php echo $archivo['original_name']; ?>"><img src="<?php echo base_url().thumbnail_image($archivo['original'] , 75, 75, 3);?>" width="75" height="75" alt="" /></a>
+            <a href="javascript:void(0)" onclick="view('<?php echo $directorio; ?>', '<?php echo $archivo['original_name']; ?>'); return false;" title="<?php echo $archivo['original_name']; ?>"><img src="<?php echo thumbnail_image(base_url(), $archivo['original'] , 75, 75, 3);?>" width="75" height="75" alt="" /></a>
             <?php } else {?>
                 <div class="archivos_list_dv">
                    <a href="javascript:void(0)" onclick="alert('TO DO'); return false;" title="<?php echo $archivo->getName() ?>"><img src="img/<?php echo $mime_t ?>.png" alt=""  width="75" height="75" /></a>

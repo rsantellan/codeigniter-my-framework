@@ -54,8 +54,12 @@ function refreshAlbum(albumId)
       if(obj.response == "OK")
       {
         $('#album_' + albumId).replaceWith(obj.content.album);
-        hoversImages();
-        startUploadFancyLinks(albumId);
+        setTimeout(function(){
+            //alert("Hello");
+            hoversImages();
+            startUploadFancyLinks(albumId);
+        },3000);
+        
       }
     }        
   }); 
@@ -64,7 +68,7 @@ function refreshAlbum(albumId)
 function startUploadFancyLinks()
 {
   //var album_id = null;
-
+  $(".fancy_link_upload").unbind('click.fb-start');
   $(".fancy_link_upload").fancybox({
     onClosed: function(){
       if ( $.browser.msie ) {

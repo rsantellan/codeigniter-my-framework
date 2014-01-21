@@ -283,10 +283,10 @@ class Upload extends MY_Controller {
     public function editFile($fileId)
     {
       $this->load->model('upload/albumcontent');
-      $file = $this->albumcontent->getFile($fileId);
+      $file = $this->albumcontent->getFile($fileId, true);
       
-      $data['file'] = $file[0];
-      //var_dump($file[0]);
+      $data['file'] = $file;//[0];
+      //var_dump($file);
       $this->load->library('upload/mupload');
       $this->load->helper('upload/mimage');
       $this->load->view("upload/file_detail", $data);

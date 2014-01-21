@@ -69,7 +69,7 @@ class mupload {
       return $cachePath;
     }
     
-    public function returnWebCacheImage($path, $width, $height, $type = 1)
+    public function returnWebCacheImage($basepath, $path, $width, $height, $type = 1)
     {
       log_message("debug", filter_var($path, FILTER_VALIDATE_URL));
         //var_dump(filter_var($path, FILTER_VALIDATE_URL));
@@ -81,7 +81,7 @@ class mupload {
       $cachePath = $this->returnCacheImage($path, $width, $height, $type);
       $mPath = str_replace(FCPATH, "", $cachePath);
       log_message("debug", $mPath);
-      return $mPath;
+      return $basepath.$mPath;
       
     }
     public function returnImageCachePath($path, $width, $height, $type = 1)

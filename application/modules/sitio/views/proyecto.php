@@ -32,8 +32,8 @@
             ?>
             <?php foreach($images as $image): ?>
               <li class="<?php echo ($counter % 2 == 0)? "obras_center" : ""; ?>">
-                <a class="fancy_image_list" href="<?php echo base_url().thumbnail_image($image->path , $width, $height, 1); ?>" title="<?php echo $proyecto->nombre;?>" rel="detalles">
-                  <img src="<?php echo base_url().thumbnail_image($image->path , $width_listado, $height_listado, 3); ?>" />
+                <a class="fancy_image_list" href="<?php echo thumbnail_image(base_url(), $image->path , $width, $height, 1); ?>" title="<?php echo $proyecto->nombre;?>" rel="detalles">
+                  <img src="<?php echo thumbnail_image(base_url(), $image->path , $width_listado, $height_listado, 3); ?>" />
                 </a>
               </li>
             <?php 

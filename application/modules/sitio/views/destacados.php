@@ -7,7 +7,7 @@
 <?php $url_help = $proyecto->id."/".url_title($proyecto->nombre, '-', TRUE).".html";?>
 <div class="bloque <?php echo ($counter % 2 == 0)? "bloque_center" : ""; ?>">
     <?php if(!is_null($proyecto->avatar)): ?>
-      <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo base_url().thumbnail_image($proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_destacado" />
+      <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo thumbnail_image(base_url(), $proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_destacado" />
     <?php else: ?>
       <img src="<?php echo base_url();?>assets/images/default.jpg" class="img_destacado" />
     <?php endif; ?>

@@ -29,7 +29,7 @@
           <div class="bloque <?php echo ($counter % 2 == 0)? "bloque_center" : ""; ?>">
             <a href="<?php echo site_url('proyecto/'.$url_help); ?>">
               <?php if(!is_null($proyecto->avatar)): ?>
-                <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo base_url().thumbnail_image($proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_servicios" />
+                <img alt="<?php echo $proyecto->nombre;?>" src="<?php echo thumbnail_image(base_url(), $proyecto->avatar->getPath() , $width, $height, 3); ?>" class="img_servicios" />
               <?php else: ?>
                 <img src="<?php echo base_url();?>assets/images/default_servicios.jpg" class="img_servicios" />
               <?php endif; ?>
