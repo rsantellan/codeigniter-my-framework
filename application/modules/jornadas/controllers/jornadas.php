@@ -37,7 +37,7 @@ class jornadas extends MY_Controller{
       $this->load->helper('htmlpurifier');
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
       $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
@@ -59,7 +59,7 @@ class jornadas extends MY_Controller{
     function edit($id)
     {
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");

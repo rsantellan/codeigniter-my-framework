@@ -46,7 +46,7 @@ class jornadatemas extends MY_Controller{
       $this->data['nombreJornada'] = $nombreJornada;
       $this->data['jornadas_list'] = $this->jornada->retrieveAllForSelect();
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
       $this->addModuleStyleSheet('datatable', 'data_table_admin.css');      
@@ -71,7 +71,7 @@ class jornadatemas extends MY_Controller{
     function edit($id)
     {
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->addModuleStyleSheet("upload", "albums.css");

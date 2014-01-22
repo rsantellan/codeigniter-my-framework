@@ -49,7 +49,7 @@
     <script type="text/javascript">
            function retrieveData(form)
            {
-               parent.$.fancybox.showActivity();
+               parent.$('#cboxLoadingGraphic').show();
                $.ajax({
                   url: $(form).attr('action'),
                   data: $(form).serialize(),
@@ -75,8 +75,9 @@
                   }, 
                   complete: function()
                   {
-                      parent.$.fancybox.hideActivity();
-                      parent.$.fancybox.resize();
+                      parent.$('#cboxLoadingGraphic').hide();
+                      parent.$.colorbox.resize();
+                      
                   }
                 });
 

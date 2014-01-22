@@ -1,6 +1,6 @@
 <div id="album_<?php echo $id;?>" class="single_album_container">
   <h6>Album: <?php echo $name;?> | <span class="agregar_span">Agregar archivos</span>
-    <a class="fancy_link_upload iframe" href="<?php echo site_url('upload/index/'.$id);?>">
+    <a class="colorbox_link_upload iframe" href="<?php echo site_url('upload/index/'.$id);?>">
       <img src="<?php echo base_url().'assets/upload/images/add.png'?>" />
     </a>
   </h6>
@@ -11,7 +11,7 @@
     <li id="file_container_<?php echo $image->id;?>" class="img_thumb_li <?php if($firstImage) echo 'avatar_li';?>">
       <div class="img_thumb_container <?php if($firstImage) echo 'avatar';?>">
         <div class="img_edit">
-          <a href="<?php echo site_url('upload/editFile/'.$image->id);?>" class="fancy_link">
+          <a href="<?php echo site_url('upload/editFile/'.$image->id);?>" class="colorbox_link">
             Editar <?php //echo $image->name;?>
           </a>
         </div>
@@ -42,7 +42,7 @@
   </ul>
   <div class="clear"></div>
   <div>
-    <a class="fancy_link iframe" href="<?php echo site_url("upload/sort/".$id);?>">
+    <a class="colorbox_link_iframe" href="<?php echo site_url("upload/sort/".$id);?>">
       Ordenar
     </a>
   </div>

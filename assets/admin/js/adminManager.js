@@ -42,7 +42,16 @@ adminManager.prototype = {
     
     startFancyInPage: function(fancy_class)
     {
-      $("."+fancy_class).fancybox({});
+      $("."+fancy_class).colorbox({});
+    },
+    
+    startFancyIframeInPage: function(fancy_class)
+    {
+      $("."+fancy_class).colorbox({
+          'iframe' : true,
+          'width' : '60%',
+          'height' : '80%'
+      });
     },
     
     destroySortable: function(sortable_id)
@@ -61,7 +70,7 @@ adminManager.prototype = {
         axis: 'y', 
         update : function () { 
           var order = $('#'+sortable_id).sortable('serialize'); 
-          parent.$.fancybox.showActivity();
+          parent.$('#cboxLoadingGraphic').show();
           for (var i=2; i < usingArguments.length; i++) {
             order = order + "&" + usingArguments[i];
           }
@@ -72,8 +81,8 @@ adminManager.prototype = {
             dataType: 'json',
             complete: function()
             {
-                parent.$.fancybox.hideActivity();
-                parent.$.fancybox.resize();
+                parent.$('#cboxLoadingGraphic').hide();
+                //parent.$.colorbox.resize();
             }        
           });
 
@@ -116,9 +125,10 @@ adminManager.prototype = {
 }
 
 /**
- * Esta funcion es la mas basica de los fancy. Hace que todo lo que se .fancy_link se inizialice
+ * Esta funcion es la mas basica de los fancy. Hace que todo lo que se .colorbox_link se inizialice
  */
 function startFancyLinks()
 {
-  adminManager.getInstance().startFancyInPage('fancy_link');
+  adminManager.getInstance().startFancyInPage('colorbox_link');
+  adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
 }

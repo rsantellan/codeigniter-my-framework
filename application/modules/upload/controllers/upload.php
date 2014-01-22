@@ -64,6 +64,7 @@ class Upload extends MY_Controller {
 	}
 	$data['ckeditor'] = $ckeditor;
 	$data['ckeditorFuncNum'] = $ckeditorFuncNum;
+    $data['datasessionid'] = $this->session->id();
 	$this->load->view('upload_form', $data);
   }
 
@@ -76,7 +77,7 @@ class Upload extends MY_Controller {
 	$this->data['content'] = "upload/test";
 
 	$this->addJquery();
-	$this->addFancyBox();
+	$this->addColorbox();
 	$this->addModuleJavascript("actaadmin", "list.js");
 	$this->load->view("admin/layout", $this->data);
   }
@@ -129,6 +130,11 @@ class Upload extends MY_Controller {
   }
 
   function do_pupload() {
+    if (!$this->isLogged()) {
+	  //Si no esta logeado se tiene que ir a loguear
+	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+	  redirect('auth/login');
+	}  
 	$this->load->library('mupload');
 	$ckeditor = false;
 	if (isset($_POST['ckeditor']) && $_POST['ckeditor'] == 1) {

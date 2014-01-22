@@ -52,6 +52,7 @@ class MY_Controller extends MX_Controller
       $this->data['jquery_on'] = false;
       $this->data['jquery_ui_on'] = false;
       $this->data['fancybox_on'] = false;
+      $this->data['colorbox_on'] = false;
       $this->data['menu_id'] = "home";
 	  $this->data['ckeditor_on'] = false;
 	  $this->data['tinymce_on'] = false;
@@ -122,9 +123,15 @@ class MY_Controller extends MX_Controller
   
   protected function addFancyBox()
   {
-    $this->data['fancybox_on'] = true;
+    $this->addColorbox();
+    //$this->data['fancybox_on'] = true;
   }
   
+  protected function addColorbox()
+  {
+      $this->addJquery();
+      $this->data['colorbox_on'] = true;
+  }
   protected function addCKEditor()
   {
     $this->addJquery();
@@ -140,7 +147,7 @@ class MY_Controller extends MX_Controller
   protected function addUploadModuleAssets()
   {
 	$this->addJquery();
-	$this->addFancyBox();
+	$this->addColorbox();
 	$this->addModuleStyleSheet("upload", "albums.css");
 	$this->addModuleJavascript("upload", "imagesAdmin.js");
   }

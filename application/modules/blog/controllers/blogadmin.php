@@ -32,7 +32,7 @@ class blogadmin extends MY_Controller{
       $this->data['content'] = "blog/admin/list";
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       //$this->addModuleJavascript("registros", "list.js");
       $this->load->view("admin/layout", $this->data);
   }

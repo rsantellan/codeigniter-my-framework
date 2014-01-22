@@ -1,8 +1,11 @@
 $(document).ready(function() { 
   
-    $("a.fancy_link").fancybox({
-		'onClosed': function(){window.location.reload();}
-	});
+    $("a.colorbox_link").colorbox({
+            'width' : '40%',
+            'height' : '80%',
+            'onClosed' : function(){window.location.reload();},
+            'iframe' : true
+    });
 });
 
 function deleteItem(itemId, text, mUrl)

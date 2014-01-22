@@ -7,7 +7,7 @@ $(document).ready(function() {
       var album_id = $('#album_id').val();
       var post_data = 'album_id='+album_id+'&'+order;
 
-      parent.$.fancybox.showActivity();
+      parent.$('#cboxLoadingGraphic').show();
       $.ajax({
         url: $('#sort_ajax').val(),
         data: post_data,
@@ -16,8 +16,8 @@ $(document).ready(function() {
         complete: function()
         {
             parent.refreshAlbum(album_id);
-            parent.$.fancybox.hideActivity();
-            parent.$.fancybox.resize();
+            parent.$('#cboxLoadingGraphic').hide();
+            parent.$.colorbox.resize();
         }        
       });
       

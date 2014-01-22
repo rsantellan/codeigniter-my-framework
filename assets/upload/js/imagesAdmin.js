@@ -58,7 +58,7 @@ function refreshAlbum(albumId)
             //alert("Hello");
             hoversImages();
             startUploadFancyLinks(albumId);
-        },3000);
+        },4000);
         
       }
     }        
@@ -68,18 +68,19 @@ function refreshAlbum(albumId)
 function startUploadFancyLinks()
 {
   //var album_id = null;
-  $(".fancy_link_upload").unbind('click.fb-start');
-  $(".fancy_link_upload").fancybox({
-    onClosed: function(){
-      if ( $.browser.msie ) {
-        $('.single_album_container').each(function(indice, elemento){
-          //console.log(indice);
-          //console.log(elemento);
-          var element_id = $(elemento).attr('id').replace('album_', '');
-          //console.info(element_id);
-          refreshAlbum(element_id);
-        });
+  $.colorbox.remove();
+  $(".colorbox_link_upload").colorbox({
+      'width' : '40%',
+      'height' : '80%',
+      'iframe' : true,
+      'onClosed' : function(){
+        if ( $.browser.msie ) {
+            $('.single_album_container').each(function(indice, elemento){
+                var element_id = $(elemento).attr('id').replace('album_', '');
+                refreshAlbum(element_id);
+            });
+        }
       }
-    }
   });
+  adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
 }

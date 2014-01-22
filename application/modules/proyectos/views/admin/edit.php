@@ -34,7 +34,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     //adminManager.getInstance().startBasicTextAreasTinyMCE();
-    adminManager.getInstance().startFancyInPage('fancy_link');
+    adminManager.getInstance().startFancyInPage('colorbox_link');
   });
   
 </script>

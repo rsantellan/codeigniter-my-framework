@@ -21,7 +21,11 @@
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/fancybox/jquery.mousewheel-3.0.4.pack.js";?>"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/js/fancybox/jquery.fancybox-1.3.4.css";?>" />
       <?php endif; ?>
-        
+      
+      <?php if($colorbox_on): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery.colorbox-min.js";?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colorbox.css";?>" />
+      <?php endif; ?>  
       <?php foreach($javascript as $js): ?>
         <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
       <?php endforeach; ?>

@@ -43,14 +43,17 @@
   Agregar
 </a>
 
-<a class="fancy_link iframe" href="<?php echo site_url("ordenable/sort/documents/document/".$docType);?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sort/documents/document/".$docType);?>" >
   Ordenar
 </a>
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("a.fancy_link").fancybox({
-            'onClosed': function(){window.location.reload();}
+        $("a.colorbox_link").colorbox({
+            'width' : '40%',
+            'height' : '80%',
+            'onClosed' : function(){window.location.reload();},
+            'iframe' : true
         });
         $('#table_data').dataTable({
             "aaSorting": [],

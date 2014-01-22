@@ -47,7 +47,7 @@ class contactoadmin extends MY_Controller{
       $this->data['content'] = "contacto/contacto_admin";
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->load->view("admin/layout", $this->data);
     }*/
@@ -58,7 +58,7 @@ class contactoadmin extends MY_Controller{
       $this->data['content'] = "contacto/contactoadmin/list";
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("admin", "admin-basic-list.js");
       $this->load->view("admin/layout", $this->data);
     }

@@ -28,8 +28,10 @@ class MY_Session {
         /* Set the timeout time */
         $timeout = $objCI->config->item('session_lifetime');
         if(is_numeric($timeout)) { ini_set('session.gc_maxlifetime', $timeout); }
-
-        $this->start();
+        
+        /* Get and set session name   */
+        $name = $objCI->config->item('sess_cookie_name');
+        $this->start($name, false);
     }
 
     /**
@@ -70,10 +72,22 @@ class MY_Session {
      *
      *	@author Simon Emms <simon@simonemms.com>
      */
-    public function start($override = false) {
-        if(!session_id() || $override) {
+    public function start($name, $override = false) {
+        if(isset($_POST['data-session-id']))
+        {
+            log_message('debug', 'Using previous session: '.$_POST['data-session-id']);
+            session_id($_POST['data-session-id']);
+            session_name($name);
             session_start();
         }
+        else
+        {
+            if(!session_id() || $override) {
+                session_name($name);
+                session_start();
+            }    
+        }
+        
     }
 
     /**

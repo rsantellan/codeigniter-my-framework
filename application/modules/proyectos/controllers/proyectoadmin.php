@@ -33,7 +33,7 @@ class proyectoadmin extends MY_Controller{
       $this->data['content'] = "proyectos/admin/list";
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       //$this->addModuleJavascript("registros", "list.js");
       $this->load->view("admin/layout", $this->data);
   }

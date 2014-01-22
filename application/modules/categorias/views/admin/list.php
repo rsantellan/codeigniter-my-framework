@@ -45,14 +45,14 @@
   Agregar
 </a>
 
-<a class="fancy_link iframe" href="<?php echo site_url("categorias/categoriasadmin/sort");?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("categorias/categoriasadmin/sort");?>" >
   Ordenar
 </a>
 
 <script type="text/javascript">
 
 $(document).ready(function() { 
-  adminManager.getInstance().startFancyInPage('fancy_link');
+  adminManager.getInstance().startFancyInPage('colorbox_link');
 });
 
 </script>

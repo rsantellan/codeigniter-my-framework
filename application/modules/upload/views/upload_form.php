@@ -14,7 +14,7 @@
 $(function() {
            
     function log() {
-        return false;
+        //return false;
 		var str = "";
         
 		plupload.each(arguments, function(arg) {
@@ -64,7 +64,7 @@ $(function() {
 		url : "<?php echo site_url("upload/do_pupload"); ?>",
 		max_file_size : '20mb',
 		//unique_names : true,
-        multipart_params: {'data-session': '1', '_myUploader': true, 'album_id' : '<?php echo $album_id; ?>', 'ckeditor': "<?php echo $ckeditor;?>", "ckeditorFuncNum" : "<?php echo $ckeditorFuncNum;?>"},
+        multipart_params: {'data-session-id': '<?php echo $datasessionid;?>', '_myUploader': true, 'album_id' : '<?php echo $album_id; ?>', 'ckeditor': "<?php echo $ckeditor;?>", "ckeditorFuncNum" : "<?php echo $ckeditorFuncNum;?>"},
 		// Flash settings
 		flash_swf_url : '<?php echo base_url(); ?>assets/upload/js/plupload/plupload.flash.swf',
         // PreInit events, bound before any internal events

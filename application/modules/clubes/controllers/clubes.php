@@ -36,7 +36,7 @@ class clubes extends MY_Controller{
       $this->load->model('departamentos/departamento');
       $this->data['departments_list'] = $this->departamento->retrieveAllForSelect();
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
       $this->addModuleStyleSheet('datatable', 'data_table_admin.css');      
@@ -61,7 +61,7 @@ class clubes extends MY_Controller{
     function edit($id)
     {
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->addModuleStyleSheet("upload", "albums.css");

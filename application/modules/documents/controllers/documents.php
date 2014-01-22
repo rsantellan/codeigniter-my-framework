@@ -36,7 +36,7 @@ class documents extends MY_Controller{
       $this->load->library('upload/mupload');
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
@@ -55,7 +55,7 @@ class documents extends MY_Controller{
       $this->load->library('upload/mupload');
       
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->addModuleJavascript("datatable", "jquery.dataTables.min.js");
       $this->addModuleStyleSheet('datatable', 'jquery.dataTables.css');
@@ -89,7 +89,7 @@ class documents extends MY_Controller{
     function edit($id)
     {
       $this->addJquery();
-      $this->addFancyBox();
+      $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
