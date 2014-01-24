@@ -63,7 +63,8 @@
 	float: left;
 	position: absolute;
 	left: 0;
-	bottom: 15px;
+/*	bottom: 15px;*/
+	bottom: 0;
 }
 #main {
 	z-index: 1;
@@ -237,7 +238,7 @@
 #navigation {
 	float: right;
 /*	margin-top: 30px;*/
-    margin-top: 30px;
+    margin-top: 70px;
 }
 #header.extended #navigation { margin-top: 10px; }
 
