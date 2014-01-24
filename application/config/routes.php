@@ -38,10 +38,11 @@
 |
 */
 
-$route['default_controller'] = "roche";
+$route['default_controller'] = "feu";
 $route['404_override'] = '';
-$route[""] = 'roche/index';
-$route["inicio.html"] = 'roche/index';
+$route[""] = 'feu/index';
+/*
+$route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';
 $route["busqueda"] = 'roche/aBuscar';
 $route['ficha/(:num).html'] = 'roche/ficha/$1';
@@ -51,7 +52,7 @@ $route['agregar/certificado/(:num).html'] = 'roche/agregarCertificado/$1';
 $route["ingresar.html"] = 'roche/ingresar';
 $route['eliminar/(:num).html'] = 'roche/eliminar/$1';
 $route['eliminarCertificado/(:num).html'] = 'roche/eliminarCertificado/$1';
-/*
+
  Metalurgica
 $route['default_controller'] = "sitio";
 $route['404_override'] = '';
