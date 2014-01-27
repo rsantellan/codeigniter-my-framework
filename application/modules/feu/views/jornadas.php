@@ -4,7 +4,7 @@
     <div class="grid-bg">
         <div class="container"> <!-- 1080 pixels Container -->
             <div class="full-width columns">
-                <h1><?php echo lang("documentos_titulo"); ?></h1>
+                <h1><?php echo lang("jornadas_titulo"); ?></h1>
             </div>
         </div>
     </div>
@@ -18,8 +18,8 @@
        <div class="full-width columns">
 				<?php //var_dump($jornadaslist);?>
 				<?php //var_dump($cantidad); var_dump($pages);?>
-           <h3>The Emerix advantage...</h3>
-           <p class="mb-30px">Maecenas sodales vehicula est eu laoreet class aptent taciti sociosqu ad litora per conubia nostra, per inceptos himenaeos. Morbi lectus orci, elementum quis accumsan sodales etiam turpis in quam tincidunt lacinia:</p>
+           <h3><?php echo lang("jornadas_sub_titulo"); ?></h3>
+           <p class="mb-30px"><?php echo lang("jornadas_descripcion"); ?></p>
            <!-- Feature Boxes with left icon (number type) -->
            <?php $counter = 1;?>
            <section class="feature-boxes left-icon-box small-icon number-type clearfix mb-35px">
@@ -50,6 +50,7 @@
            <!-- end Feature Boxes -->
        </div>
         
+        <?php if($pages > 1): ?>
         <!-- Pagination -->
         <div class="full-width columns">
             <hr class="divider-line mb-25px">
@@ -66,7 +67,9 @@
                 <span class="pages">Pagina <?php echo $page;?> de <?php echo $pages;?></span>
             </nav>
         </div>
-        
+        <?php 
+        endif;
+        ?>
     </div>
     
 </section>
