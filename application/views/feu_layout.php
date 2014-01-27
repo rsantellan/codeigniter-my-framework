@@ -30,6 +30,10 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/carousel.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/switcher.css"> <!-- Style Switcher -->
 
+		<?php if($rscarousel): ?>
+		  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/jquery-ui-carousel/css/min/rs-carousel-min.css">
+		<?php endif; ?>
+		
         <!-- Java Script -->
         <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js');</script>
         <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
@@ -79,14 +83,38 @@
 
         <!-- START FOOTER -->
 
-        <footer id="footer">
-            {FOOTER_CONTENT}
-        </footer>
+		<footer id="footer" class="blank"></footer>
 
-        <footer id="footer-bottom">
-            {COPYRIGHT AND BOTTOM_LINKS}
-        </footer>
+		<footer id="footer-bottom">
 
+			<div class="container"> <!-- 1080 pixels Container -->
+
+				<div class="seven columns">
+
+					<!-- Footer Navigation -->
+					<ul class="footer-nav clearfix">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="typography.html">Features</a></li>
+						<li><a href="about-us.html">Pages</a></li>
+						<li><a href="portfolio-3-columns.html">Portfolio</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+
+				</div>
+
+				<div class="five columns">
+
+					<ul class="links clearfix">
+						<li><a href="http://www.rodrigosantellan.com">© 2014 Rodrigo Santellan</a></li>
+						
+					</ul>
+
+				</div>
+
+			</div> <!-- end 1080 pixels Container -->
+
+		</footer>
         <!-- END FOOTER -->
         
         <!-- Java Script -->
@@ -102,7 +130,25 @@
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.carousel.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.tweet.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/feu/js/custom.js"></script>
-        <script src="<?php echo base_url(); ?>assets/feu/js/switcher.js"></script> <!-- Style Switcher -->
 
+		<?php if($rscarousel): ?>
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.ui.widget.js"></script>
+		  <!-- if using touch -->
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.event.drag.js"></script>
+		  <!-- carousel core -->
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel.js"></script>
+
+		  <!-- carousel extensions (optional) -->
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-autoscroll.js"></script>
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-continuous.js"></script>
+		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-touch.js"></script>
+		  <script type="text/javascript">
+$(document).ready(function () {
+    $('.rs-carousel').carousel({
+	  itemsPerPage: 4
+	});
+});
+</script>
+		<?php endif; ?>
     </body>
 </html>

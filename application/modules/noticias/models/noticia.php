@@ -59,9 +59,13 @@ class noticia extends MY_Model{
     return $salida;
   }
   
-  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE)
+  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $limit = null)
   {
     $this->db->order_by("ordinal", "desc");
+	if($limit !== null)
+	{
+	  $this->db->limit((int)$limit);
+	}
     $query = $this->db->get($this->getTablename());
     
     if(!$returnObjects)

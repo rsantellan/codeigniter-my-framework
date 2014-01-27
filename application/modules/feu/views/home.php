@@ -43,7 +43,7 @@
 
         <div class="container"> <!-- 1080 pixels Container -->
 
-<!--            <div class="full-width columns">
+            <div class="full-width columns">
 
                 <div class="slider-caption" data-smallscreen="yes">
                     <div id="caption1">
@@ -61,11 +61,15 @@
                     <div id="caption4">
                         <h3>This can be an action block, or invitation to do something</h3>
                         <p class="middle-font-size">The Vestibulum Acenan is a lauctor ornare posuere in purus tincidunt facilisis magna, convallis dolor nulla to the arts in America.</p>
-                        <a href="#" class="button light mb-7px">Join Us</a>
+                        
+                    </div>
+				  <div id="caption5">
+                        <h3>This can be an action block, or invitation to do something</h3>
+                        <p class="middle-font-size">The Vestibulum Acenan is a lauctor ornare posuere in purus tincidunt facilisis magna, convallis dolor nulla to the arts in America.</p>
                     </div>
                 </div>
 
-            </div>-->
+            </div>
 
         </div> <!-- end 1080 pixels Container -->
 
@@ -80,11 +84,11 @@
 
                 <div class="intro-wrapper">
                     <div class="intro-content clearfix">
-                        <h1 class="mb-15px">Federación ecuestre del uruguay</h1>
+                        <h1 class="mb-15px"><?php echo lang("home_titulo"); ?></h1>
 
                         <!-- Preamble -->
                         <section class="preamble">
-                            <p class="middle-font-size mb-20px">Sed vitae lacus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec sagittis purus eget lorem egestas, at pellentesque felis rutrum. Sed molestie gravida tortor ut consectetur.</p>
+                            <p class="middle-font-size mb-20px"><?php echo lang("home_titulo_mensaje"); ?></p>
                             <hr class="divider-pattern streaks offset-right-10px mb-30px">
                         </section>
 
@@ -130,33 +134,17 @@
             <section class="feature-boxes medium-col-space left-icon-box mb-20px">
 
                 <div class="row">
-
-                    <div class="one-third columns">
+					<?php foreach($noticias as $noticia): ?>
+					  <div class="one-third columns">
                         <article>
                             <img src="<?php echo base_url(); ?>assets/feu/images/icons/big/icon-notebook.png" alt="">
-                            <header><h3>How It Works</h3></header>
-                            <p>You set a gravida lectus nulla. Your purus alor for sagittis laoreet.</p>
-                            <a href="#" class="button">Watch a Demo</a>
+                            <header><h3><?php echo $noticia->name;?></h3></header>
+                            <p><?php echo character_limiter(html_purify(html_entity_decode($noticia->description)), 100); ?></p>
+                            <a href="><?php echo $noticia->id;?>" class="button"><?php echo lang("noticia_leer mas"); ?></a>
                         </article>
                     </div>
-
-                    <div class="one-third columns">
-                        <article>
-                            <img src="<?php echo base_url(); ?>assets/feu/images/icons/big/icon-notebook.png" alt="">
-                            <header><h3>How It Helps</h3></header>
-                            <p>Save metus and libero imperdiet urna vel semper vestibulum orligula semper.</p>
-                            <a href="#" class="button">See How</a>
-                        </article>
-                    </div>
-
-                    <div class="one-third columns">
-                        <article>
-                            <img src="<?php echo base_url(); ?>assets/feu/images/icons/big/icon-notebook.png" alt="">
-                            <header><h3>Get Started Today</h3></header>
-                            <p>Look ipsum in faucibus luctus et posuere acubilia Curae. Lorem ipsum dolor sitting amet form.</p>
-                            <a href="#" class="button">Learn More</a>
-                        </article>
-                    </div>
+					<?php endforeach; ?>
+                   
 
                 </div>
 
@@ -186,6 +174,30 @@
             <hr class="divider-line colored mb-40px">
         </div>
         
+	  <div class="small-col-space clearfix mb-10px">
+
+		  <div class="rs-carousel">
+				  <ul>
+					<?php 
+					$imgType = 3;
+					$width = 100;
+					$height = 100;
+					$count = count($banners);
+					?>
+					  <?php foreach($banners as $id => $banner): ?>
+						<li>
+						  <?php if(!is_null($banner->avatar)): ?>
+							  <img alt="<?php echo $banner->name;?>" src="<?php echo thumbnail_image(base_url(), $banner->avatar->getPath() , $width, $height, $imgType); ?>" />
+						  <?php else: ?>
+							  <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
+						  <?php endif; ?>
+					  
+					  </li>
+					  <?php endforeach; ?>
+				  </ul>
+		  </div>
+
+	  </div>
     </div> <!-- end 1080 pixels Container -->
 
 </section>
