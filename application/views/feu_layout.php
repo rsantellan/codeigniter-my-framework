@@ -57,7 +57,75 @@
                     <nav id="navigation">
                         <div id="primary-nav">
                             <ul id="main-menu">
-                                <li><a href="<?php echo site_url(''); ?>" class="current">Home</a>
+                                <li><a href="<?php echo site_url(''); ?>" class="<?php echo ($menu == 'inicio')? 'current' : '';?>"><?php echo lang("menu_home"); ?></a>
+                                <li><a href="javascript:void(0)" class="<?php echo ($menu == 'historia')? 'current' : '';?>"><?php echo lang("menu_historia"); ?></a>
+                                    <ul>
+                                        <li><a href="<?php echo site_url('historia-campeones.html');?>"><?php echo lang("menu_historia_campeones"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-deportistas.html');?>"><?php echo lang("menu_historia_deportistas"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos')? 'current' : '';?>"><?php echo lang("menu_documentacion"); ?></a>
+                                    <ul>
+                                        <li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
+                                        <li><a href="<?php echo site_url('jornadas.html');?>"><?php echo lang("menu_jornada"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li class="sf-mega-parent"><a href="#">Features</a>
+                                    <div class="sf-mega">
+                                        <div class="sf-mega-table">
+                                            <div class="sf-mega-section width-170px">
+                                                <h5>General</h5>
+                                                <ul>
+                                                    <li><a href="typography.html">Typography</a></li>
+                                                    <li><a href="grid-system.html">Grid system</a></li>
+                                                    <li><a href="icons.html">Icons</a></li>
+                                                    <li><a href="sliders.html">Sliders</a></li>
+                                                    <li><a href="video.html">Video</a></li>
+                                                    <li><a href="lightbox.html">LightBox</a></li>
+                                                    <li><a href="image-layouts-and-styles.html">Image Layouts & Styles</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="sf-mega-section width-220px">
+                                                <h5>Elements</h5>
+                                                <ul>
+                                                    <li><a href="feature-boxes.html">Feature Boxes</a></li>
+                                                    <li><a href="info-boxes.html">Info Boxes</a></li>
+                                                    <li><a href="announcements.html">Announcements</a></li>
+                                                    <li><a href="tabs-and-toggles.html">Tabs & Toggles</a></li>
+                                                    <li><a href="buttons-and-nav-elements.html">Buttons & Navigation Elements</a></li>
+                                                    <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                                                    <li><a href="other-elements.html">Other Elements</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="sf-mega-section width-200px">
+                                                <h5>Headers</h5>
+                                                <ul>
+                                                    <li><a href="index.html">Header version 1</a></li>
+                                                    <li><a href="index2.html">Header version 2</a></li>
+                                                    <li><a href="index3.html">Header version 3</a></li>
+                                                    <li><a href="page-custom-header.html">Custom Header Page</a></li>
+                                                    <li><a href="typography.html">Megamenu + Marked List</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="sf-mega-section width-150px">
+                                                <h5>Footers</h5>
+                                                <ul>
+                                                    <li><a href="index.html#footer">Footer version 1</a></li>
+                                                    <li><a href="index2.html#footer">Footer version 2</a></li>
+                                                    <li><a href="index3.html#footer">Footer version 3</a></li>
+                                                    <li><a href="index4.html#footer">Footer version 4</a></li>
+                                                    <li><a href="index5.html#footer">Footer version 5</a></li>
+                                                    <li><a href="index6.html#footer">Footer version 6</a></li>
+                                                    <li><a href="index7.html#footer">Footer version 7</a></li>
+                                                </ul>
+                                            </div>
+                                        </div> <!-- end sf-mega-table -->
+                                    </div>
+                                    <!-- end sf-mega -->
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -93,7 +161,7 @@
 
 					<!-- Footer Navigation -->
 					<ul class="footer-nav clearfix">
-						<li><a href="index.html">Home</a></li>
+						<li><a href="<?php echo site_url(''); ?>">Home</a></li>
 						<li><a href="typography.html">Features</a></li>
 						<li><a href="about-us.html">Pages</a></li>
 						<li><a href="portfolio-3-columns.html">Portfolio</a></li>

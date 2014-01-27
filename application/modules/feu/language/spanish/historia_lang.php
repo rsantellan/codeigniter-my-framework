@@ -1,0 +1,16 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+$lang["historia_campeones_titulo"] = "Campeones historicos";
+$lang["historia_campeones_sub_titulo"] = "Campeones listado por periodo";
+$lang["historia_campeones_imagen"] = "Imagen";
+$lang["historia_campeones_nombre"] = "Nombre";
+$lang["historia_campeones_periodo"] = "Periodo";
+$lang["historia_deportistas_titulo"] = "Deportistas del año historicos";
+$lang["historia_deportistas_sub_titulo"] = "Deportistas del año listado por periodo";
+$lang["historia_deportistas_imagen"] = "Imagen";
+$lang["historia_deportistas_nombre"] = "Nombre";
+$lang["historia_deportistas_periodo"] = "Periodo";
+$lang["historia_presidentes_titulo"] = "Presidentes historicos";
+$lang["historia_presidentes_sub_titulo"] = "Presidentes listado por periodo";
+$lang["historia_presidentes_imagen"] = "Imagen";
+$lang["historia_presidentes_nombre"] = "Nombre";
+$lang["historia_presidentes_periodo"] = "Periodo";

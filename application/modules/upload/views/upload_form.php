@@ -14,7 +14,7 @@
 $(function() {
            
     function log() {
-        //return false;
+        return false;
 		var str = "";
         
 		plupload.each(arguments, function(arg) {

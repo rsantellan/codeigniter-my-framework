@@ -174,30 +174,52 @@
             <hr class="divider-line colored mb-40px">
         </div>
         
-	  <div class="small-col-space clearfix mb-10px">
+        <div class="full-width columns">
+						
+            <hr class="divider-line dotted colored mb-40px">
 
-		  <div class="rs-carousel">
-				  <ul>
-					<?php 
+            <h5 class="underlined dashed grey"><?php echo lang("home_titulo_promotores"); ?></h5>
+
+            <!-- Projects Carousel -->
+            <section id="projects-holder" class="carousel-container mb-50px">
+                <div class="carousel-frame">
+
+                    <!-- possible values: three-slides / four-slides -->
+                    <ul id="projects-carousel" class="four-slides clearfix">
+                         <?php 
 					$imgType = 3;
-					$width = 100;
-					$height = 100;
+					$width = 380;
+					$height = 238;
 					$count = count($banners);
 					?>
 					  <?php foreach($banners as $id => $banner): ?>
-						<li>
-						  <?php if(!is_null($banner->avatar)): ?>
-							  <img alt="<?php echo $banner->name;?>" src="<?php echo thumbnail_image(base_url(), $banner->avatar->getPath() , $width, $height, $imgType); ?>" />
-						  <?php else: ?>
-							  <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
-						  <?php endif; ?>
-					  
-					  </li>
-					  <?php endforeach; ?>
-				  </ul>
-		  </div>
+                        
+                        <!-- Project -->
+                        <li class="portfolio-item-preview">
+                            <article>
+                                <div class="item-picture" data-type="link">
+                                    <?php if(!is_null($banner->avatar)): ?>
+                                        <img alt="<?php echo $banner->name;?>" src="<?php echo thumbnail_image(base_url(), $banner->avatar->getPath() , $width, $height, $imgType); ?>" />
+                                    <?php else: ?>
+                                        <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
+                                    <?php endif; ?>
+                                    <div class="image-overlay">
+                                        <a href="<?php echo $banner->name;?>" title="<?php echo $banner->name;?>"><span class="link"></span></a>
+                                    </div>
+                                </div>
+                                <div class="item-description align-center">
+                                    <a href="<?php echo $banner->name;?>"><h6 class="title colored-text-1"><?php echo $banner->name;?></h6></a>
+                                </div>
+                            </article>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
 
-	  </div>
+                </div>
+            </section>
+            <!-- end Projects Carousel -->
+
+        </div>
     </div> <!-- end 1080 pixels Container -->
 
 </section>

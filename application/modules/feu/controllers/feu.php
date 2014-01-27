@@ -13,6 +13,9 @@ class feu extends MY_Controller{
       $this->load->helper('upload/mimage');
       $this->load->library('upload/mupload');
 	  $this->data['rscarousel'] = false;
+      $this->loadI18n("menu", "", FALSE, TRUE, "", "feu");
+      $this->data['menu'] = 'inicio';
+//      $this->output->enable_profiler(TRUE);
   }
 
   // http://www.catchmyfame.com/2009/12/30/huge-updates-to-jquery-infinite-carousel-version-2-released/
@@ -30,9 +33,77 @@ class feu extends MY_Controller{
 	$this->data['noticias'] = $this->noticia->retrieveAll(false, false, 3);
 	$this->data['banners'] = $this->banner->retrieveAll(false, true);
 	$this->data['content'] = 'home';
-	$this->data['rscarousel'] = true;
+	
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
     
+  }
+  
+  public function historiacampeones()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('historicosadmin/campeon');
+      $this->data['campeones'] = $this->campeon->retrieveAll(false, true);
+      $this->data['content'] = 'historiacampeones';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function historiadeportistas()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('historicosadmin/deportista');
+      $this->data['listado'] = $this->deportista->retrieveAll(false, true);
+      $this->data['content'] = 'historiadeportistas';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function historiapresidentes()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('historicosadmin/presidente');
+      $this->data['listado'] = $this->presidente->retrieveAll(false, true);
+      $this->data['content'] = 'historiapresidentes';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function documentacion()
+  {
+      $this->data['menu'] = 'documentos';
+      $this->load->model('documents/document');
+      $this->data['documents_list'] = $this->document->retrieveAll('doc', false, true);
+      $this->loadI18n("documentacion", "", FALSE, TRUE, "", "feu");
+      $this->data['content'] = 'documentacion';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function downloadFile($fileId)
+  {
+    $this->load->model('upload/albumcontent');
+    $file = $this->albumcontent->getFile($fileId);
+    $aux = $file;//[0];
+    $this->load->helper('download');
+    $data = file_get_contents($aux->path); // Read the file's contents
+    $name = $aux->name;
+    force_download($name, $data);
+  }
+  
+  public function jornadas($page = 1)
+  {
+      if($page < 0 || (int) $page == 0)
+          $page = 1;
+      $rows = 10;
+      $this->data['menu'] = 'documentos';
+      $this->loadI18n("documentacion", "", FALSE, TRUE, "", "feu");
+      $this->load->model('jornadas/jornada');
+      $this->data['jornadaslist'] = $this->jornada->retrieveAllData($rows, $rows * ($page - 1));
+      $records = $this->jornada->countAllRecords();
+      $this->data['cantidad'] = $records;
+      $this->data['pages'] = ceil($records / $rows);
+      $this->data['page'] = $page;
+      $this->data['content'] = 'jornadas';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
 }
