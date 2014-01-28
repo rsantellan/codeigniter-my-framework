@@ -41,6 +41,8 @@
 $route['default_controller'] = "feu";
 $route['404_override'] = '';
 $route[""] = 'feu/index';
+$route["historia-que-es-el-raid.html"] = 'feu/historiaraid';
+$route["historia-feu.html"] = 'feu/historiafeu';
 $route["historia-campeones.html"] = 'feu/historiacampeones';
 $route["historia-deportistas.html"] = 'feu/historiadeportistas';
 $route["historia-deportistas.html"] = 'feu/historiadeportistas';
@@ -49,6 +51,10 @@ $route["documentacion.html"] = 'feu/documentacion';
 $route['documento/(:num).html'] = 'feu/downloadFile/$1';
 $route["jornadas.html"] = 'feu/jornadas';
 $route['jornadas-(:num).html'] = 'feu/jornadas/$1';
+$route['jornada/(:num).html'] = 'feu/downloadFile/$1';
+$route["formularios.html"] = 'feu/formularios';
+$route['formulario/(:num).html'] = 'feu/downloadFile/$1';
+$route["feu-directiva.html"] = 'feu/directiva';
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';

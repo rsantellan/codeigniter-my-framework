@@ -60,38 +60,37 @@
                                 <li><a href="<?php echo site_url(''); ?>" class="<?php echo ($menu == 'inicio')? 'current' : '';?>"><?php echo lang("menu_home"); ?></a>
                                 <li><a href="javascript:void(0)" class="<?php echo ($menu == 'historia')? 'current' : '';?>"><?php echo lang("menu_historia"); ?></a>
                                     <ul>
+                                        <li><a href="<?php echo site_url('historia-que-es-el-raid.html');?>"><?php echo lang("menu_historia_definicion"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-feu.html');?>"><?php echo lang("menu_historia_feu"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-campeones.html');?>"><?php echo lang("menu_historia_campeones"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-deportistas.html');?>"><?php echo lang("menu_historia_deportistas"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
                                     </ul>
                                 </li>
-                                <li><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos')? 'current' : '';?>"><?php echo lang("menu_documentacion"); ?></a>
+<!--                                <li><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos')? 'current' : '';?>"><?php echo lang("menu_documentacion"); ?></a>
                                     <ul>
                                         <li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
                                         <li><a href="<?php echo site_url('jornadas.html');?>"><?php echo lang("menu_jornada"); ?></a></li>
-                                        <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
+                                        <li><a href="<?php echo site_url('formularios.html');?>"><?php echo lang("menu_formularios"); ?></a></li>
                                     </ul>
                                 </li>
-                                
-                                <li class="sf-mega-parent"><a href="#">Features</a>
+								<li><a href="<?php echo site_url(''); ?>" class="<?php echo ($menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_directiva"); ?></a>
+                                -->
+                                <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
                                     <div class="sf-mega">
                                         <div class="sf-mega-table">
                                             <div class="sf-mega-section width-170px">
-                                                <h5>General</h5>
+                                                <h5><?php echo lang("menu_documentacion"); ?></h5>
                                                 <ul>
-                                                    <li><a href="typography.html">Typography</a></li>
-                                                    <li><a href="grid-system.html">Grid system</a></li>
-                                                    <li><a href="icons.html">Icons</a></li>
-                                                    <li><a href="sliders.html">Sliders</a></li>
-                                                    <li><a href="video.html">Video</a></li>
-                                                    <li><a href="lightbox.html">LightBox</a></li>
-                                                    <li><a href="image-layouts-and-styles.html">Image Layouts & Styles</a></li>
-                                                </ul>
+													<li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
+													<li><a href="<?php echo site_url('jornadas.html');?>"><?php echo lang("menu_jornada"); ?></a></li>
+													<li><a href="<?php echo site_url('formularios.html');?>"><?php echo lang("menu_formularios"); ?></a></li>
+												</ul>
                                             </div>
                                             <div class="sf-mega-section width-220px">
-                                                <h5>Elements</h5>
+                                                <h5><?php echo lang("menu_directiva"); ?></h5>
                                                 <ul>
-                                                    <li><a href="feature-boxes.html">Feature Boxes</a></li>
+                                                    <li><a href="<?php echo site_url('feu-directiva.html');?>"><?php echo lang("menu_directiva"); ?></a></li>
                                                     <li><a href="info-boxes.html">Info Boxes</a></li>
                                                     <li><a href="announcements.html">Announcements</a></li>
                                                     <li><a href="tabs-and-toggles.html">Tabs & Toggles</a></li>

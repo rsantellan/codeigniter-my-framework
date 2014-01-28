@@ -38,6 +38,22 @@ class feu extends MY_Controller{
     
   }
   
+  public function historiaraid()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+	  $this->data['content'] = 'historiaraid';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function historiafeu()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+      $this->data['content'] = 'historiafeu';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function historiacampeones()
   {
       $this->data['menu'] = 'historia';
@@ -106,4 +122,23 @@ class feu extends MY_Controller{
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function formularios()
+  {
+	 // https://coderwall.com/p/uer3ow
+	// Agregar captcha
+      $this->data['menu'] = 'documentos';
+      $this->load->model('documents/document');
+      $this->data['documents_list'] = $this->document->retrieveAll('form', false, true);
+      $this->loadI18n("documentacion", "", FALSE, TRUE, "", "feu");
+      $this->data['content'] = 'formularios';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function directiva()
+  {
+	$this->data['menu'] = 'directiva';
+	$this->loadI18n("directiva", "", FALSE, TRUE, "", "feu");
+    $this->data['content'] = 'directiva';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
 }

@@ -35,7 +35,7 @@
                                     <li>
                                         <em class="bold"><?php echo $tema->jt_name;?> <?php echo $tema->jt_orator;?></em>
                                         <?php foreach($tema->contents as $content): ?>
-                                            <a class="fa fa-download" href="<?php echo site_url("documento/".$content->ac_id.".html");?>"><?php echo $content->ac_name;?></a>
+                                            <a class="fa fa-download" href="<?php echo site_url("jornada/".$content->ac_id.".html");?>"><?php echo $content->ac_name;?></a>
                                         <?php endforeach; ?>
                                     </li>
                                 <?php endforeach; ?>

@@ -1,8 +1,13 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 $lang["menu_home"] = "Inicio";
 $lang["menu_historia"] = "Historia";
+$lang["menu_historia_definicion"] = "Que es el Raid";
+$lang["menu_historia_feu"] = "Inicio de la feu";
 $lang["menu_historia_campeones"] = "Campeones";
 $lang["menu_historia_deportistas"] = "Deportistas del año";
 $lang["menu_historia_presidentes"] = "Presidentes";
 $lang["menu_documentacion"] = "Documentos";
 $lang["menu_jornada"] = "Jornadas";
+$lang["menu_formularios"] = "Formularios";
+$lang["menu_informacion"] = "Información";
+$lang["menu_directiva"] = "Directiva";
