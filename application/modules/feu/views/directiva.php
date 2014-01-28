@@ -61,10 +61,12 @@
         </div>
 		
 		<div class="one-half columns mb-20px">
+          <div class="gap mb-40px"></div>
 		  <h6><?php echo lang("directiva_comision_fiscal_titulo"); ?></h6>
 		  <?php echo lang("directiva_comision_fiscal_descripcion"); ?>
 		</div>
 		<div class="one-half columns mb-20px">
+          <div class="gap mb-40px"></div>
 		  <h6><?php echo lang("directiva_secretarias_titulo"); ?></h6>
 		  <?php echo lang("directiva_secretarias_descripcion"); ?>
 		</div>

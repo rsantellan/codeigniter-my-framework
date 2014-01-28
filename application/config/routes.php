@@ -55,6 +55,10 @@ $route['jornada/(:num).html'] = 'feu/downloadFile/$1';
 $route["formularios.html"] = 'feu/formularios';
 $route['formulario/(:num).html'] = 'feu/downloadFile/$1';
 $route["feu-directiva.html"] = 'feu/directiva';
+$route["instituciones.html"] = 'feu/instituciones';
+$route["veterinarios.html"] = 'feu/veterinarios';
+$route["veterinarios-jefes.html"] = 'feu/veterinariosjefes';
+$route["laboratorios.html"] = 'feu/laboratorios';
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';

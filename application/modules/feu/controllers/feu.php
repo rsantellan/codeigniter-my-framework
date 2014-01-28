@@ -141,4 +141,47 @@ class feu extends MY_Controller{
     $this->data['content'] = 'directiva';
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
+  
+  public function instituciones()
+  {
+      $this->data['menu'] = 'instituciones';
+      $this->loadI18n("instituciones", "", FALSE, TRUE, "", "feu");  
+      $this->load->model('departamentos/departamento');
+      $this->addModuleJavascript("feu", "instituciones.js");
+      $this->data['departamento_list'] = $this->departamento->retrieveAllData();
+      $this->load->helper('htmlpurifier');
+      $this->data['content'] = 'institucion';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function veterinariosjefes()
+  {
+      $this->data['menu'] = 'veterinarios';
+      $this->loadI18n("veterinario", "", FALSE, TRUE, "", "feu");
+      $this->load->model('veterinariosadmin/veterinario');
+      $this->data['listado'] = $this->veterinario->retrieveAll(false, 1);
+      $this->data['content'] = 'veterinariosjefes';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function veterinarios()
+  {
+      $this->data['menu'] = 'veterinarios';
+      $this->loadI18n("veterinario", "", FALSE, TRUE, "", "feu");
+      $this->load->model('veterinariosadmin/veterinario');
+      $this->data['listado'] = $this->veterinario->retrieveAll(false);
+      $this->data['content'] = 'veterinarios';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function laboratorios()
+  {
+      $this->data['menu'] = 'laboratorios';
+      $this->loadI18n("veterinario", "", FALSE, TRUE, "", "feu");
+      $this->load->model('laboratorios/laboratorio');
+      $this->data['listado'] = $this->laboratorio->retrieveAll(false);
+      $this->data['content'] = 'laboratorios';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
 }

@@ -50,7 +50,7 @@
 
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="<?php echo site_url(''); ?>"><img src="<?php echo base_url(); ?>assets/feu/images/logo.png" alt="logo"></a>
+                        <a href="<?php echo site_url(''); ?>"><img src="<?php echo base_url(); ?>assets/feu/images/feu.png" alt="logo"></a>
                     </div>
 
                     <!-- Navigation -->
@@ -74,12 +74,12 @@
                                         <li><a href="<?php echo site_url('formularios.html');?>"><?php echo lang("menu_formularios"); ?></a></li>
                                     </ul>
                                 </li>
-								<li><a href="<?php echo site_url(''); ?>" class="<?php echo ($menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_directiva"); ?></a>
+								<li><a href="<?php echo site_url('feu-directiva.html'); ?>" class="<?php echo ($menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_directiva"); ?></a>
                                 -->
-                                <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
+                                <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva' || $menu == 'veterinarios' || $menu == 'laboratorios')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
                                     <div class="sf-mega">
                                         <div class="sf-mega-table">
-                                            <div class="sf-mega-section width-170px">
+                                            <div class="sf-mega-section width-100px">
                                                 <h5><?php echo lang("menu_documentacion"); ?></h5>
                                                 <ul>
 													<li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
@@ -87,29 +87,27 @@
 													<li><a href="<?php echo site_url('formularios.html');?>"><?php echo lang("menu_formularios"); ?></a></li>
 												</ul>
                                             </div>
-                                            <div class="sf-mega-section width-220px">
+                                            <div class="sf-mega-section width-100px">
                                                 <h5><?php echo lang("menu_directiva"); ?></h5>
                                                 <ul>
                                                     <li><a href="<?php echo site_url('feu-directiva.html');?>"><?php echo lang("menu_directiva"); ?></a></li>
-                                                    <li><a href="info-boxes.html">Info Boxes</a></li>
-                                                    <li><a href="announcements.html">Announcements</a></li>
-                                                    <li><a href="tabs-and-toggles.html">Tabs & Toggles</a></li>
-                                                    <li><a href="buttons-and-nav-elements.html">Buttons & Navigation Elements</a></li>
-                                                    <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                                                    <li><a href="other-elements.html">Other Elements</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="sf-mega-section width-200px">
-                                                <h5>Headers</h5>
+                                            <div class="sf-mega-section width-100px">
+                                                <h5><?php echo lang("menu_veterinarios"); ?></h5>
                                                 <ul>
-                                                    <li><a href="index.html">Header version 1</a></li>
-                                                    <li><a href="index2.html">Header version 2</a></li>
-                                                    <li><a href="index3.html">Header version 3</a></li>
-                                                    <li><a href="page-custom-header.html">Custom Header Page</a></li>
-                                                    <li><a href="typography.html">Megamenu + Marked List</a></li>
+                                                    <li><a href="<?php echo site_url('veterinarios-jefes.html');?>"><?php echo lang("menu_veterinarios_jefes"); ?></a></li>
+                                                    <li><a href="<?php echo site_url('veterinarios.html');?>"><?php echo lang("menu_veterinarios_habilitados"); ?></a></li>
+                                                    
                                                 </ul>
                                             </div>
-                                            <div class="sf-mega-section width-150px">
+                                            <div class="sf-mega-section width-100px">
+                                                <h5><?php echo lang("menu_veterinarios_laboratorios"); ?></h5>
+                                                <ul>
+                                                    <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
+                                                </ul>
+                                            </div>
+<!--                                            <div class="sf-mega-section width-150px">
                                                 <h5>Footers</h5>
                                                 <ul>
                                                     <li><a href="index.html#footer">Footer version 1</a></li>
@@ -120,11 +118,18 @@
                                                     <li><a href="index6.html#footer">Footer version 6</a></li>
                                                     <li><a href="index7.html#footer">Footer version 7</a></li>
                                                 </ul>
-                                            </div>
+                                            </div>-->
                                         </div> <!-- end sf-mega-table -->
                                     </div>
                                     <!-- end sf-mega -->
                                 </li>
+                                <li><a href="<?php echo site_url('instituciones.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones"); ?></a>
+                                    <!-- 
+                                    <li><a href="<?php echo site_url('veterinarios-jefes.html');?>"><?php echo lang("menu_veterinarios_jefes"); ?></a></li>
+                                    <li><a href="<?php echo site_url('veterinarios.html');?>"><?php echo lang("menu_veterinarios_habilitados"); ?></a></li>
+                                    <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
+                                    -->
+                                <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
                             </ul>
                         </div>
                     </nav>
@@ -173,7 +178,7 @@
 				<div class="five columns">
 
 					<ul class="links clearfix">
-						<li><a href="http://www.rodrigosantellan.com">© 2014 Rodrigo Santellan</a></li>
+						<li><a href="http://www.rodrigosantellan.com" target="_blank">© 2014 Rodrigo Santellan</a></li>
 						
 					</ul>
 
@@ -198,24 +203,12 @@
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.tweet.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/feu/js/custom.js"></script>
 
-		<?php if($rscarousel): ?>
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.ui.widget.js"></script>
-		  <!-- if using touch -->
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.event.drag.js"></script>
-		  <!-- carousel core -->
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel.js"></script>
-
-		  <!-- carousel extensions (optional) -->
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-autoscroll.js"></script>
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-continuous.js"></script>
-		  <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui-carousel/js/jquery.rs.carousel-touch.js"></script>
-		  <script type="text/javascript">
-$(document).ready(function () {
-    $('.rs-carousel').carousel({
-	  itemsPerPage: 4
-	});
-});
-</script>
-		<?php endif; ?>
+      <?php foreach($javascript as $js): ?>
+        <script type="text/javascript" src="<?php echo base_url() ."assets/js/".$js; ?>"></script>
+      <?php endforeach; ?>
+		
+      <?php foreach($stylesheet as $sheet): ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ."assets/css/".$sheet;?>" />
+      <?php endforeach; ?>
     </body>
 </html>

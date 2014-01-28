@@ -56,9 +56,13 @@ class veterinario extends MY_Model{
       $this->isboss = $isboss;
   }
 
-  public function retrieveAll($returnObjects = FALSE)
+  public function retrieveAll($returnObjects = FALSE, $isboss = null)
   {
     $this->db->order_by("ordinal", "desc");
+    if($isboss !== null)
+    {
+        $this->db->where('isboss', (int)$isboss);
+    }
     $query = $this->db->get($this->getTablename());
     
     if(!$returnObjects)

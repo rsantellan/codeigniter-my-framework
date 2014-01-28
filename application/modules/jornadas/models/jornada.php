@@ -58,7 +58,7 @@ class jornada extends MY_Model{
             jornada.ordinal as j_ordinal
             from
             jornada
-            order by jornada.ordinal
+            order by jornada.ordinal desc
             limit ".$offset." , ".$rows;
       
       $returnjornada = $this->db->query($sql_jornada);
