@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/base.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/grid.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/layout.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/main_color1/olive.css" id="main-color1">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/main_color1/blue.css" id="main-color1">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/main_color2/red.css" id="main-color2">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/feu/css/main_bg/blue.css" id="main-bg-scheme">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300|Open+Sans:400,700,300,600,400italic,600italic|Ubuntu:400italic">

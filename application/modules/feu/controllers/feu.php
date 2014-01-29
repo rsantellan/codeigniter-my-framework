@@ -184,4 +184,33 @@ class feu extends MY_Controller{
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function galerias($page = 1)
+  {
+      if($page < 0 || (int) $page == 0)
+          $page = 1;
+      $rows = 12;
+      $this->data['menu'] = 'galerias';
+      $this->loadI18n("galerias", "", FALSE, TRUE, "", "feu");
+      $this->load->model('galerias/galeria');
+      $this->data['galerialist'] = $this->galeria->retrieveAllData($rows, $rows * ($page - 1));
+      $records = $this->galeria->countAllRecords();
+      $this->data['cantidad'] = $records;
+      $this->data['pages'] = ceil($records / $rows);
+      $this->data['page'] = $page;
+      $this->data['content'] = 'galeria';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function galeria($id, $name)
+  {
+	var_dump($id);
+	var_dump($name);
+	$this->data['menu'] = 'galerias';
+    $this->loadI18n("galerias", "", FALSE, TRUE, "", "feu");
+    $this->load->model('galerias/galeria');
+	$object = $this->galeria->getById($id);
+	$this->data['medialist'] = $this->galeria->retrieveGaleriaAlbumContents(array($id));
+	$this->data['content'] = 'galeriashow';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
 }

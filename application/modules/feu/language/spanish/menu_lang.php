@@ -16,3 +16,4 @@ $lang["menu_veterinarios"] = "Veterinarios";
 $lang["menu_veterinarios_jefes"] = "Jefes";
 $lang["menu_veterinarios_habilitados"] = "Habilitados";
 $lang["menu_veterinarios_laboratorios"] = "Laboratorios";
+$lang["menu_galerias"] = "Galerias";

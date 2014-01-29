@@ -865,7 +865,8 @@ body.sticky-menu-active #primary-nav ul li:hover .sf-mega { top: 39px; }
 }
 #page-title h1 { margin-bottom: 0; }
 #page-title .grid-bg {
-	padding: 25px 0 33px 0;
+/*	padding: 25px 0 33px 0;*/
+	padding: 25px 0 25px 0;
 	background-position: 0 -10px;
 }
 
