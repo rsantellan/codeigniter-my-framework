@@ -47,25 +47,24 @@
 
                 <div class="slider-caption" data-smallscreen="yes">
                     <div id="caption1">
-                        <h2>Mobile and Tablet Optimized</h2>
-                        <p class="large-font-size">The template is perfectly adapted to various screen sizes, and it works well on desktops, tablets, and mobile devices.</p>
+                        <h2><?php echo lang('home_box_titulo1');?></h2>
+                        <p class="large-font-size"><?php echo lang('home_box_description1');?></p>
                     </div>
                     <div id="caption2" data-bg-color="8c9560" data-bg-opacity="0.6">
-                        <h2>Each Caption Can Be Styled Individually</h2>
-                        <p class="large-font-size">YouTube, Vimeo, and HTML5 videos are supported throughout the template, so they can be used on any page!</p>
+                        <h2><?php echo lang('home_box_titulo2');?></h2>
+                        <p class="large-font-size"><?php echo lang('home_box_description2');?></p>
                     </div>
                     <div id="caption3" data-bg-color="000000" data-bg-opacity="0.4" data-width="500px">
-                        <h2>Plenty of Elements and Widgets</h2>
-                        <p class="large-font-size">Extremely wide range of elements and widgets you can easily use for creating your website content.</p>
+                        <h2><?php echo lang('home_box_titulo3');?></h2>
+                        <p class="large-font-size"><?php echo lang('home_box_description3');?></p>
                     </div>
                     <div id="caption4">
-                        <h3>This can be an action block, or invitation to do something</h3>
-                        <p class="middle-font-size">The Vestibulum Acenan is a lauctor ornare posuere in purus tincidunt facilisis magna, convallis dolor nulla to the arts in America.</p>
-                        
+                        <h2><?php echo lang('home_box_titulo4');?></h2>
+                        <p class="large-font-size"><?php echo lang('home_box_description4');?></p>
                     </div>
 				  <div id="caption5">
-                        <h3>This can be an action block, or invitation to do something</h3>
-                        <p class="middle-font-size">The Vestibulum Acenan is a lauctor ornare posuere in purus tincidunt facilisis magna, convallis dolor nulla to the arts in America.</p>
+                        <h2><?php echo lang('home_box_titulo5');?></h2>
+                        <p class="large-font-size"><?php echo lang('home_box_description5');?></p>
                     </div>
                 </div>
 
@@ -94,7 +93,7 @@
 
                         <!-- Video preview (HTML5 video is opened in lightbox) -->
                         <section class="preview-block video-type clearfix" data-smallscreen="yes">
-                            <div class="thumbnail-colored">
+<!--                            <div class="thumbnail-colored">
                                 <div class="video-preview" data-type="html5-video">
                                     <a href="#vp1" data-rel="prettyPhoto" title="Taste Lab – nice short comedy by Chris Burton">
                                         <img src="<?php echo base_url(); ?>assets/feu/images/templatedata/intro-preview.jpg" alt="">
@@ -112,7 +111,7 @@
                             <div class="preview-info" data-smallscreen="no">
                                 <h6 class="mb-7px">HTML5 Video in Lightbox</h6>
                                 <a href="#vp1" data-rel="prettyPhoto" title="Taste Lab – nice short comedy by Chris Burton" class="link-sm">Play the video<span></span></a>
-                            </div>
+                            </div>-->
                         </section>
 
                     </div>

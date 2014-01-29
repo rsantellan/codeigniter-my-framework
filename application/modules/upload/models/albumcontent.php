@@ -260,7 +260,7 @@ class albumcontent extends MY_Model{
   {
     log_message("debug", "Deleting images : ".$id);
     $file = $this->getFile($id);
-    $file = $file[0];
+    //$file = $file[0];
     $ci = &get_instance();
     log_message("debug", "Deleting cache images of : ".$id);
     $ci->load->library("upload/mupload");
@@ -296,16 +296,59 @@ class albumcontent extends MY_Model{
       $this->setName($this->_metadata->title);
       $this->setDescription($this->_metadata->content);
       $this->setExtradata($this->_metadata->author);
-      $this->setPath($this->youtubeGetImageUrl());
+      $this->setPath($this->saveToDiskYoutubeImage());
       $this->setContenttype(albumcontent::ISYOUTUBE);
       $this->setType("youtube");
+      
+      
+  }
+
+  public function saveToDiskYoutubeImage()
+  {
+      $url = $this->youtubeGetImageUrl();
+      $save_path = getcwd() . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $this->getAlbumId();
+      $fileName = $this->getCode().".jpg";
+      $ci = &get_instance();
+      $ci->load->library("upload/mupload");
+      $ci->mupload->checkDirectory($save_path);
+
+      if (file_exists($save_path . DIRECTORY_SEPARATOR . $fileName)) {
+        $ext = strrpos($fileName, '.');
+        $fileName_a = substr($fileName, 0, $ext);
+        $fileName_b = substr($fileName, $ext);
+
+        $count = 1;
+        while (file_exists($save_path . DIRECTORY_SEPARATOR . $fileName_a . '_' . $count . $fileName_b))
+          $count++;
+
+        $fileName = $fileName_a . '_' . $count . $fileName_b;
+      }
+      $img = $save_path . DIRECTORY_SEPARATOR . $fileName;
+      if( ini_get('allow_url_fopen') ) {
+          file_put_contents($img, file_get_contents($url));
+          return $img;
+      }else{
+          if(function_exists('curl_version'))
+          {
+              $ch = curl_init($url);
+              $fp = fopen($img, 'wb');
+              curl_setopt($ch, CURLOPT_FILE, $fp);
+              curl_setopt($ch, CURLOPT_HEADER, 0);
+              curl_exec($ch);
+              curl_close($ch);
+              fclose($fp);
+          }
+          return $img;
+      }
+      return $url;
+          
       
       
   }
   
   public function youtubeGetImageUrl()
   {
-    return "http://img.youtube.com/vi/".$this->getCode()."/2.jpg";
+    return "http://img.youtube.com/vi/".$this->getCode()."/0.jpg";
   }
   
   public function retrieveYoutubeId()

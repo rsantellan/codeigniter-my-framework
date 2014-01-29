@@ -76,7 +76,7 @@
                                 </li>
 								<li><a href="<?php echo site_url('feu-directiva.html'); ?>" class="<?php echo ($menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_directiva"); ?></a>
                                 -->
-                                <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva' || $menu == 'veterinarios' || $menu == 'laboratorios')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
+                                <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva' || $menu == 'veterinarios' || $menu == 'laboratorios' || $menu == 'promotoresradios')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
                                     <div class="sf-mega">
                                         <div class="sf-mega-table">
                                             <div class="sf-mega-section width-100px">
@@ -107,7 +107,15 @@
                                                     <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
                                                 </ul>
                                             </div>
-<!--                                            <div class="sf-mega-section width-150px">
+                                            <div class="sf-mega-section width-250px">
+                                                <h5><?php echo lang("menu_promotores_radios"); ?></h5>
+                                                <ul>
+                                                    <li><a href="<?php echo site_url('promotores.html');?>"><?php echo lang("menu_promotores"); ?></a></li>
+                                                    <li><a href="<?php echo site_url('radios.html');?>"><?php echo lang("menu_radios"); ?></a></li>
+                                                </ul>
+                                            </div>
+<!--                                            
+                                            <div class="sf-mega-section width-150px">
                                                 <h5>Footers</h5>
                                                 <ul>
                                                     <li><a href="index.html#footer">Footer version 1</a></li>
@@ -118,7 +126,8 @@
                                                     <li><a href="index6.html#footer">Footer version 6</a></li>
                                                     <li><a href="index7.html#footer">Footer version 7</a></li>
                                                 </ul>
-                                            </div>-->
+                                            </div>
+-->
                                         </div> <!-- end sf-mega-table -->
                                     </div>
                                     <!-- end sf-mega -->

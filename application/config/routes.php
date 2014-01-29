@@ -62,6 +62,8 @@ $route["laboratorios.html"] = 'feu/laboratorios';
 $route["galerias.html"] = 'feu/galerias';
 $route['galerias-(:num).html'] = 'feu/galerias/$1';
 $route['galeria/(:num)/(:any).html'] = 'feu/galeria/$1/$2';
+$route["promotores.html"] = 'feu/promotores';
+$route["radios.html"] = 'feu/radios';
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';

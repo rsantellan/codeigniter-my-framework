@@ -203,14 +203,39 @@ class feu extends MY_Controller{
   
   public function galeria($id, $name)
   {
-	var_dump($id);
-	var_dump($name);
+	//var_dump($id);
+	//var_dump($name);
 	$this->data['menu'] = 'galerias';
     $this->loadI18n("galerias", "", FALSE, TRUE, "", "feu");
     $this->load->model('galerias/galeria');
 	$object = $this->galeria->getById($id);
+    if($object === null)
+    {
+        show_error('No existe el objeto', 404);
+    }
+    $this->data['object'] = $object;
 	$this->data['medialist'] = $this->galeria->retrieveGaleriaAlbumContents(array($id));
 	$this->data['content'] = 'galeriashow';
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function promotores()
+  {
+    $this->data['menu'] = 'promotoresradios';
+    $this->loadI18n("promotoresradios", "", FALSE, TRUE, "", "feu");
+    $this->load->model('banners/banner');
+    $this->data['listado'] = $this->banner->retrieveAll(false, true);
+    $this->data['content'] = 'promotores';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);  
+  }
+  
+  public function radios()
+  {
+    $this->data['menu'] = 'promotoresradios';
+    $this->loadI18n("promotoresradios", "", FALSE, TRUE, "", "feu");
+    $this->load->model('radios/radio');
+    $this->data['listado'] = $this->radio->retrieveAll(false, true);
+    $this->data['content'] = 'radios';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);  
   }
 }

@@ -2,3 +2,13 @@
 $lang["home_titulo"] = "Federación ecuestre del uruguay";
 $lang["home_titulo_mensaje"] = "Sed vitae lacus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec sagittis purus eget lorem egestas, at pellentesque felis rutrum. Sed molestie gravida tortor ut consectetur.";
 $lang["home_titulo_promotores"] = "Promotores";
+$lang["home_box_titulo1"] = "Lorem ipsum algo";
+$lang["home_box_titulo2"] = "Lorem ipsum algo";
+$lang["home_box_titulo3"] = "Lorem ipsum algo";
+$lang["home_box_titulo4"] = "Lorem ipsum algo";
+$lang["home_box_titulo5"] = "Lorem ipsum algo";
+$lang["home_box_description1"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
+$lang["home_box_description2"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
+$lang["home_box_description3"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
+$lang["home_box_description4"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
+$lang["home_box_description5"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";

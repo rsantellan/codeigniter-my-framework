@@ -17,7 +17,7 @@
 	<div class="container"> <!-- 1080 pixels Container -->
 
 		<div class="full-width columns">
-			<p class="middle-font-size">This is an example of a 4-column portfolio full-width layout.</p>
+			<p class="middle-font-size"><?php echo lang("galeria_sub_titulo"); ?></p>
 			<hr class="divider-line colored mb-35px">
 		</div>
 		<div class="clear"></div>

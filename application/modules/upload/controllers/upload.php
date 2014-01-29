@@ -103,8 +103,8 @@ class Upload extends MY_Controller {
 	  $salida['message'] = "No es una url de youtube valida";
 	  //throw new Exception("error");
 	} else {
-	  $obj->youtubePopulateDataByUrl();
 	  $obj->setAlbumId($album_id);
+      $obj->youtubePopulateDataByUrl();
 	  $obj->save();
 	  $salida['message'] = "Video guardado";
 	  $salida['albumId'] = $album_id;

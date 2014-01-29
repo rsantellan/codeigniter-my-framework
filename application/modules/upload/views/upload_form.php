@@ -167,7 +167,7 @@ $(function() {
 	}); 
 
 	// Client side form validation
-	$('form').submit(function(e) {
+	$('#uploader form').submit(function(e) {
         var uploader = $('#uploader').pluploadQueue();
 
         // Files in queue upload them first
