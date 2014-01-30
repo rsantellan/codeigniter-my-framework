@@ -52,6 +52,10 @@ class galeria extends MY_Model{
   
   public function retrieveGaleriaAlbumContents($galeria_ids)
   {
+    if(!is_array($galeria_ids) || count($galeria_ids) == 0)
+    {
+        return array();
+    }
 	$sql = "select
 			albums.obj_id as a_obj_id,
             albumcontent.id as ac_id,

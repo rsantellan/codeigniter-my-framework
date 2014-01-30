@@ -159,6 +159,8 @@ class mupload {
           break;
         case "xls":
         case "xlsx":
+        case "ods":
+        case "csv":
             return $basic_path."office_excel_icon.png";
           break;
         case "ppt":
@@ -180,13 +182,13 @@ class mupload {
 	public function isExtensionDocument($extension)
 	{
 	  $extension = strtolower($extension);
-	  if($extension == 'pdf' || $extension == 'doc' || $extension == 'docx' || $extension == 'xls' || $extension == 'xlsx' || $extension == 'ppt' || $extension == 'pptx')
+	  if($extension == 'pdf' || $extension == 'doc' || $extension == 'docx' || $extension == 'xls' || $extension == 'xlsx' || $extension == 'ppt' || $extension == 'pptx'  || $extension == 'ods'  || $extension == 'csv')
 	  {
 		return true;
 	  }
 	  else
 	  {
-		return true;
+		return false;
 	  }
 	}
     

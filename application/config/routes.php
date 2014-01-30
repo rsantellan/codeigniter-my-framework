@@ -67,7 +67,10 @@ $route["radios.html"] = 'feu/radios';
 $route["noticias.html"] = 'feu/noticias';
 $route['noticias-(:num).html'] = 'feu/noticias/$1';
 $route['noticia/(:num)/(:any).html'] = 'feu/noticia/$1/$2';
-
+$route['noticia-descarga/(:num).html'] = 'feu/downloadFile/$1';
+$route["noticia-busqueda.html"] = 'feu/noticiasbusqueda';
+$route["noticia-busqueda-(:num).html/(:any)"] = 'feu/noticiasbusqueda/$1/$2';
+$route["contacto.html"] = 'feu/contacto';
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';

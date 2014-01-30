@@ -140,6 +140,7 @@
                                     -->
                                 <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
                                 <li><a href="<?php echo site_url('noticias.html'); ?>" class="<?php echo ($menu == 'noticias')? 'current' : '';?>"><?php echo lang("menu_noticias"); ?></a>
+                                <li><a href="<?php echo site_url('contacto.html'); ?>" class="<?php echo ($menu == 'contacto')? 'current' : '';?>"><?php echo lang("menu_contacto"); ?></a>
                             </ul>
                         </div>
                     </nav>
@@ -211,6 +212,9 @@
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.flexslider.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.carousel.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/feu/js/jquery.tweet.min.js"></script>
+        <?php if($jsGoogleMap): ?>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script> <!-- Google Maps API -->
+        <?php endif; ?>
         <script src="<?php echo base_url(); ?>assets/feu/js/custom.js"></script>
 
       <?php foreach($javascript as $js): ?>

@@ -3,7 +3,14 @@
 	<div class="grid-bg">
 		<div class="container"> <!-- 1080 pixels Container -->
 			<div class="full-width columns">
-				<h1><?php echo lang('noticia_titulo');?></h1>
+				<h1>
+                    <?php if($busqueda !== null): ?>
+                        <?php echo sprintf(lang('noticia_titulo_busqueda'), $busqueda);?>
+                    <?php else: ?>    
+                        <?php echo lang('noticia_titulo');?>
+                    <?php endif; ?>
+                    
+                </h1>
 			</div>
 		</div>
 	</div>
@@ -44,8 +51,16 @@
 								<span class="italic"><?php echo lang('noticia_creada');?><bold><?php echo date("j-n-Y",strtotime($noticia->n_created_at));?></bold></span>
 								<span class="italic"><?php echo lang('noticia_actualizada');?><bold><?php echo date("j-n-Y",strtotime($noticia->n_updated_at));?></bold></span>
 							</div>
+                            <?php
+                            $fullwidth = true;
+                            ?>
 							<?php if(count($noticia->contents) > 0): ?>
-							<?php $content = reset($noticia->contents);?>
+							<?php 
+                                $content = reset($noticia->contents);
+                                if($content->ac_contenttype != 'content-document'):
+                                    $fullwidth = false;
+                            ?>
+                            
 							<div class="post-media item-picture">
 								<div class="thumbnail">
 									<img alt="<?php echo $noticia->n_name;?>" src="<?php echo thumbnail_image(base_url(), $content->ac_path , $width, $height, $imgType); ?>" />
@@ -54,27 +69,52 @@
 									</div>
 								</div>
 							</div>
-							<?php endif; ?>
-							<div class="post-content <?php echo (count($noticia->contents) == 0)? 'full-width' : '';?>">
+							<?php endif;
+                                endif; ?>
+							<div class="post-content <?php echo ($fullwidth)? 'full-width' : '';?>">
 								<?php echo word_limiter(html_purify(html_entity_decode($noticia->n_description)), 60); ?>
 								<a href="<?php echo site_url('noticia/' . $url_help);?>" class="link-lg"><?php echo lang('noticia_leer mas');?><span></span></a>
 							</div>
 						</article>
 						<?php endforeach;?>
 						<?php if($pages > 1): ?>
+                        <?php
+                        $firstDelta = 5;
+                        $lastDelta = 5;
+                        if($page < $firstDelta)
+                        {
+                            $lastDelta = $lastDelta + ($firstDelta - $page);
+                        }
+                        if($page > $pages - $lastDelta)
+                        {
+                            $aux = $pages - $page;
+                            if($aux == 0) $aux = $lastDelta;
+                            $firstDelta = $firstDelta + $aux;
+                        }
+                        $url_base = "noticias-%s.html";
+                        if($busqueda !== null)
+                        {
+                            $url_base = "noticia-busqueda-%s.html/".$busqueda;
+                        }
+                        //"noticias-".($page-1).".html"
+                        //"noticias-".$i.".html"
+                        //"noticias-".($page+1).".html"
+                        ?>
 						<nav class="pagination clearfix">
 							<?php if($page > 1): ?>
-							  <a href="<?php echo site_url("noticias-".($page-1).".html");?>" class="prev" title="Pagina Anterior"><span></span></a>
+							  <a href="<?php echo site_url(sprintf($url_base, $page-1));?>" class="prev" title="Pagina Anterior"><span></span></a>
 							<?php endif; ?>
 							<?php for ($i = 1; $i <= $pages; $i++): ?>
-								<?php if($i == $page): ?>
-									<span class="current"><?php echo $i;?></span>
-								<?php else: ?>
-									<a href="<?php echo site_url("noticias-".$i.".html");?>" title="Pagina <?php echo $i;?>"><?php echo $i;?></a>
-								<?php endif; ?>
+                                <?php if($i >= $page - $firstDelta && $i <= $page +$lastDelta): ?>
+                                    <?php if($i == $page): ?>
+                                        <span class="current"><?php echo $i;?></span>
+                                    <?php else: ?>
+                                        <a href="<?php echo site_url(sprintf($url_base, $i));?>" title="Pagina <?php echo $i;?>"><?php echo $i;?></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>    
 							<?php endfor; ?>
 							<?php if($page < $pages): ?>		
-							  <a href="<?php echo site_url("noticias-".($page+1).".html");?>" class="next" title="Pagina siguiente"><span></span></a>
+							  <a href="<?php echo site_url(sprintf($url_base, $page+1));?>" class="next" title="Pagina siguiente"><span></span></a>
 							<?php endif; ?>
 							<span class="pages">Pagina <?php echo $page;?> de <?php echo $pages;?></span>
 						</nav>
@@ -91,14 +131,19 @@
 			<aside id="sidebar" class="one-fourth columns page-right-col">
 
 				<!-- Recent Posts -->
-				<div class="widget" data-smallscreen="yes"> <!-- show widget on a small-screen mobile device: "yes" or "no" -->
-					<h4 class="grey">Recent Posts</h4>
-					<ul class="side-menu">
-						<li><a href="#">Community Poll: Internet Speeds From Around the World in 2013</a></li>
-						<li><a href="#">Post with embedded video</a></li>
-						<li><a href="#">A Simple Way to Install Website Themes</a></li>
-						<li><a href="#">Nullam laoreet turpis ac ornare tincidunt sed malesuada est, eget sollicitudin purus</a></li>
-					</ul>
+				<div class="widget" data-smallscreen="no"> <!-- show widget on a small-screen mobile device: "yes" or "no" -->
+                    <h4 class="grey"><?php echo lang('noticia_buscar_titulo');?></h4>
+                    <?php // Change the css classes to suit your needs    
+                        $attributes = array('class' => 'buscador_form', 'id' => '', "method" => "GET");
+                        echo form_open('noticia-busqueda.html', $attributes); 
+                    ?>
+                    <p>
+                        <label for="t"><?php echo lang('noticia_buscar_label');?></label>
+                        <input id="s" type="text" name="s" value="<?php echo ($busqueda !== null)? $busqueda: '';?>" />
+                    </p>
+                    <input type="submit" class="button light" value="Buscar" />
+                    <a class="colored-text-2" href="<?php echo site_url('noticias.html'); ?>"><?php echo lang('noticia_buscar_label_reiniciar');?><span></span></a>
+                    <?php echo form_close(); ?>
 				</div>
 
 			</aside>

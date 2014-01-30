@@ -7,12 +7,14 @@
 class feu extends MY_Controller{
 
   private $DEFAULT_LAYOUT = "feu_layout";
+  private $newsperpage = 4;
   
   function __construct() {
       parent::__construct();
       $this->load->helper('upload/mimage');
       $this->load->library('upload/mupload');
 	  $this->data['rscarousel'] = false;
+	  $this->data['jsGoogleMap'] = false;
       $this->loadI18n("menu", "", FALSE, TRUE, "", "feu");
       $this->data['menu'] = 'inicio';
 //      $this->output->enable_profiler(TRUE);
@@ -244,12 +246,46 @@ class feu extends MY_Controller{
   {
 	  if($page < 0 || (int) $page == 0)
           $page = 1;
-      $rows = 2;
+      $rows = $this->newsperpage;
       $this->data['menu'] = 'noticias';
       $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
       $this->load->model('noticias/noticia');
       $this->data['noticialist'] = $this->noticia->retrieveAllData($rows, $rows * ($page - 1));
       $records = $this->noticia->countAllRecords();
+	  $this->load->helper('text');
+      $this->load->helper('htmlpurifier');
+      $this->data['cantidad'] = $records;
+      $this->data['pages'] = ceil($records / $rows);
+      $this->data['page'] = $page;
+      $this->data['content'] = 'noticias';
+      $this->data['busqueda'] = null;
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function noticiasbusqueda($page = 1, $busqueda = '')
+  {
+	  if($page < 0 || (int) $page == 0)
+          $page = 1;
+      if(empty($busqueda))
+      {
+          $busqueda = $data = $this->input->get('s');
+      }
+      $rows = $this->newsperpage;
+      $this->data['menu'] = 'noticias';
+      $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('noticias/noticia');
+      $this->data['busqueda'] = $busqueda;
+      $records = 0;
+      if(empty($busqueda))
+      {
+          $this->data['noticialist'] = $this->noticia->retrieveAllData($rows, $rows * ($page - 1));
+          $records = $this->noticia->countAllRecords();
+      }
+      else
+      {
+          $this->data['noticialist'] = $this->noticia->retrieveAllData($rows, $rows * ($page - 1), $busqueda);
+          $records = $this->noticia->countAllRecordsWithSearch($busqueda);
+      }
 	  $this->load->helper('text');
       $this->load->helper('htmlpurifier');
       $this->data['cantidad'] = $records;
@@ -264,16 +300,27 @@ class feu extends MY_Controller{
 	//var_dump($id);
 	//var_dump($name);
 	$this->data['menu'] = 'noticias';
-      $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
-      $this->load->model('noticias/noticia');
+    $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
+    $this->load->model('noticias/noticia');
 	$object = $this->noticia->getById($id);
     if($object === null)
     {
         show_error('No existe el objeto', 404);
     }
+    $this->load->helper('text');
+      $this->load->helper('htmlpurifier');
     $this->data['object'] = $object;
 	$this->data['medialist'] = $this->noticia->retrieveNoticiaAlbumContents(array($id));
-	//$this->data['content'] = 'galeriashow';
+	$this->data['content'] = 'noticiashow';
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function contacto()
+  {
+      $this->data['jsGoogleMap'] = true;
+      $this->data['menu'] = 'contacto';
+      $this->loadI18n("contacto", "", FALSE, TRUE, "", "feu");
+      $this->data['content'] = 'contacto';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 }

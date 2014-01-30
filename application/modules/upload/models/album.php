@@ -85,6 +85,11 @@ class album extends MY_Model{
         log_message("debug", "Deleting image by id : ".$image->id);
         $ci->albumcontent->deleteFile($image->id);
       }
+      $dirPath = getcwd() . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $album["id"];
+      foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+        $path->isFile() ? unlink($path->getPathname()) : rmdir($path->getPathname());
+      }
+      rmdir($dirPath);
       $this->db->where('id', $album["id"]);
       $this->db->delete($this->getTablename());
     }

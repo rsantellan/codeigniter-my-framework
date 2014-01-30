@@ -782,7 +782,7 @@ jQuery(document).ready(function($) {
 			//          "address" - use geographical address
 			
 			var posType = 'address',
-				address = '1730 San Antonio Ave, Alameda, CA 94501', // map and marker address
+				address = '982 Canelones, Montevideo, Montevideo Department', // map and marker address
 				mapCoords = {lat: 37.7668, lng: -122.2579}, // map coordinates
 				markerCoords = {lat: 37.7668, lng: -122.2579}, // marker coordinates
 				mapZoom = 15,

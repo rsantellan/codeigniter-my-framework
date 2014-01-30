@@ -59,17 +59,38 @@
 
 		<!-- Pagination -->
 		<?php if($pages > 1): ?>
+        <?php
+        $firstDelta = 5;
+        $lastDelta = 5;
+        if($page < $firstDelta)
+        {
+            $lastDelta = $lastDelta + ($firstDelta - $page);
+        }
+        if($page > $pages - $lastDelta)
+        {
+            $aux = $pages - $page;
+            if($aux == 0) $aux = $lastDelta;
+            $firstDelta = $firstDelta + $aux;
+        }
+        ?>
         <div class="full-width columns">
             <hr class="divider-line mb-25px">
             <nav class="pagination clearfix">
-                
+                <?php if($page > 1): ?>
+                    <a href="<?php echo site_url("galerias-".($page-1).".html");?>" class="prev" title="Pagina Anterior"><span></span></a>
+                <?php endif; ?>
                 <?php for ($i = 1; $i <= $pages; $i++): ?>
-                    <?php if($i == $page): ?>
-                        <span class="current"><?php echo $i;?></span>
-                    <?php else: ?>
-                        <a href="<?php echo site_url("galerias-".$i.".html");?>" title="Pagina <?php echo $i;?>"><?php echo $i;?></a>
+                    <?php if($i >= $page - $firstDelta && $i <= $page +$lastDelta): ?>
+                        <?php if($i == $page): ?>
+                            <span class="current"><?php echo $i;?></span>
+                        <?php else: ?>
+                            <a href="<?php echo site_url("galerias-".$i.".html");?>" title="Pagina <?php echo $i;?>"><?php echo $i;?></a>
+                        <?php endif; ?>
                     <?php endif; ?>
                 <?php endfor; ?>
+                <?php if($page < $pages): ?>		
+                    <a href="<?php echo site_url("galerias-".($page+1).".html");?>" class="next" title="Pagina siguiente"><span></span></a>
+                  <?php endif; ?>
                 <span class="pages">Pagina <?php echo $page;?> de <?php echo $pages;?></span>
             </nav>
         </div>

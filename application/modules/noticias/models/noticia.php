@@ -16,6 +16,8 @@ class noticia extends MY_Model{
   private $id;
   private $description;
   private $name;
+  private $createdAt;
+  private $updatedAt;
   
   function __construct()
   {
@@ -47,6 +49,22 @@ class noticia extends MY_Model{
     $this->name = $name;
   }
 
+  public function getCreatedAt() {
+      return $this->createdAt;
+  }
+
+  public function setCreatedAt($createdAt) {
+      $this->createdAt = $createdAt;
+  }
+
+  public function getUpdatedAt() {
+      return $this->updatedAt;
+  }
+
+  public function setUpdatedAt($updatedAt) {
+      $this->updatedAt = $updatedAt;
+  }
+
   public function retrieveAllForSelect()
   {
     $this->db->order_by("ordinal", "desc");
@@ -61,6 +79,10 @@ class noticia extends MY_Model{
   
   public function retrieveNoticiaAlbumContents($noticias_ids)
   {
+    if(!is_array($noticias_ids) || count($noticias_ids) == 0)
+    {
+        return array();
+    }
 	$sql = "select
 			albums.obj_id as a_obj_id,
             albumcontent.id as ac_id,
@@ -75,7 +97,7 @@ class noticia extends MY_Model{
             albumcontent.ordinal as ac_ordinal
         from
             albums
-		left outer join albumcontent ON (albums.id = albumcontent.album_id)
+		inner join albumcontent ON (albums.id = albumcontent.album_id)
         where albums.obj_id in (". implode(",", $noticias_ids) .") and albums.name = 'default' and albums.obj_class = 'noticia'
         order by albumcontent.ordinal asc";
 	  $return = $this->db->query($sql);
@@ -83,9 +105,22 @@ class noticia extends MY_Model{
 	  
   }
   
-  public function retrieveAllData($rows, $offset)
+  public function countAllRecordsWithSearch($busqueda = null)
   {
-	  $sql_noticia = "select 
+      if($busqueda === null)
+      {
+          return $this->countAllRecords();
+      }
+      $busqueda = "%".$busqueda."%";
+      $sql = "select count(*) as numrows from noticia where name like ?";
+      $returncount = $this->db->query($sql, array($busqueda))->row();
+      return $returncount->numrows;
+  }
+  
+  public function retrieveAllData($rows, $offset, $busqueda = null)
+  {
+	  $parameters = array();
+      $sql_noticia = "select 
 		noticia.id as n_id,
 		noticia.name as n_name,
 		noticia.description as n_description,
@@ -93,10 +128,17 @@ class noticia extends MY_Model{
 		noticia.updated_at as n_updated_at,
 		noticia.ordinal as n_ordinal
 		from
-		noticia
-		order by noticia.ordinal desc
+		noticia ";
+      
+      if($busqueda !== null)
+      {
+          $busqueda = "%".$busqueda."%";
+          $parameters[] = $busqueda;
+          $sql_noticia .= " where noticia.name like ?";
+      }
+      $sql_noticia .= " order by noticia.ordinal desc
 		limit ".$offset." , ".$rows;
-	  $returnnoticia = $this->db->query($sql_noticia);
+	  $returnnoticia = $this->db->query($sql_noticia, $parameters);
       $resultsnoticia = $returnnoticia->result();
       $data = array();
       $in_data = array();
@@ -180,6 +222,8 @@ class noticia extends MY_Model{
         $aux->setId($obj->id);
         $aux->setName($obj->name);
         $aux->setDescription($obj->description);
+        $aux->setCreatedAt($obj->created_at);
+        $aux->setUpdatedAt($obj->updated_at);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -251,6 +295,8 @@ class noticia extends MY_Model{
           $aux->setId($obj->id);
           $aux->setName($obj->name);
           $aux->setDescription($obj->description);
+          $aux->setCreatedAt($obj->created_at);
+          $aux->setUpdatedAt($obj->updated_at);
           return $aux;
         }
         return $obj;

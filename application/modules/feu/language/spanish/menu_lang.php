@@ -21,3 +21,4 @@ $lang["menu_promotores_radios"] = "Promotores y radios";
 $lang["menu_radios"] = "Radios";
 $lang["menu_promotores"] = "Promotores";
 $lang["menu_noticias"] = "Noticias";
+$lang["menu_contacto"] = "Contacto";
