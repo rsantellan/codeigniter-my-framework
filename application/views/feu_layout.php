@@ -139,6 +139,7 @@
                                     <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
                                     -->
                                 <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
+                                <li><a href="<?php echo site_url('noticias.html'); ?>" class="<?php echo ($menu == 'noticias')? 'current' : '';?>"><?php echo lang("menu_noticias"); ?></a>
                             </ul>
                         </div>
                     </nav>

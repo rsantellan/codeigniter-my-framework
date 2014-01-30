@@ -27,6 +27,7 @@ class albumcontent extends MY_Model{
     
     const ISIMAGE = 'content-image';
     const ISYOUTUBE = 'content-youtube';
+    const ISDOCUMENT = 'content-document';
     
     function __construct()
     {

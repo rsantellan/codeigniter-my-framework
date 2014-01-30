@@ -170,6 +170,25 @@ class mupload {
         break;
       }
     }
+	
+	public function isFilePathDocument($path)
+	{
+	  $extension = strtolower($this->get_file_extension($path));
+	  return $this->isExtensionDocument($extension);
+	}
+	
+	public function isExtensionDocument($extension)
+	{
+	  $extension = strtolower($extension);
+	  if($extension == 'pdf' || $extension == 'doc' || $extension == 'docx' || $extension == 'xls' || $extension == 'xlsx' || $extension == 'ppt' || $extension == 'pptx')
+	  {
+		return true;
+	  }
+	  else
+	  {
+		return true;
+	  }
+	}
     
     public function get_path_of_file($path)
     {

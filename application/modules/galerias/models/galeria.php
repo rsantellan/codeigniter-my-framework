@@ -68,7 +68,7 @@ class galeria extends MY_Model{
             albums
 		left outer join albumcontent ON (albums.id = albumcontent.album_id)
         where albums.obj_id in (". implode(",", $galeria_ids) .") and albums.name = 'default' and albums.obj_class = 'galeria'
-        order by albumcontent.ordinal desc";
+        order by albumcontent.ordinal asc";
 	  $return = $this->db->query($sql);
 	  return $return->result();
 	  

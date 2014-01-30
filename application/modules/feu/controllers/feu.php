@@ -21,6 +21,7 @@ class feu extends MY_Controller{
   // http://www.catchmyfame.com/2009/12/30/huge-updates-to-jquery-infinite-carousel-version-2-released/
   // http://www.catchmyfame.com/jquery/infinitecarousel2/demo/d3.html
   // https://github.com/richardscarrott/jquery-ui-carousel
+  // http://ellislab.com/codeigniter/user-guide/libraries/caching.html
   public function index()
   {
 	//$this->output->enable_profiler(TRUE);
@@ -237,5 +238,42 @@ class feu extends MY_Controller{
     $this->data['listado'] = $this->radio->retrieveAll(false, true);
     $this->data['content'] = 'radios';
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);  
+  }
+  
+  public function noticias($page = 1)
+  {
+	  if($page < 0 || (int) $page == 0)
+          $page = 1;
+      $rows = 2;
+      $this->data['menu'] = 'noticias';
+      $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('noticias/noticia');
+      $this->data['noticialist'] = $this->noticia->retrieveAllData($rows, $rows * ($page - 1));
+      $records = $this->noticia->countAllRecords();
+	  $this->load->helper('text');
+      $this->load->helper('htmlpurifier');
+      $this->data['cantidad'] = $records;
+      $this->data['pages'] = ceil($records / $rows);
+      $this->data['page'] = $page;
+      $this->data['content'] = 'noticias';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function noticia($id, $name)
+  {
+	//var_dump($id);
+	//var_dump($name);
+	$this->data['menu'] = 'noticias';
+      $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('noticias/noticia');
+	$object = $this->noticia->getById($id);
+    if($object === null)
+    {
+        show_error('No existe el objeto', 404);
+    }
+    $this->data['object'] = $object;
+	$this->data['medialist'] = $this->noticia->retrieveNoticiaAlbumContents(array($id));
+	//$this->data['content'] = 'galeriashow';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 }

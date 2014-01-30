@@ -59,6 +59,94 @@ class noticia extends MY_Model{
     return $salida;
   }
   
+  public function retrieveNoticiaAlbumContents($noticias_ids)
+  {
+	$sql = "select
+			albums.obj_id as a_obj_id,
+            albumcontent.id as ac_id,
+            albumcontent.path as ac_path,
+            albumcontent.name as ac_name,
+            albumcontent.type as ac_type,
+            albumcontent.contenttype as ac_contenttype,
+            albumcontent.url as ac_url,
+            albumcontent.code as ac_code,
+            albumcontent.description as ac_description,
+            albumcontent.extradata as ac_extradata,
+            albumcontent.ordinal as ac_ordinal
+        from
+            albums
+		left outer join albumcontent ON (albums.id = albumcontent.album_id)
+        where albums.obj_id in (". implode(",", $noticias_ids) .") and albums.name = 'default' and albums.obj_class = 'noticia'
+        order by albumcontent.ordinal asc";
+	  $return = $this->db->query($sql);
+	  return $return->result();
+	  
+  }
+  
+  public function retrieveAllData($rows, $offset)
+  {
+	  $sql_noticia = "select 
+		noticia.id as n_id,
+		noticia.name as n_name,
+		noticia.description as n_description,
+		noticia.created_at as n_created_at,
+		noticia.updated_at as n_updated_at,
+		noticia.ordinal as n_ordinal
+		from
+		noticia
+		order by noticia.ordinal desc
+		limit ".$offset." , ".$rows;
+	  $returnnoticia = $this->db->query($sql_noticia);
+      $resultsnoticia = $returnnoticia->result();
+      $data = array();
+      $in_data = array();
+      foreach($resultsnoticia as $noticia)
+      {
+          $aux = new stdClass();
+          $aux->n_id = $noticia->n_id;
+          $aux->n_name = $noticia->n_name;
+          $aux->n_description = $noticia->n_description;
+          $aux->n_created_at = $noticia->n_created_at;
+          $aux->n_updated_at = $noticia->n_updated_at;
+          $aux->n_ordinal = $noticia->n_ordinal;
+          $aux->contents = array();
+          $in_data[] = $noticia->n_id;
+          $data[$noticia->n_id] = $aux;
+          
+      }
+	  
+	  $results = $this->retrieveNoticiaAlbumContents($in_data);
+	  foreach($results as $object)
+		{
+		  if($object->ac_id !== null)
+		  {
+			  $aux = $data[$object->a_obj_id];
+			  $content = new stdClass();
+			  if(!isset($aux->contents[$object->ac_id]))
+			  {
+				  $content->ac_id = $object->ac_id;
+				  $content->ac_path = $object->ac_path;
+				  $content->ac_name = $object->ac_name;
+				  $content->ac_type = $object->ac_type;
+				  $content->ac_contenttype = $object->ac_contenttype;
+				  $content->ac_url = $object->ac_url;
+				  $content->ac_code = $object->ac_code;
+				  $content->ac_description = $object->ac_description;
+				  $content->ac_extradata = $object->ac_extradata;
+				  $content->ac_ordinal = $object->ac_ordinal;
+			  }
+			  else
+			  {
+				  $content = $aux->contents[$object->ac_id];
+			  }
+			  $aux->contents[$object->ac_id] = $content;
+			  $data[$object->a_obj_id] = $aux;
+		  }
+		}
+		
+		return $data;
+  }
+  
   public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $limit = null)
   {
     $this->db->order_by("ordinal", "desc");
@@ -123,6 +211,8 @@ class noticia extends MY_Model{
     $data["name"] = $this->getName();
     $data["description"] = $this->getDescription();
     $data["ordinal"] = $this->retrieveLastOrder();
+    $data["created_at"] = date('Y-m-d H:i:s');
+    $data["updated_at"] = date('Y-m-d H:i:s');
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id();
     if(!is_null($id) && $id != 0)
@@ -139,6 +229,7 @@ class noticia extends MY_Model{
     $data = array(
         'name' => $this->getName(),
         'description' => $this->getDescription(),
+        'updated_at' => date('Y-m-d H:i:s'),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);

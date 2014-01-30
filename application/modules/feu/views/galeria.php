@@ -59,7 +59,6 @@
 
 		<!-- Pagination -->
 		<?php if($pages > 1): ?>
-        <!-- Pagination -->
         <div class="full-width columns">
             <hr class="divider-line mb-25px">
             <nav class="pagination clearfix">
@@ -70,15 +69,12 @@
                     <?php else: ?>
                         <a href="<?php echo site_url("galerias-".$i.".html");?>" title="Pagina <?php echo $i;?>"><?php echo $i;?></a>
                     <?php endif; ?>
-                    
                 <?php endfor; ?>
                 <span class="pages">Pagina <?php echo $page;?> de <?php echo $pages;?></span>
             </nav>
         </div>
-        <?php 
-        endif;
-        ?>
-
+        <?php endif; ?>
+		<!-- Pagination -->
 	</div>
 
 </section>

@@ -89,7 +89,7 @@ from
 left outer join club on departamento.id = club.departmentid
 left outer join albums ON (albums.obj_id = club.id and albums.obj_class = 'club' and albums.name = 'default')
 left outer join albumcontent ON (albums.id = albumcontent.album_id)
-order by departamento.ordinal desc , club.ordinal desc , albumcontent.ordinal desc 
+order by departamento.ordinal desc , club.ordinal desc , albumcontent.ordinal asc 
 ";
       
       $return = $this->db->query($sql);

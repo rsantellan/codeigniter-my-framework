@@ -227,7 +227,12 @@ class Upload extends MY_Controller {
 	$obj->setPath($save_path .DIRECTORY_SEPARATOR. $fileName);
 	$obj->setName($fileName);
 	$obj->setType($type);
-	$obj->setContenttype(albumcontent::ISIMAGE);
+	$contentType = albumcontent::ISIMAGE;
+	if($this->mupload->isExtensionDocument($type))
+	{
+	  $contentType = albumcontent::ISDOCUMENT;
+	}
+	$obj->setContenttype($contentType);
 	$obj->setAlbumId($_POST['album_id']);
 	$obj->save();
 	// Return JSON-RPC response
