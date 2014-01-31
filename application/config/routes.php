@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "feu";
-$route['404_override'] = '';
+$route['404_override'] = 'feu/showerror';
 $route[""] = 'feu/index';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';
 $route["historia-feu.html"] = 'feu/historiafeu';

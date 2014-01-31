@@ -420,4 +420,12 @@ class feu extends MY_Controller{
       $this->data['content'] = 'pruebas';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
+  
+  public function showerror()
+  {
+      $this->data['menu'] = 'error';
+      $this->loadI18n("error404", "", FALSE, TRUE, "", "feu");  
+      $this->data['content'] = 'error404';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
 }
