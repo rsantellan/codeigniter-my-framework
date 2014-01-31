@@ -1,0 +1,35 @@
+assets/cache/*
+assets/uploads/*
+#Cambiar siempre la primera vez
+#application/config/database.php
+#assets/admin/js/tiny_mce/plugins/jfilebrowser/js/config.js
+#assets/admin/js/tiny_mce/plugins/jfilebrowser/include/config.php
+application/logs/log*
+application/blog
+application/categorias
+application/sitio
+application/roche
+application/tags
+application/testmulti
+application/welcome
+application/proyectos
+
+captcha/*
+*.sql
+rsync_exclude.txt
+
+# SCM files
+.arch-params
+.bzr
+_darcs
+.git
+.hg
+.monotone
+.svn
+CVS
+
+#Metalizadora
+#rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
+
+#Roche
+#rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
