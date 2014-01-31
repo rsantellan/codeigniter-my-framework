@@ -76,7 +76,7 @@
                   complete: function()
                   {
                       parent.$('#cboxLoadingGraphic').hide();
-                      parent.$.colorbox.resize();
+                      //parent.$.colorbox.resize();
                       
                   }
                 });

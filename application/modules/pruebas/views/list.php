@@ -1,10 +1,7 @@
-<h3>Listado de Radios</h3>
+<h3>Listado de Pruebas</h3>
 <table id="table_data">
   <thead>
     <tr>
-      <th>
-        Imagen
-      </th>  
       <th>
         Nombre
       </th>
@@ -17,31 +14,19 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($radios_list as $object): ?>
+    <?php foreach($object_list as $object): ?>
     <tr id="table_row_<?php echo $object->id;?>">
-    <td>
-          <?php 
-            $imgType = 3;
-            $width = 100;
-            $height = 100;
-            ?>
-          <?php if(!is_null($object->avatar)): ?>
-            <img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
-            <?php else: ?>
-            <img src="<?php echo base_url();?>assets/images/noimage.png" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
-        <?php endif; ?>
-      </td>
       <td>
         <?php echo ($object->name); ?>
       </td>
       <td>
-        <?php echo ($object->link); ?>
+        <?php echo $pruebaType[$object->type]; ?>
       </td>
       <td>
-        <a href="<?php echo site_url("radios/edit/".$object->id);?>">
+        <a href="<?php echo site_url("pruebas/edit/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar la radio?', '<?php echo site_url("radios/delete/".$object->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar la prueba?', '<?php echo site_url("pruebas/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>
@@ -52,11 +37,10 @@
 </table>
 
 <hr/>
-<a href="<?php echo site_url("radios/add");?>">
+<a href="<?php echo site_url("pruebas/add");?>">
   Agregar
 </a>
-
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sort/radios/radio/name");?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithParameters/pruebas/prueba/type/pruebas/prueba");?>" >
   Ordenar
 </a>
 

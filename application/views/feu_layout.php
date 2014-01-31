@@ -107,6 +107,13 @@
                                                     <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
                                                 </ul>
                                             </div>
+                                            <div class="sf-mega-section width-100px">
+                                                <h5><?php echo lang("menu_pruebas"); ?></h5>
+                                                <ul>
+                                                    <li><a href="<?php echo site_url('pruebas-cortas.html');?>"><?php echo lang("menu_pruebas_cortas"); ?></a></li>
+                                                    <li><a href="<?php echo site_url('pruebas-largas.html');?>"><?php echo lang("menu_pruebas_largas"); ?></a></li>
+                                                </ul>
+                                            </div>
                                             <div class="sf-mega-section width-250px">
                                                 <h5><?php echo lang("menu_promotores_radios"); ?></h5>
                                                 <ul>

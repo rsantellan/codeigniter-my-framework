@@ -28,7 +28,7 @@
         </div>
           <?php
           ?>
-          <?php if( in_array($image->type, array('pdf', 'doc', 'docx', 'xls', 'ppt', 'xlsx', 'pptx'))):
+          <?php if( in_array($image->type, array('pdf', 'doc', 'docx', 'xls', 'ppt', 'xlsx', 'pptx', 'ods', 'csv', 'odt'))):
           ?>
           <br/>
           <label style="font-size: 10px"><?php echo $image->name;?></label>
@@ -41,7 +41,7 @@
   <?php endforeach; ?>
   </ul>
   <div class="clear"></div>
-  <div>
+  <div style="margin-top: 15px">
     <a class="colorbox_link_iframe" href="<?php echo site_url("upload/sort/".$id);?>">
       Ordenar
     </a>

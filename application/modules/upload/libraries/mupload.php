@@ -13,6 +13,8 @@ if (!defined('BASEPATH'))
  */
 class mupload {
   
+  private $documenttypes = array('pdf', 'doc', 'docx', 'xls', 'ppt', 'xlsx', 'pptx', 'ods', 'csv', 'odt');  
+ 
   public function checkDirectory($path){
         log_message("debug", $path);
         if (is_dir($path))
@@ -155,6 +157,7 @@ class mupload {
           break;
         case "doc":
         case "docx":
+        case "odt":
             return $basic_path."office_word_icon.png";
           break;
         case "xls":
@@ -182,7 +185,15 @@ class mupload {
 	public function isExtensionDocument($extension)
 	{
 	  $extension = strtolower($extension);
-	  if($extension == 'pdf' || $extension == 'doc' || $extension == 'docx' || $extension == 'xls' || $extension == 'xlsx' || $extension == 'ppt' || $extension == 'pptx'  || $extension == 'ods'  || $extension == 'csv')
+      if(in_array($extension, $this->documenttypes))
+      {
+          return true;
+      }
+      else
+      {
+          return false;
+      }
+	  if($extension == 'pdf' || $extension == 'doc' || $extension == 'docx' || $extension == 'xls' || $extension == 'xlsx' || $extension == 'ppt' || $extension == 'pptx'  || $extension == 'ods'  || $extension == 'csv' || $extension == 'odt')
 	  {
 		return true;
 	  }

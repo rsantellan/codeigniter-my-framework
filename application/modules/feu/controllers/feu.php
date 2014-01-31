@@ -397,6 +397,27 @@ class feu extends MY_Controller{
 	$this->data['messageSend'] = true;
 	$this->data['content'] = 'contacto';
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
-	
+  }
+  
+  public function pruebascortas()
+  {
+      $this->data['menu'] = 'pruebas';
+      $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
+      $this->load->model('pruebas/prueba');
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 2);
+      $this->data['pruebaCorta'] = true;
+      $this->data['content'] = 'pruebas';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function pruebaslargas()
+  {
+      $this->data['menu'] = 'pruebas';
+      $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
+      $this->load->model('pruebas/prueba');
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 1);
+      $this->data['pruebaCorta'] = false;
+      $this->data['content'] = 'pruebas';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 }

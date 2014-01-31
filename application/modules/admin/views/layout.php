@@ -88,6 +88,7 @@
               <li class="<?php echo ($menu_id == 'jornadas' )? "current": "";?>"><a href="<?php echo site_url('jornadas/index');?>">Jornadas</a></li>
               <li class="<?php echo ($menu_id == 'jornadatemas' )? "current": "";?>"><a href="<?php echo site_url('jornadatemas/index');?>">Temas de Jornadas</a></li>
               <li class="<?php echo ($menu_id == 'noticias' )? "current": "";?>"><a href="<?php echo site_url('noticias/index');?>">Noticias</a></li>
+              <li class="<?php echo ($menu_id == 'prueba' )? "current": "";?>"><a href="<?php echo site_url('pruebas/index');?>">Pruebas</a></li>
             </ul>
           </li>
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
