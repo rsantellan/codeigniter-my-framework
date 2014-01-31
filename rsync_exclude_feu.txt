@@ -13,10 +13,14 @@ application/tags
 application/testmulti
 application/welcome
 application/proyectos
-
+assets/ckeditor
+assets/js/roche
+assets/css/roche
+assets/images/roche
 captcha/*
 *.sql
 rsync_exclude.txt
+rsync_exclude_feu.txt
 
 # SCM files
 .arch-params
@@ -33,3 +37,6 @@ CVS
 
 #Roche
 #rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
+
+#Feu local
+rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude_feu.txt" ./ /tmp/feu
