@@ -134,13 +134,14 @@
 
                 <div class="row">
 					<?php foreach($noticias as $noticia): ?>
-					  <div class="one-third columns">
-                        <article>
-                            <img src="<?php echo base_url(); ?>assets/feu/images/icons/big/icon-notebook.png" alt="">
-                            <header><h3><?php echo $noticia->name;?></h3></header>
-                            <p><?php echo character_limiter(html_purify(html_entity_decode($noticia->description)), 100); ?></p>
-                            <a href="><?php echo $noticia->id;?>" class="button"><?php echo lang("noticia_leer mas"); ?></a>
-                        </article>
+					  <?php $url_help = $noticia->id . "/" . url_title($noticia->name, '-', TRUE) . ".html";?>
+                    <div class="one-third columns">
+                    <article>
+                        <img src="<?php echo base_url(); ?>assets/feu/images/icons/big/icon-notebook.png" alt="">
+                        <header><h3><?php echo character_limiter(html_purify($noticia->name), 30); ?></h3></header>
+                        <p><?php echo character_limiter(html_purify(html_entity_decode(strip_tags($noticia->description))), 100); ?></p>
+                        <a href="<?php echo site_url('noticia/' . $url_help);?>" class="button"><?php echo lang("noticia_leer mas"); ?></a>
+                    </article>
                     </div>
 					<?php endforeach; ?>
                    
