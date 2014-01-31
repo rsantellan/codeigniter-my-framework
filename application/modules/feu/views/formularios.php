@@ -41,6 +41,10 @@
 					<label for="file">Enviar archivo</label>
 					<input type="file" name="file" id="file" />
 					<div class="clear"></div>
+					<label for="word">Introduzca el texto</label><?php if(isset($errores["captcha"])): ?> <label class="msg_error"><?php echo $errores['captcha'];?></label><?php endif; ?>  
+					<?php echo $captchaImage;  // this will show the captcha image?>
+					<input type="text" name="word"  />
+					<div class="clear"></div>
 					<input type="submit" class="button" value="enviar"/>
 				  </form>
 				</div>

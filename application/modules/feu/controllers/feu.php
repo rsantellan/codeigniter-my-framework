@@ -133,6 +133,23 @@ class feu extends MY_Controller{
       $this->load->model('documents/document');
       $this->data['documents_list'] = $this->document->retrieveAll('form', false, true);
       $this->loadI18n("documentacion", "", FALSE, TRUE, "", "feu");
+	  $this->load->helper('captcha');
+	  $vals = array(
+		  'img_path'     => './captcha/',
+		  'img_url'     => $this->config->base_url()."captcha/",
+		  'img_width'     => '200',
+		  'img_height' => 30,
+		  'border' => 0,
+		  'expiration' => 7200,
+		  'usecaps' => false
+		  );
+
+		// create captcha image
+	   $cap = create_captcha($vals);
+	   // store image html code in a variable
+	   $this->data['captchaImage'] = $cap['image'];
+	  // store the captcha word in a session
+	  $this->session->set_userdata('word', $cap['word']);
       $this->data['content'] = 'formularios';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
@@ -320,7 +337,66 @@ class feu extends MY_Controller{
       $this->data['jsGoogleMap'] = true;
       $this->data['menu'] = 'contacto';
       $this->loadI18n("contacto", "", FALSE, TRUE, "", "feu");
-      $this->data['content'] = 'contacto';
-      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+	  $this->load->library('form_validation');
+      $this->load->helper('form');
+      $this->load->helper('url');
+      $this->data['messageSend'] = false;
+      $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
+      $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');			
+      $this->form_validation->set_rules('message', 'message', 'required|max_length[1000]');
+
+      $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+	  
+	  if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+      {
+		$this->data['content'] = 'contacto';
+		$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+	  }
+	  else
+      {
+		$form_data = array(
+                        'nombre' => set_value('name'),
+                        'email' => set_value('email'),
+                        'comentario' => set_value('message')
+                    );
+        $data['form_data'] = $form_data;
+		$this->load->model('contacto/mail_db');
+        $return = $this->mail_db->retrieveContactMailInfo();
+		//Con estos datos preparo un email para enviar.
+		$this->load->library('email');
+		$this->email->from($return['from']['direccion'], $return['from']['nombre']);
+        $this->email->to($return['to']); 
+		if(isset($return['cc']))
+		{
+		  $this->email->cc($return['cc']); 
+		}
+        if(isset($return['bcc']))
+		{
+		  $this->email->bcc($return['bcc']);
+		}
+        
+        $this->email->reply_to($form_data['email'], $form_data['nombre']);
+		$this->email->subject('[FEU]Contacto desde el sitio web');
+        $message = $this->load->view('memail', $form_data, true);
+        $this->email->message($message); 
+
+        $this->email->send();
+		//Debug
+		//echo $this->email->print_debugger();die;
+		redirect('contacto-enviado.html');   // or whatever logic needs to occur
+		//redirect('feu/contactosuccess');   // or whatever logic needs to occur
+	  }
+      
+  }
+  
+  public function contactosuccess()
+  {
+	$this->data['jsGoogleMap'] = true;
+	$this->data['menu'] = 'contacto';
+	$this->loadI18n("contacto", "", FALSE, TRUE, "", "feu");
+	$this->data['messageSend'] = true;
+	$this->data['content'] = 'contacto';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+	
   }
 }

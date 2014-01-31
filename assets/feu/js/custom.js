@@ -902,7 +902,7 @@ jQuery(document).ready(function($) {
 		var $form = $('#contact-form, #comment-form');
 		
 		if ($form.length) {
-			var $loader = $('<img>', {src: 'images/icons/ajax-loader.gif', width: '16', height: '11', alt: 'Loading...'})
+			var $loader = $('<img>', {src: 'assets/feu/images/icons/ajax-loader.gif', width: '16', height: '11', alt: 'Loading...'})
 						.appendTo('#submit-button', $form).hide(),
 				$messageBox = $('<div class="message-box short">').appendTo($form).hide(),
 				success_msg,
@@ -924,6 +924,7 @@ jQuery(document).ready(function($) {
 			}
 			
 			$form.on('click', 'input[type="submit"]', function(e) {
+				return true;
 				e.preventDefault();
 				var hasError = false;
 				

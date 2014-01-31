@@ -71,6 +71,7 @@ $route['noticia-descarga/(:num).html'] = 'feu/downloadFile/$1';
 $route["noticia-busqueda.html"] = 'feu/noticiasbusqueda';
 $route["noticia-busqueda-(:num).html/(:any)"] = 'feu/noticiasbusqueda/$1/$2';
 $route["contacto.html"] = 'feu/contacto';
+$route["contacto-enviado.html"] = 'feu/contactosuccess';
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';
