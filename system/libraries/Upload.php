@@ -1129,6 +1129,9 @@ class CI_Upload {
 
 	// --------------------------------------------------------------------
 
+	public function clean_errors(){
+		$this->error_msg = array();
+	}
 }
 // END Upload Class
 

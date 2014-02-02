@@ -16,8 +16,8 @@
 
     <div class="container"> <!-- 1080 pixels Container -->
        
-        <div class="row">
-				<div class="two-thirds columns">
+        <div class="row mb-40px">
+				<div class="one-half columns mb-20px">
 					<div class="offset-right-20px">
 						<!-- Announcements -->
 						<div class="announcements mb-30px">
@@ -35,13 +35,20 @@
 						<!-- end Announcements -->
 					</div>
 				</div>
-				<div class="one-thirds columns">
+				<div class="one-half columns mb-20px">
 				  <h4>Enviar formulario</h4>
-				  <form action="" metho="POST">
-					<label for="file">Enviar archivo</label>
-					<input type="file" name="file" id="file" />
+				  <?php if($messageSent): ?>
+					<h5 style='color: #52CC52;'>El formulario a sido enviado con exito</h5>
+				  <?php endif;?>
+				  <form action="<?php echo site_url('formularios.html');?>" method="POST" enctype="multipart/form-data">
+					<label for="name">Nombre</label>
+					<?php echo form_error('name'); ?>
+					<input type="text" name="name" id="name" />
 					<div class="clear"></div>
-					<label for="word">Introduzca el texto</label><?php if(isset($errores["captcha"])): ?> <label class="msg_error"><?php echo $errores['captcha'];?></label><?php endif; ?>  
+					<label for="fileform">Enviar archivo</label><?php if(isset($errores["fileform"])): ?> <label style="color: #E62E00; font-weight: bold;"><?php echo $errores['fileform'];?></label><?php endif; ?>  
+					<input type="file" name="fileform" id="fileform" />
+					<div class="clear"></div>
+					<label for="word">Introduzca el texto</label><?php if(isset($errores["captcha"])): ?> <label style="color: #E62E00; font-weight: bold;"><?php echo $errores['captcha'];?></label><?php endif; ?>  
 					<?php echo $captchaImage;  // this will show the captcha image?>
 					<input type="text" name="word"  />
 					<div class="clear"></div>

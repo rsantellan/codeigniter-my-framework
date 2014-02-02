@@ -91,29 +91,16 @@
                             <hr class="divider-pattern streaks offset-right-10px mb-30px">
                         </section>
 
-                        <!-- Video preview (HTML5 video is opened in lightbox) -->
-                        <section class="preview-block video-type clearfix" data-smallscreen="yes">
-<!--                            <div class="thumbnail-colored">
-                                <div class="video-preview" data-type="html5-video">
-                                    <a href="#vp1" data-rel="prettyPhoto" title="Taste Lab – nice short comedy by Chris Burton">
-                                        <img src="<?php echo base_url(); ?>assets/feu/images/templatedata/intro-preview.jpg" alt="">
-                                        <div class="overlay"><span class="play-icon"></span></div>
-                                    </a>
-                                    <div id="vp1" class="html5-video">
-                                        <video class="player" width="640" height="360" poster="<?php echo base_url(); ?>assets/feu/images/portfolio/video-poster.jpg" controls>
-                                            <source src="http://e-merald.com/themes/_media/taste-lab-800x450.mp4" type="video/mp4">
-                                            <source src="http://e-merald.com/themes/_media/taste-lab-1280x720.webm" type="video/webm">
-                                            <source src="http://e-merald.com/themes/_media/taste-lab-960x540.ogv" type="video/ogg">
-                                        </video>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="preview-info" data-smallscreen="no">
-                                <h6 class="mb-7px">HTML5 Video in Lightbox</h6>
-                                <a href="#vp1" data-rel="prettyPhoto" title="Taste Lab – nice short comedy by Chris Burton" class="link-sm">Play the video<span></span></a>
-                            </div>-->
-                        </section>
-
+						<!-- Preview (image type) -->
+						<section class="preview-block image-type clearfix">
+							<span class="thumbnail-colored">
+							  <a href="<?php echo site_url('radios.html');?>"><img src="<?php echo base_url();?>assets/feu/images/radio.png" alt=""></a>
+							</span>
+							<div class="preview-info" data-smallscreen="yes">
+								<h6 class="mb-7px"><?php echo lang("home_radios_titulo"); ?></h6>
+								<a href="<?php echo site_url('radios.html');?>" class="link-sm colored-text-2"><?php echo lang("home_radios_descripcion"); ?><span></span></a>
+							</div>
+						</section>
                     </div>
                 </div>
 

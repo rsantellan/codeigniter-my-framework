@@ -12,3 +12,5 @@ $lang["home_box_description2"] = "acus rutrum, suscipit orci vel, fringilla tort
 $lang["home_box_description3"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
 $lang["home_box_description4"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
 $lang["home_box_description5"] = "acus rutrum, suscipit orci vel, fringilla tortor. Sed non ornare nulla. Donec s";
+$lang["home_radios_titulo"] = "Radios que nos siguen";
+$lang["home_radios_descripcion"] = "Mira el listado";

@@ -133,6 +133,73 @@ class feu extends MY_Controller{
       $this->load->model('documents/document');
       $this->data['documents_list'] = $this->document->retrieveAll('form', false, true);
       $this->loadI18n("documentacion", "", FALSE, TRUE, "", "feu");
+	  $this->load->helper('form');
+	  $this->load->library('form_validation');
+	  $this -> form_validation -> set_rules('name', 'name', 'required|max_length[255]');
+	  $this -> form_validation -> set_error_delimiters('<br /><label style="color: #E62E00; font-weight: bold;">', '</label>');
+	  $errores = array();
+	  $word = $this->input->post('word');
+	  $captcha = false;
+	  $mensajeEnviado = false;
+	  if ($this->input->post() && ($word == $this->session->userdata('word'))) 
+	  {
+		$captcha = true;
+	  }
+	  else
+	  {
+		if(!empty($word) || $this->input->post() )
+		{
+		  $errores["captcha"] = "Captcha invalido"; 
+		}
+
+	  }
+
+	  if ($captcha && $this->form_validation->run() !== FALSE) {
+		$config['upload_path'] = sys_get_temp_dir();
+		$config['allowed_types'] = 'pdf|doc|docx';
+		$this -> load -> library('upload', $config);
+		$upload_data = array();
+		$name = set_value('name');
+		$send = true;
+		//var_dump($_FILES);
+		if (!$this->upload->do_upload('fileform')) {
+		  $errores['fileform'] = $this->upload->display_errors();
+		  $this->upload->clean_errors();
+		  $send = false;
+		} else {	
+		  $upload_data = $this->upload->data();
+		}
+		//var_dump($send);
+		if($send)
+		{
+		  $this->load->model('contacto/mail_db');
+		  $return = $this->mail_db->retrieveContactMailInfo();
+		  //Con estos datos preparo un email para enviar.
+		  $this->load->library('email');
+		  $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+		  $this->email->to($return['to']); 
+		  if(isset($return['cc']))
+		  {
+			$this->email->cc($return['cc']); 
+		  }
+		  if(isset($return['bcc']))
+		  {
+			$this->email->bcc($return['bcc']);
+		  }
+
+		  $this->email->subject('[FEU]Formulario enviado desde la web');
+		  $message = "El siguien formulario a sido enviado por: ".$name;
+		  $this->email->message($message); 
+		  
+		  $this->email->attach($upload_data["full_path"]);
+				
+		  $this->email->send();
+		  //Debug
+		  //echo $this->email->print_debugger();die;
+		  $mensajeEnviado = true;
+		}
+		
+	  }
 	  $this->load->helper('captcha');
 	  $vals = array(
 		  'img_path'     => './captcha/',
@@ -150,7 +217,9 @@ class feu extends MY_Controller{
 	   $this->data['captchaImage'] = $cap['image'];
 	  // store the captcha word in a session
 	  $this->session->set_userdata('word', $cap['word']);
+	  $this->data['messageSent'] = $mensajeEnviado;
       $this->data['content'] = 'formularios';
+      $this->data['errores'] = $errores;
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
