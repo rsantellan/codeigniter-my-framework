@@ -8,4 +8,4 @@
 
 <hr/>
 
-<a href="<?php echo site_url('categories/index'); ?>"> Volver al listado </a>
+<a href="<?php echo site_url('categories/index/'.$lang); ?>"> Volver al listado </a>

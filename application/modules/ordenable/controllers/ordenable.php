@@ -49,6 +49,17 @@ class ordenable extends MY_Controller{
         $this->load->view('ordenable/sortableAttributes', $this->data);
     }
     
+    function sortWithLang($module, $model, $showField, $lang)
+    {
+        $this->load->model($module.'/'.$model);
+        $this->setLang($lang);
+        $this->data['sort_list'] = $this->$model->retrieveForSortLang($showField, $this->getLang());
+        $this->data['sort_field'] = $showField;
+        $this->data['sort_module'] = $module;
+        $this->data['sort_model'] = $model;
+        $this->load->view('ordenable/sortableLang', $this->data);
+    }
+    
     function retrieveData()
     {
         $parameterid = $this->input->post('parameterid');

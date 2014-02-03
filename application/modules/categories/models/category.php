@@ -14,10 +14,10 @@ if (!defined('BASEPATH'))
 class category extends MY_Model{
   
   private $id;
-  private $slugEs;
-  private $slugEn;
+  private $slug;
   private $name;
   private $lang;
+  private $exists = false;
   
   function __construct()
   {
@@ -33,20 +33,12 @@ class category extends MY_Model{
     $this->id = $id;
   }
 
-  public function getSlugEs() {
-	return $this->slugEs;
+  public function getSlug() {
+      return $this->slug;
   }
 
-  public function setSlugEs($slugEs) {
-	$this->slugEs = $slugEs;
-  }
-
-  public function getSlugEn() {
-	return $this->slugEn;
-  }
-
-  public function setSlugEn($slugEn) {
-	$this->slugEn = $slugEn;
+  public function setSlug($slug) {
+      $this->slug = $slug;
   }
 
   public function getName() {
@@ -64,41 +56,66 @@ class category extends MY_Model{
   public function setLang($lang) {
 	$this->lang = $lang;
   }
+  
+  public function getExists() {
+      return $this->exists;
+  }
 
+  public function setExists($exists) {
+      $this->exists = $exists;
+  }
+
+  public function getTranslation($id, $lang, $returnObject = true)
+  {
+      $this->db->where('id', $id);
+      $this->db->where('lang', $lang);
+      $this->db->limit('1');
+      $query = $this->db->get('category_translation');
+      if( $query->num_rows() == 1 ){
+        $obj = $query->row();        
+        if($returnObject)
+        {
+          return $this->createObjectFromRow($obj);
+        }
+        $obj->exists = true;
+        return $obj;
+      } else {
+        if($returnObject)
+        {
+          $aux = new category();
+          $aux->setId($id);
+          $aux->setName("");
+          $aux->setExists(false);
+          return $aux;
+        }
+        $aux = new stdClass();
+        $aux->id = $id;
+        $aux->name = "";
+        $aux->exists = false;
+        return $aux;
+      }
+  }
   public function retrieveAll($returnObjects = FALSE, $lang = 'es')
   {
     $this->db->order_by("ordinal", "desc");
     $query = $this->db->get($this->getTablename());
-    
-    if(!$returnObjects)
+    $salida = array();
+    foreach($query->result() as $obj)
     {
-      if(!$retrieveAvatar)
-      {
-        return $query->result();
-      }
-      $data = array();
-      foreach($query->result() as $row)
-      {
-        
-        $row->avatar = $this->retrieveAvatar("default", $row->id);
-        $data[] = $row;
-      }
-      return $data;
+        $salida[$obj->id] = $this->getTranslation($obj->id, $lang, $returnObjects);
     }
-    else
-    {
-	  return $query->result();
-      $salida = array();
-      foreach($query->result() as $obj)
-      {
-        $aux = new banner();
-        $aux->setId($obj->id);
-        $aux->setName($obj->name);
-        $aux->setLink($obj->link);
-        $salida[$obj->id] = $aux;
-      }
-      return $salida;
-    }
+    return $salida;
+  }
+  
+  private function createObjectFromRow($obj)
+  {
+    $aux = new category();
+    $aux->setId($obj->id);
+    $aux->setName($obj->name);
+    $aux->setLang($obj->lang);
+    $aux->setSlug($obj->slug);
+    $aux->setExists(true);
+    return $aux;
   }
   
   public function isNew(){
@@ -116,22 +133,35 @@ class category extends MY_Model{
     }
     else
     {
-      return $this->edit();
+      $obj = $this->getTranslation($this->getId(), $this->getLang(), false);
+      if(!$obj->exists)
+      {
+          return $this->saveNew($this->getId());
+      }
+      else
+      {
+          return $this->edit();
+      }
+      
     }
   }
   
-  private function saveNew()
+  private function saveNew($id = null)
   {
-	$data = array();
-    //$data["name"] = $this->getName();
-    $data["ordinal"] = $this->retrieveLastOrder();
-    $this->db->insert($this->getTablename(), $data);
-    $id = $this->db->insert_id(); 
+	if($id === null)
+    {
+        $data = array();
+        $data["ordinal"] = $this->retrieveLastOrder();
+        $this->db->insert($this->getTablename(), $data);
+        $id = $this->db->insert_id(); 
+    }
+    
+    
     $dataTranslation = array(
 		'id' => $id,
 		'lang' => $this->getLang(),
 		'name' => $this->getName(),
-		'slug' => $this->createSlug('slug', $this->getName()),
+		'slug' => $this->createSlug('slug', $this->getName(), 'category_translation', $id, 'lang', $this->getLang()),
  	);
 	$this->db->insert($this->getTablename()."_translation", $dataTranslation);
     return $id;
@@ -140,40 +170,41 @@ class category extends MY_Model{
   private function edit()
   {
     $data = array(
-        'name' => $this->getName(),
-        'link' => $this->getLink(),
-     );
+		'name' => $this->getName(),
+		'slug' => $this->createSlug('slug', $this->getName(), 'category_translation', $this->getId(), 'lang', $this->getLang()),
+ 	);  
     $this->db->where('id', $this->getId());
-    $this->db->update($this->getTablename(), $data);
+    $this->db->where('lang', $this->getLang());
+    $this->db->update('category_translation', $data);
 
     return $this->getId();
   }
   
-  public function getById($id, $return_obj = true)
+  public function getById($id, $lang = 'es', $return_obj = true)
     {
-      $this->db->where('id', $id);
-      $this->db->limit('1');
-      $query = $this->db->get($this->getTablename());
-      if( $query->num_rows() == 1 ){
-        // One row, match!
-        $obj = $query->row();        
-        if($return_obj)
-        {
-          $aux = new banner();
-          $aux->setId($obj->id);
-          $aux->setName($obj->name);
-          $aux->setLink($obj->link);
-          return $aux;
-        }
-        return $obj;
-      } else {
-        // None
-        return NULL;
-      }
+      return $this->getTranslation($id, $lang, $return_obj);
     }  
     
     public function getObjectClass()
     {
       return get_class($this);
     }
+    
+    
+    public function retrieveForSortLang($showField, $lang) {
+        $this->db->select(array('id', 'ordinal'));
+        $this->db->order_by("ordinal", "desc");
+        $query = $this->db->get($this->getTablename());
+        $data = array();
+        foreach($query->result() as $obj)
+        {
+            $aux = $this->getTranslation($obj->id, $lang);
+            $auxStdClass = new stdClass();
+            $auxStdClass->id = $obj->id;
+            $auxStdClass->name = $aux->name;
+            $data[] = $auxStdClass;
+        }
+        return $data;
+    }
+
 }

@@ -23,13 +23,13 @@ class categories extends MY_Controller{
         $this->session->set_userdata('url_to_direct_on_login', 'categories/index');
         redirect('auth/login'); 
       }
-	  $this->output->enable_profiler(TRUE);  
+//	  $this->output->enable_profiler(TRUE);  
     }
     
     function index($lang = 'es'){
-      
+      $this->setLang($lang);
       $this->load->model('categories/category');
-      $this->data['objects_list'] = $this->category->retrieveAll(false, $lang);
+      $this->data['objects_list'] = $this->category->retrieveAll(false, $this->getLang());
       $this->data['content'] = "categories/list";
       //$this->load->helper('upload/mimage');
       //$this->load->library('upload/mupload');
@@ -41,21 +41,23 @@ class categories extends MY_Controller{
       $this->addModuleStyleSheet('datatable', 'data_table_admin.css');
       //$this->addModuleJavascript("actaadmin", "list.js");
       $this->addModuleJavascript("admin", "adminManager.js");
+      
       $this->load->view("admin/layout", $this->data);
     }
     
-    function add()
+    function add($lang = 'es')
     {
+      $this->setLang($lang);
       $this->load->model('categories/category');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "categories/add";
       $this->data['object'] = new $this->category;
-	  $this->data['lang'] = 'es';
-      $this->load->view("admin/layout", $this->data);
+	  $this->load->view("admin/layout", $this->data);
     }
     
-    function edit($id)
+    function edit($lang, $id)
     {
+      $this->setLang($lang);
       $this->addJquery();
       $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
@@ -65,7 +67,7 @@ class categories extends MY_Controller{
       $this->load->model('categories/category');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "categories/edit";
-      $this->data['object'] = $this->category->getById($id);
+      $this->data['object'] = $this->category->getById($id, $this->getLang());
       $this->load->view("admin/layout", $this->data);
     }
     
@@ -76,7 +78,7 @@ class categories extends MY_Controller{
       // Get ID from form
       $id = $this->input->post('id', true);
       $lang = $this->input->post('lang', true);
-      
+      $this->setLang($lang);
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
@@ -99,7 +101,7 @@ class categories extends MY_Controller{
         //Como es valido lo salvo
         $id = $obj->save();
         $this->session->set_flashdata("salvado", "ok");
-        redirect('categories/edit/'.$id);
+        redirect('categories/edit/'.$lang."/".$id);
       }
       else
       {

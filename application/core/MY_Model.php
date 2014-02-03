@@ -74,6 +74,11 @@ class MY_Model extends CI_Model{
     return $query->result();
   }
   
+  function retrieveForSortLang($showField, $lang)
+  {
+      throw new Exception("You must implement this function");
+  }
+  
   function retrieveForSortWithParameter($sort_attribute, $parameterid)
   {
     $this->db->select(array('id', "name", 'ordinal'));
@@ -134,22 +139,24 @@ class MY_Model extends CI_Model{
 	return $this->checkSlugNotExists($field, reduce_multiples($data, "-", TRUE), 0, $table, $id ,$fieldWhere, $valueWhere);
   }
   
-  private function checkSlugNotExists($field, $uri, $count = 0, $table, $id, $fieldWhere, $valueWhere)
+  private function checkSlugNotExists($field, $uri, $count, $table, $id, $fieldWhere, $valueWhere)
   {
 	  $new_uri = ($count > 0) ? $uri."-".$count : $uri;
 
 	  // Setup the query
 	  $this->db->select($field)->where($field, $new_uri);
-	  
-	  $this->db->where($this->id.'!=', $this->getId());
-	  if ($this->getId())
+	  if($fieldWhere && $valueWhere)
+      {
+          $this->db->where($fieldWhere.' =', $valueWhere);
+      }
+	  if ($id)
 	  {
-		  $this->db->where($this->id.'!=', $this->getId());
+		  $this->db->where('id !=', $id);
 	  }
 
-	  if ($this->db->count_all_results($this->getTablename()) > 0)
+	  if ($this->db->count_all_results($table) > 0)
 	  {
-		  return $this->checkSlugNotExists($field, $uri, ++$count);
+		  return $this->checkSlugNotExists($field, $uri, ++$count, $table, $id, $fieldWhere, $valueWhere);
 	  }
 	  else
 	  {

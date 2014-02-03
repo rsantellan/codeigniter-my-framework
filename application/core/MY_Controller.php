@@ -57,7 +57,7 @@ class MY_Controller extends MX_Controller
 	  $this->data['ckeditor_on'] = false;
 	  $this->data['tinymce_on'] = false;
 	  $this->data['use_noty'] = false;
-
+      $this->data['lang'] = 'es';
   }
 
   public function setTitle($title)
@@ -150,6 +150,20 @@ class MY_Controller extends MX_Controller
 	$this->addColorbox();
 	$this->addModuleStyleSheet("upload", "albums.css");
 	$this->addModuleJavascript("upload", "imagesAdmin.js");
+  }
+  
+  protected function setLang($lang)
+  {
+      if(!in_array($lang, array('es', 'en')))
+      {
+          $lang = 'es';
+      }
+      $this->data['lang'] = $lang;
+  }
+  
+  protected function getLang()
+  {
+      return $this->data['lang'];
   }
 }
 

@@ -1,15 +1,17 @@
-<h3>Listado de Categorias</h3>
+<h3>Listado de Categorias[<?php echo ($lang == 'es')? "Español" : "Ingles";?>]
+    <?php $otherLang = ($lang == 'es')? "en" : "es"; ?>
+    <a href="<?php echo site_url('categories/index/'.$otherLang); ?>">
+        <img src="<?php echo base_url();?>assets/celsius/images/<?php echo $otherLang;?>.png" width="25px" height="25px"/>
+    </a>
+</h3>
 <table id="table_data">
   <thead>
     <tr>
       <th>
-        Imagen
+        Identificador
       </th>  
       <th>
         Nombre
-      </th>
-      <th>
-        Link
       </th>
       <th>
         Acciones
@@ -19,29 +21,17 @@
   <tbody>
     <?php foreach($objects_list as $object): ?>
     <tr id="table_row_<?php echo $object->id;?>">
-    <td>
-          <?php 
-            $imgType = 3;
-            $width = 100;
-            $height = 100;
-            ?>
-          <?php if(!is_null($object->avatar)): ?>
-            <img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
-            <?php else: ?>
-            <img src="<?php echo base_url();?>assets/images/noimage.png" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
-        <?php endif; ?>
+      <td>
+        <?php echo ($object->id); ?>
       </td>
       <td>
         <?php echo ($object->name); ?>
       </td>
       <td>
-        <?php echo ($object->link); ?>
-      </td>
-      <td>
-        <a href="<?php echo site_url("banners/edit/".$object->id);?>">
+        <a href="<?php echo site_url("categories/edit/".$lang."/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("banners/delete/".$object->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("categories/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>
@@ -52,11 +42,11 @@
 </table>
 
 <hr/>
-<a href="<?php echo site_url("categories/add");?>">
+<a href="<?php echo site_url("categories/add/".$lang);?>">
   Agregar
 </a>
 
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sort/category/categories/name");?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithLang/categories/category/name/".$lang);?>" >
   Ordenar
 </a>
 
