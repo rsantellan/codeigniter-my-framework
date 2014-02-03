@@ -38,9 +38,10 @@
 |
 */
 
-$route['default_controller'] = "feu";
+$route['default_controller'] = "celsius";
+$route[""] = 'celsius/index';
+/*
 $route['404_override'] = 'feu/showerror';
-$route[""] = 'feu/index';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';
 $route["historia-feu.html"] = 'feu/historiafeu';
 $route["historia-campeones.html"] = 'feu/historiacampeones';
@@ -75,6 +76,7 @@ $route["contacto-enviado.html"] = 'feu/contactosuccess';
 $route["pruebas-cortas.html"] = 'feu/pruebascortas';
 $route["pruebas-largas.html"] = 'feu/pruebaslargas';
 $route['prueba-descarga/(:num).html'] = 'feu/downloadFile/$1';
+*/
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';
