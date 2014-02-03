@@ -23,13 +23,13 @@ class categories extends MY_Controller{
         $this->session->set_userdata('url_to_direct_on_login', 'categories/index');
         redirect('auth/login'); 
       }
-
+	  $this->output->enable_profiler(TRUE);  
     }
     
-    function index(){
-      //$this->output->enable_profiler(TRUE);  
+    function index($lang = 'es'){
+      
       $this->load->model('categories/category');
-      $this->data['objects_list'] = $this->category->retrieveAll(false, true);
+      $this->data['objects_list'] = $this->category->retrieveAll(false, $lang);
       $this->data['content'] = "categories/list";
       //$this->load->helper('upload/mimage');
       //$this->load->library('upload/mupload');

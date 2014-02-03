@@ -65,7 +65,7 @@ class category extends MY_Model{
 	$this->lang = $lang;
   }
 
-  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE)
+  public function retrieveAll($returnObjects = FALSE, $lang = 'es')
   {
     $this->db->order_by("ordinal", "desc");
     $query = $this->db->get($this->getTablename());
@@ -124,21 +124,14 @@ class category extends MY_Model{
   {
 	$data = array();
     //$data["name"] = $this->getName();
-	if($this->getLang() == 'es')
-	{
-	  $data['slug-es'] = $this->createSlug('slug-es', $this->getName());
-	}
-	else
-	{
-	  $data['slug-en'] = $this->createSlug('slug-en', $this->getName());
-	}
     $data["ordinal"] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
     $dataTranslation = array(
 		'id' => $id,
 		'lang' => $this->getLang(),
-		'name' => $this->getName()
+		'name' => $this->getName(),
+		'slug' => $this->createSlug('slug', $this->getName()),
  	);
 	$this->db->insert($this->getTablename()."_translation", $dataTranslation);
     return $id;

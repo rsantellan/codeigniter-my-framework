@@ -126,21 +126,22 @@ class MY_Model extends CI_Model{
     return NULL;      
   }
   
-  public function createSlug($field, $data)
+  public function createSlug($field, $data, $table = null, $id = null, $fieldWhere = null, $valueWhere = null)
   {
 	$CI =& get_instance();
 	$CI->load->helper(array('url', 'text', 'string'));
 	$data = strtolower(url_title(convert_accented_characters($data), "-"));
-	return $this->checkSlugNotExists($field, reduce_multiples($data, "-", TRUE), 0);
+	return $this->checkSlugNotExists($field, reduce_multiples($data, "-", TRUE), 0, $table, $id ,$fieldWhere, $valueWhere);
   }
   
-  private function checkSlugNotExists($field, $uri, $count = 0)
+  private function checkSlugNotExists($field, $uri, $count = 0, $table, $id, $fieldWhere, $valueWhere)
   {
 	  $new_uri = ($count > 0) ? $uri."-".$count : $uri;
 
 	  // Setup the query
 	  $this->db->select($field)->where($field, $new_uri);
-
+	  
+	  $this->db->where($this->id.'!=', $this->getId());
 	  if ($this->getId())
 	  {
 		  $this->db->where($this->id.'!=', $this->getId());
