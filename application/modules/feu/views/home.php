@@ -12,20 +12,21 @@
                     <section id="home-slider" class="flexslider right-side-nav" data-slideshow-speed="8000">
                         <ul class="slides">
                             <li id="slide1">
-                                <img src="<?php echo base_url(); ?>assets/feu/images/caballos/1-1.png" alt="">
+                                <img src="<?php echo base_url(); ?>assets/feu/images/kilometro.png" alt="">
                             </li>
                             <li id="slide2">
-                                <img src="<?php echo base_url(); ?>assets/feu/images/caballos/2-1.png" alt="">
+                                <img src="<?php echo base_url(); ?>assets/feu/images/caballo.png" alt="">
                             </li>
                             <li id="slide3">
-                                <img src="<?php echo base_url(); ?>assets/feu/images/caballos/3-1.png" alt="">
+                                <img src="<?php echo base_url(); ?>assets/feu/images/llegada.png" alt="">
                             </li>
                             <li id="slide4">
-                                <img src="<?php echo base_url(); ?>assets/feu/images/caballos/4-1.png" alt="">
+                                <img src="<?php echo base_url(); ?>assets/feu/images/premio.png" alt="">
                             </li>
                             <li id="slide5">
-                                <img src="<?php echo base_url(); ?>assets/feu/images/caballos/5-1.png" alt="">
+                                <img src="<?php echo base_url(); ?>assets/feu/images/carrera.png" alt="">
                             </li>
+                            
                         </ul>
                     </section>
                 </div>

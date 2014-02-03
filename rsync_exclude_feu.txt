@@ -39,4 +39,4 @@ CVS
 #rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
 
 #Feu local
-rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude_feu.txt" ./ /tmp/feu
+rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude_feu.txt" ./ /home/rodrigo/proyectos/beta
