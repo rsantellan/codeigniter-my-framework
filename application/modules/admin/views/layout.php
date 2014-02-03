@@ -58,6 +58,7 @@
 	  <div class="menu_container">
         <ul id="superfish-menu" class="sf-menu">
           <li class="<?php echo ($menu_id == 'dashboard')? "current": "";?>"><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
+          <li class="<?php echo ($menu_id == 'users')? "current": "";?>"><a href="<?php echo site_url('authadmin');?>">Usuarios</a></li>
           
 
           <li class="<?php echo ($menu_id == 'radios' || $menu_id == 'banners' || $menu_id == 'intereses' )? "current": "";?>">

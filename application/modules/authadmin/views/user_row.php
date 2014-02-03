@@ -6,10 +6,10 @@
     <?php echo ($user->email); ?>
   </td>
   <td>
-    <?php echo ($user->activated); ?>
+    <?php echo ($user->activated == 1)? "Si" : "No"; ?>
   </td>
   <td>
-    <?php echo ($user->banned); ?>
+	<?php echo ($user->banned == 1)? "Si" : "No"; ?>
   </td>
   <td>
     <?php echo ($user->created); ?>

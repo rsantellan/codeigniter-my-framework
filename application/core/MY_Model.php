@@ -125,5 +125,35 @@ class MY_Model extends CI_Model{
     }
     return NULL;      
   }
+  
+  public function createSlug($field, $data)
+  {
+	$CI =& get_instance();
+	$CI->load->helper(array('url', 'text', 'string'));
+	$data = strtolower(url_title(convert_accented_characters($data), "-"));
+	return $this->checkSlugNotExists($field, reduce_multiples($data, "-", TRUE), 0);
+  }
+  
+  private function checkSlugNotExists($field, $uri, $count = 0)
+  {
+	  $new_uri = ($count > 0) ? $uri."-".$count : $uri;
+
+	  // Setup the query
+	  $this->db->select($field)->where($field, $new_uri);
+
+	  if ($this->getId())
+	  {
+		  $this->db->where($this->id.'!=', $this->getId());
+	  }
+
+	  if ($this->db->count_all_results($this->getTablename()) > 0)
+	  {
+		  return $this->checkSlugNotExists($field, $uri, ++$count);
+	  }
+	  else
+	  {
+		  return $new_uri;
+	  }
+  }
     
 }
