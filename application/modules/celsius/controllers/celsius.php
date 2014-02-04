@@ -82,6 +82,17 @@ class celsius extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function salonconferencias($lang)
+  {
+	$this->data['menu'] = 'salonconferencias';
+	$this->data['submenu'] = 'salonconferencias';
+	$this->setLang($lang);
+	$this->loadMenuData();
+	$this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	$this->data['content'] = 'salonconferencias';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function category($lang, $id, $slug)
   {
 	

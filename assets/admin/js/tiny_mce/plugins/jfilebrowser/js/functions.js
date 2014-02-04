@@ -1,6 +1,8 @@
 function verCrearDirectorio()
 {
-    new Ajax.Request(site_base_url+'/jfilebrowser/templateCrearDirectorio', {
+    var url = site_base_url+'jfilebrowser/templateCrearDirectorio';
+    //console.info(url);
+    new Ajax.Request(url, {
         method: 'post',
         onSuccess: function (response){
             $('container_tinyPlugin').update(response.responseText);
@@ -118,6 +120,7 @@ function view(directorio, id)
 function init()
 {
     var url = (arguments[0] === undefined ? site_base_url+'jfilebrowser/index' : arguments[0]);
+    //console.info(url);
     new Ajax.Request(url, {
         method: 'post',
         onSuccess: function (response)

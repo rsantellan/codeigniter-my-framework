@@ -1,0 +1,29 @@
+producto:
+ - id
+ - ordenable
+ - imagenes
+ - receta
+ 
+producto_translation:
+ - id
+ - lang
+ - nombre
+ - principio activo
+ - slug
+ 
+ 
+presentacion:
+ - id
+ - producto_id
+ - ordenable
+ 
+presentacion_translation:
+ - id
+ - lang
+ - nombre
+ - formulacion
+ 
+ 
+ 
+ 
+ 

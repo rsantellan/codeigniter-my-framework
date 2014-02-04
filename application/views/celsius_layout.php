@@ -100,7 +100,9 @@
 				  <dt>|</dt>
 			  </dl>              
 			  <dl class="dropdown">
-				  <dt><a href="/salon_conferencias.php" <?php if($menu == 'salon_conferencias'):?> class="current"<?php endif;?>>sal&oacute;n de conferencias</a></dt>
+				  <dt>
+                        <a href="<?php echo site_url($lang."/".(($lang =='es')?'salon-conferencias' : 'conference-room').".html");?>" <?php if($menu == 'salonconferencias'):?> class="current"<?php endif;?>><?php echo lang('menu_salon_conferencia');?></a>
+                  </dt>
 			  </dl>  
 			  <dl class="dropdown">
 				  <dt>|</dt>

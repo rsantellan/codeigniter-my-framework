@@ -39,8 +39,9 @@ var jFileBrowserDialog = {
                     alert('Los valores para el alto y el ancho deben ser enteros');
                     return;
                 }
-
-                new Ajax.Request(site_get_url+'jfilebrowser/getUrl', {
+                var url = site_get_url+'jfilebrowser/getUrl';
+                //console.info(url);
+                new Ajax.Request(url, {
                     method: 'post',
                     parameters: 'width=' + ancho + '&height=' + alto + '&directory=' + dir + '&name=' + title,
                     onSuccess: function (response){

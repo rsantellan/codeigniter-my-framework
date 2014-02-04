@@ -59,16 +59,10 @@
         <ul id="superfish-menu" class="sf-menu">
           <li class="<?php echo ($menu_id == 'dashboard')? "current": "";?>"><a href="<?php echo site_url('admin/index');?>">Dashboard</a></li>
           <li class="<?php echo ($menu_id == 'users')? "current": "";?>"><a href="<?php echo site_url('authadmin');?>">Usuarios</a></li>
+          <li class="<?php echo ($menu_id == 'category')? "current": "";?>"><a href="<?php echo site_url('categories/index/'.$lang);?>">Categorias</a></li>
+          <li class="<?php echo ($menu_id == 'category')? "current": "";?>"><a href="<?php echo site_url('categories/index/'.$lang);?>">Productos</a></li>
           
 
-          <li class="<?php echo ($menu_id == 'radios' || $menu_id == 'banners' || $menu_id == 'intereses' )? "current": "";?>">
-            <a href="javascript:void(0)">Radio y Promotores</a>
-            <ul>
-              <li class="<?php echo ($menu_id == 'radios')? "current": "";?>"><a href="<?php echo site_url('radios/index');?>">Radios</a></li>
-              <li class="<?php echo ($menu_id == 'banners')? "current": "";?>"><a href="<?php echo site_url('banners/index');?>">Promotores</a></li>
-              <li class="<?php echo ($menu_id == 'galerias' )? "current": "";?>"><a href="<?php echo site_url('galerias/index');?>">Galerias</a></li>
-            </ul>
-          </li>
           <li class="<?php echo ($menu_id == 'campeonesadmin' || $menu_id == 'deportistaadmin' || $menu_id == 'presidenteadmin' )? "current": "";?>">
             <a href="javascript:void(0)">Historia</a>
             <ul>
