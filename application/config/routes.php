@@ -40,6 +40,17 @@
 
 $route['default_controller'] = "celsius";
 $route[""] = 'celsius/index';
+$route["^(en|es)"] = 'celsius/index/$1';
+$route["^(en|es)/categoria/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';
+$route["^(en|es)/category/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';
+$route["^(en|es)/presentacion.html"] = 'celsius/presentacion/$1';
+$route["^(en|es)/presentation.html"] = 'celsius/presentacion/$1';
+$route["^(en|es)/infraestructura.html"] = 'celsius/infraestructura/$1';
+$route["^(en|es)/infrastructure.html"] = 'celsius/infraestructura/$1';
+$route["^(en|es)/mercados.html"] = 'celsius/mercados/$1';
+$route["^(en|es)/markets.html"] = 'celsius/mercados/$1';
+$route["^(en|es)/recursos-humanos.html"] = 'celsius/recursoshumanos/$1';
+$route["^(en|es)/human-resources.html"] = 'celsius/recursoshumanos/$1';
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

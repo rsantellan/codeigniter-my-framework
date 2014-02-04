@@ -18,6 +18,8 @@ class MY_Controller extends MX_Controller
   
   protected $lenguage = "";
   
+  protected $languages = array('es', 'en');
+  
   public function __construct()
   {
 	  parent::__construct();
@@ -154,7 +156,7 @@ class MY_Controller extends MX_Controller
   
   protected function setLang($lang)
   {
-      if(!in_array($lang, array('es', 'en')))
+      if(!in_array($lang, $this->languages))
       {
           $lang = 'es';
       }
@@ -164,6 +166,18 @@ class MY_Controller extends MX_Controller
   protected function getLang()
   {
       return $this->data['lang'];
+  }
+  
+  protected function getLanguageFile()
+  {
+	$lang = $this->getLang();
+	if(!in_array($lang, $this->languages))
+	{
+		$lang = 'es';
+	}
+	if($lang == 'en')
+	  return 'english';
+	return 'spanish';
   }
 }
 
