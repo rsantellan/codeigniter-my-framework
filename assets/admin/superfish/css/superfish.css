@@ -40,6 +40,36 @@ div.menu_container{
   margin-left: auto;
   margin-right: auto;
   height: 40px;
+  border: 0 none;
+  font-size: 100%;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
+  color: #333333;
+}
+div.menu_container ul{
+  border: 0 none;
+  font-size: 100%;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
+  color: #333333;  
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+div.menu_container li{
+  border: 0 none;
+  font-size: 100%;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
+  color: #333333;  
+}
+
+div.menu_container li a{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    font-size: 100%;
+    outline: 0 none;
+    vertical-align: baseline;  
 }
 
 #superfish-menu{

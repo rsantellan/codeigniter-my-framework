@@ -13,11 +13,11 @@ caption {
 
 /* Common */
 
-#content {
+/*#content {
 	margin-right:auto;
 	margin-left:auto;
 	width:1000px;
-}
+}*/
 
 .login {
 	margin-left:auto;
@@ -28,11 +28,11 @@ caption {
 	width:360px !important;
 }
 
-#content {
+/*#content {
 	width:960px;
 	position:relative;
 	zoom:1;
-}
+}*/
 
 .date td a {
 	display:inline-block;
@@ -166,11 +166,11 @@ th, td {
 
 /* Content */
 
-#content {
+/*#content {
 	padding:20px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-bottomright: 10px;
-}
+}*/
 
 #foot {
 	padding:5px 30px;

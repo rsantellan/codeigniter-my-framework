@@ -42,7 +42,7 @@ table {
 }
 
 /* Default text */
-body,textarea {
+body, textarea {
   color:#333;
   font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
 }

@@ -10,15 +10,15 @@ th,#navigation,.active,input[type=submit],.pagination a:hover,.date td a:hover {
 	color:#fff
 }
 
-select, textarea, input, td, #content, #foot {
+select, textarea, input, td, #foot {
 	background:#fff url(../images/gradient.png) repeat-x 0 -28px
 }
 tr {
 	background-position:0 -18px;
 }
-#content {
+/*#content {
 	background-position:0 1px;
-}
+}*/
 
 .active, th, #head, #navigation a, input[type=submit] {
 	color:#fff;
@@ -86,16 +86,34 @@ a.delete {
     padding: 5px 30px;
     width: 940px;
     background: none repeat scroll 0 0 #ACB2BE;
+    font-size: 100%;
+    outline: 0 none;
+    vertical-align: baseline;
+    color: #333333;
 }
 .header_div label{
   float: left;
   color: #FFFFFF;
   font-size: 25px;
   margin-top: 24px;
+  display: block;
+  position: relative;
+  font-weight: bold;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 0 none;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
 }
 
 .header_div img{
   padding-left: 520px;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 0 none;
+  font-size: 100%;
+  margin: 0;
+  outline: 0 none;
+  vertical-align: baseline;
 }
 
 .espacio{
