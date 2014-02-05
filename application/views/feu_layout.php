@@ -121,20 +121,6 @@
                                                     <li><a href="<?php echo site_url('radios.html');?>"><?php echo lang("menu_radios"); ?></a></li>
                                                 </ul>
                                             </div>
-<!--                                            
-                                            <div class="sf-mega-section width-150px">
-                                                <h5>Footers</h5>
-                                                <ul>
-                                                    <li><a href="index.html#footer">Footer version 1</a></li>
-                                                    <li><a href="index2.html#footer">Footer version 2</a></li>
-                                                    <li><a href="index3.html#footer">Footer version 3</a></li>
-                                                    <li><a href="index4.html#footer">Footer version 4</a></li>
-                                                    <li><a href="index5.html#footer">Footer version 5</a></li>
-                                                    <li><a href="index6.html#footer">Footer version 6</a></li>
-                                                    <li><a href="index7.html#footer">Footer version 7</a></li>
-                                                </ul>
-                                            </div>
--->
                                         </div> <!-- end sf-mega-table -->
                                     </div>
                                     <!-- end sf-mega -->
@@ -183,12 +169,11 @@
 
 					<!-- Footer Navigation -->
 					<ul class="footer-nav clearfix">
-						<li><a href="<?php echo site_url(''); ?>">Home</a></li>
-						<li><a href="typography.html">Features</a></li>
-						<li><a href="about-us.html">Pages</a></li>
-						<li><a href="portfolio-3-columns.html">Portfolio</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="<?php echo site_url(''); ?>"><?php echo lang("menu_home"); ?></a></li>
+						<li><a href="<?php echo site_url('galerias.html'); ?>"><?php echo lang("menu_galerias"); ?></a></li>
+						<li><a href="<?php echo site_url('noticias.html'); ?>"><?php echo lang("menu_noticias"); ?></a></li>
+						<li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
+						<li><a href="<?php echo site_url('contacto.html'); ?>"><?php echo lang("menu_contacto"); ?></a></li>
 					</ul>
 
 				</div>

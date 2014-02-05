@@ -76,6 +76,10 @@ class jornada extends MY_Model{
           $data[$jornada->j_id] = $aux;
           
       }
+      if(count($in_data) == 0)
+      {
+          return array();
+      }
       $sql = "select 
             jornadatema.id as jt_id,
             jornadatema.name as jt_name,

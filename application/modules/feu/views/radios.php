@@ -4,7 +4,7 @@
     <div class="grid-bg">
         <div class="container"> <!-- 1080 pixels Container -->
             <div class="full-width columns">
-                <h1><?php echo lang("promotores_titulo"); ?></h1>
+                <h1><?php echo lang("radios_titulo"); ?></h1>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 	<div class="container"> <!-- 1080 pixels Container -->
 
 		<div class="full-width columns">
-			<p class="middle-font-size"><?php echo lang("promotores_sub_titulo"); ?></p>
+			<p class="middle-font-size"><?php echo lang("radios_sub_titulo"); ?></p>
 			<hr class="divider-line colored mb-35px">
 		</div>
 		<div class="clear"></div>
