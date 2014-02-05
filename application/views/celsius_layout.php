@@ -6,10 +6,6 @@
 		<meta name="LauraNozar" content="lauranozar: http://www.lauranozar.com/">
 
 		<title><?php echo (isset($title))? $title: 'Titulo';?></title>
-		<!--<meta name="title" content="Restaurants guide for Montevideo, Uruguay - Restaurantmontevideo.com" />
-		<meta name="description" content="Find where have dinner at Montevideo, Uruguay. The best restaurants of the city." />
-		<meta name="keywords" content="restaurants montevideo, meal, sushi, restaurants at montevideo uruguay, food, wines, steakhouse at montevideo, tourism montevideo, eat, dinner, brunch, lunch, supper" />
-			-->
 
 		<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>			
 		<!-- css -->

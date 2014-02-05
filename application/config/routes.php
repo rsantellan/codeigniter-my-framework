@@ -57,6 +57,12 @@ $route["^(en|es)/novedades.html"] = 'celsius/novedades/$1';
 $route["^(en|es)/news.html"] = 'celsius/novedades/$1';
 $route["^(en|es)/novedades-(:num).html"] = 'celsius/novedades/$1/$2';
 $route["^(en|es)/news-(:num).html"] = 'celsius/novedades/$1/$2';
+$route["^(en|es)/novedad/(:num)/(:any).html"] = 'celsius/novedad/$1/$2/$3';
+$route["^(en|es)/new/(:num)/(:any).html"] = 'celsius/novedad/$1/$2/$3';
+$route["^(en|es)/casos-estudio.html"] = 'celsius/casoestudio/$1';
+$route["^(en|es)/study-case.html"] = 'celsius/casoestudio/$1';
+$route["^(en|es)/casos-estudio-(:num).html"] = 'celsius/casoestudio/$1/$2';
+$route["^(en|es)/study-case-(:num).html"] = 'celsius/casoestudio/$1/$2';
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

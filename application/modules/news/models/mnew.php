@@ -239,7 +239,7 @@ class mnew extends MY_Model{
     return $this->getId();
   }
   
-  public function getById($id, $lang = 'es', $return_obj = true)
+  public function getById($id, $lang = 'es', $return_obj = true, $retrieveAvatar = false)
     {
       $aux =  $this->getTranslation($id, $lang, $return_obj);
 	  $this->db->where('id', $id);
@@ -253,6 +253,10 @@ class mnew extends MY_Model{
 		}
 		else
 		{
+          if($retrieveAvatar)
+          {
+              $aux->avatar = $this->retrieveAvatar("default", $obj->id);
+          }
 		  $aux->slider = $obj->slider;
 		}
 	  }

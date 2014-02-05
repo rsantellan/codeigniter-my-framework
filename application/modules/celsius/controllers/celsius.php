@@ -118,6 +118,27 @@ class celsius extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function novedad($lang, $id, $slug)
+  {
+      $this->setLang($lang);
+      $this->loadI18n("novedades", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+      $this->load->model('news/mnew');
+      $this->load->helper('upload/mimage');
+      $this->load->library('upload/mupload');
+      $this->load->helper('text');
+      $this->load->helper('htmlpurifier');
+      
+      $this->data['object'] = $this->mnew->getById($id, $this->getLang(), false, true);
+      $this->data['content'] = 'novedad';
+      $this->load->view('celsius_novedad_layout', $this->data);
+  }
+  
+  
+  public function casoestudio($lang, $page = 1)
+  {
+      
+  }
+  
   public function category($lang, $id, $slug)
   {
 	
