@@ -11,3 +11,4 @@ $lang["menu_infraestructura"] = "Infraestructura";
 $lang["menu_mercados"] = "Mercados";
 $lang["menu_recursos_humanos"] = "Recursos Humanos";
 $lang["menu_salon_conferencia"] = "sal&oacute;n de conferencias";
+$lang["menu_novedades"] = "Novedades";

@@ -114,7 +114,9 @@
 				  <dt>|</dt>
 			  </dl>            
 			  <dl class="dropdown">
-				  <dt><a href="/novedades.php" <?php if($menu == 'novedades'):?> class="current"<?php endif;?>>novedades</a></dt>
+				<dt>
+					<a href="<?php echo site_url($lang."/".(($lang =='es')?'novedades' : 'news').".html");?>" <?php if($menu == 'novedades'):?> class="current"<?php endif;?>><?php echo lang('menu_novedades');?></a>
+				</dt>
 			  </dl>                                                           
 		</nav>
 	  </header>

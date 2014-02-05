@@ -93,6 +93,31 @@ class celsius extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function novedades($lang, $page = 1)
+  {
+	$this->data['menu'] = 'novedades';
+	$this->data['submenu'] = 'novedades';
+	$this->setLang($lang);
+	$this->loadMenuData();
+	$this->loadI18n("novedades", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	if($page < 0 || (int) $page == 0)
+          $page = 1;
+    $rows = 5;
+	$this->load->model('news/mnew');
+	$this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+	$this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+	$this->data['novedadeslist'] = $this->mnew->retrieveAll(false, $this->getLang(), true, $rows, $rows * ($page - 1));
+    $records = $this->mnew->countAllRecords();
+    $this->data['cantidad'] = $records;
+    $this->data['pages'] = ceil($records / $rows);
+    $this->data['page'] = $page;
+	$this->data['content'] = 'novedades';
+	
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function category($lang, $id, $slug)
   {
 	
