@@ -119,7 +119,7 @@ class MY_Controller extends MX_Controller
   
   protected function addJqueryUI()
   {
-	$this->addJquery();
+	  $this->addJquery();
     $this->data['jquery_ui_on'] = true;
   }
   

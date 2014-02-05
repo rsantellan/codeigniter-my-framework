@@ -136,7 +136,7 @@ class mnew extends MY_Model{
 		}
 		else
 		{
-		  $aux->setIsSlider(1);
+		  $aux->setIsSlider($obj->slider);
 		}
         $salida[$obj->id] = $aux;
     }

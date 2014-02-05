@@ -136,6 +136,8 @@ class celsius extends MY_Controller{
   
   public function casoestudio($lang, $page = 1)
   {
+      $this->setLang($lang);
+      $this->loadMenuData();
       
   }
   

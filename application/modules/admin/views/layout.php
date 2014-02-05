@@ -100,40 +100,9 @@
         </ul>
       </div>
       <div class="clear"></div>      
-			<div id="content" class="container_16 clearfix">
+			<div id="content" class="container_16 clearfix content">
 <?php //echo language_menu(); ?>
 <!-- Filtro -->     
-<!-- 
-				<div class="grid_4">
-					<p>
-						<label>Username<small>Alpha-numeric values</small></label>
-						<input type="text" />
-					</p>
-				</div>
-        <div class="grid_5">
-					<p>
-						<label>Email Address</label>
-						<input type="text" />
-					</p>
-				</div>
-				<div class="grid_5">
-					<p>
-						<label>Department</label>
-						<select>
-							<option>Development</option>
-							<option>Marketing</option>
-							<option>Design</option>
-							<option>IT</option>
-						</select>
-					</p>
-				</div>
-				<div class="grid_2">
-					<p>
-						<label>&nbsp;</label>
-						<input type="submit" value="Search" />
-					</p>
-				</div>
--->
 <!-- Filtro -->
 <!-- Contenido -->
         <!-- pongo un if para el grid 16 por los form -->
