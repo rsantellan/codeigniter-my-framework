@@ -14,6 +14,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         adminManager.getInstance().startBasicTextAreasTinyMCE();
-        $('#studyDate').datepicker();
+        $('#studyDate').datepicker({ dateFormat: 'yy-mm-dd' });
     });
 </script>

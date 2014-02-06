@@ -124,10 +124,13 @@ class studycase extends MY_Model {
     $salida = array();
     foreach ($query->result() as $obj) {
       $aux = $this->getTranslation($obj->id, $lang, $returnObjects);
-      if (!$returnObjects && $retrieveAvatar) {
-        $aux->avatares = $this->retrieveAvatar("es", $obj->id);
-        $aux->avataren = $this->retrieveAvatar("en", $obj->id);
+      
+	  
+	  if (!$returnObjects) {
         $aux->studyDate = $obj->studyDate;
+		if ($retrieveAvatar) {
+		  $aux->avatar = $this->retrieveAvatar($lang, $obj->id);
+		}
       } else {
         $aux->setStudyDate($obj->studyDate);
       }
@@ -169,7 +172,7 @@ class studycase extends MY_Model {
   private function saveNew($id = null) {
     if ($id === null) {
       $data = array();
-      $data["studycase"] = $this->getStudyDate();
+      $data["studyDate"] = $this->getStudyDate();
       $data["ordinal"] = $this->retrieveLastOrder();
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id();
@@ -197,7 +200,7 @@ class studycase extends MY_Model {
 
   private function editObject() {
     $data = array();
-    $data["studycase"] = $this->getStudyDate();
+    $data["studyDate"] = $this->getStudyDate();
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
   }
@@ -224,10 +227,10 @@ class studycase extends MY_Model {
     if ($query->num_rows() == 1) {
       $obj = $query->row();
       if ($return_obj) {
-        $aux->setIsSlider($obj->slider);
+		$aux->setStudyDate($obj->studyDate);
       } else {
         if ($retrieveAvatar) {
-          $aux->avatar = $this->retrieveAvatar("default", $obj->id);
+          $aux->avatar = $this->retrieveAvatar($lang, $obj->id);
         }
       }
     }

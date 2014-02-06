@@ -37,7 +37,7 @@
         <?php echo character_limiter(html_purify(html_entity_decode($object->description)), 100); ?>
       </td>
 	  <td>
-        <?php echo ($object->slider == 1)? 'Si': 'No';?>  
+        <?php echo ($object->studyDate)?>  
       </td>
       <td>
         <a href="<?php echo site_url("studycases/edit/".$lang."/".$object->id);?>">

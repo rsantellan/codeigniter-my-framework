@@ -63,6 +63,7 @@ $route["^(en|es)/casos-estudio.html"] = 'celsius/casoestudio/$1';
 $route["^(en|es)/study-case.html"] = 'celsius/casoestudio/$1';
 $route["^(en|es)/casos-estudio-(:num).html"] = 'celsius/casoestudio/$1/$2';
 $route["^(en|es)/study-case-(:num).html"] = 'celsius/casoestudio/$1/$2';
+
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

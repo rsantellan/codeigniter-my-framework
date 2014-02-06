@@ -30,7 +30,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         startFancyLinks();
-        $('#studyDate').datepicker();
+        $('#studyDate').datepicker({ dateFormat: 'yy-mm-dd' });
         adminManager.getInstance().startBasicTextAreasTinyMCE();
     });
 </script>

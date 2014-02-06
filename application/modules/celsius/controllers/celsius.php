@@ -138,7 +138,22 @@ class celsius extends MY_Controller{
   {
       $this->setLang($lang);
       $this->loadMenuData();
-      
+	  $this->loadI18n("casoestudio", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	  if($page < 0 || (int) $page == 0)
+			$page = 1;
+	  $rows = 5;
+	  $this->load->model('studycases/studycase');
+	  $this->load->helper('upload/mimage');
+	  $this->load->library('upload/mupload');
+	  $this->load->helper('text');
+	  $this->load->helper('htmlpurifier');
+	  $this->data['objectlist'] = $this->studycase->retrieveAll(false, $this->getLang(), true, $rows, $rows * ($page - 1));
+	  $records = $this->studycase->countAllRecords();
+	  $this->data['cantidad'] = $records;
+	  $this->data['pages'] = ceil($records / $rows);
+	  $this->data['page'] = $page;
+	  $this->data['content'] = 'casoestudio';  
+	  $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
   public function category($lang, $id, $slug)

@@ -29,7 +29,7 @@ class studycases extends MY_Controller{
     function index($lang = 'es'){
       $this->setLang($lang);
       $this->load->model('studycases/studycase');
-      $this->data['objects_list'] = $this->studycase->retrieveAll(false, $this->getLang(), true);
+      $this->data['objects_list'] = $this->studycase->retrieveAll(false, $this->getLang());
       $this->data['content'] = "studycases/list";
       $this->load->helper('upload/mimage');
       $this->load->library('upload/mupload');
@@ -51,7 +51,7 @@ class studycases extends MY_Controller{
     {
       $this->setLang($lang);
       $this->addJqueryUI();
-	    $this->addModuleJavascript("admin", "adminManager.js");
+	  $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->load->model('studycases/studycase');
       $this->data['use_grid_16'] = false;
@@ -63,7 +63,7 @@ class studycases extends MY_Controller{
     function edit($lang, $id)
     {
       $this->setLang($lang);
-      $this->addJquery();
+      $this->addJqueryUI();
       $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
@@ -86,7 +86,7 @@ class studycases extends MY_Controller{
       $this->setLang($lang);
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
       $this->form_validation->set_rules('description', 'description', '');
-	  $this->form_validation->set_rules('slider', 'slider', '');
+	  $this->form_validation->set_rules('studyDate', 'studyDate', 'required');
 	  
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -97,13 +97,13 @@ class studycases extends MY_Controller{
       }
       $name = set_value('name');
 	  $description = set_value('description');
-	  $slider = set_value('slider');
+	  $studyDate = set_value('studyDate');
       //var_dump($nombre);
       $obj = new $this->studycase;
       $obj->setName($name);
 	  $obj->setLang($lang);
 	  $obj->setDescription($description);
-	  $obj->setIsSlider($slider);
+	  $obj->setStudyDate($studyDate);
       $obj->setId($id);
       //var_dump($obj);
       
