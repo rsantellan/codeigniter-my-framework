@@ -51,7 +51,7 @@ class studycases extends MY_Controller{
     {
       $this->setLang($lang);
       $this->addJqueryUI();
-	  $this->addModuleJavascript("admin", "adminManager.js");
+      $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->load->model('studycases/studycase');
       $this->data['use_grid_16'] = false;

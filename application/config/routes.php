@@ -63,7 +63,16 @@ $route["^(en|es)/casos-estudio.html"] = 'celsius/casoestudio/$1';
 $route["^(en|es)/study-case.html"] = 'celsius/casoestudio/$1';
 $route["^(en|es)/casos-estudio-(:num).html"] = 'celsius/casoestudio/$1/$2';
 $route["^(en|es)/study-case-(:num).html"] = 'celsius/casoestudio/$1/$2';
-
+$route['^(en|es)/casos-estudio/(:num).html'] = 'celsius/downloadFile/$1/$2';
+$route['^(en|es)/study-case/(:num).html'] = 'celsius/downloadFile/$1/$2';
+$route["^(en|es)/eventos.html"] = 'celsius/eventos/$1';
+$route["^(en|es)/events.html"] = 'celsius/eventos/$1';
+$route["^(en|es)/eventos-(:num).html"] = 'celsius/eventos/$1/$2';
+$route["^(en|es)/events-(:num).html"] = 'celsius/eventos/$1/$2';
+$route["^(en|es)/congresos.html"] = 'celsius/congresos/$1';
+$route["^(en|es)/congress.html"] = 'celsius/congresos/$1';
+$route["^(en|es)/congresos-(:num).html"] = 'celsius/congresos/$1/$2';
+$route["^(en|es)/congress-(:num).html"] = 'celsius/congresos/$1/$2';
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

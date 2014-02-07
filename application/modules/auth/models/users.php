@@ -352,6 +352,7 @@ class Users extends CI_Model
 			'banned'		=> 1,
 			'ban_reason'	=> $reason,
 		));
+    return true;
 	}
 
 	/**
@@ -367,6 +368,7 @@ class Users extends CI_Model
 			'banned'		=> 0,
 			'ban_reason'	=> NULL,
 		));
+    return true;
 	}
 
 	/**

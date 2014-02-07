@@ -1,3 +1,15 @@
+<h1>Usuario</h1>
+<?php if($this->session->flashdata('message')): ?>
+  	<p id="salvado_ok" class="success">Usuario creado con exito</p>
+  	
+  	<script type="text/javascript">
+ 		$(document).ready(function() {
+ 			$("#salvado_ok").fadeOut(3000);
+ 		});
+ 	</script>
+  <hr/>
+<?php endif; ?>
+  
 <table>
   <thead>
     <tr>
@@ -31,5 +43,8 @@
 
 
 <a href="<?php echo site_url("authadmin/register");?>">
-  Agregar
+  Agregar enviando e-mail
+</a>
+<a href="<?php echo site_url("authadmin/registerPassword");?>">
+  Agregar con contraseña
 </a>

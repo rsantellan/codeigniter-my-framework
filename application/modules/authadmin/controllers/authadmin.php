@@ -33,7 +33,8 @@ class Authadmin extends MY_Controller{
     function index()
     {
       
-      
+      $this->addJquery();
+      $this->addModuleJavascript("admin", "userManager.js");
       $this->load->model('auth/users');
       $this->load->library('tank_auth', true, NULL, 'auth');
       
@@ -62,8 +63,8 @@ class Authadmin extends MY_Controller{
 
     
     
-    /**
-	 * Register user on the site
+  /**
+	 * Register user on the site sending email
 	 *
 	 * @return void
 	 */
@@ -74,9 +75,9 @@ class Authadmin extends MY_Controller{
         $this->load->library('tank_auth', true, NULL, 'auth');
         $use_username = $this->config->item('use_username', 'tank_auth');
         
-		if ($use_username) {
-			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
-		}
+        if ($use_username) {
+          $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
+        }
         $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
         $data['errors'] = array();
 
@@ -140,7 +141,67 @@ class Authadmin extends MY_Controller{
         $this->load->view("admin/layout", $this->data);
 	}
     
-    
+  /**
+	 * Register user on the site with password
+	 *
+	 * @return void
+	 */
+	function registerPassword()
+	{
+      
+        $this->config->load('tank_auth', false, false, 'auth');
+        $this->load->library('tank_auth', true, NULL, 'auth');
+        $use_username = $this->config->item('use_username', 'tank_auth');
+        
+        if ($use_username) {
+          $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
+        }
+        $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
+        $this->form_validation->set_rules('password', 'Contraseña', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+        $this->form_validation->set_rules('confirm_password', 'Repetir contraseña', 'trim|required|xss_clean|matches[password]');
+        $data['errors'] = array();
+
+        /*
+        $password = "";
+        $length = 8;
+        $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
+        $maxlength = strlen($possible);
+        if ($length > $maxlength) {
+          $length = $maxlength;
+        } 
+        $i = 0; 
+        while ($i < $length) { 
+          $char = substr($possible, mt_rand(0, $maxlength-1), 1);
+          if (!strstr($password, $char)){
+            $password .= $char;
+            $i++;
+          }
+        }
+        */
+        if ($this->form_validation->run()) {								// validation ok
+            
+            if (!is_null($data = $this->tank_auth->create_user(
+                    $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '',
+                    $this->form_validation->set_value('email'),
+                    $this->form_validation->set_value('password'),
+                    false))) {									// success
+
+                $this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
+            } else {
+                $errors = $this->tank_auth->get_error_message();
+                foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+            }
+        }
+        
+        $this->data['errors'] = $data['errors'];
+        $data['use_username'] = $use_username;
+        $this->data['use_username'] = $use_username;
+        //$this->load->view('authadmin/register_form', $data);
+        $this->data['content'] = "authadmin/register_form_password";
+        //$this->load->view('authadmin/user_list', $data);
+        $this->load->view("admin/layout", $this->data);
+	}
+  
 	/**
 	 * Change user email
 	 *
@@ -235,7 +296,16 @@ class Authadmin extends MY_Controller{
     $this->load->model('auth/users');
     $return = array();
     $is_ok = $this->users->activateUser($user_id);
-    $return["result"] = $is_ok;
+    if($is_ok)
+    {
+      $return["response"] = "OK";
+      $return["message"] = "Usuario activado";
+    }
+    else
+    {
+      $return["response"] = "ERROR";
+      $return["message"] = "Ocurrio un error por favor intenta mas tarde";
+    }
     echo json_encode($return);
   }
   
@@ -244,7 +314,16 @@ class Authadmin extends MY_Controller{
     $this->load->model('auth/users');
     $return = array();
     $is_ok = $this->users->deactivateUser($user_id);
-    $return["result"] = $is_ok;
+    if($is_ok)
+    {
+      $return["response"] = "OK";
+      $return["message"] = "Usuario desactivado";
+    }
+    else
+    {
+      $return["response"] = "ERROR";
+      $return["message"] = "Ocurrio un error por favor intenta mas tarde";
+    }
     echo json_encode($return);
   }  
   
@@ -252,8 +331,17 @@ class Authadmin extends MY_Controller{
   {
     $this->load->model('auth/users');
     $return = array();
-    $this->users->ban_user($user_id, "Admin deactivated");
-    $return["result"] = true;
+    $is_ok = $this->users->ban_user($user_id, "Admin deactivated");
+    if($is_ok)
+    {
+      $return["response"] = "OK";
+      $return["message"] = "Usuario desactivado";
+    }
+    else
+    {
+      $return["response"] = "ERROR";
+      $return["message"] = "Ocurrio un error por favor intenta mas tarde";
+    }
     echo json_encode($return);
   }
   
@@ -261,8 +349,17 @@ class Authadmin extends MY_Controller{
   {
     $this->load->model('auth/users');
     $return = array();
-    $this->users->unban_user($user_id);
-    $return["result"] = true;
+    $is_ok = $this->users->unban_user($user_id);
+    if($is_ok)
+    {
+      $return["response"] = "OK";
+      $return["message"] = "Usuario desactivado";
+    }
+    else
+    {
+      $return["response"] = "ERROR";
+      $return["message"] = "Ocurrio un error por favor intenta mas tarde";
+    }
     echo json_encode($return);
   }  
   

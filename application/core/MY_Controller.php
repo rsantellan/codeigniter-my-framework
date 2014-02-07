@@ -67,6 +67,11 @@ class MY_Controller extends MX_Controller
     $this->data['title'] = $title;
   }
   
+  public function appendTitle($title)
+  {
+    $this->data['title'] = $this->data['title']. " - ".$title;
+  }
+  
   public function loadI18n($langfile, $lang = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '', $_module = '')
   {
 	if($langfile != "")

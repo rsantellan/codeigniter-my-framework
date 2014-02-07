@@ -4,8 +4,8 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Administrador</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.css";?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/960.min.css";?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/template.min.css";?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colour.css";?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/mine.css";?>" />
 
@@ -22,7 +22,6 @@
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/fancybox/jquery.mousewheel-3.0.4.pack.js";?>"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/js/fancybox/jquery.fancybox-1.3.4.css";?>" />
       <?php endif; ?>
-      
       <?php if($colorbox_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery.colorbox-min.js";?>"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/admin/css/colorbox.css";?>" />
@@ -62,31 +61,10 @@
           <li class="<?php echo ($menu_id == 'users')? "current": "";?>"><a href="<?php echo site_url('authadmin');?>">Usuarios</a></li>
           <li class="<?php echo ($menu_id == 'category')? "current": "";?>"><a href="<?php echo site_url('categories/index/'.$lang);?>">Categorias</a></li>
           <li class="<?php echo ($menu_id == 'news')? "current": "";?>"><a href="<?php echo site_url('news/index/'.$lang);?>">Noticias</a></li>
+          <li class="<?php echo ($menu_id == 'studycases')? "current": "";?>"><a href="<?php echo site_url('studycases/index/'.$lang);?>">Casos de estudio</a></li>
+          <li class="<?php echo ($menu_id == 'events')? "current": "";?>"><a href="<?php echo site_url('events/index/'.$lang);?>">Eventos</a></li>
           
-
-          <li class="<?php echo ($menu_id == 'campeonesadmin' || $menu_id == 'deportistaadmin' || $menu_id == 'presidenteadmin' )? "current": "";?>">
-            <a href="javascript:void(0)">Historia</a>
-            <ul>
-              <li class="<?php echo ($menu_id == 'campeonesadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/campeonesadmin/index');?>">Campeones</a></li>
-              <li class="<?php echo ($menu_id == 'deportistaadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/deportistaadmin/index');?>">Deportista del año</a></li>
-              <li class="<?php echo ($menu_id == 'presidenteadmin' )? "current": "";?>"><a href="<?php echo site_url('historicosadmin/presidenteadmin/index');?>">Presidentes</a></li>
-            </ul>
-          </li>
-          <li class="<?php echo ($menu_id == 'documents' || $menu_id == 'veterinariosadmin' || $menu_id == 'jornadas' )? "current": "";?>">
-            <a href="javascript:void(0)">Documentos</a>
-            <ul>
-              <li class="<?php echo ($menu_id == 'documents' )? "current": "";?>"><a href="<?php echo site_url('documents/index');?>">Documentos</a></li>
-              <li class="<?php echo ($menu_id == 'documents' )? "current": "";?>"><a href="<?php echo site_url('documents/formularios');?>">Formularios</a></li>
-              <li class="<?php echo ($menu_id == 'veterinariosadmin' )? "current": "";?>"><a href="<?php echo site_url('veterinariosadmin/index');?>">Veterinarios</a></li>
-              <li class="<?php echo ($menu_id == 'laboratorios' )? "current": "";?>"><a href="<?php echo site_url('laboratorios/index');?>">Laboratorios</a></li>
-              <li class="<?php echo ($menu_id == 'departamentos' )? "current": "";?>"><a href="<?php echo site_url('departamentos/index');?>">Departamentos</a></li>
-              <li class="<?php echo ($menu_id == 'clubes' )? "current": "";?>"><a href="<?php echo site_url('clubes/index');?>">Clubes</a></li>
-              <li class="<?php echo ($menu_id == 'jornadas' )? "current": "";?>"><a href="<?php echo site_url('jornadas/index');?>">Jornadas</a></li>
-              <li class="<?php echo ($menu_id == 'jornadatemas' )? "current": "";?>"><a href="<?php echo site_url('jornadatemas/index');?>">Temas de Jornadas</a></li>
-              <li class="<?php echo ($menu_id == 'noticias' )? "current": "";?>"><a href="<?php echo site_url('noticias/index');?>">Noticias</a></li>
-              <li class="<?php echo ($menu_id == 'prueba' )? "current": "";?>"><a href="<?php echo site_url('pruebas/index');?>">Pruebas</a></li>
-            </ul>
-          </li>
+        
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
             <a href="javascript:void(0)">Configuraciones</a>
             <ul>

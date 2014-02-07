@@ -1,6 +1,6 @@
-<h3>Listado de Casos de estudio[<?php echo ($lang == 'es')? "Español" : "Ingles";?>]
+<h3>Listado de Eventos[<?php echo ($lang == 'es')? "Español" : "Ingles";?>]
     <?php $otherLang = ($lang == 'es')? "en" : "es"; ?>
-    <a href="<?php echo site_url('studycases/index/'.$otherLang); ?>">
+    <a href="<?php echo site_url('events/index/'.$otherLang); ?>">
         <img src="<?php echo base_url();?>assets/celsius/images/<?php echo $otherLang;?>.png" width="25px" height="25px"/>
     </a>
 </h3>
@@ -10,14 +10,17 @@
       <th>
         Identificador
       </th>
+	  <th>
+        Imagen
+      </th>
       <th>
-        Nombre
+        Nombre del evento
       </th>
 	  <th>
-        Descripcion
+        Descripción de la foto
       </th>
 	  <th>
-        Fecha
+        Nombre de los integrantes
       </th>
       <th>
         Acciones
@@ -30,21 +33,32 @@
       <td>
         <?php echo ($object->id); ?>
       </td>
+	  <td>
+          <?php 
+            $imgType = 3;
+            $width = 100;
+            $height = 100;
+            ?>
+        <?php if(!is_null($object->avatar)): ?>
+            <img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" />
+            <?php else: ?>
+            <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
+        <?php endif; ?>
+      </td>
       <td>
         <?php echo ($object->name); ?>
       </td>
 	  <td>
-        <?php echo character_limiter(html_purify(html_entity_decode($object->description)), 100); ?>
+        <?php echo $object->description; ?>
       </td>
 	  <td>
-        <?php echo date("j/n/Y",strtotime($object->studyDate));?>  
-        <?php //echo ($object->studyDate)?>  
+        <?php echo $object->members;?>  
       </td>
       <td>
-        <a href="<?php echo site_url("studycases/edit/".$lang."/".$object->id);?>">
+        <a href="<?php echo site_url("events/edit/".$lang."/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("studycases/delete/".$object->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("events/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>
@@ -55,11 +69,11 @@
 </table>
 
 <hr/>
-<a href="<?php echo site_url("studycases/add/".$lang);?>">
+<a href="<?php echo site_url("events/add/".$lang);?>">
   Agregar
 </a>
 
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithLang/studycases/studycase/name/".$lang);?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithLang/events/event/name/".$lang);?>" >
   Ordenar
 </a>
 
