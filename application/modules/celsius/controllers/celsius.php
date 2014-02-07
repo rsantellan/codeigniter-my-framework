@@ -18,13 +18,23 @@ class celsius extends MY_Controller{
       $this->data['submenu'] = 'inicio';
       $this->data['topHome'] = false;
 //      $this->output->enable_profiler(TRUE);
+      $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
   }
 
   private function loadMenuData()
   {
-	$this->loadI18n("menu", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
-	$this->load->model('categories/category');
-    $this->data['menuCategoryList'] = $this->category->retrieveAll(false, $this->getLang());
+    $this->loadI18n("menu", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->load->model('categories/category');
+    $cache_key = 'categorieslist-'.$this->getLang();
+    $categoriesList =  $this->cache->get($cache_key);
+    if(!$categoriesList)
+    {
+      $categoriesList = $this->category->retrieveAll(false, $this->getLang());
+      $this->cache->save($cache_key, $categoriesList, 300);
+    }
+    
+    
+    $this->data['menuCategoryList'] = $categoriesList;
   }
   
   public function index($lang = 'es')
