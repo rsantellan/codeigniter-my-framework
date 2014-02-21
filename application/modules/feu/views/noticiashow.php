@@ -166,15 +166,7 @@
             <!-- Sidebar (right aligned) -->
             <aside id="sidebar" class="one-fourth columns page-right-col">
 
-                <!-- Categories -->
-                <div class="widget" data-smallscreen="yes"> <!-- show widget on a small-screen mobile device: "yes" or "no" -->
-                    <ul class="side-menu middle-font-size">
-                        <li><a href="#">Social Media</a></li>
-                        <li><a href="#">Energy</a></li>
-                        <li><a href="#">Home & Design</a></li>
-                        <li><a href="#">Technology</a></li>
-                    </ul>
-                </div>
+               
 
 
             </aside>
