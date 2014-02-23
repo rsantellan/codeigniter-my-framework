@@ -84,7 +84,7 @@
 				  <dt>|</dt>
 			  </dl>            
 			  <dl class="dropdown">
-				  <dt><a href="/consulta_medicos.php" <?php if($menu == 'consulta_medicos'):?> class="current"<?php endif;?>>consulta a m&eacute;dicos</a></dt>
+				  <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'consulta-medico' : 'medic-consultation').".html");?>" <?php if($menu == 'consulta_medicos'):?> class="current"<?php endif;?>><?php echo lang('menu_consulta_medicos');?></a></dt>
 			  </dl>  
 			  <dl class="dropdown">
 				  <dt>|</dt>
@@ -150,7 +150,7 @@
 			</a>
 		  </div><!-- datos_footer -->
 		  <div class="mail_footer">
-			<a href="/contacto.php">
+			<a href="<?php echo site_url($lang."/".(($lang =='es')?'contacto' : 'contact').".html");?>">
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/mail.jpg">
 			</a>
 		  </div><!-- mail_footer -->

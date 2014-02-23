@@ -73,6 +73,10 @@ $route["^(en|es)/congresos.html"] = 'celsius/congresos/$1';
 $route["^(en|es)/congress.html"] = 'celsius/congresos/$1';
 $route["^(en|es)/congresos-(:num).html"] = 'celsius/congresos/$1/$2';
 $route["^(en|es)/congress-(:num).html"] = 'celsius/congresos/$1/$2';
+$route["^(en|es)/consulta-medico.html"] = 'celsius/consultamedico/$1';
+$route["^(en|es)/medic-consultation.html"] = 'celsius/consultamedico/$1';
+$route["^(en|es)/contacto.html"] = 'celsius/contacto/$1';
+$route["^(en|es)/contact.html"] = 'celsius/contacto/$1';
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

@@ -284,5 +284,121 @@ class celsius extends MY_Controller{
 	
   }
   
+  public function consultamedico($lang)
+  {
+    $this->data['menu'] = 'consulta_medicos';
+    $this->data['submenu'] = 'consulta_medicos';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $title = $this->lang->line('title_consulta_medicos');
+    $this->appendTitle($title);
+    $this->loadI18n("consultamedico", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->data['content'] = 'consultamedico';
+    
+    $word = $this->input->post('word');
+	  $errores = array();
+    $captcha = true;
+	  $mensajeEnviado = false;
+	  if (true || $this->input->post() && ($word == $this->session->userdata('word'))) 
+	  {
+      $captcha = true;
+	  }
+	  else
+	  {
+      if(!empty($word) || $this->input->post() )
+      {
+        $errores["captcha"] = "Captcha invalido"; 
+      }
+	  }
+    
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->load->helper('url');
+    
+    $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
+		$this->form_validation->set_rules('apellido', 'apellido', 'required|max_length[255]');			
+		$this->form_validation->set_rules('cedula_identidad', 'Cedula Identidad', 'required|max_length[255]');			
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');			
+		$this->form_validation->set_rules('direccion', 'direccion', 'max_length[255]');			
+		$this->form_validation->set_rules('ciudad', 'ciudad', 'max_length[255]');			
+		$this->form_validation->set_rules('pais', 'pais', 'max_length[255]');			
+		$this->form_validation->set_rules('telefono', 'telefono', 'max_length[255]');			
+		$this->form_validation->set_rules('profesion', 'profesion', 'max_length[255]');			
+		$this->form_validation->set_rules('consulta', 'consulta', 'required');
+    
+    if(!$this->_ciRegex($this->input->post('cedula_identidad')))
+    {
+      $errores['cedula_identidad'] = 'Cedula de identidad con formato incorrecto.';
+    }
+    
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    if ($this->form_validation->run() !== FALSE && count($errores) > 0  ) 
+    {
+      // build array for the model
+			
+			$form_data = array(
+            'nombre' => set_value('nombre'),
+            'apellido' => set_value('apellido'),
+            'cedula_identidad' => set_value('cedula_identidad'),
+            'email' => set_value('email'),
+            'direccion' => set_value('direccion'),
+            'ciudad' => set_value('ciudad'),
+            'pais' => set_value('pais'),
+            'telefono' => set_value('telefono'),
+            'profesion' => set_value('profesion'),
+            'consulta' => set_value('consulta')
+      );
+    }
+    
+    $this->load->helper('captcha');
+	  $vals = array(
+		  'img_path'     => './captcha/',
+		  'img_url'     => $this->config->base_url()."captcha/",
+		  'img_width'     => '200',
+		  'img_height' => 30,
+		  'border' => 0,
+		  'expiration' => 7200,
+		  'usecaps' => false
+		  );
 
+		// create captcha image
+	   $cap = create_captcha($vals);
+	   // store image html code in a variable
+	   $this->data['captchaImage'] = $cap['image'];
+	  // store the captcha word in a session
+	  $this->session->set_userdata('word', $cap['word']);
+	  $this->data['messageSent'] = $mensajeEnviado;
+    $this->data['errores'] = $errores;
+    
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function _ciRegex($ci) {
+    //throw new Exception('aca');
+    $data = preg_match('/[1-9]?[0-9]{6}-[0-9]/', $ci);
+    //var_dump($data);
+    if($data > 0)
+    {
+      return true;
+    }
+    return false;
+  }
+  
+  public function contacto($lang)
+  {
+    $this->data['menu'] = 'contacto';
+    $this->data['submenu'] = 'contacto';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $title = $this->lang->line('title_contacto');
+    $this->appendTitle($title);
+    $this->loadI18n("contacto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->data['content'] = 'contacto';
+    
+    
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
 }
