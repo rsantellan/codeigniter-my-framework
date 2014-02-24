@@ -6,6 +6,9 @@
     <?php echo ($user->email); ?>
   </td>
   <td>
+    <?php echo ($user->profile); ?>
+  </td>
+  <td>
     <?php echo ($user->activated == 1)? "Si" : "No"; ?>
   </td>
   <td>
@@ -15,6 +18,9 @@
     <?php echo ($user->created); ?>
   </td>
   <td>
+    <a href="<?php echo site_url('authadmin/edit/'.$user->id); ?>">
+      Editar
+    </a>  
     <?php if($user->activated == "0"): ?>
     <a onclick="userManager.getInstance().sendDataViaAjax('<?php echo site_url('authadmin/activate/'.$user->id); ?>');" href="javascript:void(0)">
       Activar

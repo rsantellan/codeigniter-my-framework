@@ -85,3 +85,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 ALTER TABLE `ci_sessions` CHANGE `user_data` `user_data` LONGTEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL 
+
+ALTER TABLE `users` ADD `especialidad` VARCHAR( 255 ) NOT NULL ,
+ADD `cjp` VARCHAR( 255 ) NOT NULL ,
+ADD `telefono` VARCHAR( 255 ) NULL DEFAULT NULL ,
+ADD `direccion` VARCHAR( 255 ) NULL DEFAULT NULL ,
+ADD `profile` VARCHAR( 255 ) NOT NULL ;

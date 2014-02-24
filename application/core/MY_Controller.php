@@ -93,6 +93,12 @@ class MY_Controller extends MX_Controller
     return $is_logged;
   }
   
+  public function getLoggedUserData()
+  {
+    $this->load->library('tank_auth', true, NULL, 'auth');
+    return $this->tank_auth->get_user_data();
+  }
+  
   protected function addJavascript($javascript)
   {
 	$this->data["javascript"][$javascript] = $javascript;

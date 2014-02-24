@@ -40,7 +40,21 @@ class Users extends CI_Model
 		if ($query->num_rows() == 1) return $query->row();
 		return NULL;
 	}
+    
+    public function retrieve_user_by_id($user_id)
+    {
+        $this->db->where('id', $user_id);
+		$query = $this->db->get($this->table_name);
+		if ($query->num_rows() == 1) return $query->row();
+		return NULL;
+    }
 
+    public function edit($data, $id)
+    {
+      $this->db->where('id', $id);
+      $this->db->update($this->table_name, $data);
+      return $this->db->affected_rows();
+    }
 	/**
 	 * Get user record by login (username or email)
 	 *
