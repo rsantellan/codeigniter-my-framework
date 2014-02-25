@@ -1,7 +1,8 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 $lang["menu_spanish"] = "espa&ntilde;ol";
 $lang["menu_english"] = "ingl&eacute;s";
-$lang["menu_register_text"] = "Acceso exclusivo para médicos. Registrarse aquí";
+$lang["menu_register_text"] = "Acceso exclusivo para médicos.";
+$lang["menu_register_link_text"] = "Registrarse aquí";
 $lang["menu_login_name"] = "Nombre";
 $lang["menu_login_password"] = "Contrase&ntilde;a";
 $lang["menu_login_enter"] = "Iniciar sesi&oacute;n";

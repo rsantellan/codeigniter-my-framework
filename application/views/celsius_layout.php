@@ -42,7 +42,7 @@
 		  <div class="idiomas">
 			<a href="#"><?php echo lang('menu_spanish');?></a> / <a href="#"><?php echo lang('menu_english');?></a>
 		  </div>
-			<span><?php echo lang('menu_register_text');?></span>
+			<span><?php echo lang('menu_register_text');?> <a href="/<?php echo site_url($lang."/".(($lang =='es')?'registro' : 'register').".html");?>" <?php if($submenu == 'registro_medicos'):?> class="current"<?php endif;?>><?php echo lang('menu_register_link_text');?></a></span>
 			<form>  
 			  <label><?php echo lang('menu_login_name');?></label><input type="text" name="name_login"><div class="clear"></div>
 			  <label><?php echo lang('menu_login_password');?></label><input type="text" name="pass_login"><div class="clear"></div>
