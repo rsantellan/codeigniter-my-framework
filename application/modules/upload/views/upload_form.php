@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/upload/js/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" />
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/plupload/plupload.full.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/plupload/jquery.plupload.queue/jquery.plupload.queue.js"></script>
-
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/upload/js/plupload/i18n/es.js"></script>
 
 <script type="text/javascript">
 

@@ -75,9 +75,9 @@ class mail_db extends MY_Model{
       $this->funcion = $funcion;
   }
   
-  function retrieveContactMailInfo()
+  function retrieveMailInfoByFuncion($function)
   {
-    $this->db->where('funcion', 'contacto');
+    $this->db->where('funcion', $function);
     $query = $this->db->get($this->getTablename());
     $from = array();
     $to = array();
@@ -117,6 +117,11 @@ class mail_db extends MY_Model{
     $return['bcc'] = $bcc;
     $return['reply'] = $reply;
     return $return;
+  }
+  
+  function retrieveContactMailInfo()
+  {
+    return $this->retrieveMailInfoByFuncion('contacto');
   }
   
   
