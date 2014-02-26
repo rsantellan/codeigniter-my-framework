@@ -63,6 +63,7 @@
           <li class="<?php echo ($menu_id == 'news')? "current": "";?>"><a href="<?php echo site_url('news/index/'.$lang);?>">Noticias</a></li>
           <li class="<?php echo ($menu_id == 'studycases')? "current": "";?>"><a href="<?php echo site_url('studycases/index/'.$lang);?>">Casos de estudio</a></li>
           <li class="<?php echo ($menu_id == 'events')? "current": "";?>"><a href="<?php echo site_url('events/index/'.$lang);?>">Eventos</a></li>
+          <li class="<?php echo ($menu_id == 'productos')? "current": "";?>"><a href="<?php echo site_url('products/index/'.$lang);?>">Productos</a></li>
           
         
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
