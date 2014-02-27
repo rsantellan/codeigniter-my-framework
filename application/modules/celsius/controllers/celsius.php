@@ -20,7 +20,7 @@ class celsius extends MY_Controller {
     $this->data['menu'] = 'inicio';
     $this->data['submenu'] = 'inicio';
     $this->data['topHome'] = false;
-//      $this->output->enable_profiler(TRUE);
+      $this->output->enable_profiler(TRUE);
     $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
   }
 
@@ -251,10 +251,38 @@ class celsius extends MY_Controller {
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 
-  public function category($lang, $id, $slug) {
+  public function category($lang, $id, $slug) 
+  {
+    $this->data['menu'] = 'productos';
+    $this->data['submenu'] = $slug;
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->loadI18n("producto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->load->model('categories/category');
+    $this->load->model('products/product');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $category = $this->category->getById($id, $lang, false);
+    $this->data['category'] = $category;
+    $title = $this->lang->line('title_categoria').$category->name;
+    $this->appendTitle($title);
+    $products = $this->product->retrieveByCategory($lang, $category->id);
+    $this->data['products'] = $products;
+    $usedProduct = array_shift(array_values($products));
     
+    $this->loadUsedProduct($this->product->getById($usedProduct->id, $lang, false, true));
+    $this->data['content'] = 'categoria';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 
+  private function loadUsedProduct($productStdObject)
+  {
+    $this->load->model('presentations/presentation');
+    $this->data['presentations'] = $this->presentation->retrieveAll(false, $this->getLang(), $productStdObject->id, true);
+    $this->data['usedProduct'] = $productStdObject;
+    $this->data['medicdata'] = $this->product->retrieveMedicAlbumData($this->getLang(), $productStdObject->id);
+  }
+  
   public function consultamedico($lang) {
     $this->data['menu'] = 'consulta_medicos';
     $this->data['submenu'] = 'consulta_medicos';

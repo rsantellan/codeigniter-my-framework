@@ -20,7 +20,7 @@ class presentations extends MY_Controller{
       if(!$this->isLogged())
       {
         //Si no esta logeado se tiene que ir a loguear
-        $this->session->set_userdata('url_to_direct_on_login', 'presentations/index');
+        $this->session->set_userdata('url_to_direct_on_login', 'products/index');
         redirect('auth/login'); 
       }
 //	  $this->output->enable_profiler(TRUE);  

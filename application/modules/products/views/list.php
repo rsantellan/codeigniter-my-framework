@@ -64,7 +64,7 @@
   Agregar
 </a>
 
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithLang/products/product/name/".$lang);?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortMultipleWithParametersAndLang/products/product/categories/category/products/product/retrieveByCategory/".$lang);?>" >
   Ordenar
 </a>
 

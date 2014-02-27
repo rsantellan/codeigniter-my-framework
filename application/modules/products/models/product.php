@@ -121,8 +121,13 @@ class product extends MY_Model{
         return $aux;
       }
   }
-  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $retrieveAvatar = false, $limit = null, $offset = null)
+  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $retrieveAvatar = false, $categoryId = null, $limit = null, $offset = null)
   {
+    if($categoryId !== null)
+    {
+      $this->db->join('product_category', 'product_category.product_id = product.id');
+      $this->db->where('product_category.category_id', $categoryId);
+    }
     $this->db->order_by("ordinal", "desc");
     $query = $this->db->get($this->getTablename());
     $salida = array();
@@ -140,6 +145,11 @@ class product extends MY_Model{
         $salida[$obj->id] = $aux;
     }
     return $salida;
+  }
+  
+  public function retrieveByCategory($lang, $categoryId)
+  {
+    return $this->retrieveAll(false, $lang, false, $categoryId);
   }
   
   private function createObjectFromRow($obj)
@@ -225,6 +235,11 @@ class product extends MY_Model{
     return $id;
   }
 
+  public function retrieveMedicAlbumData($lang, $id)
+  {
+    return $this->retrieveAlbumsContents(array($id), 'medico-'.$lang, $this->getObjectClass());
+  }
+  
   private function editObject() {
     $data = array();
     $data["receta"] = $this->getReceta();
@@ -296,5 +311,5 @@ class product extends MY_Model{
         }
         return $data;
     }
-
+    
 }

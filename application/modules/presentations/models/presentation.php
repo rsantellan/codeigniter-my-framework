@@ -175,7 +175,7 @@ class presentation extends MY_Model{
 		if (!$returnObjects) {
         $aux->product_id = $obj->product_id;
 		if ($retrieveAvatar) {
-			//$aux->avatar = $this->retrieveAvatar('imagen', $obj->id);
+			$aux->avatar = $this->retrieveAvatar('folleto-'.$lang, $obj->id);
 		  }
 		} else {
 		  $aux->setReceta($obj->receta);

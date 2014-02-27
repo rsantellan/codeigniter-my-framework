@@ -186,6 +186,13 @@ header{
 			margin: 10px 0;
 			display: block;
 			}
+			.header_right span a{
+				color: #57585a;
+				text-decoration: underline;
+				}
+				.header_right span a.current{
+					color: #001d47;
+					}
 		header form{
 			width: 210px;
 			}
@@ -486,6 +493,7 @@ table.productos{
 		font-size: 11px;
 		color: #001d47;
 		text-align: center;
+		padding-bottom: 15px;
 		}
 	table.productos td img{
 		float: left;
@@ -498,6 +506,23 @@ table.productos{
 		margin-left: 5px;
 		padding-top: 10px;
 		}
+	.literatura{
+		margin: 10px 0;
+		overflow: hidden;
+		display: block;
+		}
+	.literatura a{
+		color: #6f7072;
+		font-style: italic;
+		text-decoration: underline;
+		float: left;
+		margin-left: 5px;
+		font-size: 12px;
+		padding-top: 10px;
+		}
+		.literatura img{
+			float: left;
+			}
 .img_salon{
 	width: 420px;
 	margin: 20px auto;
@@ -839,6 +864,9 @@ form.form_contacto{
 			width: auto;
 			color: #023b81;
 			}
+		form.from_registro input.submit{
+			margin-right: 160px;
+			}
 	form.form_contacto textarea{
 		width: 290px;
 		-moz-border-radius:10px;
@@ -895,7 +923,10 @@ form.from_trabajar_lab{
 			width: 400px;
 			margin-right: 0;
 			padding-top: 0;
-			}		
+			}	
+		form.from_trabajar_lab label.label_registro_large{
+			width: 105px;
+			}	
 	form.from_trabajar_lab input{
 		width: 200px;
 		-moz-border-radius:10px;
@@ -912,6 +943,12 @@ form.from_trabajar_lab{
 		font-family: 'myriad_proregular';	
 		height: 18px;	
 		}
+		form.from_registro{
+			width: 480px;
+			}
+		form.from_registro input{
+			width: 250px;
+			}
 		form.from_trabajar_lab input.input_tel{
 			width: 160px;
 			}
@@ -932,6 +969,9 @@ form.from_trabajar_lab{
 			margin-right: 10px;
 			margin-bottom: 3px;
 			}	
+		form.from_registro input.input_registro_large{
+			width: 195px;
+			}
 	form.from_trabajar_lab span{
 		font-size: 11px;
 		font-family: 'myriad_proregular';
@@ -987,6 +1027,13 @@ ul.informacion_personal{
 		text-decoration: underline;
 		color: #001d47;
 		font-family: 'myriad_prosemibold';
+		}
+	a.pass{
+		text-decoration: underline;
+		color: #001d47;
+		font-family: 'myriad_prosemibold';
+		font-size: 13px;
+		float: right;
 		}
 
 /* galeria

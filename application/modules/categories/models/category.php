@@ -207,4 +207,14 @@ class category extends MY_Model{
         return $data;
     }
 
+    public function retrieveAllForSelectLang($lang)
+    {
+      $categories = $this->retrieveAll(false, $lang);
+      $data = array();
+      foreach($categories as $category)
+      {
+        $data[$category->id] = $category->name;
+      }
+      return $data;
+    }
 }

@@ -60,6 +60,38 @@ class ordenable extends MY_Controller{
         $this->load->view('ordenable/sortableLang', $this->data);
     }
     
+    function sortMultipleWithParametersAndLang($sortModule, $sortModel, $parameterModule, $parameterModel, $middleModule, $middleModel, $middleFunction, $lang)
+    {
+        //$this->load->model($sortModule.'/'.$sortModel);
+        $this->load->model($parameterModule.'/'.$parameterModel);
+        $this->data['parameter_list_data'] = $this->$parameterModel->retrieveAllForSelectLang($lang);
+        $this->data['sort_module'] = $sortModule;
+        $this->data['sort_model'] = $sortModel;
+        $this->data['middle_module'] = $middleModule;
+        $this->data['middle_model'] = $middleModel;
+        $this->data['middle_function'] = $middleFunction;
+        $this->data['lang'] = $lang;
+        $this->load->view('ordenable/sortableMultipleAttributesLang', $this->data);
+    }
+    
+    function retrieveDataMultipleLang()
+    {
+        $parameterid = $this->input->post('parameterid');
+        $module = $this->input->post('sort_module');
+        $model = $this->input->post('sort_model');
+        $middle_module = $this->input->post('middle_module');
+        $middle_model = $this->input->post('middle_model');
+        $middle_function = $this->input->post('middle_function');
+        $lang = $this->input->post('lang');
+        $this->load->model($middle_module.'/'.$middle_model);
+        $list = $this->$middle_model->$middle_function($lang, $parameterid);
+        $salida['response'] = "OK";
+        $salida['list'] = $list;
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($salida));
+    }
+    
     function retrieveData()
     {
         $parameterid = $this->input->post('parameterid');
