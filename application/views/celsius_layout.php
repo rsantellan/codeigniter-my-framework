@@ -90,7 +90,7 @@
 				  <dt>|</dt>
 			  </dl>                  
 			  <dl class="dropdown">
-				  <dt><a href="/exterior.php" <?php if($menu == 'exterior'):?> class="current"<?php endif;?>>presencia en el exterior</a></dt>
+                  <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'presencia-exterior' : 'international-presence').".html");?>" <?php if($menu == 'exterior'):?> class="current"<?php endif;?>><?php echo lang('menu_presencia_exterior');?></a></dt>
 			  </dl>   
 			  <dl class="dropdown">
 				  <dt>|</dt>

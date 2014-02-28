@@ -11,7 +11,7 @@
         Identificador
       </th>  
       <th>
-        Nombre
+        Presentación
       </th>
       <th>
         Nombre generico

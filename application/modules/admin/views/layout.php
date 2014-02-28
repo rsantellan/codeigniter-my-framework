@@ -53,7 +53,7 @@
       <div class="header_div">
         <label>Administrador</label>
 <!--        <h1 id="head">Administrador</h1>-->
-        <img src="<?php echo base_url();?>assets/images/logo.png" height="90"/>
+        <img src="<?php echo base_url();?>assets/celsius/images/logo.jpg" height="90"/>
       </div>
 	  <div class="menu_container">
         <ul id="superfish-menu" class="sf-menu">

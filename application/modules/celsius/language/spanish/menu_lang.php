@@ -29,3 +29,5 @@ $lang["menu_consulta_medicos"] = "consulta a m&eacute;dicos";
 $lang["title_consulta_medicos"] = "consulta a m&eacute;dicos";
 $lang["title_contacto"] = "Contacto";
 $lang["title_categoria"] = "Categoria: ";
+$lang["menu_presencia_exterior"] = "presencia en el exterior";
+$lang["title_presencia_exterior"] = "presencia en el exterior";

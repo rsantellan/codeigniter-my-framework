@@ -92,12 +92,14 @@ class presentations extends MY_Controller{
     {
       $this->load->library('form_validation');
       $this->load->model('presentations/presentation');
+      $this->data['countries'] = $this->presentation->retrieveAllCountries();
+      $this->data['types'] = $this->presentation->retrieveCountryType();
       // Get ID from form
       $id = $this->input->post('id', true);
       $lang = $this->input->post('lang', true);
       $productId = $this->input->post('productId', true);
       $this->setLang($lang);
-      $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
+      $this->form_validation->set_rules('name', 'presentacion', 'required|max_length[255]');			
       $this->form_validation->set_rules('genericname', 'genericname', 'required|max_length[255]');			
       $this->form_validation->set_rules('activecomponent', 'activecomponent', 'required|max_length[255]');			
       $this->form_validation->set_rules('action', 'action', 'required|max_length[255]');			

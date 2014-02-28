@@ -299,6 +299,12 @@ class presentation extends MY_Model{
     return $this->getId();
   }
   
+  public function retrieveRawPresentationCountryData($presentationId)
+  {
+    $this->db->where('presentation_id', $presentationId);
+    return $this->db->get('presentation_country')->result();
+  }
+  
   public function getById($id, $lang = 'es', $return_obj = true, $retrieveAvatar = false, $loadCategories = false)
   {
 	$aux =  $this->getTranslation($id, $lang, $return_obj);

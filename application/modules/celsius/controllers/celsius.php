@@ -20,7 +20,7 @@ class celsius extends MY_Controller {
     $this->data['menu'] = 'inicio';
     $this->data['submenu'] = 'inicio';
     $this->data['topHome'] = false;
-      $this->output->enable_profiler(TRUE);
+//      $this->output->enable_profiler(TRUE);
     $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
   }
 
@@ -283,6 +283,72 @@ class celsius extends MY_Controller {
     $this->data['medicdata'] = $this->product->retrieveMedicAlbumData($this->getLang(), $productStdObject->id);
   }
   
+  
+  public function presencia($lang)
+  {
+    $this->data['menu'] = 'exterior';
+    $this->data['submenu'] = 'exterior';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $title = $this->lang->line('title_presencia_exterior');
+    $this->appendTitle($title);
+    $this->loadI18n("presenciaexterior", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->data['content'] = 'presencia';
+    $this->load->model('products/product');
+    $this->load->model('presentations/presentation');
+    $this->data['countries'] = $this->presentation->retrieveAllCountries();
+    $tableData = array();
+    foreach($this->data['menuCategoryList'] as $category)
+    {
+//      var_dump($category);
+//      echo '<hr/>';
+      $categoryData = array();
+      $products = $this->product->retrieveByCategory($lang, $category->id);
+      foreach($products as $product)
+      {
+//        var_dump($product);
+//        echo '<hr/>';
+        $presentations = $this->presentation->retrieveAll(false, $this->getLang(), $product->id);
+        foreach($presentations as $presentation)
+        {
+//          var_dump($presentation);
+//          echo '<hr/>';  
+          $countryData = $this->presentation->retrieveRawPresentationCountryData($presentation->id);
+          if(count($countryData) > 0)
+          {
+            $aux = new stdClass();
+            $aux->product = $product->name;
+            $aux->genericname = $presentation->genericname;
+            $aux->presentation = $presentation->name;
+            $countriesTypes = array();
+            foreach($this->data['countries'] as $country)
+            {
+              $countriesTypes[$country->id] = '';
+            }
+            foreach($countryData as $usedCountryData)
+            {
+              $countriesTypes[$usedCountryData->country_id] = $usedCountryData->presencia;
+            }
+            $aux->countries = $countriesTypes;
+            $categoryData[] = $aux;
+          }
+//          var_dump($countryData);
+//          echo '<hr/>';  
+        }
+        //var_dump($presentations);
+      }
+      //
+      if(count($categoryData)> 0)
+      {
+        $tableData[$category->id] = $categoryData;
+      }
+      
+    }
+    //var_dump($tableData);
+    $this->data['tableData'] = $tableData;
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function consultamedico($lang) {
     $this->data['menu'] = 'consulta_medicos';
     $this->data['submenu'] = 'consulta_medicos';
@@ -473,8 +539,6 @@ class celsius extends MY_Controller {
       //Debug
       //echo $this->email->print_debugger();die;
     }
-    
-    
 
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }

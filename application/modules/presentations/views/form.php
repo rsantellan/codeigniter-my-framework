@@ -11,7 +11,7 @@ echo form_open('presentations/save', $attributes); ?>
 
 <div class="grid_5">
   <p>
-    <label for="name">Nombre <small>Requerido</small></label>
+    <label for="name">Presentación <small>Requerido</small></label>
     <input type="text" name="name" maxlength="255" value="<?php echo $object->getName() ?>" />
   </p>
 </div>
