@@ -24,9 +24,6 @@ echo form_open('products/save', $attributes); ?>
   <p>
     <label for="categorias">Categorias</label>
 	<?php //var_dump($categories);?>
-	<?php foreach($categories as $category): ?>
-	  <?php var_dump($object->hasCategory($category->id))?>
-	  <?php endforeach; ?>
 	<select name="categorias[]" multiple="true">
 	  <?php foreach($categories as $category): ?>
 	  <option value="<?php echo $category->id?>" <?php echo ($object->hasCategory($category->id))? 'selected="selected"': '';?>><?php echo $category->name?></option>

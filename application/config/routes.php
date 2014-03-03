@@ -81,6 +81,9 @@ $route["^(en|es)/registro.html"] = 'celsius/registro/$1';
 $route["^(en|es)/register.html"] = 'celsius/registro/$1';
 $route["^(en|es)/presencia-exterior.html"] = 'celsius/presencia/$1';
 $route["^(en|es)/international-presence.html"] = 'celsius/presencia/$1';
+$route["^(en|es)/trabaja-con-nosotros.html"] = 'celsius/trabaja/$1';
+$route["^(en|es)/work-with-us.html"] = 'celsius/trabaja/$1';
+
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

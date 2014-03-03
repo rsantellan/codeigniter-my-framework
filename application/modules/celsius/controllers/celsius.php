@@ -349,6 +349,137 @@ class celsius extends MY_Controller {
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function trabaja($lang)
+  {
+    $this->data['menu'] = 'trabajar_lab';
+    $this->data['submenu'] = 'trabajar_lab';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $title = $this->lang->line('title_consulta_medicos');
+    $this->appendTitle($title);
+    $this->loadI18n("trabajaconnosotros", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->data['content'] = 'trabaja';
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->load->helper('url');
+    $word = $this->input->post('word');
+    $errores = array();
+    $captcha = true;
+    $mensajeEnviado = false;
+    $message = NULL;
+    if (true || $this->input->post() && ($word == $this->session->userdata('word'))) {
+      $captcha = true;
+    } else {
+      if (!empty($word) || $this->input->post()) {
+        $errores["captcha"] = "Captcha invalido";
+      }
+    }
+    
+    if($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+      if (!$this->_ciRegex($this->input->post('cedula'))) {
+        $errores['cedula_identidad'] = 'Cedula de identidad con formato incorrecto.';
+      }
+    }
+    
+    $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');			
+    $this->form_validation->set_rules('apellido', 'apellido', 'required|max_length[255]');			
+    $this->form_validation->set_rules('cedula', 'cedula', 'required|max_length[255]');			
+    $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');			
+    $this->form_validation->set_rules('direccion', 'direccion', 'max_length[255]');			
+    $this->form_validation->set_rules('ciudad', 'ciudad', 'max_length[255]');			
+    $this->form_validation->set_rules('pais', 'pais', 'max_length[255]');			
+    $this->form_validation->set_rules('phone', 'phone', 'max_length[255]');			
+    $this->form_validation->set_rules('fax', 'fax', 'max_length[255]');			
+    //$this->form_validation->set_rules('cv', 'cv', 'required|max_length[255]');
+    $this->form_validation->set_rules('quimicofarmaceuticorecibido', 'quimicofarmaceuticorecibido', '');
+    $this->form_validation->set_rules('quimicofarmaceuticoestudiante', 'quimicofarmaceuticoestudiante', '');
+    $this->form_validation->set_rules('quimicotecnologorecibido', 'quimicotecnologorecibido', '');
+    $this->form_validation->set_rules('quimicotecnologoestudiante', 'quimicotecnologoestudiante', '');
+    $this->form_validation->set_rules('mantenimientomecanico', 'mantenimientomecanico', '');
+    $this->form_validation->set_rules('operariopreparador', 'operariopreparador', '');
+    $this->form_validation->set_rules('depositologisticaexpedicion', 'depositologisticaexpedicion', '');
+    $this->form_validation->set_rules('limpieza', 'limpieza', '');
+    $this->form_validation->set_rules('comprascomercionexterios', 'comprascomercionexterios', '');
+    $this->form_validation->set_rules('ventascomercialpromocion', 'ventascomercialpromocion', '');
+    $this->form_validation->set_rules('administrativosfinancieroscontable', 'administrativosfinancieroscontable', '');
+    $this->form_validation->set_rules('sistemainformatica', 'sistemainformatica', '');
+    $this->form_validation->set_rules('recepcionistasecretaria', 'recepcionistasecretaria', '');
+    $this->form_validation->set_rules('cientificoinvestigadores', 'cientificoinvestigadores', '');
+    $this->form_validation->set_rules('estudiantessinexperiencia', 'estudiantessinexperiencia', '');
+    
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');    
+    if ($this->form_validation->run() !== FALSE && count($errores) == 0) {
+      var_dump(';aca');
+        $form_data = array(
+                    'nombre' => set_value('nombre'),
+                    'apellido' => set_value('apellido'),
+                    'cedula' => set_value('cedula'),
+                    'email' => set_value('email'),
+                    'direccion' => set_value('direccion'),
+                    'ciudad' => set_value('ciudad'),
+                    'pais' => set_value('pais'),
+                    'phone' => set_value('phone'),
+                    'fax' => set_value('fax'),
+                    'quimicofarmaceuticorecibido' => set_value('quimicofarmaceuticorecibido'),
+                    'quimicofarmaceuticoestudiante' => set_value('quimicofarmaceuticoestudiante'),
+                    'quimicotecnologorecibido' => set_value('quimicotecnologorecibido'),
+                    'quimicotecnologoestudiante' => set_value('quimicotecnologoestudiante'),
+                    'mantenimientomecanico' => set_value('mantenimientomecanico'),
+                    'operariopreparador' => set_value('operariopreparador'),
+                    'depositologisticaexpedicion' => set_value('depositologisticaexpedicion'),
+                    'limpieza' => set_value('limpieza'),
+                    'comprascomercionexterios' => set_value('comprascomercionexterios'),
+                    'ventascomercialpromocion' => set_value('ventascomercialpromocion'),
+                    'administrativosfinancieroscontable' => set_value('administrativosfinancieroscontable'),
+                    'sistemainformatica' => set_value('sistemainformatica'),
+                    'recepcionistasecretaria' => set_value('recepcionistasecretaria'),
+                    'cientificoinvestigadores' => set_value('cientificoinvestigadores'),
+                    'estudiantessinexperiencia' => set_value('estudiantessinexperiencia'),
+                );
+        $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $this -> load -> library('upload', $config);
+        var_dump($_FILES['cv']);
+        if (!$this->upload->do_upload('cv')) {
+          $errores['cv'] = $this->upload->display_errors();
+        }else{
+          $uploadData = $this->upload->data();
+          $form_data['cv'] = $uploadData['file_name'];
+          $form_data['cvfile'] = $uploadData['file_path'];
+          $this->load->model('trabajaconnosotros/curriculum');
+          $id = $this->curriculum->save($form_data);
+          if($id > 0)
+          {
+            $message = "CV Enviado";
+          }
+        }
+        
+    }
+    $this->load->helper('captcha');
+    $vals = array(
+        'img_path' => './captcha/',
+        'img_url' => $this->config->base_url() . "captcha/",
+        'img_width' => '200',
+        'img_height' => 30,
+        'border' => 0,
+        'expiration' => 7200,
+        'usecaps' => false
+    );
+
+    // create captcha image
+    $cap = create_captcha($vals);
+    // store image html code in a variable
+    $this->data['captchaImage'] = $cap['image'];
+    // store the captcha word in a session
+    $this->session->set_userdata('word', $cap['word']);
+    $this->data['messageSent'] = $mensajeEnviado;
+    $this->data['errores'] = $errores;
+    $this->data['message'] = $message;
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function consultamedico($lang) {
     $this->data['menu'] = 'consulta_medicos';
     $this->data['submenu'] = 'consulta_medicos';
@@ -386,10 +517,13 @@ class celsius extends MY_Controller {
     $this->form_validation->set_rules('telefono', 'telefono', 'max_length[255]');
     $this->form_validation->set_rules('profesion', 'profesion', 'max_length[255]');
     $this->form_validation->set_rules('consulta', 'consulta', 'required');
-
-    if (!$this->_ciRegex($this->input->post('cedula_identidad'))) {
-      $errores['cedula_identidad'] = 'Cedula de identidad con formato incorrecto.';
+    if($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+      if (!$this->_ciRegex($this->input->post('cedula_identidad'))) {
+        $errores['cedula_identidad'] = 'Cedula de identidad con formato incorrecto.';
+      }
     }
+    
 
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     if ($this->form_validation->run() !== FALSE && count($errores) > 0) {
@@ -460,6 +594,7 @@ class celsius extends MY_Controller {
 
   public function _ciRegex($ci) {
     //throw new Exception('aca');
+    //var_dump($ci);
     $data = preg_match('/[1-9]?[0-9]{6}-[0-9]/', $ci);
     //var_dump($data);
     if ($data > 0) {

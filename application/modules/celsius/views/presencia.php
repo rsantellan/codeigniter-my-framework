@@ -54,9 +54,9 @@
       <?php endforeach; ?>
          
     </table>
-    <div class="mark_guia">
+<!--    <div class="mark_guia">
       <div class="mark_color"></div><span>Norsic</span>
-    </div>
+    </div>-->
   </div>
 <?php 
   endif;

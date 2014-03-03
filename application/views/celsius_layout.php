@@ -104,7 +104,7 @@
 				  <dt>|</dt>
 			  </dl>              
 			  <dl class="dropdown">
-				  <dt><a href="/trabajar_lab.php" <?php if($menu == 'trabajar_lab'):?> class="current"<?php endif;?>>trabaj&aacute; con nosotros</a></dt>
+				  <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'trabaja-con-nosotros' : 'work-with-us').".html");?>" <?php if($menu == 'trabajar_lab'):?> class="current"<?php endif;?>>trabaj&aacute; con nosotros</a></dt>
 			  </dl> 
 			  <dl class="dropdown">
 				  <dt>|</dt>
