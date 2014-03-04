@@ -46,6 +46,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	//var_dump($album_id);
 	$this->load->model('upload/album');
 	$album = $this->album->getById($album_id, false);
@@ -74,6 +83,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->data['content'] = "upload/test";
 
 	$this->addJquery();
@@ -88,6 +106,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$album_id = $this->input->post('albumId', true);
 	$url = $this->input->post('url', true);
 	//var_dump($album_id);
@@ -135,6 +162,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}  
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->load->library('mupload');
 	$ckeditor = false;
 	if (isset($_POST['ckeditor']) && $_POST['ckeditor'] == 1) {
@@ -395,6 +431,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	//$this->output->enable_profiler(TRUE);
 	$id = $parameters["id"];
 	$classname = $parameters["classname"];
@@ -424,6 +469,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->load->model('upload/album');
 	$this->load->model('upload/albumcontent');
 	$this->load->library('upload/mupload');
@@ -447,6 +501,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->load->model('upload/albumcontent');
 	$file = $this->albumcontent->getFile($fileId, true);
 
@@ -463,6 +526,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->load->model('upload/albumcontent');
 	$this->albumcontent->deleteFile($fileId);
 	$salida['response'] = "OK";
@@ -477,6 +549,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->load->model('upload/albumcontent');
 	$file = $this->albumcontent->getFile($fileId);
 	$aux = $file[0];
@@ -492,6 +573,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	//$this->output->enable_profiler(TRUE);
 	$this->load->model('upload/albumcontent');
 	$this->load->library('upload/mupload');
@@ -508,6 +598,15 @@ class Upload extends MY_Controller {
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	/*
 	  $salida = array();
 	  $salida['response'] = "OK";

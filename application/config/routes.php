@@ -83,7 +83,14 @@ $route["^(en|es)/presencia-exterior.html"] = 'celsius/presencia/$1';
 $route["^(en|es)/international-presence.html"] = 'celsius/presencia/$1';
 $route["^(en|es)/trabaja-con-nosotros.html"] = 'celsius/trabaja/$1';
 $route["^(en|es)/work-with-us.html"] = 'celsius/trabaja/$1';
-
+$route["^(en|es)/cerrar-sesion.html"] = 'celsius/logout/$1';
+$route["^(en|es)/logout.html"] = 'celsius/logout/$1';
+$route["^(en|es)/ingresar.html"] = 'celsius/login/$1';
+$route["^(en|es)/login.html"] = 'celsius/login/$1';
+$route["^(en|es)/usuario.html"] = 'celsius/user/$1';
+$route["^(en|es)/user.html"] = 'celsius/user/$1';
+//$route["^(en|es)/usuario-editar.html"] = 'celsius/useredit/$1';
+//$route["^(en|es)/user-edit.html"] = 'celsius/useredit/$1';
 /*
 $route['404_override'] = 'feu/showerror';
 $route["historia-que-es-el-raid.html"] = 'feu/historiaraid';

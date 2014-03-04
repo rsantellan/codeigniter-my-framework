@@ -28,6 +28,15 @@ class Language extends MY_Controller {
       $this->session->set_userdata('url_to_direct_on_login', 'language/index');
       redirect('auth/login'); 
     }
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
     
     $this->load->helper(array('url', 'file', 'language', 'form')); //load this helpers if youre not doing it in autoload
     $this->load->model(array('model_language'));

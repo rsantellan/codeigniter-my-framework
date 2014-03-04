@@ -22,6 +22,15 @@ class contactoadmin extends MY_Controller{
       $this->session->set_userdata('url_to_direct_on_login', 'contactoadmin/index');
       redirect('auth/login'); 
     }
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
 	$this->addJquery();
   }
   

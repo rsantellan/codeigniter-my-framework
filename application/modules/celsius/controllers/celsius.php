@@ -22,6 +22,16 @@ class celsius extends MY_Controller {
     $this->data['topHome'] = false;
 //      $this->output->enable_profiler(TRUE);
     $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+    $this->data['login_user'] = '';
+    $this->data['errores'] = array();
+    $this->data['isLogged'] = $this->isLogged();
+    $this->data['user'] = NULL;
+    if($this->data['isLogged'])
+    {
+      $this->data['user'] = $this->getLoggedUserData();
+    }
+    $this->data['englishurl'] = '';
+    $this->data['spanishurl'] = '';
   }
 
   private function loadMenuData() {
@@ -33,14 +43,21 @@ class celsius extends MY_Controller {
       $categoriesList = $this->category->retrieveAll(false, $this->getLang());
       $this->cache->save($cache_key, $categoriesList, 300);
     }
-
-
     $this->data['menuCategoryList'] = $categoriesList;
+  }
+  
+  private function changeUrlData($spanish, $english)
+  {
+    $spanishLang = 'es';
+    $englishLang = 'en';
+    $this->data['englishurl'] = $englishLang.'/'.$english;
+    $this->data['spanishurl'] = $spanishLang.'/'.$spanish;
   }
 
   public function index($lang = 'es') {
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('', '');
     $this->data['content'] = 'home';
     $this->data['contentTopHome'] = 'homeCarrousel';
     $this->data['topHome'] = true;
@@ -52,6 +69,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'presentacion';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('presentacion.html', 'presentation.html');
     $title = $this->lang->line('title_presentacion');
     $this->appendTitle($title);
     $this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -64,6 +82,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'infraestructura';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('infraestructura.html', 'infrastructure.html');
     $title = $this->lang->line('title_infraestructura');
     $this->appendTitle($title);
     $this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -76,6 +95,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'mercados';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('mercados.html', 'markets.html');
     $title = $this->lang->line('title_mercados');
     $this->appendTitle($title);
     $this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -88,6 +108,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'recursoshumanos';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('recursos-humanos.html', 'human-resources.html');
     $title = $this->lang->line('title_recursoshumanos');
     $this->appendTitle($title);
     $this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -100,6 +121,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'salonconferencias';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('salon-conferencias.html', 'conference-room.html');
     $title = $this->lang->line('title_salon_conferencia');
     $this->appendTitle($title);
     $this->loadI18n("empresa", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -112,6 +134,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'novedades';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('novedades.html', 'news.html');
     $this->loadI18n("novedades", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     if ($page < 0 || (int) $page == 0)
       $page = 1;
@@ -151,10 +174,16 @@ class celsius extends MY_Controller {
   }
 
   public function casoestudio($lang, $page = 1) {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      redirect($lang);
+    }
     $this->data['menu'] = 'casoestudio';
     $this->data['submenu'] = 'casoestudio';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('casos-estudio.html', 'study-case.html');
     $this->loadI18n("casoestudio", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     if ($page < 0 || (int) $page == 0)
       $page = 1;
@@ -190,11 +219,16 @@ class celsius extends MY_Controller {
   }
 
   public function eventos($lang, $page = 1) {
-
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      redirect($lang);
+    }
     $this->data['menu'] = 'eventos';
     $this->data['submenu'] = 'eventos';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('eventos.html', 'events.html');
     $this->loadI18n("eventos", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     if ($page < 0 || (int) $page == 0) {
       $page = 1;
@@ -221,11 +255,16 @@ class celsius extends MY_Controller {
   }
 
   public function congresos($lang, $page = 1) {
-
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      redirect($lang);
+    }
     $this->data['menu'] = 'congresos';
     $this->data['submenu'] = 'congresos';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('congresos.html', 'congress.html');
     $this->loadI18n("congresos", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     if ($page < 0 || (int) $page == 0) {
       $page = 1;
@@ -257,6 +296,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = $slug;
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('', '');
     $this->loadI18n("producto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     $this->load->model('categories/category');
     $this->load->model('products/product');
@@ -290,6 +330,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'exterior';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('presencia-exterior.html', 'international-presence.html');
     $title = $this->lang->line('title_presencia_exterior');
     $this->appendTitle($title);
     $this->loadI18n("presenciaexterior", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -355,6 +396,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'trabajar_lab';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('trabaja-con-nosotros.html', 'work-with-us.html');
     $title = $this->lang->line('title_consulta_medicos');
     $this->appendTitle($title);
     $this->loadI18n("trabajaconnosotros", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -379,6 +421,41 @@ class celsius extends MY_Controller {
     {
       if (!$this->_ciRegex($this->input->post('cedula'))) {
         $errores['cedula_identidad'] = 'Cedula de identidad con formato incorrecto.';
+      }
+      $areasCounter = 0;
+      if($this->input->post('quimicofarmaceuticorecibido'))
+        $areasCounter++;
+      if($this->input->post('quimicofarmaceuticoestudiante'))
+        $areasCounter++;
+      if($this->input->post('quimicotecnologorecibido'))
+        $areasCounter++;
+      if($this->input->post('quimicotecnologoestudiante'))
+        $areasCounter++;
+      if($this->input->post('mantenimientomecanico'))
+        $areasCounter++;
+      if($this->input->post('operariopreparador'))
+        $areasCounter++;
+      if($this->input->post('depositologisticaexpedicion'))
+        $areasCounter++;
+      if($this->input->post('limpieza'))
+        $areasCounter++;
+      if($this->input->post('comprascomercionexterios'))
+        $areasCounter++;
+      if($this->input->post('ventascomercialpromocion'))
+        $areasCounter++;
+      if($this->input->post('administrativosfinancieroscontable'))
+        $areasCounter++;
+      if($this->input->post('sistemainformatica'))
+        $areasCounter++;
+      if($this->input->post('recepcionistasecretaria'))
+        $areasCounter++;
+      if($this->input->post('cientificoinvestigadores'))
+        $areasCounter++;
+      if($this->input->post('estudiantessinexperiencia'))
+        $areasCounter++;
+      if($areasCounter > 3)
+      {
+        $errores['areas'] = 'Tiene mas de tres areas elegidas';
       }
     }
     
@@ -408,9 +485,11 @@ class celsius extends MY_Controller {
     $this->form_validation->set_rules('cientificoinvestigadores', 'cientificoinvestigadores', '');
     $this->form_validation->set_rules('estudiantessinexperiencia', 'estudiantessinexperiencia', '');
     
+    
+    
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');    
     if ($this->form_validation->run() !== FALSE && count($errores) == 0) {
-      var_dump(';aca');
+        //var_dump(';aca');
         $form_data = array(
                     'nombre' => set_value('nombre'),
                     'apellido' => set_value('apellido'),
@@ -440,7 +519,7 @@ class celsius extends MY_Controller {
         $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";//sys_get_temp_dir();
         $config['allowed_types'] = 'pdf|doc|docx';
         $this -> load -> library('upload', $config);
-        var_dump($_FILES['cv']);
+        //var_dump($_FILES['cv']);
         if (!$this->upload->do_upload('cv')) {
           $errores['cv'] = $this->upload->display_errors();
         }else{
@@ -448,9 +527,32 @@ class celsius extends MY_Controller {
           $form_data['cv'] = $uploadData['file_name'];
           $form_data['cvfile'] = $uploadData['file_path'];
           $this->load->model('trabajaconnosotros/curriculum');
+          //var_dump($form_data);
           $id = $this->curriculum->save($form_data);
           if($id > 0)
           {
+            $this->load->model('contacto/mail_db');
+            $return = $this->mail_db->retrieveMailInfoByFuncion('trabaja');
+            $this->load->library('email');
+
+            $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+            $this->email->to($return['to']); 
+            if(isset($return['cc']))
+            {
+              $this->email->cc($return['cc']); 
+            }
+            if(isset($return['bcc']))
+            {
+              $this->email->bcc($return['bcc']);
+            }
+
+            $this->email->reply_to($form_data['email'], $form_data['nombre']);
+
+            $this->email->subject('[Celsius WEB]Trabaja con nosotros');
+            $mail = $this->load->view('mailTrabajaConNosotros', $form_data, true);
+            $this->email->message($mail); 
+            $this->email->attach($form_data['cvfile'].$form_data['cv']);
+            $this->email->send();
             $message = "CV Enviado";
           }
         }
@@ -485,6 +587,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'consulta_medicos';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('consulta-medico.html', 'medic-consultation.html');
     $title = $this->lang->line('title_consulta_medicos');
     $this->appendTitle($title);
     $this->loadI18n("consultamedico", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -608,6 +711,7 @@ class celsius extends MY_Controller {
     $this->data['submenu'] = 'contacto';
     $this->setLang($lang);
     $this->loadMenuData();
+    $this->changeUrlData('contacto.html', 'contact.html');
     $title = $this->lang->line('title_contacto');
     $this->appendTitle($title);
     $this->loadI18n("contacto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
@@ -677,5 +781,227 @@ class celsius extends MY_Controller {
 
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
+  
+  function logout($lang)
+  {
+    $this->load->library('tank_auth');
+    $this->tank_auth->logout();
+    $this->load->helper(array('url'));
+    redirect('');
+  }
+  
+  function login($lang)
+  {
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->load->library('auth/tank_auth');
+    $this->loadI18n("tank_auth", $this->getLanguageFile(), FALSE, TRUE, "", "auth");
+    //$this->lang->load('tank_auth');	
+    $errores = array();
+    if ($this->tank_auth->is_logged_in()) {									// logged in
+        redirect('');
+    } elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
+        redirect('/auth/send_again/');
 
+    } else {
+        $data['login_by_username'] = ($this->config->item('login_by_username', 'tank_auth') AND
+        $this->config->item('use_username', 'tank_auth'));
+        $data['login_by_email'] = $this->config->item('login_by_email', 'tank_auth');
+
+        $this->form_validation->set_rules('login', 'Login', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+
+        // Get login for counting attempts to login
+        if ($this->config->item('login_count_attempts', 'tank_auth') AND
+                ($login = $this->input->post('login'))) {
+            $login = $this->security->xss_clean($login);
+        } else {
+            $login = '';
+        }
+
+        $data['errors'] = array();
+
+        if ($this->form_validation->run()) {								// validation ok
+            if ($this->tank_auth->login(
+                    $this->form_validation->set_value('login'),
+                    $this->form_validation->set_value('password'),
+                    $this->form_validation->set_value('remember'),
+                    $data['login_by_username'],
+                    $data['login_by_email'])) {								// success
+              redirect('');
+            } else {
+                $errors = $this->tank_auth->get_error_message();
+                if (isset($errors['banned'])) {								// banned user
+                    //$this->_show_message($this->lang->line('auth_message_banned').' '.$errors['banned']);
+                  $errores['banned'] = $this->lang->line('auth_message_banned').' '.$errors['banned'];
+                } elseif (isset($errors['not_activated'])) {				// not activated user
+                    redirect('/auth/send_again/');
+                } else {													// fail
+                    foreach ($errors as $k => $v)	$errores[$k] = $this->lang->line($v);
+                }
+            }
+        }
+        $this->data['errores'] = $errores;
+        $this->data['login_user'] = $this->form_validation->set_value('login');
+        $this->setLang($lang);
+        $this->loadMenuData();
+        $this->data['content'] = 'home';
+        $this->data['contentTopHome'] = 'homeCarrousel';
+        $this->data['topHome'] = true;
+        $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+    }
+  }
+
+  function user($lang)
+  {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      redirect($lang);
+    }
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('usuario.html', 'user.html');
+    $this->loadI18n("usuario", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->data['content'] = 'usuario';
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+//  function useredit($lang)
+//  {
+//    if (!$this->isLogged()) {
+//      //Si no esta logeado se tiene que ir a loguear
+//      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+//      redirect($lang);
+//    }
+//    $this->setLang($lang);
+//    $this->loadMenuData();
+//    $this->changeUrlData('usuario.html', 'user.html');
+//    $this->loadI18n("usuario", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+//    //$this->data['content'] = 'usuario';
+//    
+//    $this->load->view('usuarioedit', $this->data);
+//  }
+  
+  function saveEditUser()
+  {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      throw new Exception("Usuario no logueado");
+    }
+    $this->data['errors'] = array();
+    $this->config->load('tank_auth', false, false, 'auth');
+    $this->load->library('tank_auth', true, NULL, 'auth');
+    $this->load->model('auth/users');
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $id = $this->data['user']->id;
+    $user = $this->users->retrieve_user_by_id($id);
+    $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
+    $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
+    $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|required|xss_clean|max_length[255]');
+    $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
+    $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
+    $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
+    $data['errors'] = array();
+    $valid = false;
+    $oldUsername = $user->username;
+    if ($this->form_validation->run()) {        // validation ok
+        $valid = true;
+    }
+    if($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+      //var_dump('aca');
+      $user->username = set_value('username');
+      $user->email = set_value('email');
+      $user->especialidad = set_value('especialidad');
+      $user->cjp = set_value('cjp');
+      $user->direccion = set_value('direccion');
+      $user->telefono = set_value('telefono');
+      $user->profile = set_value('permisos');
+    }
+    //var_dump($user);
+    if($valid)
+    {
+      if($oldUsername != $user->username)
+      {
+        if(!$this->tank_auth->is_username_available($user->username))
+        {
+          $data['errors']['usernameinvalid'] = 'El nombre de usuario ya existe';
+          $valid = false;
+        }
+      }
+      if($valid)
+      {
+        //var_dump('lo tengo que salvar!!');
+        $data = array(
+            'username' => $user->username,
+            'email' => $user->email,
+            'especialidad' => $user->especialidad,
+            'cjp' => $user->cjp,
+            'direccion' => $user->direccion,
+            'telefono' => $user->telefono,
+            'profile' => $user->profile,
+        );
+        $counter = $this->users->edit($data, $id);
+        //var_dump($counter);
+        if($counter >= 0)
+        {
+          $this->tank_auth->reload_user_data($id);
+        }
+        else
+        {
+          $data['errors']['dberror'] = 'Hubo un problema en el sistema, intente mas tarde';
+        }
+      }
+    }
+    $data['errors']['form'] = $this->form_validation->error_array();
+    $salida = array();
+    $salida['response'] = ($valid)?"OK": 'ERROR';
+    $salida['errores'] = $data['errors'];
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+  }
+  
+  function changeUserPass()
+  {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      throw new Exception("Usuario no logueado");
+    }
+    $this->config->load('tank_auth', false, false, 'auth');
+    $this->load->library('tank_auth', true, NULL, 'auth');
+    $this->load->model('auth/users');
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
+    $this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+    $this->form_validation->set_rules('confirm_new_password', 'Confirm new Password', 'trim|required|xss_clean|matches[new_password]');
+
+    $data['errors'] = array();
+    $valid = false;
+    if ($this->form_validation->run()) {								// validation ok
+        if ($this->tank_auth->change_password(
+                $this->form_validation->set_value('old_password'),
+                $this->form_validation->set_value('new_password'))) {	// success
+            
+          $valid = true;
+
+        } else {														// fail
+            $errors = $this->tank_auth->get_error_message();
+            foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+        }
+    }
+    $data['errors']['form'] = $this->form_validation->error_array();
+    $salida = array();
+    $salida['response'] = ($valid)?"OK": 'ERROR';
+    $salida['errores'] = $data['errors'];
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($salida));
+  }
 }

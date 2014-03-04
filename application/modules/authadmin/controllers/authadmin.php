@@ -24,7 +24,17 @@ class Authadmin extends MY_Controller {
       $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
       redirect('auth/login');
     }
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
     //var_dump($this->getLoggedUserData());
+//	  $this->output->enable_profiler(TRUE);      
   }
 
   function index() {

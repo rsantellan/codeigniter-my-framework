@@ -40,17 +40,32 @@
 		</div>
 		<div class="header_right">
 		  <div class="idiomas">
-			<a href="#"><?php echo lang('menu_spanish');?></a> / <a href="#"><?php echo lang('menu_english');?></a>
+			<a href="<?php echo ($lang =='es')?'javascript:void(0)' : site_url($spanishurl);?>"><?php echo lang('menu_spanish');?></a> / <a href="<?php echo ($lang =='en')?'javascript:void(0)' : site_url($englishurl);?>"><?php echo lang('menu_english');?></a>
 		  </div>
-			<span><?php echo lang('menu_register_text');?> <a href="/<?php echo site_url($lang."/".(($lang =='es')?'registro' : 'register').".html");?>" <?php if($submenu == 'registro_medicos'):?> class="current"<?php endif;?>><?php echo lang('menu_register_link_text');?></a></span>
-			<form>  
-			  <label><?php echo lang('menu_login_name');?></label><input type="text" name="name_login"><div class="clear"></div>
-			  <label><?php echo lang('menu_login_password');?></label><input type="text" name="pass_login"><div class="clear"></div>
+            <?php if(!$isLogged):?>
+			<span><?php echo lang('menu_register_text');?> <a href="<?php echo site_url($lang."/".(($lang =='es')?'registro' : 'register').".html");?>" <?php if($submenu == 'registro_medicos'):?> class="current"<?php endif;?>><?php echo lang('menu_register_link_text');?></a></span>
+            
+			<form method="POST" action="<?php echo site_url($lang."/".(($lang =='es')?'ingresar' : 'login').".html");?>">    
+			  <label><?php echo lang('menu_login_name');?></label><input type="text" name="login" value="<?php echo $login_user?>"><div class="clear"></div>
+			  <label><?php echo lang('menu_login_password');?></label><input type="password" name="password" value=""><div class="clear"></div>
 			  <input type="submit" class="submit" value="<?php echo lang('menu_login_enter');?>">  
-			</form>   
+			</form>
+            <?php 
+            echo form_error('login'); 
+            echo form_error('password'); 
+            foreach($errores as $error):
+                echo $error;
+            endforeach;
+            ?>
+            <?php else: ?>
+            <form method="POST" action="<?php echo site_url($lang."/".(($lang =='es')?'cerrar-sesion' : 'logout').".html");?>">  
+              <p><?php echo lang('menu_login_welcome');?> <a href="<?php echo site_url($lang."/".(($lang =='es')?'usuario' : 'user').".html");?>"><?php echo ($user->username);?></a></p><div class="clear"></div>
+              <input type="submit" class="submit" value="<?php echo lang('menu_login_close');?>">  
+            </form>
+            <?php endif;?>
 		</div><!-- header right -->
 		<div class="clear"></div>
-		<nav>                     
+		<nav <?php if($isLogged):?> class="nav_login" <?php endif;?>>                     
 			  <dl class="dropdown">
 				  <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" <?php if($menu == 'empresa'):?> class="submenu current"<?php endif;?>><?php echo lang('menu_empresa');?></dt>
 					  <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
@@ -113,7 +128,15 @@
 				<dt>
 					<a href="<?php echo site_url($lang."/".(($lang =='es')?'novedades' : 'news').".html");?>" <?php if($menu == 'novedades'):?> class="current"<?php endif;?>><?php echo lang('menu_novedades');?></a>
 				</dt>
-			  </dl>                                                           
+			  </dl>
+              <?php if($isLogged):?> 
+              <dl class="dropdown">
+                <dt>|</dt>
+              </dl>             
+              <dl class="dropdown">
+                <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'usuario' : 'user').".html");?>" <?php if($menu == 'seccion_iniciada'):?> class="current"<?php endif;?>><?php echo lang('menu_novedades_medicas');?></a></dt>
+              </dl>
+              <?php endif;?>
 		</nav>
 	  </header>
 	  <div class="buscador">

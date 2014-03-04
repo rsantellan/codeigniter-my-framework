@@ -761,7 +761,6 @@ if ( ! function_exists('set_checkbox'))
 	function set_checkbox($field = '', $value = '', $default = FALSE)
 	{
 		$OBJ =& _get_validation_object();
-
 		if ($OBJ === FALSE)
 		{
 			if ( ! isset($_POST[$field]))

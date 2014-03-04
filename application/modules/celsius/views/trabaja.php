@@ -24,21 +24,22 @@ echo form_open_multipart($url, $attributes); ?>
       </div><!-- form lab left -->
       <div class="from_trabajar_lab_right">
         <p class="info_contacto" style="margin-top:0;"><?php echo lang('trabajaconnosotros_texto_eleccion');?></p>
-        <input type="checkbox" class="input_checkbox" name="quimicofarmaceuticorecibido" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicofarmaceuticorecibido');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="quimicofarmaceuticoestudiante" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicofarmaceuticoestudiante');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="quimicotecnologorecibido" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicotecnologorecibido');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="quimicotecnologoestudiante" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicotecnologoestudiante');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="mantenimientomecanico" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_mantenimientomecanico');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="operariopreparador" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_operariopreparador');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="depositologisticaexpedicion" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_depositologisticaexpedicion');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="limpieza" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_limpieza');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="comprascomercionexterios" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_comprascomercionexterios');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="ventascomercialpromocion" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_ventascomercialpromocion');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="administrativosfinancieroscontable" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_administrativosfinancieroscontable');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="sistemainformatica" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_sistemainformatica');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="recepcionistasecretaria" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_recepcionistasecretaria');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="cientificoinvestigadores" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_cientificoinvestigadores');?></label><div class="clear"></div>
-        <input type="checkbox" class="input_checkbox" name="estudiantessinexperiencia" value="1"><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_estudiantessinexperiencia');?></label><div class="clear"></div>
+        
+        <input type="checkbox" class="input_checkbox" name="quimicofarmaceuticorecibido" value="1" <?php echo set_checkbox('quimicofarmaceuticorecibido', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicofarmaceuticorecibido');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="quimicofarmaceuticoestudiante" value="1" <?php echo set_checkbox('quimicofarmaceuticoestudiante', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicofarmaceuticoestudiante');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="quimicotecnologorecibido" value="1" <?php echo set_checkbox('quimicotecnologorecibido', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicotecnologorecibido');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="quimicotecnologoestudiante" value="1" <?php echo set_checkbox('quimicotecnologoestudiante', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_quimicotecnologoestudiante');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="mantenimientomecanico" value="1" <?php echo set_checkbox('mantenimientomecanico', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_mantenimientomecanico');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="operariopreparador" value="1" <?php echo set_checkbox('operariopreparador', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_operariopreparador');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="depositologisticaexpedicion" value="1" <?php echo set_checkbox('depositologisticaexpedicion', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_depositologisticaexpedicion');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="limpieza" value="1" <?php echo set_checkbox('limpieza', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_limpieza');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="comprascomercionexterios" value="1" <?php echo set_checkbox('comprascomercionexterios', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_comprascomercionexterios');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="ventascomercialpromocion" value="1" <?php echo set_checkbox('ventascomercialpromocion', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_ventascomercialpromocion');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="administrativosfinancieroscontable" value="1" <?php echo set_checkbox('administrativosfinancieroscontable', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_administrativosfinancieroscontable');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="sistemainformatica" value="1" <?php echo set_checkbox('sistemainformatica', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_sistemainformatica');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="recepcionistasecretaria" value="1" <?php echo set_checkbox('recepcionistasecretaria', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_recepcionistasecretaria');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="cientificoinvestigadores" value="1" <?php echo set_checkbox('cientificoinvestigadores', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_cientificoinvestigadores');?></label><div class="clear"></div>
+        <input type="checkbox" class="input_checkbox" name="estudiantessinexperiencia" value="1" <?php echo set_checkbox('estudiantessinexperiencia', '1'); ?>><label class="label_checkbox"><?php echo lang('trabajaconnosotros_eleccion_estudiantessinexperiencia');?></label><div class="clear"></div>
       </div><!-- form lab right -->
         <input type="submit" class="submit" value="<?php echo lang('trabajaconnosotros_enviar');?>">    
   <?php echo form_close(); ?>
@@ -47,10 +48,16 @@ echo form_open_multipart($url, $attributes); ?>
     echo $errores['captcha'];
   endif;
   if(isset($errores['cedula_identidad'])):
-    echo $errores['cedula_identidad'];
+    echo $errores['cedula_identidad'].'<br/>';
+  endif;
+  if(isset($errores['cv'])):
+    echo $errores['cv'];
+  endif;
+  if(isset($errores['areas'])):
+    echo $errores['areas'];
   endif;
   // 
-  var_dump($errores);
+  //var_dump($errores);
   ?>
 <?php echo form_error('nombre'); ?>
 <?php echo form_error('apellido'); ?>        

@@ -140,7 +140,7 @@ class tank_auth
 		return $this->ci->session->userdata('user_id');
 	}
 
-        function get_user_data()
+    function get_user_data()
 	{
 		return $this->ci->session->userdata('userdata');
 	}
@@ -153,6 +153,17 @@ class tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+    
+    function reload_user_data($id)
+    {
+      $user = $this->ci->users->retrieve_user_by_id($id);
+      $this->ci->session->set_userdata(array(
+              'user_id'	=> $user->id,
+              'username'	=> $user->username,
+              'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
+                                              'userdata' => $user,
+      ));
+    }
 
 	/**
 	 * Create new user on the site and return some data about it:
@@ -682,7 +693,7 @@ class tank_auth
 	function is_max_login_attempts_exceeded($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
-			$this->ci->load->model('login_attempts');
+			$this->ci->load->model('auth/login_attempts');
 			return $this->ci->login_attempts->get_attempts_num($this->ci->input->ip_address(), $login)
 					>= $this->ci->config->item('login_max_attempts', 'tank_auth');
 		}
@@ -700,7 +711,7 @@ class tank_auth
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
 			if (!$this->is_max_login_attempts_exceeded($login)) {
-				$this->ci->load->model('login_attempts');
+				$this->ci->load->model('auth/login_attempts');
 				$this->ci->login_attempts->increase_attempt($this->ci->input->ip_address(), $login);
 			}
 		}
@@ -716,7 +727,7 @@ class tank_auth
 	private function clear_login_attempts($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
-			$this->ci->load->model('login_attempts');
+			$this->ci->load->model('auth/login_attempts');
 			$this->ci->login_attempts->clear_attempts(
 					$this->ci->input->ip_address(),
 					$login,

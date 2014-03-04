@@ -132,7 +132,8 @@ $permisos = array(
             'medico'    => 'medico',
             'empleado'    => 'empleado',
         ); ?>  
-    <?php echo form_dropdown($permisos['name'], $options, set_value($permisos['name']));?>
+    
+    <?php echo form_dropdown($permisos['name'], $options, $permisos['value']);?>
   </p>
 </div>
 <div class="clear"></div>
