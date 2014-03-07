@@ -61,10 +61,15 @@
           <li class="<?php echo ($menu_id == 'users')? "current": "";?>"><a href="<?php echo site_url('authadmin');?>">Usuarios</a></li>
           <li class="<?php echo ($menu_id == 'category')? "current": "";?>"><a href="<?php echo site_url('categories/index/'.$lang);?>">Categorias</a></li>
           <li class="<?php echo ($menu_id == 'news')? "current": "";?>"><a href="<?php echo site_url('news/index/'.$lang);?>">Noticias</a></li>
-          <li class="<?php echo ($menu_id == 'studycases')? "current": "";?>"><a href="<?php echo site_url('studycases/index/'.$lang);?>">Casos de estudio</a></li>
-          <li class="<?php echo ($menu_id == 'events')? "current": "";?>"><a href="<?php echo site_url('events/index/'.$lang);?>">Eventos</a></li>
+          <li class="<?php echo ($menu_id == 'studycases' || $menu_id == 'events')? "current": "";?>">
+            <a href="javascript:void(0)">Medicos</a>
+            <ul>
+              <li class="<?php echo ($menu_id == 'studycases')? "current": "";?>"><a href="<?php echo site_url('studycases/index/'.$lang);?>">Casos de estudio</a></li>
+              <li class="<?php echo ($menu_id == 'events')? "current": "";?>"><a href="<?php echo site_url('events/index/'.$lang);?>">Eventos</a></li>
+            </ul>
+          </li>
           <li class="<?php echo ($menu_id == 'productos')? "current": "";?>"><a href="<?php echo site_url('products/index/'.$lang);?>">Productos</a></li>
-          
+          <li class="<?php echo ($menu_id == 'basiclink')? "current": "";?>"><a href="<?php echo site_url('basiclink/index');?>">Links</a></li>
         
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
             <a href="javascript:void(0)">Configuraciones</a>

@@ -4,18 +4,29 @@
             <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" >Seleccione el producto</dt>
                 <dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
                     <ul>
-                      <?php foreach($products as $product): ?>
+                      <?php 
+                      
+                      
+                      foreach($products as $product): 
+                        $urlCategoriaProduct = $lang.'/categoria-producto/';
+                        if($lang == 'en')
+                          $urlCategoriaProduct = $lang.'/category-product/';
+                        $urlCategoriaProduct .= $category->id.'/'.$category->slug.'/'.$product->id.'/'.$product->slug.'.html';
+                              
+                      ?>
                       <li>
-                        <a href="#" <?php if($product->name == $usedProduct->name):?> class="current"<?php endif;?>>
+                        <a href="<?php echo site_url($urlCategoriaProduct);?>" <?php if($product->name == $usedProduct->name):?> class="current"<?php endif;?>>
                           <?php echo $product->name;?>
                         </a>
                       </li>  
-                      <?php endforeach;?>
+                      <?php 
+                      endforeach;?>
                     </ul>
                 </dd>
         </dl>       
 </div><!--menu productos-->
 <div class="clear"></div> 
+<?php if(isset($usedProduct)): ?>
 <div id="product_content" class="content_site content_internas">
   <h2 class="productos"><?php echo $usedProduct->name?></h2>
     <hr>
@@ -49,6 +60,7 @@
       </tr>
       <?php 
       $first = true;
+//      var_dump($user);
       foreach($presentations as $presentation): 
         //var_dump($presentation);
       ?>
@@ -59,12 +71,14 @@
         <td><?php echo $presentation->action;?></td>
         <td><?php echo $category->name;?></td>
         <td>
-          <?php if(!is_null($presentation->avatar)): ?>
-            <?php //var_dump($presentation->avatar);?>
-          <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
-          <a href="#">
-            <?php echo lang('producto_prospecto');?>
-          </a>
+          <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico')): ?>
+            <?php if(!is_null($presentation->avatar)): ?>
+              <?php //var_dump($presentation->avatar);?>
+            <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
+            <a href="#">
+              <?php echo lang('producto_prospecto');?>
+            </a>
+            <?php endif;?>
           <?php endif;?>
         </td>
       </tr>  
@@ -73,15 +87,18 @@
       endforeach; 
       ?>
     </table>
-    <h5><?php echo lang('producto_literatura');?></h5>
-    <?php foreach($medicdata as $lit): ?>
-    <?php //var_dump($lit);?>
-      <div class="literatura">
-        <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
-        <a href="#"><?php echo $lit->ac_name;?></a>
-      </div>
-    <?php endforeach; ?>
+    <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico')): ?>
+      <h5><?php echo lang('producto_literatura');?></h5>
+      <?php foreach($medicdata as $lit): ?>
+      <?php //var_dump($lit);?>
+        <div class="literatura">
+          <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
+          <a href="#"><?php echo $lit->ac_name;?></a>
+        </div>
+      <?php endforeach; ?>
+    <?php endif;?>
 </div><!-- content -->
+<?php endif;?>
 <div class="images_bottom">
   <img src="<?php echo base_url(); ?>assets/celsius/images/img_productos.jpg">
 </div>

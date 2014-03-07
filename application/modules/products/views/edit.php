@@ -26,3 +26,8 @@
 <?php endif; ?>
 <hr/>
 <a href="<?php echo site_url('products/index/'.$lang); ?>"> Volver al listado </a>
+<script type="text/javascript">
+    $(document).ready(function() {
+        startFancyLinks()
+    });
+</script>

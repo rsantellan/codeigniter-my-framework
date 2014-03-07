@@ -116,6 +116,23 @@ class mnew extends MY_Model{
         return $aux;
       }
   }
+  
+  public function retrieveAllSlider($lang = 'es')
+  {
+    $this->db->where('slider', 1);
+    $this->db->order_by("ordinal", "desc");
+    $query = $this->db->get($this->getTablename());
+    $salida = array();
+    foreach($query->result() as $obj)
+    {
+      $aux = $this->getTranslation($obj->id, $lang, false);
+      $aux->avatar = $this->retrieveAvatar("default", $obj->id);
+      $aux->slider = $obj->slider;
+      $salida[$obj->id] = $aux;
+    }
+    return $salida;
+  }
+  
   public function retrieveAll($returnObjects = FALSE, $lang = 'es', $retrieveAvatar = false, $limit = null, $offset = null)
   {
     $this->db->order_by("ordinal", "desc");

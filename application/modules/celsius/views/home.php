@@ -1,36 +1,76 @@
 <div class="content_site">
-  <h1>Novedades Celsius</h1>
+  <h1><?php echo lang('home_novedades_celsius');?></h1>
   <hr>
+  <?php
+  $firstNew = array_shift($news);
+  $secondNew = array_shift($news);
+  $startUrl = "new";
+    if($lang !== 'en')
+    {
+        $startUrl = 'novedad';
+    }
+    $imgType = 1;
+	$width = 55;
+	$height = 70;
+  ?>
   <div class="novedades_home novedades_home_img">
-	<img src="<?php echo base_url(); ?>assets/celsius/images/novedade_home.jpg"><h5>Femelac Jabón Íntimo</h5><div class="clear"></div>
+    <?php if($firstNew !== null): ?>
+    <?php
+    $url_help = $lang."/".$startUrl."/".$firstNew->id . "/" . $firstNew->slug . ".html";
+    ?>
+    <?php if(!is_null($firstNew->avatar)): ?>
+      <img alt="<?php echo $firstNew->name;?>" src="<?php echo thumbnail_image(base_url(), $firstNew->avatar->getPath() , $width, $height, $imgType); ?>" />
+      <h5><?php echo $firstNew->name;?></h5>
+      <div class="clear"></div>
+    <?php else: ?>
+      <h5><?php echo $firstNew->name;?></h5>
+    <?php endif; ?>
 	<div class="text">
-	  <p>Los calambres musculares son muy comunes, principalmente durante la noche. Se trata de contracciones involuntarias, intensas y dolorosas, de aparición súbita, en uno o más músculos que duran desde unos segundos a varios minutos. Su lugar de presentación más común es en miembros inferiores, especialmente en la pantorrilla. Son provocados por múltiples causas, las más frecuentes son el sobreesfuerzo muscular, ej deportivo; los trastornos circulatorios, várices, arteriopatías, etc. Hay medicamentos que disminuyen la frecuencia y duración de los calambres así como de las contracturas dolorosas y el hipo.</p>
+	  <p>
+        <?php echo word_limiter_close_tags(html_purify(html_entity_decode(($firstNew->description))), 100); ?>
+      </p>
 	</div>
-	<a href="/detalle_noticia.php" class="fancybox fancybox.iframe ver_mas">> Leer más</a>
+	<a href="<?php echo site_url($url_help);?>" class="fancybox fancybox.iframe ver_mas"><?php echo lang('home_leer_mas');?></a>
+    <?php endif; ?>
   </div><!-- novedades home -->
   <div class="novedades_home novedades_home_center">
-	<span class="info">30 setiembre 2013</span>
-	<h5>Congreso médico enfermedades cardiovasculares</h5>
+    <?php if($secondNew !== null): ?>
+    <?php
+    $url_help = $lang."/".$startUrl."/".$secondNew->id . "/" . $secondNew->slug . ".html";
+    ?>
+    <?php if(!is_null($secondNew->avatar)): ?>
+      <img alt="<?php echo $secondNew->name;?>" src="<?php echo thumbnail_image(base_url(), $secondNew->avatar->getPath() , $width, $height, $imgType); ?>" />
+      <h5><?php echo $secondNew->name;?></h5>
+      <div class="clear"></div>
+    <?php else: ?>
+      <h5><?php echo $secondNew->name;?></h5>
+    <?php endif; ?>
+    
 	<div class="text">
-	  <p>Los calambres musculares son muy comunes, principalmente durante la noche. Se trata de contracciones involuntarias, intensas y dolorosas, de aparición súbita, en uno o más músculos que duran desde unos segundos a varios minutos. Su lugar de presentación más común es en miembros inferiores, especialmente en la pantorrilla. Son provocados por múltiples causas, las más frecuentes son el sobreesfuerzo muscular, ej deportivo; los trastornos circulatorios, várices, arteriopatías, etc. Hay medicamentos que disminuyen la frecuencia y duración de los calambres así como de las contracturas dolorosas y el hipo.</p>
+	  <p>
+        <?php echo word_limiter_close_tags(html_purify(html_entity_decode(($secondNew->description))), 100); ?>
+      </p>
 	</div>
-	 <a href="/detalle_noticia.php" class="fancybox fancybox.iframe ver_mas">> Leer más</a>
+	 <a href="<?php echo site_url($url_help);?>" class="fancybox fancybox.iframe ver_mas"><?php echo lang('home_leer_mas');?></a>
+     <?php endif; ?>
   </div><!-- novedades home -->
   <div class="novedades_home">
-	<span class="info">Conocé más</span>
-	<h5>El porque de los calamabres musculares</h5>
+	<span class="info"><?php echo lang('home_novedad_conoce_mas');?></span>
+	<h5><?php echo lang('home_novedad_titulo');?></h5>
 	<div class="text">
-	  <p>Los calambres musculares son muy comunes, principalmente durante la noche. Se trata de contracciones involuntarias, intensas y dolorosas, de aparición súbita, en uno o más músculos que duran desde unos segundos a varios minutos. Su lugar de presentación más común es en miembros inferiores, especialmente en la pantorrilla. Son provocados por múltiples causas, las más frecuentes son el sobreesfuerzo muscular, ej deportivo; los trastornos circulatorios, várices, arteriopatías, etc. Hay medicamentos que disminuyen la frecuencia y duración de los calambres así como de las contracturas dolorosas y el hipo.</p>
+      <p>
+        <?php echo word_limiter_close_tags(html_purify(html_entity_decode((lang('home_novedad_texto')))), 100); ?>
+      </p>
 	</div>
-	 <a href="#" class="ver_mas">> Leer más</a>
+	 <a href="#" class="ver_mas"><?php echo lang('home_leer_mas');?></a>
   </div><!-- novedades home -->        
 </div><!-- content -->
 
 <script type="text/javascript">
 $(document).ready(function() {
-	  var carousel = $("#carousel").featureCarousel({
-        });
+	  var carousel = $("#carousel").featureCarousel({});
+      $('.fancybox').fancybox();
       });
-	  $('.fancybox').fancybox();
+	  
 
 </script>

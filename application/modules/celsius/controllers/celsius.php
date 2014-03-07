@@ -20,7 +20,7 @@ class celsius extends MY_Controller {
     $this->data['menu'] = 'inicio';
     $this->data['submenu'] = 'inicio';
     $this->data['topHome'] = false;
-//      $this->output->enable_profiler(TRUE);
+      $this->output->enable_profiler(TRUE);
     $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     $this->data['login_user'] = '';
     $this->data['errores'] = array();
@@ -55,13 +55,28 @@ class celsius extends MY_Controller {
   }
 
   public function index($lang = 'es') {
+    $this->loadIndex($lang);
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  private function loadIndex($lang)
+  {
     $this->setLang($lang);
     $this->loadMenuData();
     $this->changeUrlData('', '');
+    $this->load->model('news/mnew');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->model('basiclink/link');
+    $this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+    $this->data['sliderLinks'] = $this->link->retrieveAll(false, true);
+    $this->data['sliderNews'] = $this->mnew->retrieveAllSlider($lang);
+    $this->data['news'] = $this->mnew->retrieveAll(false, $lang, true, 2, 0);
     $this->data['content'] = 'home';
     $this->data['contentTopHome'] = 'homeCarrousel';
     $this->data['topHome'] = true;
-    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+    $this->loadI18n("home", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
   }
 
   public function presentacion($lang) {
@@ -176,7 +191,12 @@ class celsius extends MY_Controller {
   public function casoestudio($lang, $page = 1) {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
     $this->data['menu'] = 'casoestudio';
@@ -221,7 +241,12 @@ class celsius extends MY_Controller {
   public function eventos($lang, $page = 1) {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
     $this->data['menu'] = 'eventos';
@@ -257,7 +282,12 @@ class celsius extends MY_Controller {
   public function congresos($lang, $page = 1) {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
     $this->data['menu'] = 'congresos';
@@ -309,20 +339,46 @@ class celsius extends MY_Controller {
     $products = $this->product->retrieveByCategory($lang, $category->id);
     $this->data['products'] = $products;
     $usedProduct = array_shift(array_values($products));
-    
-    $this->loadUsedProduct($this->product->getById($usedProduct->id, $lang, false, true));
+    if($usedProduct !== null)
+    {
+      $this->loadUsedProduct($this->product->getById($usedProduct->id, $lang, false, true));
+    }
     $this->data['content'] = 'categoria';
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 
   private function loadUsedProduct($productStdObject)
   {
+    //var_dump($productStdObject);
     $this->load->model('presentations/presentation');
     $this->data['presentations'] = $this->presentation->retrieveAll(false, $this->getLang(), $productStdObject->id, true);
     $this->data['usedProduct'] = $productStdObject;
     $this->data['medicdata'] = $this->product->retrieveMedicAlbumData($this->getLang(), $productStdObject->id);
   }
   
+  public function product($lang, $id, $slug, $productId, $productSlug)
+  {
+    $this->data['menu'] = 'productos';
+    $this->data['submenu'] = $slug;
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('', '');
+    $this->loadI18n("producto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->load->model('categories/category');
+    $this->load->model('products/product');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $category = $this->category->getById($id, $lang, false);
+    $this->data['category'] = $category;
+    $title = $this->lang->line('title_categoria').$category->name;
+    $this->appendTitle($title);
+    $products = $this->product->retrieveByCategory($lang, $category->id);
+    $this->data['products'] = $products;
+    //var_dump($productId);die;
+    $this->loadUsedProduct($this->product->getById($productId, $lang, false, true));
+    $this->data['content'] = 'categoria';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
   
   public function presencia($lang)
   {
@@ -843,11 +899,12 @@ class celsius extends MY_Controller {
         }
         $this->data['errores'] = $errores;
         $this->data['login_user'] = $this->form_validation->set_value('login');
-        $this->setLang($lang);
-        $this->loadMenuData();
-        $this->data['content'] = 'home';
-        $this->data['contentTopHome'] = 'homeCarrousel';
-        $this->data['topHome'] = true;
+//        $this->setLang($lang);
+//        $this->loadMenuData();
+//        $this->data['content'] = 'home';
+//        $this->data['contentTopHome'] = 'homeCarrousel';
+//        $this->data['topHome'] = true;
+        $this->loadIndex($lang);
         $this->load->view($this->DEFAULT_LAYOUT, $this->data);
     }
   }
@@ -856,7 +913,7 @@ class celsius extends MY_Controller {
   {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
     $this->setLang($lang);
@@ -868,27 +925,12 @@ class celsius extends MY_Controller {
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
-//  function useredit($lang)
-//  {
-//    if (!$this->isLogged()) {
-//      //Si no esta logeado se tiene que ir a loguear
-//      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
-//      redirect($lang);
-//    }
-//    $this->setLang($lang);
-//    $this->loadMenuData();
-//    $this->changeUrlData('usuario.html', 'user.html');
-//    $this->loadI18n("usuario", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
-//    //$this->data['content'] = 'usuario';
-//    
-//    $this->load->view('usuarioedit', $this->data);
-//  }
   
   function saveEditUser()
   {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
       throw new Exception("Usuario no logueado");
     }
     $this->data['errors'] = array();
@@ -942,8 +984,7 @@ class celsius extends MY_Controller {
             'especialidad' => $user->especialidad,
             'cjp' => $user->cjp,
             'direccion' => $user->direccion,
-            'telefono' => $user->telefono,
-            'profile' => $user->profile,
+            'telefono' => $user->telefonos
         );
         $counter = $this->users->edit($data, $id);
         //var_dump($counter);
@@ -970,7 +1011,7 @@ class celsius extends MY_Controller {
   {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
-      $this->session->set_userdata('url_to_direct_on_login', 'authadmin/index');
+      $this->session->set_userdata('url_to_direct_on_login', '');
       throw new Exception("Usuario no logueado");
     }
     $this->config->load('tank_auth', false, false, 'auth');

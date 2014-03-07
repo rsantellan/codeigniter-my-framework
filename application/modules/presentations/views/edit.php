@@ -104,4 +104,7 @@ endforeach;
       });
     return false;
   }
+  $(document).ready(function() {
+        startFancyLinks()
+    });
 </script>

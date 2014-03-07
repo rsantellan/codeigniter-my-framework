@@ -25,6 +25,12 @@ class admin extends MY_Controller{
  
   public function index()
   {
+    $user = $this->getLoggedUserData();
+    if(isset($user->profile) && $user->profile !== 'admin')
+    {
+      $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+      redirect('');
+    }
     $this->data['content'] = "admin/welcome";
     $this->data['menu_id'] = 'dashboard';
     
