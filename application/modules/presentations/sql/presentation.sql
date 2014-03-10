@@ -66,3 +66,7 @@ CREATE TABLE IF NOT EXISTS `country` (
 ALTER TABLE `presentation_country`
   ADD CONSTRAINT `presentation_country_ibfk_2` FOREIGN KEY (`presentation_id`) REFERENCES `presentation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `presentation_country_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+ALTER TABLE `presentation_country` ADD `compuesto` VARCHAR( 255 ) NOT NULL DEFAULT '';

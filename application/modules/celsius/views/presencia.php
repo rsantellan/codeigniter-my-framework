@@ -5,6 +5,7 @@
 </div><!-- content -->
 <?php foreach ($menuCategoryList as $categoria): 
   if(isset($tableData[$categoria->id])):
+    $compuestosList = array();
 ?>
   
   <div class="tables_exterior">
@@ -44,8 +45,13 @@
         <td class="td_color_oscuro"><?php echo $data->presentation;?></td>
         <?php 
         $indexCountry = 0;
-        foreach($data->countries as $rep): ?>
-          <td class="td_notas td_color_oscuro <?php echo (count($data->countries) -1 == $indexCountry)? 'td_border_none' : ''?>"><?php echo $rep;?></td>
+        foreach($data->countries as $rep): 
+          if(isset($rep['compuesto']))
+          {
+            $compuestosList[$rep['compuesto']] = $rep['compuesto'];
+          }
+        ?>
+          <td class="td_notas td_color_oscuro <?php echo (count($data->countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>"><?php echo $rep['presencia'];?></td>
         <?php
         $indexCountry++;
         endforeach; ?>
@@ -54,9 +60,17 @@
       <?php endforeach; ?>
          
     </table>
-<!--    <div class="mark_guia">
-      <div class="mark_color"></div><span>Norsic</span>
-    </div>-->
+    <?php
+      if(count($compuestosList) > 0):
+    ?>
+      <div class="mark_guia">
+      <?php foreach($compuestosList as $compuesto): ?>
+        <div class="mark_color"></div><span><?php echo $compuesto;?></span>
+      <?php endforeach; ?>
+      </div>  
+    <?php
+      endif;
+    ?>
   </div>
 <?php 
   endif;

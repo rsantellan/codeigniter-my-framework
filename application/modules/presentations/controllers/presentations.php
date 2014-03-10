@@ -85,12 +85,14 @@ class presentations extends MY_Controller{
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
+      $this->addJqueryUI();
       //$this->load->model('categories/category');
       $this->load->model('presentations/presentation');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "presentations/edit";
       $this->data['countries'] = $this->presentation->retrieveAllCountries();
       $this->data['types'] = $this->presentation->retrieveCountryType();
+      $this->data['compuestos'] = $this->presentation->retrieveCompuestos();
       $object = $this->presentation->getById($id, $this->getLang(), true, false, true);
       $this->data['object'] = $object;
       $this->loadProduct($object->getProductId());
@@ -181,17 +183,19 @@ class presentations extends MY_Controller{
       $presentationId = $this->input->post('presentationId');
       $type = $this->input->post('type');
       $country = $this->input->post('country');
+      $compuesto = $this->input->post('compuesto');
       $this->load->model('presentations/presentation');
       $response = false;
       $html = '';
       try{
-        $response = $this->presentation->saveCountry($presentationId, $country, $type);
+        $response = $this->presentation->saveCountry($presentationId, $country, $type, $compuesto);
         $countries = $this->presentation->retrieveAllCountries();
         $types = $this->presentation->retrieveCountryType();
         $data = array(
           'countryId' => $country, 
           'countryName' => $countries[$country]->name,
           'type' => $types[$type],
+          'compuesto' => $compuesto,  
           'presentationId' => $presentationId,
           );
         $html = $this->load->view("countrycontainer", $data, true);
@@ -215,5 +219,20 @@ class presentations extends MY_Controller{
       $this->output
        ->set_content_type('application/json')
        ->set_output(json_encode($salida));
+    }
+    
+    function compuesto()
+    {
+      $term = $this->input->get('term');
+      $this->load->model('presentations/presentation');
+      $data = $this->presentation->retrieveCompuestos($term);
+      $return = array();
+      foreach($data as $result)
+      {
+        $return["label"] = $result->compuesto;
+      }
+      $this->output
+       ->set_content_type('application/json')
+       ->set_output(json_encode($return));
     }
 }

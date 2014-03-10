@@ -29,6 +29,7 @@ foreach($object->getCountries() as $country):
       'countryId' => $country->country_id, 
       'countryName' => $countries[$country->country_id]->name,
       'type' => $types[$country->presencia],
+      'compuesto' => $country->compuesto,
       'presentationId' => $object->getId(),
       ));
 endforeach;
@@ -50,6 +51,9 @@ endforeach;
         <option value="<?php echo $key;?>"><?php echo $value;?></option>
       <?php endforeach; ?>
     </select>
+    <div class="clear"></div>
+    <label for="compuesto">Compuesto</label>
+    <input type="text" id="compuesto" name="compuesto" />
     <div class="clear"></div>
     <input type="submit" value="Agregar" />
   </form>
@@ -105,6 +109,9 @@ endforeach;
     return false;
   }
   $(document).ready(function() {
-        startFancyLinks()
+        startFancyLinks();
+        $( "#compuesto" ).autocomplete({
+          source: <?php echo json_encode($compuestos );?>
+        });
     });
 </script>

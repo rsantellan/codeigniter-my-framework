@@ -375,12 +375,13 @@ class presentation extends MY_Model{
       );
     }
     
-    public function saveCountry($presentationId, $countryId, $type)
+    public function saveCountry($presentationId, $countryId, $type, $compuesto)
     {
       $data = array();
       $data["presentation_id"] = $presentationId;
       $data["country_id"] = $countryId;
       $data["presencia"] = $type;
+      $data["compuesto"] = $compuesto;
       $this->db->insert('presentation_country', $data);
       $rows = $this->db->affected_rows();
       
@@ -395,5 +396,17 @@ class presentation extends MY_Model{
       $this->db->where('presentation_id', $presentationId);
       $this->db->where('country_id', $countryId);
       $this->db->delete('presentation_country');
+    }
+    
+    public function retrieveCompuestos()
+    {
+      $this->db->select('compuesto');
+      $data = $this->db->get('presentation_country')->result();
+      $return = array();
+      foreach($data as $compuesto)
+      {
+        $return[] = $compuesto->compuesto;
+      }
+      return $return;
     }
 }

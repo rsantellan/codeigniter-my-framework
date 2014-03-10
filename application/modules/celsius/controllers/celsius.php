@@ -420,11 +420,15 @@ class celsius extends MY_Controller {
             $countriesTypes = array();
             foreach($this->data['countries'] as $country)
             {
-              $countriesTypes[$country->id] = '';
+              $countriesTypes[$country->id]['presencia'] = '';
             }
             foreach($countryData as $usedCountryData)
             {
-              $countriesTypes[$usedCountryData->country_id] = $usedCountryData->presencia;
+              if($usedCountryData->compuesto !== "")
+              {
+                $countriesTypes[$usedCountryData->country_id]['compuesto'] = $usedCountryData->compuesto;
+              }
+              $countriesTypes[$usedCountryData->country_id]['presencia'] = $usedCountryData->presencia;
             }
             $aux->countries = $countriesTypes;
             $categoryData[] = $aux;

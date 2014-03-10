@@ -201,3 +201,8 @@ Esto es para los distintos langs
   text-transform:uppercase;
   color: red !important;
 }
+
+
+.ui-autocomplete{
+  width: 250px !important;
+}
