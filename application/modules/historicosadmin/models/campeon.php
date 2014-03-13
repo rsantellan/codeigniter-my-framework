@@ -16,6 +16,7 @@ class campeon extends MY_Model{
   private $id;
   private $periodo;
   private $name;
+  private $pruebacorta;
   
   function __construct()
   {
@@ -47,9 +48,22 @@ class campeon extends MY_Model{
     $this->name = $name;
   }
 
-  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE)
+  public function getPruebacorta() {
+    return $this->pruebacorta;
+  }
+
+  public function setPruebacorta($pruebacorta) {
+    $this->pruebacorta = $pruebacorta;
+  }
+
+  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $tipoPrueba = NULL)
   {
     $this->db->order_by("ordinal", "desc");
+    $this->db->order_by("pruebacorta", "desc");
+    if($tipoPrueba !== NULL)
+    {
+      $this->db->where('pruebacorta', $tipoPrueba);
+    }
     $query = $this->db->get($this->getTablename());
     
     if(!$returnObjects)
@@ -76,6 +90,7 @@ class campeon extends MY_Model{
         $aux->setId($obj->id);
         $aux->setName($obj->name);
         $aux->setPeriodo($obj->periodo);
+        $aux->setPruebacorta($obj->pruebacorta);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -106,6 +121,7 @@ class campeon extends MY_Model{
     $data = array();
     $data["name"] = $this->getName();
     $data["periodo"] = $this->getPeriodo();
+    $data["pruebacorta"] = $this->getPruebacorta();
     $data["ordinal"] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -123,6 +139,7 @@ class campeon extends MY_Model{
     $data = array(
         'name' => $this->getName(),
         'periodo' => $this->getPeriodo(),
+        'pruebacorta' => $this->getPruebacorta(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -144,6 +161,7 @@ class campeon extends MY_Model{
           $aux->setId($obj->id);
           $aux->setName($obj->name);
           $aux->setPeriodo($obj->periodo);
+          $aux->setPruebacorta($obj->pruebacorta);
           return $aux;
         }
         return $obj;
@@ -157,4 +175,11 @@ class campeon extends MY_Model{
     {
       return get_class($this);
     }
+    
+    public function retrieveAllForSelect()
+    {
+      return array(1 => 'Prueba corta', 0 => 'Prueba larga');
+    }
+    
+    
 }

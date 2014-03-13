@@ -12,6 +12,9 @@
         Periodo
       </th>
       <th>
+        Prueba
+      </th>
+      <th>
         Acciones
       </th>
     </tr>
@@ -38,6 +41,9 @@
         <?php echo ($object->periodo); ?>
       </td>
       <td>
+        <?php echo ($object->pruebacorta == 1)? 'Corta': 'Larga';?>
+      </td>
+      <td>
         <a href="<?php echo site_url("historicosadmin/campeonesadmin/edit/".$object->id);?>">
           Editar
         </a>
@@ -55,11 +61,9 @@
 <a href="<?php echo site_url("historicosadmin/campeonesadmin/add");?>">
   Agregar
 </a>
-
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sort/historicosadmin/campeon/name");?>" >
+<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithParameters/historicosadmin/campeon/pruebacorta/historicosadmin/campeon");?>" >
   Ordenar
 </a>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("a.colorbox_link").colorbox({

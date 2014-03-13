@@ -43,11 +43,11 @@
 							
 						<?php endif; ?>
 						<div class="image-overlay">
-							<a href="<?php echo prep_url($object->link);?>" title="<?php echo $object->name;?>"><span class="link"></span></a>
+							<a href="<?php echo prep_url($object->link);?>" target="_blank" title="<?php echo $object->name;?>"><span class="link"></span></a>
 						</div>
 					</div>
 					<div class="item-description align-center">
-						<a href="<?php echo prep_url($object->link);?>"><h6 class="title colored-text-1"><?php echo $object->name;?></h6></a>
+						<a href="<?php echo prep_url($object->link);?>" target="_blank"><h6 class="title colored-text-1"><?php echo $object->name;?></h6></a>
 <!--						<p class="small-font-size">photography</p>-->
 					</div>
 				</article>

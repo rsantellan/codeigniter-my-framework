@@ -1,5 +1,7 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 $lang['historia_campeones_titulo']='Campeones hist&oacute;ricos';
+$lang['historia_campeones_larga_titulo']='Campeones Pruebas Largas hist&oacute;ricos';
+$lang['historia_campeones_corta_titulo']='Campeones Pruebas Cortas hist&oacute;ricos';
 $lang['historia_campeones_sub_titulo']='Campeones listado por periodo';
 $lang['historia_campeones_imagen']='Imagen';
 $lang['historia_campeones_nombre']='Nombre';

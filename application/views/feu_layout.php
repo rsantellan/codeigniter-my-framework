@@ -62,20 +62,12 @@
                                     <ul>
                                         <li><a href="<?php echo site_url('historia-que-es-el-raid.html');?>"><?php echo lang("menu_historia_definicion"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-feu.html');?>"><?php echo lang("menu_historia_feu"); ?></a></li>
-                                        <li><a href="<?php echo site_url('historia-campeones.html');?>"><?php echo lang("menu_historia_campeones"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-campeones-pruebas-largas.html');?>"><?php echo lang("menu_historia_campeones_pruebas_largas"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-campeones-pruebas-cortas.html');?>"><?php echo lang("menu_historia_campeones_pruebas_cortas"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-deportistas.html');?>"><?php echo lang("menu_historia_deportistas"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
                                     </ul>
                                 </li>
-<!--                                <li><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos')? 'current' : '';?>"><?php echo lang("menu_documentacion"); ?></a>
-                                    <ul>
-                                        <li><a href="<?php echo site_url('documentacion.html');?>"><?php echo lang("menu_documentacion"); ?></a></li>
-                                        <li><a href="<?php echo site_url('jornadas.html');?>"><?php echo lang("menu_jornada"); ?></a></li>
-                                        <li><a href="<?php echo site_url('formularios.html');?>"><?php echo lang("menu_formularios"); ?></a></li>
-                                    </ul>
-                                </li>
-								<li><a href="<?php echo site_url('feu-directiva.html'); ?>" class="<?php echo ($menu == 'directiva')? 'current' : '';?>"><?php echo lang("menu_directiva"); ?></a>
-                                -->
                                 <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva' || $menu == 'veterinarios' || $menu == 'laboratorios' || $menu == 'promotoresradios')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
                                     <div class="sf-mega">
                                         <div class="sf-mega-table">
@@ -126,11 +118,6 @@
                                     <!-- end sf-mega -->
                                 </li>
                                 <li><a href="<?php echo site_url('instituciones.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones"); ?></a>
-                                    <!-- 
-                                    <li><a href="<?php echo site_url('veterinarios-jefes.html');?>"><?php echo lang("menu_veterinarios_jefes"); ?></a></li>
-                                    <li><a href="<?php echo site_url('veterinarios.html');?>"><?php echo lang("menu_veterinarios_habilitados"); ?></a></li>
-                                    <li><a href="<?php echo site_url('laboratorios.html');?>"><?php echo lang("menu_veterinarios_laboratorios"); ?></a></li>
-                                    -->
                                 <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
                                 <li><a href="<?php echo site_url('noticias.html'); ?>" class="<?php echo ($menu == 'noticias')? 'current' : '';?>"><?php echo lang("menu_noticias"); ?></a>
                                 <li><a href="<?php echo site_url('contacto.html'); ?>" class="<?php echo ($menu == 'contacto')? 'current' : '';?>"><?php echo lang("menu_contacto"); ?></a>

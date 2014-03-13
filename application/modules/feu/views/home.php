@@ -181,7 +181,15 @@
 					$count = count($banners);
 					?>
 					  <?php foreach($banners as $id => $banner): ?>
-                        
+                        <?php 
+                        $banner_url = site_url('promotores.html');
+                        $extra_link = '';
+                        if($banner->link !== '' && !empty($banner->link))
+                        {
+                          $banner_url = prep_url($banner->link);
+                          $extra_link = 'target="_blank"';
+                        }
+                        ?>
                         <!-- Project -->
                         <li class="portfolio-item-preview">
                             <article>
@@ -192,11 +200,11 @@
                                         <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
                                     <?php endif; ?>
                                     <div class="image-overlay">
-                                        <a href="<?php echo prep_url($banner->link);?>" title="<?php echo $banner->name;?>"><span class="link"></span></a>
+                                        <a href="<?php echo $banner_url?>" <?php echo $extra_link;?> title="<?php echo $banner->name;?>"><span class="link"></span></a>
                                     </div>
                                 </div>
                                 <div class="item-description align-center">
-                                    <a href="<?php echo prep_url($banner->link);?>"><h6 class="title colored-text-1"><?php echo $banner->name;?></h6></a>
+                                    <a href="<?php echo $banner_url?>" <?php echo $extra_link;?>><h6 class="title colored-text-1"><?php echo $banner->name;?></h6></a>
                                 </div>
                             </article>
                         </li>

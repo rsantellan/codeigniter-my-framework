@@ -62,8 +62,20 @@ class feu extends MY_Controller{
       $this->data['menu'] = 'historia';
       $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
       $this->load->model('historicosadmin/campeon');
-      $this->data['campeones'] = $this->campeon->retrieveAll(false, true);
+      $this->data['campeones'] = $this->campeon->retrieveAll(false, true, 0);
       $this->data['content'] = 'historiacampeones';
+      $this->data['iscorta'] = false;
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function historiacampeonescortas()
+  {
+      $this->data['menu'] = 'historia';
+      $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
+      $this->load->model('historicosadmin/campeon');
+      $this->data['campeones'] = $this->campeon->retrieveAll(false, true, 1);
+      $this->data['content'] = 'historiacampeones';
+      $this->data['iscorta'] = true;
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   

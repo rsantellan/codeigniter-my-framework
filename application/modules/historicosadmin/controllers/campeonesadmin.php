@@ -78,7 +78,8 @@ class campeonesadmin extends MY_Controller{
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
       $this->form_validation->set_rules('periodo', 'periodo', 'required|max_length[255]');      
-        
+      $this->form_validation->set_rules('pruebacorta', 'pruebacorta', '');
+      
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
       $is_valid = false;
@@ -88,10 +89,12 @@ class campeonesadmin extends MY_Controller{
       }
       $name = set_value('name');
       $periodo = set_value('periodo');
+      $pruebacorta = set_value('pruebacorta');
       //var_dump($nombre);
       $obj = new $this->campeon;
       $obj->setName($name);
       $obj->setPeriodo($periodo);
+      $obj->setPruebacorta($pruebacorta);
       $obj->setId($id);
       //var_dump($obj);
       

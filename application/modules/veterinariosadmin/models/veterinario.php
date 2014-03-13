@@ -120,7 +120,7 @@ class veterinario extends MY_Model{
   {
     $data = array(
         'name' => $this->getName(),
-        'link' => $this->getContacto(),
+        'contacto' => $this->getContacto(),
         "isboss" => $this->getIsboss()
      );
     $this->db->where('id', $this->getId());

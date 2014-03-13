@@ -21,3 +21,5 @@ CREATE TABLE IF NOT EXISTS `presidente` (
   `ordinal` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `campeon` ADD `pruebacorta` INT( 1 ) NOT NULL DEFAULT '0';

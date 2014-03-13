@@ -4,7 +4,15 @@
     <div class="grid-bg">
         <div class="container"> <!-- 1080 pixels Container -->
             <div class="full-width columns">
-                <h1><?php echo lang("historia_campeones_titulo"); ?></h1>
+                <h1>
+                  <?php 
+                  if($iscorta):
+                    echo lang("historia_campeones_corta_titulo");
+                  else:
+                    echo lang("historia_campeones_larga_titulo");
+                  endif;
+                  ?>
+                </h1>
             </div>
         </div>
     </div>

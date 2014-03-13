@@ -19,6 +19,12 @@ echo form_open('historicosadmin/campeonesadmin/save', $attributes); ?>
     <input type="text" name="periodo" maxlength="255" value="<?php echo $object->getPeriodo() ?>" />
   </p>
 </div>
+<div class="grid_5">
+  <p>
+    <input type="checkbox" id="pruebacorta" name="pruebacorta" value="1" class="" <?php echo ($object->getPruebacorta() == 1)? 'checked="checked"': '';?> /> 
+    <label for="pruebacorta">Es prueba corta?</label>
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>
