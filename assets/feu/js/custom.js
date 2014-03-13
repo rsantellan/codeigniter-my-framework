@@ -439,7 +439,12 @@ jQuery(document).ready(function($) {
 			
 			// Init carousel
 			getWindowWidth();
-			var carousel = new Carousel($carousel, {animation: {step: animationStep}, visibleSlides: visibleSlides});
+            //visibleSlides
+            var custom_carousel_params = {animation: {step: animationStep}, visibleSlides: visibleSlides, behavior: {autoplay: 0, circular: false}};
+            if ($carousel.attr('data-autoplay') > 0) { custom_carousel_params.behavior.autoplay = $carousel.attr('data-autoplay'); }
+			if ($carousel.attr('data-circular') == 'yes') { custom_carousel_params.behavior.circular = true; }
+			if ($carousel.attr('data-circular') == 'no') { custom_carousel_params.behavior.circular = false; }
+			var carousel = new Carousel($carousel, custom_carousel_params);
 			carousel.init();
 			
 			// Window resize event

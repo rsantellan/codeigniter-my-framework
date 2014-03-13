@@ -173,7 +173,7 @@
                 <div class="carousel-frame">
 
                     <!-- possible values: three-slides / four-slides -->
-                    <ul id="projects-carousel" class="four-slides clearfix">
+                    <ul id="projects-carousel" class="four-slides clearfix" data-autoplay="3000" data-circular="yes">
                          <?php 
 					$imgType = 3;
 					$width = 380;
