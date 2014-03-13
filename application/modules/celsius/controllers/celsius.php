@@ -1049,4 +1049,13 @@ class celsius extends MY_Controller {
        ->set_content_type('application/json')
        ->set_output(json_encode($salida));
   }
+  
+  function registro($lang)
+  {
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('registro.html', 'register.html');
+    $this->data['content'] = 'registro';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
 }

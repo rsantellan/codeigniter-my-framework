@@ -140,8 +140,10 @@
 		</nav>
 	  </header>
 	  <div class="buscador">
-		<input type="text" value="Buscar">
-		<input type="submit" value="" class="submit_search">
+        <form>
+          <input type="text" value="Buscar">  
+          <input type="submit" value="" class="submit_search">
+        </form>
 	  </div><!-- buscador -->		
 		
 		<?php if(isset($contentTopHome)): ?>

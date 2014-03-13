@@ -202,14 +202,12 @@ class CI_Upload {
 		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
 		$this->file_ext	 = $this->get_extension($this->file_name);
 		$this->client_name = $this->file_name;
-
 		// Is the file type allowed to be uploaded?
 		if ( ! $this->is_allowed_filetype())
 		{
 			$this->set_error('upload_invalid_filetype');
 			return FALSE;
 		}
-
 		// if we're overriding, let's now make sure the new name and type is allowed
 		if ($this->_file_name_override != '')
 		{

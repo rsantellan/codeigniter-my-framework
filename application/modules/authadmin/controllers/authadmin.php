@@ -457,4 +457,170 @@ class Authadmin extends MY_Controller {
     $this->session->set_flashdata('message', $message);
     redirect('/authadmin/');
   }
+  
+  function addByExcel()
+  {
+    $this->data['use_grid_16'] = false;
+    $this->data['content'] = "authadmin/addExcel";
+    $this->load->view("admin/layout", $this->data);
+  }
+  
+  function proccesExcel()
+  {
+    $config['upload_path'] = sys_get_temp_dir();
+    $config['allowed_types'] = 'xls';
+    $this -> load -> library('upload', $config);
+    $usuariosErroneos = array();
+    $usuariosOK = 0;
+    if (!$this->upload->do_upload('datafile')) {
+      $this->data['use_grid_16'] = false;
+      $this->data['errores'] = $this->upload->display_errors();
+      $this->data['content'] = "authadmin/addExcel";
+      //$this->load->view('authadmin/user_list', $data);
+      $this->load->view("admin/layout", $this->data);
+    }else{
+      $uploadData = $this->upload->data();
+      $file_path = $uploadData["full_path"];
+      //load our new PHPExcel library
+      $this->load->library('excel');
+      $objReader = PHPExcel_IOFactory::createReader('Excel5');
+      $objPHPExcel = $objReader->load($file_path);
+      $sheetData = $objPHPExcel->getActiveSheet();
+      $first = true;
+      $filenamecsv = sys_get_temp_dir().DIRECTORY_SEPARATOR. 'dataupload-'.time().'.csv';
+      $fp = fopen($filenamecsv, 'w');
+      fputcsv($fp, array('Nombre', 'Email', 'Especialidad', 'CPJ', 'Direccion', 'Telefono', 'Pass', 'Permiso'));
+      foreach ($sheetData->getRowIterator() as $row) {
+        $cellIterator = $row->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(false); // This loops all cells,
+        // even if it is not set.
+        // By default, only cells
+        // that are set will be
+        // iterated.
+        if(!$first)
+        {
+          $user = array();
+          $cellIndex = 0;
+          foreach ($cellIterator as $cell) {
+            switch ($cellIndex) {
+              case 0:
+                  $user['nombre'] = $cell->getValue();
+                break;
+              case 1:
+                  $user['email'] = $cell->getValue();
+                break;
+              case 2:
+                  $user['especialidad'] = $cell->getValue();
+                break;
+              case 3:
+                  $user['cjp'] = $cell->getValue();
+                break;
+              case 4:
+                  $user['direccion'] = $cell->getValue();
+                break;
+              case 5:
+                  $user['telefono'] = $cell->getValue();
+                break;
+              default:
+                break;
+            }
+            $cellIndex++;
+          }
+          if($this->form_validation->valid_email($user['email']) &&
+             $this->form_validation->required($user['especialidad']) &&
+             $this->form_validation->required($user['nombre']) &&
+             $this->form_validation->required($user['cjp']) 
+            )
+          {
+            $user['password'] = $this->createRandomPassword();
+            $user['profile'] = 'medico';
+            //var_dump($user);
+		   $data = $this->tank_auth->create_user(
+				$user['nombre'],
+				$user['email'],
+				$user['password'],
+				false,
+				$user['especialidad'],
+				$user['cjp'],
+				$user['direccion'],
+				$user['telefono'],
+				$user['profile']
+			  );
+			if($data !== NULL)
+			{
+			  fputcsv($fp, $user);	
+			  $usuariosOK++;
+			}
+            else
+            {
+				$error = $this->tank_auth->get_error_message();
+				//
+				$this->loadI18n("tank_auth", $this->getLanguageFile(), FALSE, TRUE, "", "auth");
+				$this->lang->load('tank_auth');
+				if(is_array($error)){
+					$aux_error = '';
+					foreach($error as $aError)
+					{
+						$aux_error .= $this->lang->line($aError).'. ';
+					}
+					$error = $aux_error;
+					//$user['error'] = implode('. ', $user['error']);
+				}
+				$user['error'] = $error;
+				$usuariosErroneos[] = $user;
+			}
+		  }
+          else
+          {
+			$error = '';
+			if(!$this->form_validation->valid_email($user['email']))
+			  $error .= 'Mail invalido. ';  
+			if(!$this->form_validation->required($user['especialidad']))
+			  $error .= 'Espacialidad es requerida. ';  
+			if(!$this->form_validation->required($user['nombre']))
+			  $error .= 'Nombre es requerido. ';  
+			if(!$this->form_validation->required($user['cjp']))
+			  $error .= 'CJP es requerido. ';
+			$user['error'] = $error;  
+            $usuariosErroneos[] = $user;
+          }
+        }
+        else
+        {
+          $first = false;
+        }
+      }
+      fclose($fp);
+      $csvObjReader = PHPExcel_IOFactory::createReader('CSV');
+      $csvObjPHPExcel = $csvObjReader->load($filenamecsv);
+      $csvObjWriter = PHPExcel_IOFactory::createWriter($csvObjPHPExcel, 'Excel5');
+      $filenamexls = sys_get_temp_dir().DIRECTORY_SEPARATOR. 'dataupload-'.time().'.xls';
+      $csvObjWriter->save($filenamexls);
+      $this->data['filecsv'] = $filenamecsv;
+      $this->data['erroresListado'] = $usuariosErroneos;  
+      $this->data['usuariosOK'] = $usuariosOK;  
+      $this->data['use_grid_16'] = false;
+      $this->data['content'] = "authadmin/resultExcel";
+      $this->load->view("admin/layout", $this->data);
+    }
+    
+  }
+  
+  private function createRandomPassword($length = 8){
+    $password = "";
+    $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
+    $maxlength = strlen($possible);
+    if ($length > $maxlength) {
+      $length = $maxlength;
+    }
+    $i = 0;
+    while ($i < $length) {
+      $char = substr($possible, mt_rand(0, $maxlength - 1), 1);
+      if (!strstr($password, $char)) {
+        $password .= $char;
+        $i++;
+      }
+    }
+    return $password;
+  }
 }

@@ -53,6 +53,9 @@
   Agregar con contraseña
 </a>
 
+<a href="<?php echo site_url("authadmin/addByExcel");?>">
+  Carga masiva por excel
+</a>
   <script type="text/javascript">
     $(document).ready(function() {
         $("a.colorbox_link").colorbox({
