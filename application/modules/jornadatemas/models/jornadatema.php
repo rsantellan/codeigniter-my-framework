@@ -175,4 +175,13 @@ class jornadatema extends MY_Model{
     {
       return get_class($this);
     }
+	
+	public function deleteByJornadaId($id)
+	{
+	  $data = $this->retrieveAll(false, false, $id);
+	  foreach($data as $row)
+	  {
+		$this->deleteById($row->id);
+	  }
+	}
 }

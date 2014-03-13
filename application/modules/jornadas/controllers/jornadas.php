@@ -123,7 +123,10 @@ class jornadas extends MY_Controller{
     function delete($id)
     {
       $this->load->model('jornadas/jornada');
+	  $this->load->model('jornadatemas/jornadatema');
+	  $this->jornadatema->deleteByJornadaId($id);
       $result = $this->jornada->deleteById($id);
+	  
       $salida['response'] = "OK";
       $this->output
        ->set_content_type('application/json')

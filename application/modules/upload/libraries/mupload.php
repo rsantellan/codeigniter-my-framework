@@ -129,24 +129,40 @@ class mupload {
       }
       else
       {
-        try
-        { 
-          $CI =& get_instance();
+		if($this->exec_enabled())
+		{
+		  $CI =& get_instance();
           $CI->load->library('mimagickexec', true, NULL, 'mImagickExec');
           $CI->mimagickexec->basicThumbnail($path, $mPath, $type, $width, $height); 
-        }
-        catch(Exception $e)
-        {
-          $CI =& get_instance();
+		}
+		else 
+		{
+		  $CI =& get_instance();
           $CI->load->library('mgd', true, NULL, 'mgd');
           $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height);
-        }
-         
+		}
       }
       
       
     }
     
+	function exec_enabled() {
+	  $available = true;
+	  if (ini_get('safe_mode')) {
+		  $available = false;
+	  } else {
+		  $d = ini_get('disable_functions');
+		  $s = ini_get('suhosin.executor.func.blacklist');
+		  if ("$d$s") {
+			  $array = preg_split('/,\s*/', "$d,$s");
+			  if (in_array('exec', $array)) {
+				  $available = false;
+			  }
+		  }
+	  }
+	  return $available;
+	}
+	
     public function retrieveDocumentsFilesPath($path)
     {
       $extension = $this->get_file_extension($path);

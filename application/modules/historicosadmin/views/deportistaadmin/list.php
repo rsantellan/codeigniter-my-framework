@@ -41,7 +41,7 @@
         <a href="<?php echo site_url("historicosadmin/deportistaadmin/edit/".$object->id);?>">
           Editar
         </a>
-        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar la radio?', '<?php echo site_url("historicosadmin/campeonesadmin/delete/".$object->id);?>');">
+        <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("historicosadmin/deportistaadmin/delete/".$object->id);?>');">
           Eliminar
         </a>
       </td>

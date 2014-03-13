@@ -192,11 +192,11 @@
                                         <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
                                     <?php endif; ?>
                                     <div class="image-overlay">
-                                        <a href="<?php echo $banner->name;?>" title="<?php echo $banner->name;?>"><span class="link"></span></a>
+                                        <a href="<?php echo prep_url($banner->link);?>" title="<?php echo $banner->name;?>"><span class="link"></span></a>
                                     </div>
                                 </div>
                                 <div class="item-description align-center">
-                                    <a href="<?php echo $banner->name;?>"><h6 class="title colored-text-1"><?php echo $banner->name;?></h6></a>
+                                    <a href="<?php echo prep_url($banner->link);?>"><h6 class="title colored-text-1"><?php echo $banner->name;?></h6></a>
                                 </div>
                             </article>
                         </li>
