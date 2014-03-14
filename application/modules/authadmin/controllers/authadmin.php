@@ -597,13 +597,21 @@ class Authadmin extends MY_Controller {
       $filenamexls = sys_get_temp_dir().DIRECTORY_SEPARATOR. 'dataupload-'.time().'.xls';
       $csvObjWriter->save($filenamexls);
       $this->data['filecsv'] = $filenamecsv;
+      $this->data['filexls'] = $filenamexls;
       $this->data['erroresListado'] = $usuariosErroneos;  
       $this->data['usuariosOK'] = $usuariosOK;  
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "authadmin/resultExcel";
       $this->load->view("admin/layout", $this->data);
     }
-    
+  }
+  
+  public function getFile($name, $type)
+  {
+    $location = base64_decode($name);
+    $this->load->helper('download');
+    force_download('resultado.'.$type, file_get_contents($location));
+    exit(0);
   }
   
   private function createRandomPassword($length = 8){

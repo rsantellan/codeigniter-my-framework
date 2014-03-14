@@ -29,3 +29,6 @@ if(count($erroresListado) > 0):
 <?php
 endif;
 ?>
+
+<a href="<?php echo site_url('authadmin/getFile/'.base64_encode($filecsv)."/csv")?>">Descargar csv</a>
+<a href="<?php echo site_url('authadmin/getFile/'.base64_encode($filexls)."/xls")?>">Descargar Excel</a>
