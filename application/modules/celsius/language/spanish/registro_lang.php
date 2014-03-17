@@ -1,0 +1,10 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+$lang['registro_nombre'] = '* Nombre y Apellido';
+$lang['registro_password'] = '* Contraseña';
+$lang['registro_repetir_password'] = '* Repetir contraseña';
+$lang['registro_especialidad'] = '* Especialidad';
+$lang['registro_caja_profesional'] = '* #CJP';
+$lang['registro_caja_profesional_texto'] = 'Número de Caja Profesional';
+$lang['registro_email'] = '* Mail';
+$lang['registro_direccion'] = 'Direcci&oacute;n';
+$lang['registro_telefono'] = 'Tel&eacute;fono';

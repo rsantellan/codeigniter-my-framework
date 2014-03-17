@@ -1799,3 +1799,12 @@ q, blockquote {
       font-size: 80px;
       width: 50%; }
 
+
+/* busqueda / itranet
+================================================== */
+a.listado_links{
+  color: #004594;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  display: block;
+}    
