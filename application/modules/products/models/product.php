@@ -152,6 +152,27 @@ class product extends MY_Model{
     return $this->retrieveAll(false, $lang, false, $categoryId);
   }
   
+  public function search($lang, $query)
+  {
+    $this->db->where('lang', $lang);
+    $this->db->like('name', $query);
+    $data = $this->db->get('product_translation')->result();
+    $return = array();
+    foreach($data as $obj)
+    {
+      $obj->presentations = array();
+      $this->db->where('product_id', $obj->id);
+      $queryCategories = $this->db->get('product_category');
+      $obj->categories = array();
+      foreach($queryCategories->result() as $categoryProduct)
+      {
+        $obj->categories[$categoryProduct->category_id] = $categoryProduct->category_id;
+      }
+      $return[$obj->id] = $obj;
+    }
+    return $return;
+  }
+  
   private function createObjectFromRow($obj)
   {
     $aux = new product();
@@ -283,6 +304,16 @@ class product extends MY_Model{
       } else {
         if ($retrieveAvatar) {
           $aux->avatar = $this->retrieveAvatar('imagen', $obj->id);
+        }
+        if($loadCategories)
+        {
+          $this->db->where('product_id', $id);
+          $queryCategories = $this->db->get('product_category');
+          $aux->categories = array();
+          foreach($queryCategories->result() as $categoryProduct)
+          {
+            $aux->categories[$categoryProduct->category_id] = $categoryProduct->category_id;
+          }
         }
 		$aux->receta = $obj->receta;
       }

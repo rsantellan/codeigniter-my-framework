@@ -140,8 +140,8 @@
 		</nav>
 	  </header>
 	  <div class="buscador">
-        <form>
-          <input type="text" value="Buscar">  
+        <form method="GET" action="<?php echo site_url($lang."/".(($lang =='es')?'buscar' : 'search'));?>">
+          <input type="text" name="q" value="Buscar">  
           <input type="submit" value="" class="submit_search">
         </form>
 	  </div><!-- buscador -->		

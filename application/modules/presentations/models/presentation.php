@@ -207,17 +207,17 @@ class presentation extends MY_Model{
     }
   }
   
-  public function saveCountrie($country, $representation)
-  {
-	
-//	$this->db->where('presentation_id', $this->getId());
-//	$this->db->delete('presentation_category');
-//	foreach($categoriesList as $category)
-//	{
-//	  $this->db->insert('presentation_category', array('presentation_id' => $this->getId(), 'category_id' => $category));
-//	}
-//    
-  }
+//  public function saveCountrie($country, $representation)
+//  {
+//	
+////	$this->db->where('presentation_id', $this->getId());
+////	$this->db->delete('presentation_category');
+////	foreach($categoriesList as $category)
+////	{
+////	  $this->db->insert('presentation_category', array('presentation_id' => $this->getId(), 'category_id' => $category));
+////	}
+////    
+//  }
   
   public function save()
   {
@@ -339,6 +339,13 @@ class presentation extends MY_Model{
       return get_class($this);
     }
     
+    public function search($lang, $query){
+      $sql = "select presentation.id, presentation.product_id, presentation_translation.name, presentation_translation.genericname, presentation_translation.slug, presentation_translation.activecomponent, presentation_translation.action from presentation, presentation_translation where presentation_translation.lang = ? and (presentation_translation.name like ? or presentation_translation.genericname like ? or presentation_translation.activecomponent like ? or presentation_translation.action like ?)";
+      $query = '%'.$query.'%';
+      $return = $this->db->query($sql, array($lang, $query, $query, $query, $query));
+      return $return->result();
+    }
+            
     
     public function retrieveForSortLang($showField, $lang) {
         $this->db->select(array('id', 'ordinal'));

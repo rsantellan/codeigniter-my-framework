@@ -64,6 +64,8 @@
             'onClosed' : function(){window.location.reload();},
             'iframe' : true
         });
+        
+        $('a.colorbox_link_modal').colorbox();
         $('#table_data').dataTable({
             "aaSorting": [],
             "oLanguage" : {

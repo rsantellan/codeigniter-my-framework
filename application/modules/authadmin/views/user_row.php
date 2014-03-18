@@ -39,14 +39,14 @@
       Des Bannear
     </a>
     <?php endif; ?>
-    <a href="<?php echo site_url('authadmin/change_email/'.$user->id); ?>">
+    <a class="colorbox_link_modal" href="<?php echo site_url('authadmin/change_email/'.$user->id); ?>">
       Cambiar mail
     </a>
-    <a href="<?php echo site_url('authadmin/resetPassword/'.$user->id); ?>">
+    <a href="javascript:void(0)" onclick="userManager.getInstance().sendDataViaAjax('<?php echo site_url('authadmin/resetPassword/'.$user->id); ?>');">
       Resetear pass
     </a>
     <?php if($delete):?>
-    <a href="<?php echo site_url('authadmin/deleteUser/'.$user->id); ?>">
+    <a href="javascript:void(0)" onclick="userManager.getInstance().sendDataViaAjax('<?php echo site_url('authadmin/deleteUser/'.$user->id); ?>');">
       Eliminar
     </a>
     <?php endif; ?>

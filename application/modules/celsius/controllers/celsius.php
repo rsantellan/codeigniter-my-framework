@@ -20,7 +20,7 @@ class celsius extends MY_Controller {
     $this->data['menu'] = 'inicio';
     $this->data['submenu'] = 'inicio';
     $this->data['topHome'] = false;
-      $this->output->enable_profiler(TRUE);
+    //$this->output->enable_profiler(TRUE);
     $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     $this->data['login_user'] = '';
     $this->data['errores'] = array();
@@ -930,6 +930,45 @@ class celsius extends MY_Controller {
   }
   
   
+  function search($lang)
+  {
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('usuario.html', 'user.html');
+    $this->loadI18n("busqueda", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    $this->loadI18n("producto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+    
+    $query = $this->input->get('q');
+    $this->load->model('products/product');
+    $this->load->model('presentations/presentation');
+    
+    $productos = $this->product->search($lang, $query);
+    
+    $presentations = $this->presentation->search($lang, $query);
+    foreach($presentations as $presentation)
+    {
+      if(isset($productos[$presentation->product_id]))
+      {
+        $producto = $productos[$presentation->product_id];
+        $producto->presentations[] = $presentation;
+        $productos[$presentation->product_id] = $producto;
+      }
+      else
+      {
+        $producto = $this->product->getById($presentation->product_id, $lang, false, false, true);
+        $producto->presentations = array();
+        $producto->presentations[] = $presentation;
+        $productos[$presentation->product_id] = $producto;
+      }
+    }
+    
+    $this->data['products'] = $productos;
+    $this->data['content'] = 'busqueda';
+    $this->data['query'] = $query;
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   function saveEditUser()
   {
     if (!$this->isLogged()) {
@@ -1086,7 +1125,19 @@ class celsius extends MY_Controller {
                       false
               ))) {
         $guardado = true;
-        
+        //Sending user email
+        $htmlUserMail = $this->load->view('mailRegister', array(), true);
+        $this->load->model('contacto/mail_db');
+        $return = $this->mail_db->retrieveContactMailInfo();
+        $this->load->library('email');
+
+        $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+        $this->email->to($this->form_validation->set_value('email')); 
+        $this->email->bcc($return['to']); 
+        $this->email->subject($this->lang->line('registro_bienvenido_celsius'));
+        $this->email->message($htmlUserMail); 
+        $this->email->send();
+        $message = "CV Enviado";
       }else{
         $errors = $this->tank_auth->get_error_message();
         $this->loadI18n("tank_auth", $this->getLanguageFile(), FALSE, TRUE, "", "auth");

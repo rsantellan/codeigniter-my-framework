@@ -19,7 +19,7 @@ class mail_db extends MY_Model{
   private $nombre;
   private $funcion;
   private $arr_tipo = array(""=>"", "from"=>"from", "to"=>"to", "cc"=>"cc", "bcc"=>"bcc", "reply"=>"reply");
-  private $arr_funcion = array(""=>"", "contacto"=>"contacto");
+  private $arr_funcion = array("contacto"=>"contacto", "trabaja"=>"trabaja", "medicos"=>"medicos");
   
   function __construct()
   {
