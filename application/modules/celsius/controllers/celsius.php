@@ -194,7 +194,7 @@ class celsius extends MY_Controller {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
-    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
     {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
@@ -244,7 +244,7 @@ class celsius extends MY_Controller {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
-    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
     {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
@@ -285,7 +285,7 @@ class celsius extends MY_Controller {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
     }
-    if($this->data['user']->profile !== 'admin' ||  $this->data['user']->profile !== 'medico')
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
     {
       $this->session->set_userdata('url_to_direct_on_login', '');
       redirect($lang);
@@ -934,7 +934,7 @@ class celsius extends MY_Controller {
   {
     $this->setLang($lang);
     $this->loadMenuData();
-    $this->changeUrlData('usuario.html', 'user.html');
+    $this->changeUrlData('buscar', 'search');
     $this->loadI18n("busqueda", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     $this->loadI18n("producto", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     
@@ -1152,5 +1152,26 @@ class celsius extends MY_Controller {
     $this->data['errors'] = $errores;
     $this->data['guardado'] = $guardado;
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function intranet($lang) {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+	
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'empleado')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+	$this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('intranet.html', 'intranet.html');
+    $this->loadI18n("intranet", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	$this->data['content'] = 'intranet';
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);	
   }
 }

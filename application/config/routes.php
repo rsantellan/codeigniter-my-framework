@@ -93,6 +93,9 @@ $route["^(en|es)/usuario.html"] = 'celsius/user/$1';
 $route["^(en|es)/user.html"] = 'celsius/user/$1';
 $route["^(en|es)/buscar"] = 'celsius/search/$1';
 $route["^(en|es)/search"] = 'celsius/user/$1';
+$route["^(en|es)/intranet.html"] = 'celsius/intranet/$1';
+$route["^(en|es)/intranet.html"] = 'celsius/intranet/$1';
+
 //$route["^(en|es)/usuario-editar.html"] = 'celsius/useredit/$1';
 //$route["^(en|es)/user-edit.html"] = 'celsius/useredit/$1';
 /*

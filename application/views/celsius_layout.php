@@ -132,10 +132,18 @@
               <?php if($isLogged):?> 
               <dl class="dropdown">
                 <dt>|</dt>
-              </dl>             
+              </dl>
+			  <?php 
+			  //var_dump($user->profile);
+			  if($user->profile == 'empleado'): ?>
               <dl class="dropdown">
+                <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'usuario' : 'user').".html");?>" <?php if($menu == 'seccion_iniciada'):?> class="current"<?php endif;?>><?php echo lang('menu_intranet');?></a></dt>
+              </dl>
+			  <?php else: ?>
+			  <dl class="dropdown">
                 <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'usuario' : 'user').".html");?>" <?php if($menu == 'seccion_iniciada'):?> class="current"<?php endif;?>><?php echo lang('menu_novedades_medicas');?></a></dt>
               </dl>
+			  <?php endif;?>
               <?php endif;?>
 		</nav>
 	  </header>

@@ -1,0 +1,101 @@
+    1  pwd
+    2  cd ..
+    3  ll 
+    4  cd lauranoz/
+    5  ll
+    6  ll pl
+    7  ll public_html/
+    8  cd ..
+    9  ll
+   10  cd ..
+   11  ll
+   12  cd usr/
+   13  ll
+   14  cd ..
+   15  cd home/lauranoz/
+   16  ll
+   17  exit
+   18  ls /
+   19  exit
+   20  pecl install imagick
+   21  exit
+   22  yum install ImageM* netpbm gd gd-* libjpeg libexif gcc coreutils make
+   23  exit
+   24  pwd
+   25  ll
+   26  cd public_
+   27  cd public_j
+   28  cd public_html/
+   29  ll
+   30  cd ..
+   31  pwd
+   32  ..
+   33  cd /
+   34  cd ..
+   35  cd /home/aero
+   36  exit
+   37  pwd
+   38  ll
+   39  cd public_html/
+   40  ll
+   41  cd anuevo/
+   42  ll
+   43  vim _menu.php 
+   44  ll
+   45  vi index.php 
+   46  ls
+   47  cd public_html/celsius/
+   48  ls
+   49  cd assets/
+   50  ls
+   51  cd uploads/
+   52  ls
+   53  rm 1 4 5 6 -rf
+   54  ls
+   55  cd jfilebrowser/
+   56  ls
+   57  ls conferencias/
+   58  cd ..
+   59  chmod 777 uploads -R
+   60  ls
+   61  rm -rf feu/
+   62  rm -rf cache/assets/uploads/* -rf
+   63  ls
+   64  rm js/roche/
+   65  rm js/roche/ -rf
+   66  rm css/roche/ -rf
+   67  ls
+   68  cd ..
+   69  ls
+   70  chmod 777 captch -R
+   71  chmod 777 captcha -r
+   72  chmod 777 captcha -R
+   73  ls
+   74  cd application/
+   75  ls
+   76  cd views/
+   77  ls
+   78  rm feu_layout.php roche_layout.php 
+   79  rm layout.php 
+   80  cd ..
+   81  ls
+   82  rm libraryNoSeUsa/
+   83  rm libraryNoSeUsa/  -rf
+   84  cd modules/
+   85  ls
+   86  rm feu/ products.zip testmulti/ welcome/ veterinariosadmin/ roche/ radios/ blog/ banners/ clubes/ 
+   87  rm feu/ products.zip testmulti/ welcome/ veterinariosadmin/ roche/ radios/ blog/ banners/ clubes/  -rf
+   88  grep 'categorias' * -nr
+   89  rm sitio/ -rf
+   90  ls
+   91  grep 'categorias' * -nr
+   92  ls
+   93  rm jornadas jornadatemas/ -rf
+   94  rm laboratorios/ -rf
+   95  ls
+   96  rm galerias/ -rf
+   97  rm tags/ -rf
+   98  ls
+   99  cd ..
+  100  history
+  101  history > comandos
