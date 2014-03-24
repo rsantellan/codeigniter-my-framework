@@ -372,7 +372,21 @@ class Authadmin extends MY_Controller {
   function activate($user_id) {
     $this->load->model('auth/users');
     $return = array();
+    $data = array();
     $is_ok = $this->users->activateUser($user_id);
+    if($is_ok)
+    {
+      $user = $this->users->get_user_by_id($user_id, true);
+      $this->load->library('email');
+      $this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+      $this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+      $this->email->to($user->email);
+      $this->email->subject('Su cuenta se encuentra activada');
+      $this->email->message($this->load->view('email/celsiusactivate', $data, TRUE));
+      $this->email->send();
+    }
+    
+    
     if ($is_ok) {
       $return["response"] = "OK";
       $return["message"] = "Usuario activado";
