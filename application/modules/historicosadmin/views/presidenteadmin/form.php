@@ -7,10 +7,10 @@ echo form_open('historicosadmin/presidenteadmin/save', $attributes); ?>
 
 
 
-<div class="grid_5">
+<div class="grid_16">
   <p>
     <label for="nombre">Nombre <small>Requerido</small></label>
-    <input type="text" name="name" maxlength="255" value="<?php echo $object->getName() ?>" />
+    <?php echo form_textarea( array( 'name' => 'name', 'rows' => '5', 'cols' => '80', 'value' => html_entity_decode($object->getName(), ENT_COMPAT | 0, 'UTF-8')) )?>
   </p>
 </div>
 <div class="grid_5">

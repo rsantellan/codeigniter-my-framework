@@ -47,6 +47,8 @@ class presidenteadmin extends MY_Controller{
     function add()
     {
       $this->load->model('historicosadmin/presidente');
+      $this->addModuleJavascript("admin", "adminManager.js");
+      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "historicosadmin/presidenteadmin/add";
       $this->data['object'] = new $this->presidente;
@@ -60,6 +62,7 @@ class presidenteadmin extends MY_Controller{
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
+      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       
       $this->load->model('historicosadmin/presidente');
       $this->data['use_grid_16'] = false;

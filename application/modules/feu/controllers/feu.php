@@ -92,6 +92,7 @@ class feu extends MY_Controller{
   public function historiapresidentes()
   {
       $this->data['menu'] = 'historia';
+      $this->load->helper('htmlpurifier');
       $this->loadI18n("historia", "", FALSE, TRUE, "", "feu");
       $this->load->model('historicosadmin/presidente');
       $this->data['listado'] = $this->presidente->retrieveAll(false, true);
@@ -332,7 +333,7 @@ class feu extends MY_Controller{
   
   public function radios()
   {
-    $this->data['menu'] = 'promotoresradios';
+    $this->data['menu'] = 'radios';
     $this->loadI18n("promotoresradios", "", FALSE, TRUE, "", "feu");
     $this->load->model('radios/radio');
     $this->data['listado'] = $this->radio->retrieveAll(false, true);

@@ -77,7 +77,7 @@ class banners extends MY_Controller{
       
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
-      $this->form_validation->set_rules('link', 'link', 'required|max_length[255]');      
+      $this->form_validation->set_rules('link', 'link', 'max_length[255]');      
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       

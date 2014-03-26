@@ -31,5 +31,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         startFancyLinks()
+        adminManager.getInstance().startBasicTextAreasTinyMCE();
     });
 </script>

@@ -1,5 +1,4 @@
 <?php echo doctype(); ?>
-<!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8 no-js" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9 no-js" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
@@ -36,7 +35,7 @@
 		
         <!-- Java Script -->
         <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js');</script>
-        <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+        <!--[if lt IE 9]><script src="<?php echo base_url(); ?>assets/feu/js/html5shiv.js"></script><![endif]-->
 
     </head>
 
@@ -62,10 +61,10 @@
                                     <ul>
                                         <li><a href="<?php echo site_url('historia-que-es-el-raid.html');?>"><?php echo lang("menu_historia_definicion"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-feu.html');?>"><?php echo lang("menu_historia_feu"); ?></a></li>
+                                        <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-campeones-pruebas-largas.html');?>"><?php echo lang("menu_historia_campeones_pruebas_largas"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-campeones-pruebas-cortas.html');?>"><?php echo lang("menu_historia_campeones_pruebas_cortas"); ?></a></li>
                                         <li><a href="<?php echo site_url('historia-deportistas.html');?>"><?php echo lang("menu_historia_deportistas"); ?></a></li>
-                                        <li><a href="<?php echo site_url('historia-presidentes.html');?>"><?php echo lang("menu_historia_presidentes"); ?></a></li>
                                     </ul>
                                 </li>
                                 <li class="sf-mega-parent"><a href="javascript:void(0)" class="<?php echo ($menu == 'documentos' || $menu == 'directiva' || $menu == 'veterinarios' || $menu == 'laboratorios' || $menu == 'promotoresradios')? 'current' : '';?>"><?php echo lang("menu_informacion"); ?></a>
@@ -110,7 +109,7 @@
                                                 <h5><?php echo lang("menu_promotores_radios"); ?></h5>
                                                 <ul>
                                                     <li><a href="<?php echo site_url('promotores.html');?>"><?php echo lang("menu_promotores"); ?></a></li>
-                                                    <li><a href="<?php echo site_url('radios.html');?>"><?php echo lang("menu_radios"); ?></a></li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div> <!-- end sf-mega-table -->
@@ -120,6 +119,7 @@
                                 <li><a href="<?php echo site_url('instituciones.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones"); ?></a>
                                 <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
                                 <li><a href="<?php echo site_url('noticias.html'); ?>" class="<?php echo ($menu == 'noticias')? 'current' : '';?>"><?php echo lang("menu_noticias"); ?></a>
+                                <li><a href="<?php echo site_url('radios.html');?>" class="<?php echo ($menu == 'radios')? 'current' : '';?>"><?php echo lang("menu_radios"); ?></a></li>
                                 <li><a href="<?php echo site_url('contacto.html'); ?>" class="<?php echo ($menu == 'contacto')? 'current' : '';?>"><?php echo lang("menu_contacto"); ?></a>
                             </ul>
                         </div>

@@ -28,15 +28,15 @@
 			  <!-- 1/4 page width -->
 			<div class="one-fourth columns portfolio-item-preview">
 				<article>
-					<div class="item-picture" data-type="link">
-						<?php 
-						//$url_help = $galeria->g_id . "/" . url_title($galeria->g_name, '-', TRUE) . ".html";
-						$imgType = 3;
-						$width = 380;
-						$height = 238;
-						?>
+					<?php 
+					//$url_help = $galeria->g_id . "/" . url_title($galeria->g_name, '-', TRUE) . ".html";
+					$imgType = 3;
+					$width = 380;
+					$height = 238;
+					?>
+					<div class="item-picture" data-type="link" style='min-height: <?php echo $height;?>px !important;'>
 						<?php if(!is_null($object->avatar)): ?>
-							<img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" />
+							<img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" style='display: block; margin-left: auto; margin-right: auto;' />
 						<?php else: 
 						  ?>
                             <img alt="<?php echo $object->name;?>" src="<?php echo base_url();?>assets/feu/images/galeria-no-image.jpg" height="<?php echo $height;?>" width="<?php echo $width;?>"/>

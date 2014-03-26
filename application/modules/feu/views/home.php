@@ -152,8 +152,8 @@
         <section class="blog-grid-style one-line clearfix mb-10px">
 			
             <div class="row">
-
-                <div data-configid="0/6468347" style="width: 650px; height: 459px; margin-left: auto; margin-right: auto;" class="issuuembed"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
+				<div data-configid="0/7139572" style="width: 650px; height: 459px; margin-left: auto; margin-right: auto;" class="issuuembed"></div>
+				<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
 
             </div>
 
@@ -175,7 +175,7 @@
                     <!-- possible values: three-slides / four-slides -->
                     <ul id="projects-carousel" class="four-slides clearfix" data-autoplay="3000" data-circular="yes">
                          <?php 
-					$imgType = 3;
+					$imgType = 1;
 					$width = 380;
 					$height = 238;
 					$count = count($banners);
@@ -193,9 +193,9 @@
                         <!-- Project -->
                         <li class="portfolio-item-preview">
                             <article>
-                                <div class="item-picture" data-type="link">
+                                <div class="item-picture" data-type="link" style='min-height: <?php echo $height;?>px !important;'>
                                     <?php if(!is_null($banner->avatar)): ?>
-                                        <img alt="<?php echo $banner->name;?>" src="<?php echo thumbnail_image(base_url(), $banner->avatar->getPath() , $width, $height, $imgType); ?>" />
+                                        <img alt="<?php echo $banner->name;?>" src="<?php echo thumbnail_image(base_url(), $banner->avatar->getPath() , $width, $height, $imgType); ?>" style='display: block; margin-left: auto; margin-right: auto;' />
                                     <?php else: ?>
                                         <img src="<?php echo base_url();?>assets/images/noimage.png" width="<?php echo $width;?>px" height="<?php echo $height;?>px"/>
                                     <?php endif; ?>

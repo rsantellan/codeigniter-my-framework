@@ -45,7 +45,7 @@
                                 <img src="<?php echo base_url();?>assets/feu/images/icons/big/icon-user.png" />
                             <?php endif; ?>
                         </td>
-                        <td><?php echo ($objeto->name); ?></td>
+                        <td><?php echo html_purify(html_entity_decode($objeto->name)); ?></td>
                         <td><?php echo ($objeto->periodo); ?></td>
                     </tr>
                     <?php endforeach;?>
