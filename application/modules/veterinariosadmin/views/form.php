@@ -21,6 +21,12 @@ echo form_open('veterinariosadmin/save', $attributes); ?>
 </div>
 <div class="grid_5">
   <p>
+    <label for="localidad">Localidad</label>
+    <input type="text" name="localidad" maxlength="255" value="<?php echo $object->getLocalidad() ?>" />
+  </p>
+</div>
+<div class="grid_5">
+  <p>
     <input type="checkbox" id="boss" name="boss" value="1" class="" <?php echo ($object->getIsBoss() == 1)? 'checked="checked"': '';?> /> 
     <label for="boss">Es jefe?</label>
   </p>

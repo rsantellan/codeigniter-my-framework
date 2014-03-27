@@ -78,6 +78,7 @@ class veterinariosadmin extends MY_Controller{
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
       $this->form_validation->set_rules('contacto', 'contacto', 'max_length[255]');			
+      $this->form_validation->set_rules('localidad', 'localidad', 'max_length[255]');			
       $this->form_validation->set_rules('boss', 'boss', '');      
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
@@ -90,11 +91,13 @@ class veterinariosadmin extends MY_Controller{
       $name = set_value('name');
       $contacto = set_value('contacto');
       $boss = set_value('boss');
+      $localidad = set_value('localidad');
       //var_dump($nombre);
       $obj = new $this->veterinario;
       $obj->setName($name);
       $obj->setContacto($contacto);
       $obj->setIsboss($boss);
+      $obj->setLocalidad($localidad);
       $obj->setId($id);
       //var_dump($obj);
       

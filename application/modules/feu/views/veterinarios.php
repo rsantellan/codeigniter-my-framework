@@ -27,7 +27,7 @@
                     <tr>
                         <th><?php echo lang("veterinario_nombre"); ?></th>
                         <th><?php echo lang("veterinario_contacto"); ?></th>
-                        <th><?php echo lang("veterinario_es_jefe"); ?></th>
+                        <th><?php echo lang("veterinario_localidad"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                     <tr>
                         <td><?php echo ($objeto->name); ?></td>
                         <td><?php echo ($objeto->contacto); ?></td>
-                        <td><?php echo ($objeto->isboss == 1)? 'Si': 'No';?>  </td>
+                        <td><?php echo ($objeto->localidad); ?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

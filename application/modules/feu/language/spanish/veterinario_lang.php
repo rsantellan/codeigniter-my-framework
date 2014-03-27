@@ -3,6 +3,7 @@ $lang["veterinario_jefe_titulo"] = "Veterinarios jefe";
 $lang["veterinario_jefe_sub_titulo"] = "Listado de veterinarios jefes";
 $lang["veterinario_nombre"] = "Nombre";
 $lang["veterinario_contacto"] = "Contacto";
+$lang["veterinario_localidad"] = "Localidad";
 $lang["veterinario_es_jefe"] = "Es jefe";
 $lang["veterinario_titulo"] = "Veterinarios";
 $lang["veterinario_sub_titulo"] = "Listado de veterinarios habilitados";

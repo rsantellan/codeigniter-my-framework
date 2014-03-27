@@ -17,6 +17,7 @@ class veterinario extends MY_Model{
   private $contacto;
   private $name;
   private $isboss = 0;
+  private $localidad = '';
   
   function __construct()
   {
@@ -56,6 +57,14 @@ class veterinario extends MY_Model{
       $this->isboss = $isboss;
   }
 
+  public function getLocalidad() {
+    return $this->localidad;
+  }
+
+  public function setLocalidad($localidad) {
+    $this->localidad = $localidad;
+  }
+
   public function retrieveAll($returnObjects = FALSE, $isboss = null)
   {
     $this->db->order_by("ordinal", "desc");
@@ -78,6 +87,7 @@ class veterinario extends MY_Model{
         $aux->setId($obj->id);
         $aux->setName($obj->name);
         $aux->setContacto($obj->contacto);
+        $aux->setLocalidad($obj->localidad);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -109,6 +119,7 @@ class veterinario extends MY_Model{
     $data["name"] = $this->getName();
     $data["contacto"] = $this->getContacto();
     $data["isboss"] = $this->getIsboss();
+    $data["localidad"] = $this->getLocalidad();
     $data["ordinal"] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -121,7 +132,8 @@ class veterinario extends MY_Model{
     $data = array(
         'name' => $this->getName(),
         'contacto' => $this->getContacto(),
-        "isboss" => $this->getIsboss()
+        "isboss" => $this->getIsboss(),
+        "localidad" => $this->getLocalidad(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -144,6 +156,7 @@ class veterinario extends MY_Model{
           $aux->setName($obj->name);
           $aux->setContacto($obj->contacto);
           $aux->setIsboss($obj->isboss);
+          $aux->setLocalidad($obj->localidad);
           return $aux;
         }
         return $obj;

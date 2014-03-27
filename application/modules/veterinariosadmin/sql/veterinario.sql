@@ -6,3 +6,5 @@ CREATE TABLE IF NOT EXISTS `veterinario` (
   `ordinal` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `veterinario` ADD `localidad` VARCHAR( 255 ) NULL DEFAULT '' AFTER `isboss` ;
