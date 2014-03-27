@@ -416,4 +416,9 @@ class presentation extends MY_Model{
       }
       return $return;
     }
+    
+    public function retrieveByProduct($lang, $productId)
+    {
+      return $this->retrieveAll(false, $lang, $productId);
+    }
 }

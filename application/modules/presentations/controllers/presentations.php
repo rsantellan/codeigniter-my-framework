@@ -32,7 +32,7 @@ class presentations extends MY_Controller{
           redirect('');
         }
       }
-//	  $this->output->enable_profiler(TRUE);  
+	  $this->output->enable_profiler(TRUE);  
     }
     
     private function loadProduct($productId)

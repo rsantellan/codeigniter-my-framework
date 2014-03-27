@@ -27,6 +27,7 @@ $lang['auth_message_new_email_activated'] = 'Ha cambiado correctamente su correo
 $lang['auth_message_new_email_failed'] = 'Su clave de activación es incorrecta o ha caducado. Por favor revise su correo electrónico de nuevo y siga las instrucciones.';
 $lang['auth_message_banned'] = 'Su cuenta ha sido baneada';
 $lang['auth_message_unregistered'] = 'Su cuenta ha sido eliminada ...';
+$lang['auth_user_not_exists'] = 'El usuario no existe. Ya se le envio el cambio de correo?';
 
 // Email subjects
 $lang['auth_subject_welcome'] = 'Bienvenido a %s!';

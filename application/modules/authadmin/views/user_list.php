@@ -94,4 +94,35 @@
             }
         });
     });
+    
+    function sendFormChangeEmail(form){
+      $.ajax({
+          url: $(form).attr('action'),
+          data: $(form).serialize(),
+          type: 'post',
+          dataType: 'json',
+          success: function(json){
+              if(json.response == "OK")
+              {
+                $('#change_email_form').html(json.message);
+                $.colorbox.resize();
+              }
+              else
+              {
+                $('#change_email_form').html(json.html);
+                $('#change_email_form').append(json.message);
+                
+                $.colorbox.resize();
+              }
+              
+          }
+          , 
+          complete: function()
+          {
+
+          }
+      });
+      
+      return false;
+    }
 </script>

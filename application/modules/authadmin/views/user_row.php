@@ -27,7 +27,7 @@
     </a>
     <?php else: ?>
     <a onclick="userManager.getInstance().sendDataViaAjax('<?php echo site_url('authadmin/deactivate/'.$user->id); ?>');" href="javascript:void(0)">
-      Des Activar
+      Desactivar
     </a>
     <?php endif; ?>
     <?php if($user->banned == "0"): ?>

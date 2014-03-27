@@ -33,6 +33,7 @@ class Authadmin extends MY_Controller {
         redirect('');
       }
     }
+    $this->loadI18n("tank_auth", $this->getLanguageFile(), FALSE, TRUE, "", "auth");
     //var_dump($this->getLoggedUserData());
 //	  $this->output->enable_profiler(TRUE);      
   }
@@ -306,26 +307,54 @@ class Authadmin extends MY_Controller {
         $userId = $aux_user_id;
       }
 
-      $data['user_id'] = $userId;
-      $data['errors'] = array();
-
+      $viewData['user_id'] = $userId;
+      $viewData['errors'] = array();
+      $viewData['div'] = true;
+      $return = array();
+      $viewData['user_id'] = $userId;
       if ($this->form_validation->run()) {        // validation ok
+        
+        $is_ok = true;
         $data = $this->tank_auth->set_user_new_email($this->form_validation->set_value('email'), $userId);
         if (!is_null($data)) {   // success
           $data['site_name'] = $this->config->item('website_name', 'tank_auth');
-
           // Send email with new email address and its activation link
           $this->_send_email('change_email', $data['new_email'], $data);
 
-          $this->_show_message(sprintf($this->lang->line('auth_message_new_email_sent'), $data['new_email']));
+          //$this->_show_message(sprintf($this->lang->line('auth_message_new_email_sent'), $data['new_email']));
+          $is_ok = true;
+          $return["response"] = "OK";
+          $return["message"] = "Se le a enviado un mail al usuario para confirmar el mail.";
         } else {
           $errors = $this->tank_auth->get_error_message();
-          foreach ($errors as $k => $v)
-            $data['errors'][$k] = $this->lang->line($v);
+          $return["message"] = "";
+          foreach ($errors as $k => $v){
+            $viewData['errors'][$k] = $this->lang->line($v);
+            $return["message"] .= $this->lang->line($v);
+          }
+          $return['html'] = $this->load->view('authadmin/change_email_form', $viewData, true);
+          $return["response"] = "ERROR";
+          
         }
+        
+        echo json_encode($return);
+        die(0);
       }
-      $data['user_id'] = $userId;
-      $this->load->view('authadmin/change_email_form', $data);
+      else
+      {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+          $viewData['div'] = false;
+          $return["response"] = "ERROR";
+          $return["message"] = "Ocurrio un error por favor intenta mas tarde";
+          $return['html'] = $this->load->view('authadmin/change_email_form', $viewData, true);
+          echo json_encode($return);
+          die(0);
+        }
+        
+      }
+      
+      $this->load->view('authadmin/change_email_form', $viewData);
     }
   }
 

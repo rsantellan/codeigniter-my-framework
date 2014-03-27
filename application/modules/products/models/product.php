@@ -343,4 +343,14 @@ class product extends MY_Model{
         return $data;
     }
     
+    public function retrieveAllForSelectLang($lang) {
+      $products = $this->retrieveAll(false, $lang);
+      $data = array();
+      foreach($products as $product)
+      {
+        $data[$product->id] = $product->name;
+      }
+      return $data;
+      
+    }
 }
