@@ -1998,6 +1998,7 @@ html[xmlns] .flexslider .slides {display: block;}
 #sidebar .widget { margin-top: 40px; }
 #sidebar .widget:first-child { margin-top: 0; }
 #sidebar.page-left-col .widget { width: 160px; }
+#sidebar.page-left-col .widget-bigger { width: 225px; }
 #sidebar.page-right-col .widget { width: 220px; }
 #sidebar.page-left-col .widget:first-child + .widget { margin-top: 80px; }
 

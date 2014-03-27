@@ -20,7 +20,7 @@
             <aside id="sidebar" class="one-fourth columns page-left-col">
 
                 <!-- Contact Information -->
-                <div class="widget" data-smallscreen="yes"> <!-- show widget on a small-screen mobile device: "yes" or "no" -->
+                <div class="widget-bigger" data-smallscreen="yes"> <!-- show widget on a small-screen mobile device: "yes" or "no" -->
 
                     <section class="contact-info mb-30px">
 
