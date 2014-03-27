@@ -95,9 +95,9 @@ class category extends MY_Model{
         return $aux;
       }
   }
-  public function retrieveAll($returnObjects = FALSE, $lang = 'es')
+  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $order = 'ordinal')
   {
-    $this->db->order_by("ordinal", "desc");
+    $this->db->order_by($order, "desc");
     $query = $this->db->get($this->getTablename());
     $salida = array();
     foreach($query->result() as $obj)
