@@ -289,7 +289,7 @@ class presentation extends MY_Model{
 		'genericname' => $this->getGenericname(),
 		'activecomponent' => $this->getActiveComponent(),
 		'action' => $this->getAction(),
-		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $id, 'lang', $this->getLang()),
+		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $this->getId(), 'lang', $this->getLang()),
  	);
 
     $this->db->where('id', $this->getId());

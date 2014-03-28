@@ -46,10 +46,6 @@
   Agregar
 </a>
 
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithLang/categories/category/name/".$lang);?>" >
-  Ordenar
-</a>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("a.colorbox_link").colorbox({

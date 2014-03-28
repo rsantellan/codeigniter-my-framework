@@ -144,7 +144,23 @@ class product extends MY_Model{
 		}
         $salida[$obj->id] = $aux;
     }
+    if($returnObjects)
+    {
+      usort($salida, 'product::compareObjects');
+    }
+    else
+    {
+      usort($salida, 'product::compareStd');
+    }
     return $salida;
+  }
+  
+  public static function compareStd($a, $b){
+    return strcmp($a->name, $b->name);
+  }
+  
+  public static function compareObjects($a, $b){
+    return strcmp($a->getName(), $b->getName());
   }
   
   public function retrieveByCategory($lang, $categoryId)
