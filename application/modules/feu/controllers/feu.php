@@ -281,6 +281,8 @@ class feu extends MY_Controller{
       $this->data['menu'] = 'laboratorios';
       $this->loadI18n("veterinario", "", FALSE, TRUE, "", "feu");
       $this->load->model('laboratorios/laboratorio');
+      $this->load->helper('text');
+      $this->load->helper('htmlpurifier');
       $this->data['listado'] = $this->laboratorio->retrieveAll(false);
       $this->data['content'] = 'laboratorios';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);

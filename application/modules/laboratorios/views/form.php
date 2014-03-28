@@ -13,10 +13,16 @@ echo form_open('laboratorios/save', $attributes); ?>
     <input type="text" name="name" maxlength="255" value="<?php echo $object->getName() ?>" />
   </p>
 </div>
+<div class="grid_16">
+  <p>
+    <label for="nombre">Contacto <small>Requerido</small></label>
+    <?php echo form_textarea( array( 'name' => 'link', 'rows' => '5', 'cols' => '80', 'value' => html_entity_decode($object->getLink(), ENT_COMPAT | 0, 'UTF-8')) )?>
+  </p>
+</div>
 <div class="grid_5">
   <p>
-    <label for="nombre">Link <small>Requerido</small></label>
-    <input type="text" name="link" maxlength="255" value="<?php echo $object->getLink() ?>" />
+    <label for="localidad">Localidad</label>
+    <input type="text" name="localidad" maxlength="255" value="<?php echo $object->getLocalidad() ?>" />
   </p>
 </div>
 <div class="grid_16">

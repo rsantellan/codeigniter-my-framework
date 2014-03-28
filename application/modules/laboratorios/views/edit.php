@@ -24,6 +24,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        startFancyLinks()
+        startFancyLinks();
+        adminManager.getInstance().startBasicTextAreasTinyMCE();
     });
 </script>

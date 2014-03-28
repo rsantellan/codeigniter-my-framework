@@ -6,7 +6,7 @@
         Nombre
       </th>
       <th>
-        Link
+        Contacto
       </th>
       <th>
         Acciones

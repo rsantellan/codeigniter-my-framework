@@ -27,17 +27,15 @@
                     <tr>
                         <th><?php echo lang("laboratorio_nombre"); ?></th>
                         <th><?php echo lang("laboratorio_link"); ?></th>
+                        <th><?php echo lang("laboratorio_localidad"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($listado as $objeto): ?>
                     <tr>
                         <td><?php echo ($objeto->name); ?></td>
-                        <td>
-                            <a href="<?php echo ($objeto->link); ?>" target="_blank">
-                                <?php echo ($objeto->link); ?>
-                            </a>
-                        </td>
+                        <td><?php echo html_purify(html_entity_decode($objeto->link)); ?></td>
+                        <td><?php echo ($objeto->localidad); ?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

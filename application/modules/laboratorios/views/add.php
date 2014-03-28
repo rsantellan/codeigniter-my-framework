@@ -10,3 +10,8 @@
 <hr/>
 
 <a href="<?php echo site_url('laboratorios/index'); ?>"> Volver al listado </a>
+<script type="text/javascript">
+    $(document).ready(function() {
+        adminManager.getInstance().startBasicTextAreasTinyMCE();
+    });
+</script>

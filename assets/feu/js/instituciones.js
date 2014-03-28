@@ -4,4 +4,5 @@ $(document).ready(function(){
         default_height: 500,
         social_tools: false
     })
+    
 });

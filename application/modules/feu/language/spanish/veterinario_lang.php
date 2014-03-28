@@ -10,4 +10,5 @@ $lang["veterinario_sub_titulo"] = "Listado de veterinarios habilitados";
 $lang["laboratorio_titulo"] = "Laboratorios";
 $lang["laboratorio_sub_titulo"] = "Listado de laboratorios habilitados";
 $lang["laboratorio_nombre"] = "Nombre";
-$lang["laboratorio_link"] = "Enlace a la pagina";
+$lang["laboratorio_link"] = "Contacto";
+$lang["laboratorio_localidad"] = "Localidad";

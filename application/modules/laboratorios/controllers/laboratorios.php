@@ -46,6 +46,9 @@ class laboratorios extends MY_Controller{
     
     function add()
     {
+      $this->addModuleJavascript("admin", "adminManager.js");
+      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
+      
       $this->load->model('laboratorios/laboratorio');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "laboratorios/add";
@@ -60,6 +63,7 @@ class laboratorios extends MY_Controller{
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleStyleSheet("upload", "albums.css");
       $this->addModuleJavascript("upload", "imagesAdmin.js");
+      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       
       $this->load->model('laboratorios/laboratorio');
       $this->data['use_grid_16'] = false;
@@ -77,7 +81,8 @@ class laboratorios extends MY_Controller{
       
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
-      $this->form_validation->set_rules('link', 'link', 'required|max_length[255]');      
+      $this->form_validation->set_rules('link', 'contacto', 'max_length[255]');      
+      $this->form_validation->set_rules('localidad', 'localidad', 'required|max_length[255]');      
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -88,10 +93,12 @@ class laboratorios extends MY_Controller{
       }
       $name = set_value('name');
       $link = set_value('link');
+      $localidad = set_value('localidad');
       //var_dump($nombre);
       $obj = new $this->laboratorio;
       $obj->setName($name);
       $obj->setLink($link);
+      $obj->setLocalidad($localidad);
       $obj->setId($id);
       //var_dump($obj);
       

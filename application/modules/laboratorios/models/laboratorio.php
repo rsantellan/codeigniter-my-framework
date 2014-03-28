@@ -16,6 +16,7 @@ class laboratorio extends MY_Model{
   private $id;
   private $link;
   private $name;
+  private $localidad;
   
   function __construct()
   {
@@ -47,6 +48,14 @@ class laboratorio extends MY_Model{
     $this->name = $name;
   }
 
+  public function getLocalidad() {
+    return $this->localidad;
+  }
+
+  public function setLocalidad($localidad) {
+    $this->localidad = $localidad;
+  }
+
   public function retrieveAll($returnObjects = FALSE)
   {
     $this->db->order_by("ordinal", "desc");
@@ -66,6 +75,7 @@ class laboratorio extends MY_Model{
         $aux->setId($obj->id);
         $aux->setName($obj->name);
         $aux->setLink($obj->link);
+        $aux->setLocalidad($obj->localidad);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -96,6 +106,7 @@ class laboratorio extends MY_Model{
     $data = array();
     $data["name"] = $this->getName();
     $data["link"] = $this->getLink();
+    $data["localidad"] = $this->getLocalidad();
     $data["ordinal"] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -107,6 +118,7 @@ class laboratorio extends MY_Model{
     $data = array(
         'name' => $this->getName(),
         'link' => $this->getLink(),
+        'localidad' => $this->getLocalidad(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -127,6 +139,7 @@ class laboratorio extends MY_Model{
           $aux = new laboratorio();
           $aux->setId($obj->id);
           $aux->setName($obj->name);
+          $aux->setLocalidad($obj->localidad);
           $aux->setLink($obj->link);
           return $aux;
         }

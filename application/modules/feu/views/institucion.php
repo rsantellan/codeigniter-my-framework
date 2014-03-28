@@ -53,18 +53,26 @@
                                 <ul class="square-list tight margin-left-small remove-bottom">
                                     <?php foreach($departamento->clubes as $club):  ?>
                                     <li>
-                                    <a href="#inline-<?php echo $club->c_id;?>" rel="prettyPhoto" class="prettyphoto-link" ><?php echo $club->c_name;?>(<?php echo $club->c_location;?>)</a>
-                                        <div id="inline-<?php echo $club->c_id;?>" style="display:none">
-                                            <?php 
+                                    <a href="#inline-<?php echo $club->c_id;?>" rel="prettyPhoto" class="prettyphoto-link" meta-data-id="mapa<?php echo $club->c_id;?>"><?php echo $club->c_name;?></a>
+                                        <?php 
                                             $imgType = 3;
-                                            $width = 100;
-                                            $height = 100;
-                                            ?>
+                                            $width = 250;
+                                            $height = 250;
+                                            $counter = 0;
+                                            ?>  
+                                        <div id="inline-<?php echo $club->c_id;?>" style="display:none; min-width: <?php echo $width*2;?>px; min-height: <?php echo $height*2;?>px;">
+                                            
                                             <div>
                                             <?php foreach($club->contents as $content): ?>
-                                                <div style="width: 110px; float: left">
-                                                        <img alt="<?php echo $club->c_name;?>" src="<?php echo thumbnail_image(base_url(), $content->ac_path , $width, $height, $imgType); ?>" />
+                                                <div style="width: <?php echo $width;?>px; float: left">
+                                                   <img alt="<?php echo $club->c_name;?>" src="<?php echo thumbnail_image(base_url(), $content->ac_path , $width, $height, $imgType); ?>" />
                                                 </div>
+                                              <?php $counter++;
+                                              if($counter % 2 == 0): ?>
+                                              <div class="clear"></div>
+                                              <?php
+                                              endif;
+                                              ?>
                                             <?php endforeach; ?>
                                             </div>
                                             <div class="clear"></div>
@@ -82,10 +90,8 @@
                 
                 <?php $counter ++;?>
             <?php endforeach; ?>
-
                     </section>
                     <!-- end Accordion -->
-
                 </div>
             </div>
 			<?php //var_dump($departamento_list);?>
