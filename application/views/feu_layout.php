@@ -116,7 +116,16 @@
                                     </div>
                                     <!-- end sf-mega -->
                                 </li>
-                                <li><a href="<?php echo site_url('instituciones.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones"); ?></a>
+				<li>
+				    <a href="javascript:void(0)" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>">
+					<?php echo lang("menu_instituciones"); ?>
+				    </a>
+				    <ul>
+					<li><a href="<?php echo site_url('instituciones.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones_departamento"); ?></a>
+					<li><a href="<?php echo site_url('instituciones-orden.html'); ?>" class="<?php echo ($menu == 'instituciones')? 'current' : '';?>"><?php echo lang("menu_instituciones_orden"); ?></a>
+				    </ul>
+				</li>
+                                
                                 <li><a href="<?php echo site_url('galerias.html'); ?>" class="<?php echo ($menu == 'galerias')? 'current' : '';?>"><?php echo lang("menu_galerias"); ?></a>
                                 <li><a href="<?php echo site_url('noticias.html'); ?>" class="<?php echo ($menu == 'noticias')? 'current' : '';?>"><?php echo lang("menu_noticias"); ?></a>
                                 <li><a href="<?php echo site_url('radios.html');?>" class="<?php echo ($menu == 'radios')? 'current' : '';?>"><?php echo lang("menu_radios"); ?></a></li>

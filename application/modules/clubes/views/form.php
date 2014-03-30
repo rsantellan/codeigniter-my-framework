@@ -37,6 +37,12 @@ echo form_open('clubes/save', $attributes); ?>
     <?php echo form_dropdown('departmentid', $departments_list, $object->getDepartmentid()); ?>
   </p>
 </div>
+<div class="grid_5">
+  <p>
+    <label for="numero">Número</label>
+    <input type="text" name="numero" maxlength="255" value="<?php echo $object->getNumero() ?>" />
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

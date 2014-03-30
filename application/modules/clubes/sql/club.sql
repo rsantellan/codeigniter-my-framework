@@ -13,3 +13,5 @@ ALTER TABLE `club` ADD INDEX ( `departmentid` );
 
 ALTER TABLE `club` ADD FOREIGN KEY ( `departmentid` ) REFERENCES `departamento` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 
+ALTER TABLE `club` ADD `number` INT NOT NULL DEFAULT '0' AFTER `departmentid`;
+ALTER TABLE `club` CHANGE `number` `number` INT( 11 ) NULL DEFAULT '0';

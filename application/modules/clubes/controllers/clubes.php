@@ -91,6 +91,7 @@ class clubes extends MY_Controller{
       $this->form_validation->set_rules('description', 'description', '');			
       $this->form_validation->set_rules('location', 'location', 'max_length[255]');			
       $this->form_validation->set_rules('departmentid', 'departmentid', 'required');
+      $this->form_validation->set_rules('numero', 'numero', 'is_natural');
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -104,6 +105,7 @@ class clubes extends MY_Controller{
       $description = set_value('description');
       $location = set_value('location');
       $departmentid = set_value('departmentid');
+      $numero = set_value('numero');
       //var_dump($nombre);
       $obj = new $this->club;
       $obj->setName($name);
@@ -111,6 +113,7 @@ class clubes extends MY_Controller{
       $obj->setDescription($description);
       $obj->setLocation($location);
       $obj->setDepartmentid($departmentid);
+      $obj->setNumero($numero);
       $obj->setId($id);
       //var_dump($obj);
       

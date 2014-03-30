@@ -57,6 +57,7 @@ $route["formularios.html"] = 'feu/formularios';
 $route['formulario/(:num).html'] = 'feu/downloadFile/$1';
 $route["feu-directiva.html"] = 'feu/directiva';
 $route["instituciones.html"] = 'feu/instituciones';
+$route["instituciones-orden.html"] = 'feu/institucionesorden';
 $route["veterinarios.html"] = 'feu/veterinarios';
 $route["veterinarios-jefes.html"] = 'feu/veterinariosjefes';
 $route["laboratorios.html"] = 'feu/laboratorios';

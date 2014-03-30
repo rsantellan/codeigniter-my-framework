@@ -256,6 +256,16 @@ class feu extends MY_Controller{
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function institucionesorden()
+  {
+      $this->data['menu'] = 'instituciones';
+      $this->loadI18n("instituciones", "", FALSE, TRUE, "", "feu");  
+      $this->load->model('clubes/club');
+      $this->data['listado'] = $this->club->retrieveAll(false, true, 'number', 'asc');
+      $this->data['content'] = 'clubes';
+      $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function veterinariosjefes()
   {
       $this->data['menu'] = 'veterinarios';

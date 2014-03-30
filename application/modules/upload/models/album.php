@@ -175,6 +175,8 @@ class album extends MY_Model{
   public function retrieveAlbumAvatar($objectId, $objectClass, $albumName = "default")
   {
     $album = $this->retrieveObjectAlbum($objectId, $objectClass, $albumName);
+    if($album == NULL)
+      return NULL;
     
     $ci = &get_instance();
     $ci->load->model("upload/albumcontent");

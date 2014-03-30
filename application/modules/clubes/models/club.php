@@ -19,6 +19,7 @@ class club extends MY_Model{
   private $description;
   private $location;
   private $departmentid;
+  private $numero;
   
   function __construct()
   {
@@ -73,10 +74,18 @@ class club extends MY_Model{
   public function setDepartmentid($departmentid) {
       $this->departmentid = $departmentid;
   }
+  
+  public function getNumero() {
+      return $this->numero;
+  }
 
-  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE)
+  public function setNumero($numero) {
+      $this->numero = $numero;
+  }
+
+  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $orderby = "departmentid, ordinal", $order = 'desc')
   {
-    $this->db->order_by("departmentid, ordinal", "desc");
+    $this->db->order_by($orderby, $order);
     $query = $this->db->get($this->getTablename());
     
     if(!$returnObjects)
@@ -90,6 +99,7 @@ class club extends MY_Model{
       {
         
         $row->avatar = $this->retrieveAvatar("default", $row->id);
+        $row->avatarCamiseta = $this->retrieveAvatar("camiseta", $row->id);
         $data[] = $row;
       }
       return $data;
@@ -106,6 +116,7 @@ class club extends MY_Model{
         $aux->setDescription($obj->description);
         $aux->setLocation($obj->location);
         $aux->setDepartmentid($obj->departmentid);
+        $aux->setNumero($obj->number);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -140,6 +151,7 @@ class club extends MY_Model{
     $data["description"] = $this->getDescription();
     $data["location"] = $this->getLocation();
     $data["departmentid"] = $this->getDepartmentid();
+    $data["number"] = $this->getNumero();
     
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -148,6 +160,7 @@ class club extends MY_Model{
       $ci =& get_instance();
       $ci->load->model('upload/album');
       $ci->album->createAlbum($id, $this->getObjectClass()); 
+      $ci->album->createAlbum($id, $this->getObjectClass(), 'camiseta'); 
     }
     return $id;
   }
@@ -160,6 +173,7 @@ class club extends MY_Model{
         'description' => $this->getDescription(),
         'location' => $this->getLocation(),
         'departmentid' => $this->getDepartmentid(),
+        'number' => $this->getNumero(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -184,6 +198,7 @@ class club extends MY_Model{
           $aux->setDescription($obj->description);
           $aux->setLocation($obj->location);
           $aux->setDepartmentid($obj->departmentid);
+          $aux->setNumero($obj->number);
           return $aux;
         }
         return $obj;
