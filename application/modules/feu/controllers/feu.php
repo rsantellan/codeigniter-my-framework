@@ -17,7 +17,7 @@ class feu extends MY_Controller{
 	  $this->data['jsGoogleMap'] = false;
       $this->loadI18n("menu", "", FALSE, TRUE, "", "feu");
       $this->data['menu'] = 'inicio';
-//      $this->output->enable_profiler(TRUE);
+      $this->output->enable_profiler(TRUE);
   }
 
   // http://www.catchmyfame.com/2009/12/30/huge-updates-to-jquery-infinite-carousel-version-2-released/
@@ -498,8 +498,9 @@ class feu extends MY_Controller{
       $this->data['menu'] = 'pruebas';
       $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
       $this->load->model('pruebas/prueba');
-      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 2);
-      $this->data['pruebaCorta'] = true;
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 2, date('Y'));
+      $this->data['listadoYears'] = $this->prueba->getYears(2);
+	  $this->data['pruebaCorta'] = true;
       $this->data['content'] = 'pruebas';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
@@ -509,7 +510,8 @@ class feu extends MY_Controller{
       $this->data['menu'] = 'pruebas';
       $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
       $this->load->model('pruebas/prueba');
-      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 1);
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 1, date('Y'));
+      $this->data['listadoYears'] = $this->prueba->getYears(1);
       $this->data['pruebaCorta'] = false;
       $this->data['content'] = 'pruebas';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);

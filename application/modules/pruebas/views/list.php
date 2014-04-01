@@ -2,6 +2,9 @@
 <table id="table_data">
   <thead>
     <tr>
+	  <th>
+        Fecha
+      </th>
       <th>
         Nombre
       </th>
@@ -17,6 +20,9 @@
     <?php foreach($object_list as $object): ?>
     <tr id="table_row_<?php echo $object->id;?>">
       <td>
+        <?php echo ($object->pruebaDate); ?>
+      </td>
+	  <td>
         <?php echo ($object->name); ?>
       </td>
       <td>
@@ -39,9 +45,6 @@
 <hr/>
 <a href="<?php echo site_url("pruebas/add");?>">
   Agregar
-</a>
-<a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sortWithParameters/pruebas/prueba/type/pruebas/prueba");?>" >
-  Ordenar
 </a>
 
 <script type="text/javascript">

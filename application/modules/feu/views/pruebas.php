@@ -43,6 +43,7 @@
                 <thead>
                     <tr>
                         <th><?php echo lang("prueba_nombre"); ?></th>
+                        <th><?php echo lang("prueba_nombre"); ?></th>
                         <th><?php echo lang("prueba_clasificados"); ?></th>
                         <th><?php echo lang("prueba_puntaje"); ?></th>
                     </tr>
@@ -50,6 +51,7 @@
                 <tbody>
                     <?php foreach($listado as $objeto): ?>
                     <tr>
+                        <td><?php echo date('d/m/Y',strtotime($objeto->pruebaDate)); ?></td>
                         <td><?php echo ($objeto->name); ?></td>
                         <td>
                             <?php if($objeto->clasificado !== null): ?>
@@ -67,6 +69,17 @@
             </table>
             <!-- end Standard Table -->
         </div>
+		<div>
+		  <h4>Last years</h4>
+		</div>
+	  
+		<div>
+		  <ul class="square-list">
+			<?php foreach($listadoYears as $year):?>
+			<li><?php echo $year->FECHA;?></li>
+			<?php endforeach;?>
+		  </ul>
+		</div>
     </div>
 </section>
     

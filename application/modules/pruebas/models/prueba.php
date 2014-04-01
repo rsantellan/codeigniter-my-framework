@@ -75,9 +75,24 @@ class prueba extends MY_Model{
       return $this->getPruebasType();
   }
   
-  public function retrieveAll($returnObjects = FALSE, $getAvatares = false, $type = null)
+  public function getYears($type = null)
   {
-    $this->db->order_by("ordinal", "desc");
+	$sql = 'SELECT distinct(YEAR(pruebaDate)) as FECHA FROM prueba';
+	$parameters = array();
+	if($type !== null){
+	  $sql .= ' where type = ?';
+	  $parameters[] = $type;
+	}
+	return $this->db->query($sql, $parameters)->result();
+  }
+  
+  public function retrieveAll($returnObjects = FALSE, $getAvatares = false, $type = null, $year = NULL)
+  {
+    $this->db->order_by("pruebaDate", "desc");
+	if($year !== NULL)
+	{
+	  $this->db->where('YEAR(pruebaDate)', $year);
+	}
     if($type !== null)
     {
         $this->db->where('type', $type);
