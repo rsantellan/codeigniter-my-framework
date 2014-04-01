@@ -47,6 +47,8 @@ class pruebas extends MY_Controller{
     
     function add()
     {
+	  $this->addModuleJavascript('admin', 'datepickr.js');
+	  $this->addModuleStyleSheet('admin', 'datepickr.css');
       $this->load->model('pruebas/prueba');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "pruebas/add";
@@ -56,6 +58,8 @@ class pruebas extends MY_Controller{
     
     function edit($id)
     {
+	  $this->addModuleJavascript('admin', 'datepickr.js');
+	  $this->addModuleStyleSheet('admin', 'datepickr.css');
       $this->addJquery();
       $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
@@ -71,6 +75,8 @@ class pruebas extends MY_Controller{
     
     function save()
     {
+	  $this->addModuleJavascript('admin', 'datepickr.js');
+	  $this->addModuleStyleSheet('admin', 'datepickr.css');
       $this->load->library('form_validation');
       $this->load->model('pruebas/prueba');
       // Get ID from form
@@ -79,6 +85,7 @@ class pruebas extends MY_Controller{
       
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
       $this->form_validation->set_rules('type', 'type', 'required|integer');      
+      $this->form_validation->set_rules('pruebaDate', 'pruebaDate', 'required');      
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -89,10 +96,12 @@ class pruebas extends MY_Controller{
       }
       $name = set_value('name');
       $type = set_value('type');
+	  $pruebaDate = set_value('pruebaDate');
       //var_dump($nombre);
       $obj = new $this->prueba;
       $obj->setName($name);
       $obj->setType($type);
+	  $obj->setPruebaDate($pruebaDate);
       $obj->setId($id);
       //var_dump($obj);
       

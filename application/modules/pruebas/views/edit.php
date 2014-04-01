@@ -30,6 +30,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        startFancyLinks()
+        startFancyLinks();
+		new datepickr('pruebaDate', {
+				'dateFormat': 'y-m-d'
+		});
     });
 </script>

@@ -23,6 +23,12 @@ echo form_open('pruebas/save', $attributes); ?>
     </select>
   </p>
 </div>
+<div class="grid_5">
+  <p>
+    <label for="pruebaDate">Fecha<small>Requerido</small></label>
+    <input type="text" id="pruebaDate" name="pruebaDate" maxlength="255" value="<?php echo $object->getPruebaDate() ?>" />
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

@@ -22,6 +22,8 @@ class prueba extends MY_Model{
   
   private $type;
   
+  private $pruebaDate;
+  
   function __construct()
   {
     parent::__construct();
@@ -50,6 +52,14 @@ class prueba extends MY_Model{
 
   public function setType($type) {
       $this->type = $type;
+  }
+
+  public function getPruebaDate() {
+	return $this->pruebaDate;
+  }
+
+  public function setPruebaDate($pruebaDate) {
+	$this->pruebaDate = $pruebaDate;
   }
 
   public function getPruebasType()
@@ -100,6 +110,7 @@ class prueba extends MY_Model{
         $aux->setId($obj->id);
         $aux->setName($obj->name);
         $aux->setType($obj->type);
+		$aux->setPruebaDate($obj->pruebaDate);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -130,6 +141,7 @@ class prueba extends MY_Model{
     $data = array();
     $data["name"] = $this->getName();
     $data["type"] = $this->getType();
+    $data["pruebaDate"] = $this->getPruebaDate();
     $data["ordinal"] = $this->retrieveLastOrder();
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -148,6 +160,7 @@ class prueba extends MY_Model{
     $data = array(
         'name' => $this->getName(),
         'type' => $this->getType(),
+		'pruebaDate' => $this->getPruebaDate(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -169,6 +182,7 @@ class prueba extends MY_Model{
           $aux->setId($obj->id);
           $aux->setName($obj->name);
           $aux->setType($obj->type);
+		  $aux->setPruebaDate($obj->pruebaDate);
           return $aux;
         }
         return $obj;

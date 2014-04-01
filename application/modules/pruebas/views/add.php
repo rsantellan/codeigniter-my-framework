@@ -10,3 +10,10 @@
 <hr/>
 
 <a href="<?php echo site_url('pruebas/index'); ?>"> Volver al listado </a>
+<script type="text/javascript">
+    $(document).ready(function() {
+        new datepickr('pruebaDate', {
+				'dateFormat': 'y-m-d'
+		  });
+    });
+</script>
