@@ -7,3 +7,6 @@ $lang["clubes_numero"] = "Número";
 $lang["clubes_nombre"] = "Nombre";
 $lang["clubes_localidad"] = "Localidad";
 $lang["clubes_camiseta"] = "Camiseta";
+$lang["club_imagenes"] = "Imagenes";
+$lang["club_localidad"] = "Localidad";
+$lang["club_descripcion"] = "Descripción";

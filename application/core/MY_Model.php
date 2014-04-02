@@ -125,5 +125,32 @@ class MY_Model extends CI_Model{
     }
     return NULL;      
   }
-    
+  
+  public function retrieveAlbumsContents($objects_ids = array(), $albumName = 'default', $object_class = null)
+  {
+    if(!is_array($objects_ids) || count($objects_ids) == 0 || $object_class === null)
+    {
+        return array();
+    }
+	$sql = "select
+			albums.obj_id as a_obj_id,
+            albumcontent.id as ac_id,
+            albumcontent.path as ac_path,
+            albumcontent.name as ac_name,
+            albumcontent.type as ac_type,
+            albumcontent.contenttype as ac_contenttype,
+            albumcontent.url as ac_url,
+            albumcontent.code as ac_code,
+            albumcontent.description as ac_description,
+            albumcontent.extradata as ac_extradata,
+            albumcontent.ordinal as ac_ordinal
+        from
+            albums
+		inner join albumcontent ON (albums.id = albumcontent.album_id)
+        where albums.obj_id in (%s) and albums.name = '%s' and albums.obj_class = '%s'
+        order by albumcontent.ordinal asc";
+	  $return = $this->db->query(sprintf($sql, implode(",", $objects_ids), $albumName, $object_class));
+	  return $return->result();
+	  
+  }
 }

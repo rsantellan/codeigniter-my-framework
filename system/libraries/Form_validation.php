@@ -654,7 +654,15 @@ class CI_Form_validation {
 				{
 					if (FALSE === ($line = $this->CI->lang->line($rule)))
 					{
-						$line = 'Unable to access an error message corresponding to your field name.';
+                        //var_dump($this->getError());
+                        if($this->getError() !== null)
+                        {
+                          if (FALSE === ($line = $this->CI->lang->line($this->getError())))
+                          {
+                            $line = 'Unable to access an error message corresponding to your field name.';
+                          }
+                        }
+						
 					}
 				}
 				else

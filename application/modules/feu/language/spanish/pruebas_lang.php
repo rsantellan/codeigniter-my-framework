@@ -6,3 +6,5 @@ $lang["prueba_sub_titulo_larga"] = "Listado de pruebas largas";
 $lang["prueba_nombre"] = "Nombre";
 $lang["prueba_clasificados"] = "Clasificados";
 $lang["prueba_puntaje"] = "Puntajes";
+$lang["prueba_fecha"] = "Fecha";
+$lang["prueba_last_years"] = "Ver por año.";

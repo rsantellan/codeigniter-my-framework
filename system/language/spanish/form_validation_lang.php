@@ -23,6 +23,7 @@ $lang['is_natural_no_zero']	= "El campo %s tiene que ser un numero mayor al cero
 $lang['decimal']			= "El campo %s tiene que ser un numero decimal.";
 $lang['less_than']			= "El campo %s tiene que ser un numero menor que %s.";
 $lang['greater_than']		= "El campo %s tiene que ser un numero mayor que %s.";
+$lang['Min/Max are not valid float values.']		= "El campo %s no esta en los rangos de valores admisibles.";
 
 
 /* End of file form_validation_lang.php */

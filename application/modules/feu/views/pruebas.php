@@ -11,6 +11,7 @@
                         else:
                             echo lang("prueba_titulo_larga");
                         endif;
+                        echo ' ('.$year.')';
                     ?>
                     <?php  ?>
                 </h1>
@@ -42,7 +43,7 @@
             <table class="standard mb-50px">
                 <thead>
                     <tr>
-                        <th><?php echo lang("prueba_nombre"); ?></th>
+                        <th><?php echo lang("prueba_fecha"); ?></th>
                         <th><?php echo lang("prueba_nombre"); ?></th>
                         <th><?php echo lang("prueba_clasificados"); ?></th>
                         <th><?php echo lang("prueba_puntaje"); ?></th>
@@ -69,17 +70,28 @@
             </table>
             <!-- end Standard Table -->
         </div>
+        <?php if(count($listadoYears) > 1): ?>
 		<div>
-		  <h4>Last years</h4>
+		  <h4><?php echo lang("prueba_last_years"); ?></h4>
 		</div>
-	  
+        <?php
+          $url = 'pruebas-largas/%s';
+          if($pruebaCorta){
+            $url = 'pruebas-cortas/%s';
+          }
+        ?>
 		<div>
 		  <ul class="square-list">
 			<?php foreach($listadoYears as $year):?>
-			<li><?php echo $year->FECHA;?></li>
+			<li>
+              <a href="<?php echo site_url(sprintf($url, $year->FECHA));?>">
+                <?php echo $year->FECHA;?>
+              </a>  
+            </li>
 			<?php endforeach;?>
 		  </ul>
 		</div>
+        <?php endif; ?>
     </div>
 </section>
     

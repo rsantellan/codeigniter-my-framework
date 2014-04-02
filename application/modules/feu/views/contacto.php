@@ -93,7 +93,7 @@
                     <div id="map" class="google-map"><span>loading map...</span></div>
                     <script>
                         // Custom parameters for Google Maps
-                        var gm_params = {infoTitle: 'Some another title goes here...', infoString: '<h5 class="gm-title">DNS Ipsum Studios</h5><p>Integer at enim cursus massa malesuada tempus fringilla.</p>'};
+                        //var gm_params = {infoTitle: 'Some another title goes here...', infoString: '<h5 class="gm-title">DNS Ipsum Studios</h5><p>Integer at enim cursus massa malesuada tempus fringilla.</p>'};
                     </script>
                 </div>
 

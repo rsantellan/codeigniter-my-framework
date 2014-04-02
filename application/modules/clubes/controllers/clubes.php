@@ -92,6 +92,8 @@ class clubes extends MY_Controller{
       $this->form_validation->set_rules('location', 'location', 'max_length[255]');			
       $this->form_validation->set_rules('departmentid', 'departmentid', 'required');
       $this->form_validation->set_rules('numero', 'numero', 'is_natural');
+      $this->form_validation->set_rules('latitud', 'latitud', 'required|check_float[-99.999999|99.999999]');
+      $this->form_validation->set_rules('longitud', 'longitud', 'required|check_float[-99.999999|99.999999]');
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -106,6 +108,8 @@ class clubes extends MY_Controller{
       $location = set_value('location');
       $departmentid = set_value('departmentid');
       $numero = set_value('numero');
+      $latitud = set_value('latitud');
+      $longitud = set_value('longitud');
       //var_dump($nombre);
       $obj = new $this->club;
       $obj->setName($name);
@@ -114,6 +118,8 @@ class clubes extends MY_Controller{
       $obj->setLocation($location);
       $obj->setDepartmentid($departmentid);
       $obj->setNumero($numero);
+      $obj->setLatitud($latitud);
+      $obj->setLongitud($longitud);
       $obj->setId($id);
       //var_dump($obj);
       
@@ -126,6 +132,7 @@ class clubes extends MY_Controller{
       }
       else
       {
+        $this->addJquery();
         $this->addModuleJavascript("admin", "adminManager.js");
         $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
         if($obj->isNew())
@@ -137,12 +144,21 @@ class clubes extends MY_Controller{
         }
         else
         {
+          $this->addColorbox();
+          $this->addModuleStyleSheet("upload", "albums.css");
+          $this->addModuleJavascript("upload", "imagesAdmin.js");
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "clubes/edit";
           $this->data['object'] = $obj;
           $this->load->view("admin/layout", $this->data);
         }
       }
+    }
+    
+    function check_float($float)
+    {
+      var_dump($float);
+      return FALSE;
     }
     
     function delete($id)

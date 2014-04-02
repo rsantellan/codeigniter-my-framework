@@ -155,7 +155,15 @@
 
         <!-- START FOOTER -->
 
-		<footer id="footer" class="blank"></footer>
+		<footer id="footer" class="blank">
+          <div class="container"> <!-- 1080 pixels Container -->
+            <span class="scroll-top">
+              <span class="arrow-top"></span>
+              <span>Back to Top</span>
+            </span>
+          </div>  
+          
+        </footer>
 
 		<footer id="footer-bottom">
 

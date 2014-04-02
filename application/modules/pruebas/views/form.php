@@ -1,5 +1,4 @@
 <?php // Change the css classes to suit your needs    
-
 $attributes = array('class' => '', 'id' => '');
 echo form_open('pruebas/save', $attributes); ?>
 
@@ -18,7 +17,7 @@ echo form_open('pruebas/save', $attributes); ?>
     <label for="type">Tipo<small>Requerido</small></label>
     <select name="type">
         <?php foreach($object->getPruebasType() as $key => $value): ?>
-            <option value="<?php echo $key;?>"><?php echo $value;?></option>
+            <option value="<?php echo $key;?>" <?php echo ($key == $object->getType())? 'selected="selected"': '';?>><?php echo $value;?></option>
         <?php endforeach; ?>
     </select>
   </p>

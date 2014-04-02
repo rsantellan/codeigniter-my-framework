@@ -83,6 +83,7 @@ class prueba extends MY_Model{
 	  $sql .= ' where type = ?';
 	  $parameters[] = $type;
 	}
+    $sql .= ' order by FECHA desc';
 	return $this->db->query($sql, $parameters)->result();
   }
   

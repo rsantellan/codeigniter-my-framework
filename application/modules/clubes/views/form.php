@@ -43,6 +43,18 @@ echo form_open('clubes/save', $attributes); ?>
     <input type="text" name="numero" maxlength="255" value="<?php echo $object->getNumero() ?>" />
   </p>
 </div>
+<div class="grid_5">
+  <p>
+    <label for="latitud">Latitud (Google Maps)<small>Requerido</small></label>
+    <input type="text" name="latitud" maxlength="255" value="<?php echo $object->getLatitud() ?>" />
+  </p>
+</div>
+<div class="grid_5">
+  <p>
+    <label for="longitud">Longitud (Google Maps)<small>Requerido</small></label>
+    <input type="text" name="longitud" maxlength="255" value="<?php echo $object->getLongitud() ?>" />
+  </p>
+</div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

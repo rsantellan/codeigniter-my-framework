@@ -53,35 +53,9 @@
                                 <ul class="square-list tight margin-left-small remove-bottom">
                                     <?php foreach($departamento->clubes as $club):  ?>
                                     <li>
-                                    <a href="#inline-<?php echo $club->c_id;?>" rel="prettyPhoto" class="prettyphoto-link" meta-data-id="mapa<?php echo $club->c_id;?>"><?php echo $club->c_name;?></a>
-                                        <?php 
-                                            $imgType = 3;
-                                            $width = 250;
-                                            $height = 250;
-                                            $counter = 0;
-                                            ?>  
-                                        <div id="inline-<?php echo $club->c_id;?>" style="display:none; min-width: <?php echo $width*2;?>px; min-height: <?php echo $height*2;?>px;">
-                                            
-                                            <div>
-                                            <?php foreach($club->contents as $content): ?>
-                                                <div style="width: <?php echo $width;?>px; float: left">
-                                                   <img alt="<?php echo $club->c_name;?>" src="<?php echo thumbnail_image(base_url(), $content->ac_path , $width, $height, $imgType); ?>" />
-                                                </div>
-                                              <?php $counter++;
-                                              if($counter % 2 == 0): ?>
-                                              <div class="clear"></div>
-                                              <?php
-                                              endif;
-                                              ?>
-                                            <?php endforeach; ?>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <p><?php echo html_purify(html_entity_decode($club->c_description));?></p>
-                                            <div class="clear"></div>
-                                            <?php if($club->c_link !== null && !empty($club->c_link)): ?>
-                                                <a href="<?php echo $club->c_link;?>" target="_blank"><?php echo lang("institucion_sitio_club"); ?></a>
-                                            <?php endif; ?>
-                                        </div>
+                                      <a href="<?php echo site_url(sprintf('club/%s/%s.html', $club->c_id, url_title($club->c_name, '-', TRUE)));?>">
+                                        <?php echo $club->c_name;?>
+                                      </a>
                                     </li>
                                     <?php endforeach; ?>
                                 </ul>

@@ -15,3 +15,6 @@ ALTER TABLE `club` ADD FOREIGN KEY ( `departmentid` ) REFERENCES `departamento` 
 
 ALTER TABLE `club` ADD `number` INT NOT NULL DEFAULT '0' AFTER `departmentid`;
 ALTER TABLE `club` CHANGE `number` `number` INT( 11 ) NULL DEFAULT '0';
+
+ALTER TABLE `club` ADD `latitud` FLOAT( 8, 6 ) NOT NULL DEFAULT '-34.908898' AFTER `number` ,
+ADD `longitud` FLOAT( 8, 6 ) NOT NULL DEFAULT '-56.194707' AFTER `latitud` ;

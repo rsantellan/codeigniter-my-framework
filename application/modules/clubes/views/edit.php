@@ -5,6 +5,8 @@
   <?php echo form_error('description'); ?>
   <?php echo form_error('location'); ?>
   <?php echo form_error('departmentid'); ?>
+  <?php echo form_error('latitud'); ?>
+  <?php echo form_error('longitud'); ?>
   <?php
    if($this->session->flashdata('salvado') == "ok"):
   ?>

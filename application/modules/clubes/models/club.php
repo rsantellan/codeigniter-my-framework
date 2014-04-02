@@ -20,6 +20,8 @@ class club extends MY_Model{
   private $location;
   private $departmentid;
   private $numero;
+  private $latitud;
+  private $longitud;
   
   function __construct()
   {
@@ -83,6 +85,22 @@ class club extends MY_Model{
       $this->numero = $numero;
   }
 
+  public function getLatitud() {
+    return $this->latitud;
+  }
+
+  public function setLatitud($latitud) {
+    $this->latitud = $latitud;
+  }
+
+  public function getLongitud() {
+    return $this->longitud;
+  }
+
+  public function setLongitud($longitud) {
+    $this->longitud = $longitud;
+  }
+
   public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $orderby = "departmentid, ordinal", $order = 'desc')
   {
     $this->db->order_by($orderby, $order);
@@ -117,6 +135,8 @@ class club extends MY_Model{
         $aux->setLocation($obj->location);
         $aux->setDepartmentid($obj->departmentid);
         $aux->setNumero($obj->number);
+        $aux->setLatitud($obj->latitud);
+        $aux->setLongitud($obj->longitud);
         $salida[$obj->id] = $aux;
       }
       return $salida;
@@ -152,6 +172,8 @@ class club extends MY_Model{
     $data["location"] = $this->getLocation();
     $data["departmentid"] = $this->getDepartmentid();
     $data["number"] = $this->getNumero();
+    $data["latitud"] = $this->getLatitud();
+    $data["longitud"] = $this->getLongitud();
     
     $this->db->insert($this->getTablename(), $data);
     $id = $this->db->insert_id(); 
@@ -174,6 +196,8 @@ class club extends MY_Model{
         'location' => $this->getLocation(),
         'departmentid' => $this->getDepartmentid(),
         'number' => $this->getNumero(),
+        'latitud' => $this->getLatitud(),
+        'longitud' => $this->getLongitud(),
      );
     $this->db->where('id', $this->getId());
     $this->db->update($this->getTablename(), $data);
@@ -199,6 +223,8 @@ class club extends MY_Model{
           $aux->setLocation($obj->location);
           $aux->setDepartmentid($obj->departmentid);
           $aux->setNumero($obj->number);
+          $aux->setLatitud($obj->latitud);
+          $aux->setLongitud($obj->longitud);
           return $aux;
         }
         return $obj;
@@ -211,5 +237,10 @@ class club extends MY_Model{
     public function getObjectClass()
     {
       return get_class($this);
+    }
+    
+    public function retrieveDefaultAlbumContents()
+    {
+      return $this->retrieveAlbumsContents(array($this->getId()), 'default', $this->getObjectClass());
     }
 }

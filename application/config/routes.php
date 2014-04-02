@@ -75,8 +75,12 @@ $route["noticia-busqueda-(:num).html/(:any)"] = 'feu/noticiasbusqueda/$1/$2';
 $route["contacto.html"] = 'feu/contacto';
 $route["contacto-enviado.html"] = 'feu/contactosuccess';
 $route["pruebas-cortas.html"] = 'feu/pruebascortas';
+$route["pruebas-cortas/(:num)"] = 'feu/pruebascortas/$1';
 $route["pruebas-largas.html"] = 'feu/pruebaslargas';
+$route["pruebas-largas/(:num)"] = 'feu/pruebaslargas/$1';
 $route['prueba-descarga/(:num).html'] = 'feu/downloadFile/$1';
+$route['club/(:num)/(:any).html'] = 'feu/club/$1/$2';
+
 /*
 $route["inicio.html"] = 'feu/index';
 $route["buscar.html"] = 'roche/buscar';

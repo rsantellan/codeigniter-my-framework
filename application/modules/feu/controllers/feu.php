@@ -7,7 +7,7 @@
 class feu extends MY_Controller{
 
   private $DEFAULT_LAYOUT = "feu_layout";
-  private $newsperpage = 4;
+  private $newsperpage = 10;
   
   function __construct() {
       parent::__construct();
@@ -17,7 +17,7 @@ class feu extends MY_Controller{
 	  $this->data['jsGoogleMap'] = false;
       $this->loadI18n("menu", "", FALSE, TRUE, "", "feu");
       $this->data['menu'] = 'inicio';
-      $this->output->enable_profiler(TRUE);
+      //$this->output->enable_profiler(TRUE);
   }
 
   // http://www.catchmyfame.com/2009/12/30/huge-updates-to-jquery-infinite-carousel-version-2-released/
@@ -266,6 +266,27 @@ class feu extends MY_Controller{
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function club($id, $name)
+  {
+    
+    $this->data['jsGoogleMap'] = true;  
+    $this->data['menu'] = 'instituciones';
+    $this->loadI18n("instituciones", "", FALSE, TRUE, "", "feu");
+    $this->load->model('clubes/club');
+    $this->data['listado'] = $this->club->retrieveAll(false, false, 'number', 'asc');
+	$object = $this->club->getById($id);
+    if($object === null)
+    {
+        show_error('No existe el objeto', 404);
+    }
+    $this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+    $this->data['object'] = $object;
+	$this->data['medialist'] = $object->retrieveDefaultAlbumContents();
+	$this->data['content'] = 'club';
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function veterinariosjefes()
   {
       $this->data['menu'] = 'veterinarios';
@@ -493,26 +514,34 @@ class feu extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
-  public function pruebascortas()
+  public function pruebascortas($year = null)
   {
+      if($year == NULL){
+        $year = date('Y');
+      }
       $this->data['menu'] = 'pruebas';
       $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
       $this->load->model('pruebas/prueba');
-      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 2, date('Y'));
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 2, $year);
       $this->data['listadoYears'] = $this->prueba->getYears(2);
 	  $this->data['pruebaCorta'] = true;
       $this->data['content'] = 'pruebas';
+      $this->data['year'] = $year;
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
-  public function pruebaslargas()
+  public function pruebaslargas($year = null)
   {
+      if($year == NULL){
+        $year = date('Y');
+      }
       $this->data['menu'] = 'pruebas';
       $this->loadI18n("pruebas", "", FALSE, TRUE, "", "feu");  
       $this->load->model('pruebas/prueba');
-      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 1, date('Y'));
+      $this->data['listado'] = $this->prueba->retrieveAll(false, true, 1, $year);
       $this->data['listadoYears'] = $this->prueba->getYears(1);
       $this->data['pruebaCorta'] = false;
+      $this->data['year'] = $year;
       $this->data['content'] = 'pruebas';
       $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
