@@ -61,9 +61,10 @@
       <?php 
       $first = true;
 //      var_dump($user);
+
       foreach($presentations as $presentation): 
-        //var_dump($presentation);
-      ?>
+
+        ?>
       <tr>
         <td class="producto_nombre"><?php echo ($first)?$usedProduct->name: '';?></td>
         <td><?php echo $presentation->name;?></td>
@@ -72,10 +73,14 @@
         <td><?php echo $category->name;?></td>
         <td>
           <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico')): ?>
-            <?php if(!is_null($presentation->avatar)): ?>
-              <?php //var_dump($presentation->avatar);?>
+            <?php if(!is_null($presentation->avatar)): 
+            $urlDownloadPresentation = $lang.'/archivo/'.$presentation->avatar->getId().'.html';
+            if($lang == 'en')
+              $urlDownloadPresentation = $lang.'/archive/'.$presentation->avatar->getId().'.html';  
+              
+            ?>
             <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
-            <a href="#">
+            <a href="<?php echo site_url($urlDownloadPresentation);?>">
               <?php echo lang('producto_prospecto');?>
             </a>
             <?php endif;?>
@@ -87,7 +92,7 @@
       endforeach; 
       ?>
     </table>
-    <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico')): ?>
+    <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico') && (count($medicdata) > 0)): ?>
       <h5><?php echo lang('producto_literatura');?></h5>
       <?php foreach($medicdata as $lit): ?>
       <?php //var_dump($lit);?>

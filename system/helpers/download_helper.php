@@ -41,18 +41,18 @@ if ( ! function_exists('force_download'))
 {
 	function force_download($filename = '', $data = '')
 	{
+        var_dump($filename);
 		if ($filename == '' OR $data == '')
 		{
 			return FALSE;
 		}
-
 		// Try to determine if the filename includes a file extension.
 		// We need it in order to set the MIME type
 		if (FALSE === strpos($filename, '.'))
 		{
 			return FALSE;
 		}
-
+var_dump('aca??');
 		// Grab the file extension
 		$x = explode('.', $filename);
 		$extension = end($x);
@@ -76,7 +76,7 @@ if ( ! function_exists('force_download'))
 		{
 			$mime = (is_array($mimes[$extension])) ? $mimes[$extension][0] : $mimes[$extension];
 		}
-
+        var_dump('aca??');
 		// Generate the server headers
 		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE") !== FALSE)
 		{

@@ -34,7 +34,7 @@ class ordenable extends MY_Controller{
           redirect('');
         }
       }
-
+	  //$this->output->enable_profiler(TRUE);
     }
     
     function sort($module, $model, $showField)
@@ -94,8 +94,13 @@ class ordenable extends MY_Controller{
         $lang = $this->input->post('lang');
         $this->load->model($middle_module.'/'.$middle_model);
         $list = $this->$middle_model->$middle_function($lang, $parameterid);
+        $returnList = array();
+        foreach($list as $objectData)
+        {
+			$returnList[] = $objectData;
+		}
         $salida['response'] = "OK";
-        $salida['list'] = $list;
+        $salida['list'] = $returnList;
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($salida));
@@ -109,8 +114,13 @@ class ordenable extends MY_Controller{
         $sort_attribute = $this->input->post('sort_attribute');
         $this->load->model($module.'/'.$model);
         $list = $this->$model->retrieveForSortWithParameter($sort_attribute, $parameterid);
+        $returnList = array();
+        foreach($list as $objectData)
+        {
+			$returnList[] = $objectData;
+		}
         $salida['response'] = "OK";
-        $salida['list'] = $list;
+        $salida['list'] = $returnList;
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($salida));

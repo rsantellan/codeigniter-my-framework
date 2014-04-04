@@ -229,6 +229,16 @@ class celsius extends MY_Controller {
   }
 
   public function downloadFile($lang, $fileId) {
+    if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
     $this->load->model('upload/albumcontent');
     $file = $this->albumcontent->getFile($fileId);
     $aux = $file; //[0];
