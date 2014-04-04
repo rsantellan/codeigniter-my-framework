@@ -35,12 +35,18 @@
                     <tr>
                         <td>
                             <?php 
-                                $imgType = 3;
+                                $imgType = 1;
                                 $width = 100;
                                 $height = 100;
+                                
+                                $imgTypeBig = 2;
+                                $widthBig = 600;
+                                $heightBig = 600;
                                 ?>
                               <?php if(!is_null($objeto->avatar)): ?>
-                                <img alt="<?php echo $objeto->name;?>" src="<?php echo thumbnail_image(base_url(), $objeto->avatar->getPath() , $width, $height, $imgType); ?>" class="img_servicios" />
+                                <a href="<?php echo thumbnail_image(base_url(), $objeto->avatar->getPath() , $widthBig, $heightBig, $imgTypeBig); ?>" data-rel="prettyPhoto" title="<?php echo $objeto->name;?>">
+                                  <img alt="<?php echo $objeto->name;?>" src="<?php echo thumbnail_image(base_url(), $objeto->avatar->getPath() , $width, $height, $imgType); ?>" />
+                                </a>
                                 <?php else: ?>
                                 <img src="<?php echo base_url();?>assets/feu/images/icons/big/icon-user.png" />
                             <?php endif; ?>
