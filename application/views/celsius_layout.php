@@ -65,7 +65,13 @@
             <?php endif;?>
 		</div><!-- header right -->
 		<div class="clear"></div>
-		<nav <?php if($isLogged):?> class="nav_login" <?php endif;?>>                     
+		<nav <?php if($isLogged):?> class="nav_login" <?php endif;?>>     
+            <dl class="dropdown">
+                <dt><a href="/index.php"><img src="<?php echo base_url(); ?>assets/celsius/images/house.png"></a></dt>
+            </dl>   
+            <dl class="dropdown">
+                <dt>|</dt>
+            </dl>  		                
 			  <dl class="dropdown">
 				  <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" <?php if($menu == 'empresa'):?> class="submenu current"<?php endif;?>><?php echo lang('menu_empresa');?></dt>
 					  <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
@@ -149,7 +155,7 @@
 	  </header>
 	  <div class="buscador">
         <form method="GET" action="<?php echo site_url($lang."/".(($lang =='es')?'buscar' : 'search'));?>">
-          <input type="text" name="q" value="Buscar">  
+          <input type="text" name="q" placeholder="Buscar">  
           <input type="submit" value="" class="submit_search">
         </form>
 	  </div><!-- buscador -->		

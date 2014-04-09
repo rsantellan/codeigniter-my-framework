@@ -424,9 +424,9 @@ class celsius extends MY_Controller {
           if(count($countryData) > 0)
           {
             $aux = new stdClass();
-            $aux->product = $product->name;
+            $aux->product = $presentation->nombre_exterior;
             $aux->genericname = $presentation->genericname;
-            $aux->presentation = $presentation->name;
+            $aux->presentation = $presentation->presentacion_exterior;
             $countriesTypes = array();
             foreach($this->data['countries'] as $country)
             {

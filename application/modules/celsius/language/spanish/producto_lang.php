@@ -6,3 +6,4 @@ $lang["producto_accion"] = "Acci&oacute;n";
 $lang["producto_especialidad"] = "Especialidad";
 $lang["producto_literatura"] = "Literatura M&eacute;dica";
 $lang["producto_prospecto"] = "Prospecto";
+$lang["producto_no_hay_resultados"] = "No hay resultados";

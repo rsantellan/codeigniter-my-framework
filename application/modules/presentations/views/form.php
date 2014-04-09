@@ -35,6 +35,19 @@ echo form_open('presentations/save', $attributes); ?>
   </p>
 </div>
 <div class="clear"></div>
+<div class="grid_5">
+  <p>
+    <label for="nombreexterior">Nombre exterior</label>
+    <input type="text" name="nombreexterior" maxlength="255" value="<?php echo $object->getExteriorName(); ?>" />
+  </p>
+</div>
+<div class="grid_5">
+  <p>
+    <label for="presentacionexterior">Presentacion exterior</label>
+    <input type="text" name="presentacionexterior" maxlength="255" value="<?php echo $object->getExteriorPresentation() ?>" />
+  </p>
+</div>
+<div class="clear"></div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

@@ -24,6 +24,8 @@ class presentation extends MY_Model{
   private $lang;
   private $exists = false;
   private $countries = array();
+  private $exteriorName = '';
+  private $exteriorPresentation = '';
   
   function __construct()
   {
@@ -121,6 +123,22 @@ class presentation extends MY_Model{
   public function setExists($exists) {
       $this->exists = $exists;
   }
+  
+  public function getExteriorName() {
+	return $this->exteriorName;
+  }
+
+  public function setExteriorName($exteriorName) {
+	$this->exteriorName = $exteriorName;
+  }
+
+  public function getExteriorPresentation() {
+	return $this->exteriorPresentation;
+  }
+
+  public function setExteriorPresentation($exteriorPresentation) {
+	$this->exteriorPresentation = $exteriorPresentation;
+  }
 
   public function getTranslation($id, $lang, $returnObject = true)
   {
@@ -156,6 +174,8 @@ class presentation extends MY_Model{
         $aux->genericname = '';
         $aux->activecomponent = '';
         $aux->action = '';
+        $aux->nombre_exterior = '';
+        $aux->presentacion_exterior = '';
         $aux->exists = false;
         return $aux;
       }
@@ -195,6 +215,8 @@ class presentation extends MY_Model{
     $aux->setGenericname($obj->genericname);
     $aux->setActiveComponent($obj->activecomponent);
     $aux->setAction($obj->action);
+	$aux->setExteriorName($obj->nombre_exterior);
+	$aux->setExteriorPresentation($obj->presentacion_exterior);
 	//$aux->setReceta($obj->receta);
     $aux->setExists(true);
     return $aux;
@@ -261,6 +283,8 @@ class presentation extends MY_Model{
 		'genericname' => $this->getGenericname(),
 		'activecomponent' => $this->getActiveComponent(),
 		'action' => $this->getAction(),
+		'nombre_exterior' => $this->getExteriorName(),
+		'presentacion_exterior' => $this->getExteriorPresentation(),
 		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $id, 'lang', $this->getLang()),
  	);
 	$this->db->insert($this->getTablename()."_translation", $dataTranslation);
@@ -289,6 +313,8 @@ class presentation extends MY_Model{
 		'genericname' => $this->getGenericname(),
 		'activecomponent' => $this->getActiveComponent(),
 		'action' => $this->getAction(),
+		'nombre_exterior' => $this->getExteriorName(),
+		'presentacion_exterior' => $this->getExteriorPresentation(),
 		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $this->getId(), 'lang', $this->getLang()),
  	);
 
@@ -340,7 +366,7 @@ class presentation extends MY_Model{
     }
     
     public function search($lang, $query){
-      $sql = "select presentation.id, presentation.product_id, presentation_translation.name, presentation_translation.genericname, presentation_translation.slug, presentation_translation.activecomponent, presentation_translation.action from presentation, presentation_translation where presentation_translation.lang = ? and (presentation_translation.name like ? or presentation_translation.genericname like ? or presentation_translation.activecomponent like ? or presentation_translation.action like ?)";
+      $sql = "select presentation.id, presentation.product_id, presentation_translation.name, presentation_translation.genericname, presentation_translation.slug, presentation_translation.activecomponent, presentation_translation.action from presentation, presentation_translation where presentation.id = presentation_translation.id and presentation_translation.lang = ? and (presentation_translation.name like ? or presentation_translation.genericname like ? or presentation_translation.activecomponent like ? or presentation_translation.action like ?)";
       $query = '%'.$query.'%';
       $return = $this->db->query($sql, array($lang, $query, $query, $query, $query));
       return $return->result();

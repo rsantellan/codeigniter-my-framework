@@ -70,3 +70,6 @@ ALTER TABLE `presentation_country`
 
 
 ALTER TABLE `presentation_country` ADD `compuesto` VARCHAR( 255 ) NOT NULL DEFAULT '';
+
+ALTER TABLE `presentation_translation` ADD `nombre_exterior` VARCHAR( 255 ) NOT NULL DEFAULT '',
+ADD `presentacion_exterior` VARCHAR( 255 ) NOT NULL DEFAULT '';
