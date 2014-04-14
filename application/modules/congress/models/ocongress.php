@@ -166,7 +166,9 @@ class ocongress extends MY_Model {
   }
 
   private function saveNew($id = null) {
+    $is_new = false;
     if ($id === null) {
+      $is_new = true;
       $data = array();
       $data["ordinal"] = $this->retrieveLastOrder();
       $this->db->insert($this->getTablename(), $data);
@@ -183,7 +185,7 @@ class ocongress extends MY_Model {
         'slug' => $this->createSlug('slug', $this->getName(), 'ocongress_translation', $id, 'lang', $this->getLang()),
     );
     $this->db->insert($this->getTablename() . "_translation", $dataTranslation);
-    if (!is_null($id) && $id != 0) {
+    if ($is_new && !is_null($id) && $id != 0) {
       $ci = & get_instance();
       $ci->load->model('upload/album');
       $ci->album->createAlbum($id, $this->getObjectClass());

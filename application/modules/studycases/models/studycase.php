@@ -170,7 +170,9 @@ class studycase extends MY_Model {
   }
 
   private function saveNew($id = null) {
+    $is_new = false;
     if ($id === null) {
+      $is_new = true;
       $data = array();
       $data["studyDate"] = $this->getStudyDate();
       $data["ordinal"] = $this->retrieveLastOrder();
@@ -189,7 +191,7 @@ class studycase extends MY_Model {
         'slug' => $this->createSlug('slug', $this->getName(), 'studycase_translation', $id, 'lang', $this->getLang()),
     );
     $this->db->insert("studycase_translation", $dataTranslation);
-    if (!is_null($id) && $id != 0) {
+    if ($is_new && !is_null($id) && $id != 0) {
       $ci = & get_instance();
       $ci->load->model('upload/album');
       $ci->album->createAlbum($id, $this->getObjectClass(), 'es');

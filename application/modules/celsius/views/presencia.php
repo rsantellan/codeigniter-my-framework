@@ -38,11 +38,14 @@
         <td class="td_notas td_color_claro"></td>
         <td class="td_notas td_color_claro td_border_none"></td>
       </tr>
+      <?php 
+        $num = 0;
+      ?>
       <?php foreach($tableData[$categoria->id] as $data): ?>
       <tr>
-        <td class="td_color_oscuro"><?php echo $data->product;?></td>
-        <td class="td_color_oscuro"><?php echo $data->genericname;?></td>
-        <td class="td_color_oscuro"><?php echo $data->presentation;?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->product;?><?php //var_dump($data);?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->genericname;?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->presentation;?></td>
         <?php 
         $indexCountry = 0;
         foreach($data->countries as $rep): 
@@ -51,10 +54,12 @@
             $compuestosList[$rep['compuesto']] = $rep['compuesto'];
           }
         ?>
-          <td class="td_notas td_color_oscuro <?php echo (count($data->countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>"><?php echo $rep['presencia'];?></td>
+          <td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($data->countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>"><?php echo $rep['presencia'];?></td>
         <?php
         $indexCountry++;
-        endforeach; ?>
+        endforeach; 
+        $num++;
+        ?>
 <!--        <td class="td_notas td_color_oscuro td_border_none"></td>-->
       </tr>
       <?php endforeach; ?>

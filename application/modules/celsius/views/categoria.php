@@ -37,6 +37,7 @@
       <?php endif; ?>
       
     </div>
+    <div class="clear"></div>
     <div class="envase_prodcuto">
       <?php 
             $imgType = 1;
