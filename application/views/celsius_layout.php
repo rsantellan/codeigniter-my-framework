@@ -73,13 +73,14 @@
                 <dt>|</dt>
             </dl>  		                
 			  <dl class="dropdown">
-				  <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" <?php if($menu == 'empresa'):?> class="submenu current"<?php endif;?>><?php echo lang('menu_empresa');?></dt>
+				  <dt id="one-ddheader" onmouseover="ddMenu('one',1)" onmouseout="ddMenu('one',-1)" <?php if($menu == 'empresa' || $menu == 'salonconferencias'):?> class="submenu current"<?php endif;?>><?php echo lang('menu_empresa');?></dt>
 					  <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
 						  <ul>
 							<li><a href="<?php echo site_url($lang."/".(($lang =='es')?'presentacion' : 'presentation').".html");?>" <?php if($submenu == 'presentacion'):?> class="current"<?php endif;?>><?php echo lang('menu_presentation');?></a></li>
 							<li><a href="<?php echo site_url($lang."/".(($lang =='es')?'infraestructura' : 'infrastructure').".html");?>" <?php if($submenu == 'infraestructura'):?> class="current"<?php endif;?>><?php echo lang('menu_infraestructura');?></a></li>
 							<li><a href="<?php echo site_url($lang."/".(($lang =='es')?'mercados' : 'markets').".html");?>" <?php if($submenu == 'mercados'):?> class="current"<?php endif;?>><?php echo lang('menu_mercados');?></a></li>
 							<li><a href="<?php echo site_url($lang."/".(($lang =='es')?'recursos-humanos' : 'human-resources').".html");?>" <?php if($submenu == 'recursoshumanos'):?> class="current"<?php endif;?>><?php echo lang('menu_recursos_humanos');?></a></li>
+							<li><a href="<?php echo site_url($lang."/".(($lang =='es')?'salon-conferencias' : 'conference-room').".html");?>" <?php if($menu == 'salonconferencias'):?> class="current"<?php endif;?>><?php echo lang('menu_salon_conferencia');?></a></li>
 						  </ul>
 					  </dd>
 			  </dl> 
@@ -118,7 +119,7 @@
 			  </dl>              
 			  <dl class="dropdown">
 				  <dt>
-                        <a href="<?php echo site_url($lang."/".(($lang =='es')?'salon-conferencias' : 'conference-room').".html");?>" <?php if($menu == 'salonconferencias'):?> class="current"<?php endif;?>><?php echo lang('menu_salon_conferencia');?></a>
+                        <a href="<?php echo site_url($lang."/".(($lang =='es')?'contacto' : 'contact').".html");?>" <?php if($menu == 'contacto'):?> class="current"<?php endif;?>><?php echo lang('menu_contacto');?></a>
                   </dt>
 			  </dl>  
 			  <dl class="dropdown">
@@ -155,7 +156,7 @@
 	  </header>
 	  <div class="buscador">
         <form method="GET" action="<?php echo site_url($lang."/".(($lang =='es')?'buscar' : 'search'));?>">
-          <input type="text" name="q" placeholder="Buscar">  
+          <input type="text" name="q" value="Buscar">  
           <input type="submit" value="" class="submit_search">
         </form>
 	  </div><!-- buscador -->		
@@ -175,8 +176,8 @@
 			<span>Nuestras marcas</span>
 			<hr>
 			<div class="logos_footer">
+ 			  <img src="<?php echo base_url(); ?>assets/celsius/images/celsius.png">				
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/akros_pharma.jpg">
-			  <img src="<?php echo base_url(); ?>assets/celsius/images/celsius.png">
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/dermur.jpg">
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/dermur_pharma.jpg">
 			</div>

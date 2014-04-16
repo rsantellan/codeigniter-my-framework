@@ -533,6 +533,7 @@ class Authadmin extends MY_Controller {
       $filenamecsv = sys_get_temp_dir().DIRECTORY_SEPARATOR. 'dataupload-'.time().'.csv';
       $fp = fopen($filenamecsv, 'w');
       fputcsv($fp, array('Nombre', 'Email', 'Especialidad', 'CPJ', 'Direccion', 'Telefono', 'Pass', 'Permiso'));
+      $this->load->helper(array('url', 'text', 'string'));
       foreach ($sheetData->getRowIterator() as $row) {
         $cellIterator = $row->getCellIterator();
         $cellIterator->setIterateOnlyExistingCells(false); // This loops all cells,
@@ -569,6 +570,17 @@ class Authadmin extends MY_Controller {
             }
             $cellIndex++;
           }
+          if($user['email'] == ""){
+            $data = strtolower(url_title(convert_accented_characters($user['nombre']), "-"));
+            $user['email'] = $data.'@email.com';
+          }
+          if($user['especialidad'] == ""){
+            $user['especialidad'] = 'No aplica';
+          }
+          if($user['cjp'] == ''){
+            $user['cjp'] = rand();
+          }
+          //var_dump($user['cjp']);
           if($this->form_validation->valid_email($user['email']) &&
              $this->form_validation->required($user['especialidad']) &&
              $this->form_validation->required($user['nombre']) &&

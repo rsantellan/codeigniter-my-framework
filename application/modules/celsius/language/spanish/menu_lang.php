@@ -35,3 +35,4 @@ $lang["menu_login_welcome"] = "Bienvenido";
 $lang["menu_login_close"] = "Cerrar sesi&oacute;n";
 $lang["menu_novedades_medicas"] = "novedades m&eacute;dicas";
 $lang["menu_intranet"] = "Red Interna";
+$lang["menu_contacto"] = "Contacto";

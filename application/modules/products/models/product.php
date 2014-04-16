@@ -118,6 +118,7 @@ class product extends MY_Model{
         $aux->name = "";
 		$aux->receta = 0;
         $aux->exists = false;
+        $aux->slug = 'no-data';
         return $aux;
       }
   }

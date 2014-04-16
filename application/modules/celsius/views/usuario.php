@@ -1,6 +1,5 @@
 <div class="content_site content_internas_seccion_iniciada">
   <?php echo $this->load->view('navegacionprivada') ?>
-  <?php //include('_nav_seccion_iniciada.php');?>
   <div class="titl_info_personal">
     <?php echo lang('usuario_informacion_personal');?>    
   </div>

@@ -41,7 +41,6 @@ if ( ! function_exists('force_download'))
 {
 	function force_download($filename = '', $data = '')
 	{
-        var_dump($filename);
 		if ($filename == '' OR $data == '')
 		{
 			return FALSE;
@@ -52,7 +51,6 @@ if ( ! function_exists('force_download'))
 		{
 			return FALSE;
 		}
-var_dump('aca??');
 		// Grab the file extension
 		$x = explode('.', $filename);
 		$extension = end($x);
@@ -76,7 +74,6 @@ var_dump('aca??');
 		{
 			$mime = (is_array($mimes[$extension])) ? $mimes[$extension][0] : $mimes[$extension];
 		}
-        var_dump('aca??');
 		// Generate the server headers
 		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE") !== FALSE)
 		{
