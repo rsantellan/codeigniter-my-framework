@@ -58,12 +58,9 @@ class congress extends MY_Controller {
 
   function edit($lang, $id) {
     $this->setLang($lang);
-    $this->addJquery();
-    $this->addColorbox();
+    $this->addUploadModuleAssets();
     $this->addModuleJavascript("admin", "adminManager.js");
     $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
-    $this->addModuleStyleSheet("upload", "albums.css");
-    $this->addModuleJavascript("upload", "imagesAdmin.js");
     $this->load->model('congress/ocongress');
     $this->data['use_grid_16'] = false;
     $this->data['content'] = "congress/edit";
@@ -113,6 +110,9 @@ class congress extends MY_Controller {
         $this->data['object'] = $obj;
         $this->load->view("admin/layout", $this->data);
       } else {
+        $this->addUploadModuleAssets();
+        $this->addModuleJavascript("admin", "adminManager.js");
+        $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
         $this->data['use_grid_16'] = false;
         $this->data['content'] = "congress/edit";
         $this->data['object'] = $obj;

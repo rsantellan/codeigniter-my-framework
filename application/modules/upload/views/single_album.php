@@ -15,11 +15,7 @@
             Editar <?php //echo $image->name;?>
           </a>
         </div>
-<!--        <img src="<?php //echo base_url().thumbnail_image(base_url(), $image->path , 150, 150, 1); ?>" /> -->
-<!--        <img src="<?php //echo base_url().thumbnail_image(base_url(), $image->path , 150, 150, 2); ?>" /> -->
-<!--        <img src="<?php //echo base_url().thumbnail_image(base_url(), $image->path , 150, 150, 4); ?>" /> -->
           <img src="<?php echo thumbnail_image(base_url(), $image->path , 150, 150, 3); ?>" />
-
         <div class="img_delete">
           <a onclick="return deleteFile('<?php echo site_url('upload/deleteFile/'.$image->id);?>', <?php echo $image->id;?>)" href="javascript:void(0)" class="">
             <img src="<?php echo base_url().'assets/upload/images/delete.png'?>" />

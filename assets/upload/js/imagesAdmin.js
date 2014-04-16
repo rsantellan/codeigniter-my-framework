@@ -54,10 +54,14 @@ function refreshAlbum(albumId)
       if(obj.response == "OK")
       {
         $('#album_' + albumId).replaceWith(obj.content.album);
+        $.blockUI({ 
+          message: '<h1>Procesando...</h1>' ,
+          css: {backgroundColor: 'blue', color: '#fff'}
+        });
         setTimeout(function(){
-            //alert("Hello");
             hoversImages();
             startUploadFancyLinks(albumId);
+            $.unblockUI();
         },4000);
         
       }

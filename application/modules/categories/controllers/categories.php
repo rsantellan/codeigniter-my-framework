@@ -67,11 +67,8 @@ class categories extends MY_Controller{
     function edit($lang, $id)
     {
       $this->setLang($lang);
-      $this->addJquery();
-      $this->addColorbox();
+      $this->addUploadModuleAssets();
       $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
       
       $this->load->model('categories/category');
       $this->data['use_grid_16'] = false;
@@ -123,6 +120,7 @@ class categories extends MY_Controller{
         }
         else
         {
+          $this->addUploadModuleAssets();
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "categories/edit";
           $this->data['object'] = $obj;

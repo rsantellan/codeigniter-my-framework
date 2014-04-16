@@ -72,12 +72,10 @@ class studycases extends MY_Controller{
     function edit($lang, $id)
     {
       $this->setLang($lang);
+      $this->addUploadModuleAssets();
       $this->addJqueryUI();
-      $this->addColorbox();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
       $this->load->model('studycases/studycase');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "studycases/edit";
@@ -134,6 +132,10 @@ class studycases extends MY_Controller{
         }
         else
         {
+          $this->addUploadModuleAssets();
+          $this->addJqueryUI();
+          $this->addModuleJavascript("admin", "adminManager.js");
+          $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "studycases/edit";
           $this->data['object'] = $obj;

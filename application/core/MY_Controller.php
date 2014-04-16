@@ -58,6 +58,7 @@ class MY_Controller extends MX_Controller
       $this->data['menu_id'] = "home";
 	  $this->data['ckeditor_on'] = false;
 	  $this->data['tinymce_on'] = false;
+	  $this->data['jquery_block'] = false;
 	  $this->data['use_noty'] = false;
       $this->data['lang'] = 'es';
   }
@@ -157,10 +158,17 @@ class MY_Controller extends MX_Controller
     $this->data['tinymce_on'] = true;
   }
   
+  protected function addJQueryBlock()
+  {
+    $this->addJquery();
+    $this->data['jquery_block'] = true;
+  }
+  
   protected function addUploadModuleAssets()
   {
 	$this->addJquery();
 	$this->addColorbox();
+    $this->addJQueryBlock();
 	$this->addModuleStyleSheet("upload", "albums.css");
 	$this->addModuleJavascript("upload", "imagesAdmin.js");
   }

@@ -66,11 +66,8 @@ class basiclink extends MY_Controller{
     
     function edit($id)
     {
-      $this->addJquery();
-      $this->addColorbox();
+      $this->addUploadModuleAssets();
       $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
       $this->load->model('basiclink/link');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "basiclink/edit";
@@ -123,6 +120,8 @@ class basiclink extends MY_Controller{
         }
         else
         {
+          $this->addUploadModuleAssets();
+          $this->addModuleJavascript("admin", "adminManager.js");
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "basiclink/edit";
           $this->data['object'] = $obj;

@@ -80,11 +80,8 @@ class presentations extends MY_Controller{
     function edit($lang, $id)
     {
       $this->setLang($lang);
-      $this->addJquery();
-      $this->addColorbox();
+      $this->addUploadModuleAssets();
       $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
       $this->addJqueryUI();
       //$this->load->model('categories/category');
       $this->load->model('presentations/presentation');
@@ -164,6 +161,9 @@ class presentations extends MY_Controller{
         }
         else
         {
+          $this->addUploadModuleAssets();
+          $this->addModuleJavascript("admin", "adminManager.js");
+          $this->addJqueryUI();
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "presentations/edit";
           $this->data['object'] = $obj;

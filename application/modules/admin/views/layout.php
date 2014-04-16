@@ -12,6 +12,10 @@
       
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery-1.7.1.min.js";?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/adminManager.js";?>"></script>
+      
+      <?php if($jquery_block): ?>
+        <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery.blockUI.js";?>"></script>
+      <?php endif; ?>
         
 	  <?php if($jquery_ui_on): ?>
         <script type="text/javascript" src="<?php echo base_url() . "assets/admin/js/jquery-ui-1.8.16.custom.min.js";?>"></script>

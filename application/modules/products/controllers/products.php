@@ -69,11 +69,8 @@ class products extends MY_Controller{
     function edit($lang, $id)
     {
       $this->setLang($lang);
-      $this->addJquery();
-      $this->addColorbox();
+      $this->addUploadModuleAssets();
       $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
       $this->load->model('categories/category');
 	  $this->data['categories'] = $this->category->retrieveAll(false, $this->getLang());
       $this->load->model('products/product');
@@ -110,12 +107,16 @@ class products extends MY_Controller{
       $obj->setId($id);
 	  $obj->setReceta($receta);
       //var_dump($obj);
-      
+      $categorias = array();
+      if(isset($_POST['categorias']))
+      {
+        $categorias = $_POST['categorias'];
+      }
       if($is_valid)
       {
         //Como es valido lo salvo
         $id = $obj->save();
-		$obj->saveCategories($_POST['categorias']);
+		$obj->saveCategories($categorias);
         $this->session->set_flashdata("salvado", "ok");
         redirect('products/edit/'.$lang."/".$id);
       }
@@ -130,6 +131,7 @@ class products extends MY_Controller{
         }
         else
         {
+          $this->addUploadModuleAssets();
           $this->data['use_grid_16'] = false;
           $this->data['content'] = "products/edit";
           $this->data['object'] = $obj;

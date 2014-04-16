@@ -264,8 +264,10 @@ class presentation extends MY_Model{
   
   private function saveNew($id = null)
   {
+    $createAlbum = false;
 	if($id === null)
     {
+        $createAlbum = true;
         $data = array();
         $data["ordinal"] = $this->retrieveLastOrder();
         $data["product_id"] = $this->getProductId();
@@ -288,7 +290,7 @@ class presentation extends MY_Model{
 		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $id, 'lang', $this->getLang()),
  	);
 	$this->db->insert($this->getTablename()."_translation", $dataTranslation);
-	if (!is_null($id) && $id != 0) {
+	if ($createAlbum && !is_null($id) && $id != 0) {
       $ci = & get_instance();
       $ci->load->model('upload/album');
       $ci->album->createAlbum($id, $this->getObjectClass(), 'folleto-es');
