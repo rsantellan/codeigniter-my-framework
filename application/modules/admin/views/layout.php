@@ -70,6 +70,7 @@
           </li>
           <li class="<?php echo ($menu_id == 'productos')? "current": "";?>"><a href="<?php echo site_url('products/index/'.$lang);?>">Productos</a></li>
           <li class="<?php echo ($menu_id == 'basiclink')? "current": "";?>"><a href="<?php echo site_url('basiclink/index');?>">Links</a></li>
+          <li class="<?php echo ($menu_id == 'trabajaconnosotros')? "current": "";?>"><a href="<?php echo site_url('trabajaconnosotros/index');?>">Cv</a></li>
         
           <li class="<?php echo ($menu_id == 'contacto')? "current": "";?>">
             <a href="javascript:void(0)">Configuraciones</a>

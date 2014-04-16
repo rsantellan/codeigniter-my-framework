@@ -1,4 +1,5 @@
 <h1>Usuario</h1>
+<img id="usuarios_loader" src="<?php echo base_url();?>assets/admin/images/loading.gif" />
 <?php if($this->session->flashdata('message')): ?>
   	<p id="salvado_ok" class="success">Usuario creado con exito</p>
   	
@@ -10,7 +11,7 @@
   <hr/>
 <?php endif; ?>
   
-<table id="table_data">
+<table id="table_data" style="display: none">
   <thead>
     <tr>
       <th>
@@ -66,6 +67,8 @@
         });
         
         $('a.colorbox_link_modal').colorbox();
+        $('#table_data').fadeIn('slow');
+        $('#usuarios_loader').hide();
         $('#table_data').dataTable({
             "aaSorting": [],
             "oLanguage" : {

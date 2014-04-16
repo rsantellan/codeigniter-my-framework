@@ -176,7 +176,7 @@ header{
 			color: #001d47;
 			text-transform: uppercase;
 			width: 240px;
-			text-align: center;
+			text-align: right;
 			}
 			.idiomas a{
 				color: #001d47;
@@ -185,6 +185,7 @@ header{
 		.header_right span{
 			margin: 10px 0;
 			display: block;
+			text-align: right;
 			}
 			.header_right span a{
 				color: #57585a;
@@ -194,7 +195,7 @@ header{
 					color: #001d47;
 					}
 		header form{
-			width: 210px;
+			/*width: 210px;*/
 			}
 		header label{
 			float: left;
@@ -202,7 +203,7 @@ header{
 			margin-right: 5px;
 			}
 		header input{
-			width: 130px;
+			width: 172px;
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			border-radius:10px;
@@ -226,7 +227,7 @@ header{
 			font-family: 'myriad_prosemibold';
 			}
 		header form p{
-			width: 210px;
+			/*width: 210px;*/
 			color: #004594;
 			text-align: right;
 			margin-top: 10px;
@@ -272,11 +273,12 @@ nav {
 	height: 40px;
 	}
 	nav.nav_login{
-		margin-left: 30px;
+		margin-left: 64px;
+		margin-top: 15px;
 		}
 .dropdown {
 	float:left;
-	padding:0 3px;
+	padding:0 4px;
 	}
 .dropdown dt {
 	font-size:12px;
@@ -464,7 +466,7 @@ nav.nav_seccion_iniciada{
 	font-size: 12px;
 	padding-top: 2px;
 	font-style: italic;
-	color: #c5c6c8;
+	color: #818181;
 	float: left;
 	}
 	.receta img{
@@ -755,7 +757,7 @@ footer{
 		}
 	.logos_footer{
 		width: 520px;
-		margin: 0 auto; 
+		margin: 24px auto; 
 		}
 	.logos_footer img{
 		float: left;
@@ -865,7 +867,7 @@ form.form_contacto{
 			color: #023b81;
 			}
 		form.from_registro input.submit{
-			margin-right: 160px;
+			margin-right: 462px;
 			}
 	form.form_contacto textarea{
 		width: 290px;
@@ -944,7 +946,7 @@ form.from_trabajar_lab{
 		height: 18px;	
 		}
 		form.from_registro{
-			width: 480px;
+			/*width: 480px;*/
 			}
 		form.from_registro input{
 			width: 250px;

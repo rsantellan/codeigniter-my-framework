@@ -257,14 +257,10 @@ class curriculum extends MY_Model{
   
 
   
-  public function retrieveAll($returnObjects = FALSE, $retrieveAvatar = FALSE, $limit = null)
+  public function retrieveAll()
   {
     $this->db->order_by("created_at", "desc");
-	if($limit !== null)
-	{
-	  $this->db->limit((int)$limit);
-	}
-    $query = $this->db->get($this->getTablename());
+	$query = $this->db->get($this->getTablename());
     return $query->result();
   }
   
@@ -277,7 +273,7 @@ class curriculum extends MY_Model{
   }
   
  
-  public function getById($id, $return_obj = true)
+  public function getById($id)
     {
       $this->db->where('id', $id);
       $this->db->limit('1');
@@ -285,16 +281,6 @@ class curriculum extends MY_Model{
       if( $query->num_rows() == 1 ){
         // One row, match!
         $obj = $query->row();        
-        if($return_obj)
-        {
-          $aux = new noticia();
-          $aux->setId($obj->id);
-          $aux->setName($obj->name);
-          $aux->setDescription($obj->description);
-          $aux->setCreatedAt($obj->created_at);
-          $aux->setUpdatedAt($obj->updated_at);
-          return $aux;
-        }
         return $obj;
       } else {
         // None

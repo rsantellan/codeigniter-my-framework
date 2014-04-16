@@ -1,41 +1,45 @@
-<h3>Listado de noticias</h3>
-<table id="table_data">
-  <thead>
-    <tr>
-      <th>
-        Nombre Apellido
-      </th>
-      <th>
-        Email
-      </th>
-      <th>
-        Telefono
-      </th>
-      <th>
-        Posición
-      </th>
-      <th>
-        Subido el
-      </th>
-      <th>
-        Acciones
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach($objects_list as $object): ?>
-    <tr id="table_row_<?php echo $object->id;?>">
-      <td>
-        <?php echo $object->nombre;?> <?php echo $object->apellido;?>
-      </td>
-      <td>
-        <?php echo $object->email;?>
-      </td>
-      <td>
-        <?php echo $object->phone;?>
-      </td>
-      <td>
-        <?php $first = true; ?>
+<div class="grid_16">
+  <h2>Mostrar CV</h2>
+  <div class="grid_7">
+    <span style="font-weight: bold">Nombre:</span>
+    <label ><?php echo $object->nombre;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Apellido:</span>
+    <label><?php echo $object->apellido;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Cedula:</span>
+    <label><?php echo $object->cedula;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Email:</span>
+    <label><?php echo $object->email;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Dirección:</span>
+    <label><?php echo $object->direccion;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Ciudad:</span>
+    <label><?php echo $object->ciudad;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">País:</span>
+    <label><?php echo $object->pais;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Télefono:</span>
+    <label><?php echo $object->phone;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Fax:</span>
+    <label><?php echo $object->fax;?></label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">Área:</span>
+    <label>
+    <?php $first = true; ?>
         <?php if($object->quimicofarmaceuticorecibido == 1): ?>
           Químicos farmacéuticos
           <?php $first = false; ?>
@@ -209,58 +213,10 @@
           ?>
           Estudiantes de carreras de grado o técnicas sin experiencia laboral
         <?php endif; ?>
-      </td>
-      <td>
-        <?php echo date ("d/m/Y h:ia",strtotime($object->created_at)); ?>
-      </td>
-      <td>
-        <a href="<?php echo site_url("trabajaconnosotros/show/".$object->id);?>">
-          Mostrar
-        </a>
-      </td>
-    </tr>
-      
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-<hr/>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a.colorbox_link").colorbox({
-            'width' : '40%',
-            'height' : '80%',
-            'iframe' : true
-        });
-        $('#table_data').dataTable({
-            "aaSorting": [],
-            "oLanguage" : {
-                "sProcessing":     "Procesando...",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            }
-        });
-    });
-</script>
+      </label>
+  </div>
+  <div class="grid_7">
+    <span style="font-weight: bold">CV:</span>
+    <a href="<?php echo site_url("trabajaconnosotros/cv/".$object->id);?>">Descargar</a>
+  </div>
+</div>

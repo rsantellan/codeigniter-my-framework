@@ -29,7 +29,7 @@ class trabajaconnosotros extends MY_Controller{
     function index(){
       //$this->output->enable_profiler(TRUE);  
       $this->load->model('trabajaconnosotros/curriculum');
-      $this->data['objects_list'] = $this->curriculum->retrieveAll(false, true);
+      $this->data['objects_list'] = $this->curriculum->retrieveAll();
       $this->data['content'] = "trabajaconnosotros/list";
       $this->load->helper('text');
       $this->load->helper('htmlpurifier');
@@ -44,85 +44,24 @@ class trabajaconnosotros extends MY_Controller{
       $this->load->view("admin/layout", $this->data);
     }
     
-    function add()
+    function show($id)
     {
       $this->load->model('trabajaconnosotros/curriculum');
-      $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
       $this->data['use_grid_16'] = false;
-      $this->data['content'] = "trabajaconnosotros/add";
-      $this->data['object'] = new $this->curriculum;
-      $this->load->view("admin/layout", $this->data);
-    }
-    
-    function edit($id)
-    {
-      $this->addJquery();
-      $this->addColorbox();
-      $this->addModuleJavascript("admin", "adminManager.js");
-      $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
-      $this->addModuleStyleSheet("upload", "albums.css");
-      $this->addModuleJavascript("upload", "imagesAdmin.js");
-      $this->load->model('trabajaconnosotros/curriculum');
-      $this->data['use_grid_16'] = false;
-      $this->data['content'] = "trabajaconnosotros/edit";
+      $this->data['content'] = "trabajaconnosotros/show";
       $this->data['object'] = $this->curriculum->getById($id);
       $this->load->view("admin/layout", $this->data);
     }
     
-    function save()
+    function cv($id)
     {
-      $this->load->library('form_validation');
       $this->load->model('trabajaconnosotros/curriculum');
-      // Get ID from form
-      $id = $this->input->post('id', true);
+      $obj = $this->curriculum->getById($id);
+      $this->load->helper('download');
+      $data = file_get_contents($obj->cvfile.$obj->cv); // Read the file's contents
+      $name = $obj->cv;
+      force_download($name, $data);
       
-      
-      $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
-      $this->form_validation->set_rules('description', 'description', '');      
-        
-      $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-      
-      $is_valid = false;
-      if (!$this->form_validation->run() == FALSE) 
-      {
-        $is_valid = true;
-      }
-      $name = set_value('name');
-      $description = set_value('description');
-      //var_dump($nombre);
-      $obj = new $this->curriculum;
-      $obj->setName($name);
-      $obj->setDescription($description);
-      $obj->setId($id);
-      //var_dump($obj);
-      
-      if($is_valid)
-      {
-        //Como es valido lo salvo
-        $id = $obj->save();
-        $this->session->set_flashdata("salvado", "ok");
-        redirect('trabajaconnosotros/edit/'.$id);
-      }
-      else
-      {
-        $this->addModuleJavascript("admin", "adminManager.js");
-        $this->addModuleJavascript("admin", "tiny_mce/tiny_mce_src.js");
-        if($obj->isNew())
-        {
-          $this->data['use_grid_16'] = false;
-          $this->data['content'] = "trabajaconnosotros/add";
-          $this->data['object'] = $obj;
-          $this->load->view("admin/layout", $this->data);
-        }
-        else
-        {
-          $this->data['use_grid_16'] = false;
-          $this->data['content'] = "trabajaconnosotros/edit";
-          $this->data['object'] = $obj;
-          $this->load->view("admin/layout", $this->data);
-        }
-      }
     }
     
     function delete($id)

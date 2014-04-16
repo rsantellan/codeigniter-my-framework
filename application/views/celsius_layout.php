@@ -173,27 +173,27 @@
       <?php endif; ?>
 	    <footer>
 		  <div class="footer">
-			<span>Nuestras marcas</span>
-			<hr>
+			<!--<span>Nuestras marcas</span>
+			<hr>-->
 			<div class="logos_footer">
  			  <img src="<?php echo base_url(); ?>assets/celsius/images/celsius.png">				
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/akros_pharma.jpg">
-			  <img src="<?php echo base_url(); ?>assets/celsius/images/dermur.jpg">
-			  <img src="<?php echo base_url(); ?>assets/celsius/images/dermur_pharma.jpg">
+			  <a href="http://dermur.com.uy/" target=:"blank"><img src="<?php echo base_url(); ?>assets/celsius/images/dermur.jpg"></a>
+			  <a href="http://dermur.com.uy/home/productos/dermurpharma-productos/lista-5" target=:"blank"><img src="<?php echo base_url(); ?>assets/celsius/images/dermur_pharma.jpg"></a>
 			</div>
 		  </div><!-- .footer -->
 		  <div class="clear"></div>
 		  <div class="datos_footer">
-			<p>Av. Joaquín Suárez 3593 - Montevideo Uruguay | (598) 2336 5446 | contacto@celsiuis.com.uy</p>
+			<p>Av. Joaquín Suárez 3593 - Montevideo Uruguay | (598) 2336 5446 | celsius@celsius.com.uy</p>
 			<a href="https://www.facebook.com/LaboratoriosCelsius?fref=ts" target="blank">
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/facebook.jpg">
 			</a>
 		  </div><!-- datos_footer -->
-		  <div class="mail_footer">
+		  <!-- <div class="mail_footer">
 			<a href="<?php echo site_url($lang."/".(($lang =='es')?'contacto' : 'contact').".html");?>">
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/mail.jpg">
 			</a>
-		  </div><!-- mail_footer -->
+		  </div>mail_footer -->
 		</footer>
       </div>
   </body>
