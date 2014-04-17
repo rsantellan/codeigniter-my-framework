@@ -431,6 +431,7 @@ class feu extends MY_Controller{
   {
 	//var_dump($id);
 	//var_dump($name);
+	$this->addModuleJavascript('feu', 'news.js');
 	$this->data['menu'] = 'noticias';
     $this->loadI18n("noticia", "", FALSE, TRUE, "", "feu");
     $this->load->model('noticias/noticia');

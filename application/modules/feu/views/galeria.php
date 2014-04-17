@@ -28,13 +28,14 @@
 			  <!-- 1/4 page width -->
 			<div class="one-fourth columns portfolio-item-preview">
 				<article>
-					<div class="item-picture" data-type="link">
-						<?php 
+					<?php 
 						$url_help = $galeria->g_id . "/" . url_title($galeria->g_name, '-', TRUE) . ".html";
 						$imgType = 3;
 						$width = 380;
 						$height = 238;
-						?>
+					?>
+					<div class="item-picture" data-type="link" style='min-height: <?php echo $height;?>px !important;'>
+
 						<?php if(count($galeria->contents) == 0): ?>
 							<img src="<?php echo base_url();?>assets/feu/images/galeria-no-image.jpg" width="<?php echo $width;?>" height="<?php echo $height;?>" width="<?php echo $width;?>"/>
 						<?php else: 

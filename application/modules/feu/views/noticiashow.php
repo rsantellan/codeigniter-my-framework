@@ -76,6 +76,9 @@
                                 $widthGallery = 200;
                                 $heightGallery = 150;
                                 $imgTypeGallery = 1;
+								$widthGalleryPhoto = 1000;
+                                $heightGalleryPhoto = 900;
+                                $imgTypeGalleryPhoto = 1;
                                 $documents = array();
                                 foreach($medialist as $media): 
                                     $usedType = $imgTypeGallery;
@@ -83,7 +86,10 @@
                                         $documents[] = $media;
                                     else:
                                 ?>
-                                    <img class="scale-with-grid image-left adapted-max-959px" alt="<?php echo $media->ac_name;?>" src="<?php echo thumbnail_image(base_url(), $media->ac_path , $widthGallery, $heightGallery, $usedType); ?>" />
+								<a class="prettyphoto-link" href="<?php echo thumbnail_image(base_url(), $media->ac_path , $widthGalleryPhoto, $heightGalleryPhoto, $imgTypeGalleryPhoto); ?>">
+								  <img class="scale-with-grid image-left adapted-max-959px" alt="<?php echo $media->ac_name;?>" src="<?php echo thumbnail_image(base_url(), $media->ac_path , $widthGallery, $heightGallery, $usedType); ?>" />
+								</a>
+                                    
                                     
                                 <?php
                                     endif;

@@ -94,9 +94,9 @@
 
 						<!-- Preview (image type) -->
 						<section class="preview-block image-type clearfix">
-							<span class="thumbnail-colored">
-							  <a href="<?php echo site_url('radios.html');?>"><img src="<?php echo base_url();?>assets/feu/images/radio.png" alt=""></a>
-							</span>
+<!--							<span class="thumbnail-colored">
+							  <a href="<?php //echo site_url('radios.html');?>"><img src="<?php //echo base_url();?>assets/feu/images/radio.png" alt=""></a>
+							</span>-->
 							<div class="preview-info" data-smallscreen="yes">
 								<h6 class="mb-7px"><?php echo lang("home_radios_titulo"); ?></h6>
 								<a href="<?php echo site_url('radios.html');?>" class="link-sm colored-text-2"><?php echo lang("home_radios_descripcion"); ?><span></span></a>
