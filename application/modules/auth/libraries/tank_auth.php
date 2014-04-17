@@ -175,7 +175,7 @@ class tank_auth
 	 * @param	bool
 	 * @return	array
 	 */
-	function create_user($username, $email, $password, $email_activation, $especialidad, $cjp, $direccion, $telefono, $permisos, $activated = null)
+	function create_user($username, $email, $password, $email_activation, $especialidad, $cjp, $direccion, $telefono, $permisos, $activated = null, $mutualista = '', $medicamentos = '')
 	{
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
@@ -200,6 +200,8 @@ class tank_auth
 				'telefono'	=> $telefono,
 				'direccion'	=> $direccion,
 				'profile'	=> $permisos,
+				'medicamentos'	=> $medicamentos,
+				'mutualista'	=> $mutualista,
 			);
 
 			if ($email_activation) {

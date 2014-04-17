@@ -71,6 +71,22 @@ $permisos = array(
 	'maxlength'	=> 255,
 	'size'	=> 255,
 );
+
+$mutualista = array(
+	'name'	=> 'mutualista',
+	'id'	=> 'mutualista',
+	'value'	=> set_value('mutualista'),
+	'maxlength'	=> 255,
+	'size'	=> 255,
+);
+
+$medicamentos = array(
+	'name'	=> 'medicamentos',
+	'id'	=> 'medicamentos',
+	'value'	=> set_value('medicamentos'),
+	'maxlength'	=> 255,
+	'size'	=> 255,
+);
 ?>
 
 <div class="grid_16">
@@ -84,6 +100,8 @@ $permisos = array(
   <?php echo form_error($direccion['name']); ?><?php echo isset($errors[$direccion['name']])?$errors[$direccion['name']]:''; ?>
   <?php echo form_error($telefono['name']); ?><?php echo isset($errors[$telefono['name']])?$errors[$telefono['name']]:''; ?>
   <?php echo form_error($permisos['name']); ?><?php echo isset($errors[$permisos['name']])?$errors[$permisos['name']]:''; ?>
+  <?php echo form_error($mutualista['name']); ?><?php echo isset($errors[$mutualista['name']])?$errors[$mutualista['name']]:''; ?>
+  <?php echo form_error($medicamentos['name']); ?><?php echo isset($errors[$medicamentos['name']])?$errors[$medicamentos['name']]:''; ?>
   <?php foreach($errors as $err):
     echo $err;
   endforeach;
@@ -141,6 +159,19 @@ $permisos = array(
   <p>
     <?php echo form_label('Teléfono', $telefono['id']); ?>
     <?php echo form_input($telefono); ?>
+  </p>
+</div>
+<div class="clear"></div>
+<div class="grid_5">
+  <p>
+    <?php echo form_label('Mutualista', $mutualista['id']); ?>
+    <?php echo form_input($mutualista); ?>
+  </p>
+</div>
+<div class="grid_5">
+  <p>
+    <?php echo form_label('Medicamentos', $medicamentos['id']); ?>
+    <?php echo form_input($medicamentos); ?>
   </p>
 </div>
 <div class="clear"></div>

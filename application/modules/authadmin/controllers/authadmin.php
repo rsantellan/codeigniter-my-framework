@@ -263,12 +263,25 @@ class Authadmin extends MY_Controller {
     $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
     $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
+    $this->form_validation->set_rules('mutualista', 'Mutualista', 'max_length[255]');
+    $this->form_validation->set_rules('medicamentos', 'Medicamentos', 'max_length[255]');
     $this->form_validation->set_rules('permisos', 'Permisos', 'required|max_length[255]');
     $data['errors'] = array();
 
     if ($this->form_validation->run()) {        // validation ok
       if (!is_null($data = $this->tank_auth->create_user(
-                      $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '', $this->form_validation->set_value('email'), $this->form_validation->set_value('password'), false, $this->form_validation->set_value('especialidad'), $this->form_validation->set_value('cjp'), $this->form_validation->set_value('direccion'), $this->form_validation->set_value('telefono'), $this->form_validation->set_value('permisos')
+                      $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '', 
+					  $this->form_validation->set_value('email'), 
+					  $this->form_validation->set_value('password'), 
+					  false, 
+					  $this->form_validation->set_value('especialidad'), 
+					  $this->form_validation->set_value('cjp'), 
+					  $this->form_validation->set_value('direccion'), 
+					  $this->form_validation->set_value('telefono'), 
+					  $this->form_validation->set_value('permisos'),
+					  NULL,
+					  $this->form_validation->set_value('mutualista'),
+					  $this->form_validation->set_value('medicamentos')
               ))) {         // success
         $this->_show_message($this->lang->line('auth_message_registration_completed_2') . ' ' . anchor('/auth/login/', 'Login'));
       } else {

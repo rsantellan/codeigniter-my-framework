@@ -5,6 +5,7 @@ $username = array(
 		'value' => set_value('username'),
 		'maxlength'	=> $this->config->item('username_max_length', 'tank_auth'),
 		'size'	=> 20,
+		'class' =>'input_registro_large',
 	);
 $email = array(
 	'name'	=> 'email',
@@ -20,6 +21,7 @@ $password = array(
 	'value' => set_value('password'),
 	'maxlength'	=> $this->config->item('password_max_length', 'tank_auth'),
 	'size'	=> 30,
+	'class' =>'input_registro_large',
 );
 $confirm_password = array(
 	'name'	=> 'confirm_password',
@@ -27,6 +29,7 @@ $confirm_password = array(
 	'value' => set_value('confirm_password'),
 	'maxlength'	=> $this->config->item('password_max_length', 'tank_auth'),
 	'size'	=> 30,
+	'class' =>'input_registro_large',
 );
 
 
@@ -36,6 +39,7 @@ $especialidad = array(
 	'value'	=> set_value('especialidad'),
 	'maxlength'	=> 255,
 	'size'	=> 255,
+	'class' =>'input_registro_large',
 );
 
 $cjp = array(
@@ -62,6 +66,22 @@ $telefono = array(
 	'size'	=> 255,
 );
 
+$mutualista = array(
+	'name'	=> 'mutualista',
+	'id'	=> 'mutualista',
+	'value'	=> set_value('mutualista'),
+	'maxlength'	=> 255,
+	'size'	=> 255,
+);
+
+$medicamentos = array(
+	'name'	=> 'medicamentos',
+	'id'	=> 'medicamentos',
+	'value'	=> set_value('medicamentos'),
+	'maxlength'	=> 255,
+	'size'	=> 255,
+	'class' =>'input_registro_large',
+);
 ?>
 <?php if(!$guardado): ?>
 <div class="content_site content_internas">
@@ -74,6 +94,8 @@ $telefono = array(
     <?php echo form_error($cjp['name']); ?><?php echo isset($errors[$cjp['name']])?$errors[$cjp['name']]:''; ?>
     <?php echo form_error($direccion['name']); ?><?php echo isset($errors[$direccion['name']])?$errors[$direccion['name']]:''; ?>
     <?php echo form_error($telefono['name']); ?><?php echo isset($errors[$telefono['name']])?$errors[$telefono['name']]:''; ?>
+	<?php echo form_error($mutualista['name']); ?><?php echo isset($errors[$mutualista['name']])?$errors[$mutualista['name']]:''; ?>
+	<?php echo form_error($medicamentos['name']); ?><?php echo isset($errors[$medicamentos['name']])?$errors[$medicamentos['name']]:''; ?>
     <?php 
     /*
     foreach($errors as $err):
@@ -92,10 +114,12 @@ $telefono = array(
         <?php echo form_password($confirm_password, array('class' =>'input_registro_large')); ?>
         <div class="clear"></div>
         <?php echo form_label(lang('registro_especialidad'), $especialidad['id'], array('class' =>'label_registro_large')); ?>
-        <?php echo form_input($especialidad, array('class' =>'input_registro_large')); ?>
-        <div class="clear"></div>
+		<?php echo form_input($especialidad); ?>
+		<span><?php echo lang('registro_especialidad_texto');?></span>
+		<div class="clear"></div>
         <?php echo form_label(lang('registro_caja_profesional'), $cjp['id']); ?>
-        <?php echo form_input($cjp); ?><span><?php echo lang('registro_caja_profesional_texto');?></span>
+        <?php echo form_input($cjp); ?>
+		<span><?php echo lang('registro_caja_profesional_texto');?></span>
         <div class="clear"></div>
         <?php echo form_label(lang('registro_email'), $email['id']); ?>
         <?php echo form_input($email); ?>
@@ -106,14 +130,21 @@ $telefono = array(
         <?php echo form_label(lang('registro_telefono'), $telefono['id']); ?>
         <?php echo form_input($telefono); ?>
         <div class="clear"></div>
-
+		<?php echo form_label(lang('registro_mutualista'), $mutualista['id']); ?>
+        <?php echo form_input($mutualista); ?>
+		<span><?php echo lang('registro_mutualista_texto');?></span>
+		<div class="clear"></div>
+        <p><?php echo lang('registro_medicamento_texto');?></p>
+		<?php echo form_label(lang('registro_medicamento'), $medicamentos['id'], array('class' =>'label_registro_large')); ?>
+		<?php echo form_input($medicamentos); ?>
+		<div class="clear"></div>
         <input type="submit" class="submit" value="Enviar">    
     <?php echo form_close();?>
 <!--    </form>-->
-    <p class="info_contacto">Los campos marcados con (*) son obligatorios</p>
+    <p class="info_contacto"><?php echo lang('registro_campos_obligatorios');?></p>
   </div><!-- content -->
 <?php else: ?>
-  <h3>Ingresado con exito.</h3>
+  <h3><?php echo lang('registro_ingresado');?></h3>
 <?php endif;?>  
   <div class="images_bottom">
     <img src="<?php echo base_url(); ?>assets/celsius/images/img_productos.jpg">

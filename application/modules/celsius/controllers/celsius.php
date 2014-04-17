@@ -1120,6 +1120,8 @@ class celsius extends MY_Controller {
     $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
     $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
+	$this->form_validation->set_rules('mutualista', 'Mutualista', 'max_length[255]');
+    $this->form_validation->set_rules('medicamentos', 'Medicamentos', 'max_length[255]');
     $guardado = false;
     if ($this->form_validation->run()) {
       if (!is_null($data = $this->tank_auth->create_user(
@@ -1132,7 +1134,9 @@ class celsius extends MY_Controller {
                       $this->form_validation->set_value('direccion'), 
                       $this->form_validation->set_value('telefono'), 
                       'medico',
-                      false
+                      false,
+					  $this->form_validation->set_value('mutualista'),
+					  $this->form_validation->set_value('medicamentos')
               ))) {
         $guardado = true;
         //Sending user email
