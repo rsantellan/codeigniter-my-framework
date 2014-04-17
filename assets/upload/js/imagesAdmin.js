@@ -1,6 +1,7 @@
 $(document).ready(function() { 
   hoversImages();
   startUploadFancyLinks();
+  startFancyLinks();
 });
 
 function hoversImages()
@@ -78,12 +79,14 @@ function startUploadFancyLinks()
       'height' : '80%',
       'iframe' : true,
       'onClosed' : function(){
+        /*
         if ( $.browser.msie ) {
             $('.single_album_container').each(function(indice, elemento){
                 var element_id = $(elemento).attr('id').replace('album_', '');
                 refreshAlbum(element_id);
             });
         }
+        */
       }
   });
   adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');

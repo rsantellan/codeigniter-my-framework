@@ -142,18 +142,18 @@ class Upload extends MY_Controller {
 	//$salida['content'] = array('album' => $contenido);
 	echo json_encode($salida);
 	die;
-	exit(0);
-	var_dump($obj);
-	die;
-	$obj->setPath($save_path . $file_name);
-	$obj->setName($file);
-	$obj->setType($type);
-
-
-	echo $_POST['album_id'];
-
-	sleep(1);
-	exit(0);
+//	exit(0);
+//	var_dump($obj);
+//	die;
+//	$obj->setPath($save_path . $file_name);
+//	$obj->setName($file);
+//	$obj->setType($type);
+//
+//
+//	echo $_POST['album_id'];
+//
+//	sleep(1);
+//	exit(0);
   }
 
   function do_pupload() {
@@ -172,16 +172,10 @@ class Upload extends MY_Controller {
       }
     }
 	$this->load->library('mupload');
-	$ckeditor = false;
-	if (isset($_POST['ckeditor']) && $_POST['ckeditor'] == 1) {
-	  $ckeditor = true;
-	}
-
-	if (!$ckeditor) {
-	  $save_path = getcwd() . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $_POST['album_id'];
-	} else {
-	  $save_path = getcwd() . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'ckeditor' . DIRECTORY_SEPARATOR;
-	}
+	
+    $relative_path = 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $_POST['album_id'];
+    $save_path = FCPATH . $relative_path; 
+	
 	$this->mupload->checkDirectory($save_path);
 	$upload_name = 'Filedata';
 	$extension_whitelist = array('jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'xls', 'ppt', 'xlsx', 'pptx', 'flv', 'mpg', 'avi'); // Allowed file extensions
@@ -260,7 +254,8 @@ class Upload extends MY_Controller {
 	$info = pathinfo($save_path .DIRECTORY_SEPARATOR. $fileName);
 	$type = $info['extension'];
 	$obj = new $this->albumcontent;
-	$obj->setPath($save_path .DIRECTORY_SEPARATOR. $fileName);
+    $obj->setBasepath(FCPATH);
+	$obj->setPath($relative_path .DIRECTORY_SEPARATOR. $fileName);
 	$obj->setName($fileName);
 	$obj->setType($type);
 	$contentType = albumcontent::ISIMAGE;

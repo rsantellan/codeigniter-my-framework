@@ -34,7 +34,7 @@ class admin extends MY_Controller{
     $this->data['content'] = "admin/welcome";
     $this->data['menu_id'] = 'dashboard';
     
-    $this->load->view("admin/layout", $this->data);
+    $this->load->view("admin/layout_bootstrap", $this->data);
   }
   
   public function adminLogin()

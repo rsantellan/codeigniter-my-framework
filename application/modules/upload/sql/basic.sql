@@ -31,3 +31,5 @@ CREATE TABLE IF NOT EXISTS albumcontent(
 
 ALTER TABLE `albumcontent`
   ADD CONSTRAINT `fk_albumcontent_album` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE `albumcontent` ADD `basepath` VARCHAR( 255 ) NOT NULL DEFAULT '' AFTER `path` ;

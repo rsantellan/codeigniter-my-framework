@@ -40,6 +40,14 @@
 
 $route['default_controller'] = "sumuy";
 $route[""] = 'sumuy/index';
+$route["sum.html"] = 'sumuy/sum';
+$route["sociedad.html"] = 'sumuy/sociedad';
+$route["socios.html"] = 'sumuy/socios';
+$route["novedades.html"] = 'sumuy/novedades';
+$route["novedades-(:num).html"] = 'sumuy/novedades/$1';
+$route["novedad/(:num)/(:any).html"] = 'sumuy/novedad/$1/$2';
+$route["tesis.html"] = 'sumuy/tesis';
+$route["llamados.html"] = 'sumuy/llamados';
 /*
 $route["^(en|es)"] = 'celsius/index/$1';
 $route["^(en|es)/categoria/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';

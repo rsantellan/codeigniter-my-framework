@@ -56,6 +56,7 @@ class MY_Controller extends MX_Controller
       $this->data['fancybox_on'] = false;
       $this->data['colorbox_on'] = false;
       $this->data['menu_id'] = "home";
+      $this->data['menu'] = "home";
 	  $this->data['ckeditor_on'] = false;
 	  $this->data['tinymce_on'] = false;
 	  $this->data['jquery_block'] = false;
@@ -155,13 +156,27 @@ class MY_Controller extends MX_Controller
   protected function addTinyMce()
   {
     $this->addJquery();
+    $this->addAdminBasicJs();
     $this->data['tinymce_on'] = true;
+  }
+  
+  protected function addAdminBasicJs()
+  {
+    $this->addModuleJavascript("admin", "adminManager.js");
   }
   
   protected function addJQueryBlock()
   {
     $this->addJquery();
     $this->data['jquery_block'] = true;
+  }
+  
+  protected function addBootstrapDataTable()
+  {
+    $this->addJquery();
+    $this->addModuleJavascript("bootstrap", "plugins/dataTables/jquery.dataTables.js");
+    $this->addModuleJavascript("bootstrap", "plugins/dataTables/dataTables.bootstrap.js");
+    $this->addModuleStyleSheet('bootstrap', 'plugins/dataTables/dataTables.bootstrap.css');
   }
   
   protected function addUploadModuleAssets()

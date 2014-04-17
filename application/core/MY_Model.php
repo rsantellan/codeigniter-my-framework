@@ -67,7 +67,10 @@ class MY_Model extends CI_Model{
   
   function retrieveForSort($showField)
   {
-    $this->db->select(array('id', "name", 'ordinal'));
+    if($showField == NULL){
+      $showField = 'name';
+    }
+    $this->db->select(array('id', $showField, 'ordinal'));
     $this->db->order_by("ordinal", "desc");
     $query = $this->db->get($this->getTablename());
 
@@ -173,6 +176,7 @@ class MY_Model extends CI_Model{
 	$sql = "select
 			albums.obj_id as a_obj_id,
             albumcontent.id as ac_id,
+            albumcontent.basepath as ac_basepath,
             albumcontent.path as ac_path,
             albumcontent.name as ac_name,
             albumcontent.type as ac_type,

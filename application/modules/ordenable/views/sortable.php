@@ -32,7 +32,7 @@
       
       <?php foreach($sort_list as $object): ?>
         <li id="listItem_<?php echo $object->id;?>" class="ui-state-default">
-          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $object->name;?>
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $object->$sort_field;?>
         </li>
       <?php endforeach; ?>
     </ul>

@@ -14,6 +14,7 @@ if (!defined('BASEPATH'))
 class albumcontent extends MY_Model{
     
     private $id;
+    private $basepath;
     private $path;
     private $name;
     private $type;
@@ -41,6 +42,14 @@ class albumcontent extends MY_Model{
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getBasepath() {
+      return $this->basepath;
+    }
+
+    public function setBasepath($basepath) {
+      $this->basepath = $basepath;
     }
 
     public function getPath() {
@@ -146,6 +155,7 @@ class albumcontent extends MY_Model{
   private function saveNew()
   {
     $data = array();
+    $data["basepath"] = $this->getBasepath();
     $data["path"] = $this->getPath();
     $data["name"] = $this->getName();
     $data["type"] = $this->getType();
@@ -204,6 +214,7 @@ class albumcontent extends MY_Model{
       $aux = new albumcontent();
       $aux->setId($obj->id);
       $aux->setName($obj->name);
+      $aux->setBasepath($obj->basepath);
       $aux->setPath($obj->path);
       $aux->setAlbumId($albumId);
       $aux->setType($obj->type);
@@ -229,6 +240,7 @@ class albumcontent extends MY_Model{
         $aux = new albumcontent();
         $aux->setId($obj->id);
         $aux->setName($obj->name);
+        $aux->setBasepath($obj->basepath);
         $aux->setPath($obj->path);
         $aux->setAlbumId($obj->album_id);
         $aux->setType($obj->type);
@@ -265,9 +277,9 @@ class albumcontent extends MY_Model{
     $ci = &get_instance();
     log_message("debug", "Deleting cache images of : ".$id);
     $ci->load->library("upload/mupload");
-    $ci->mupload->deleteImageCache($file->path);
+    $ci->mupload->deleteImageCache($file->basepath.$file->path);
     log_message("debug", "Deleting actual file of image : ".$id);
-    unlink($file->path);
+    unlink($file->basepath.$file->path);
     log_message("debug", "Deleting db of image : ".$id);
     $this->db->where('id', $id);
     $this->db->delete($this->getTablename());
@@ -307,7 +319,7 @@ class albumcontent extends MY_Model{
   public function saveToDiskYoutubeImage()
   {
       $url = $this->youtubeGetImageUrl();
-      $save_path = getcwd() . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $this->getAlbumId();
+      $save_path = FCPATH . '' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . '' . $this->getAlbumId();
       $fileName = $this->getCode().".jpg";
       $ci = &get_instance();
       $ci->load->library("upload/mupload");

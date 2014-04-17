@@ -1,0 +1,12 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+$lang['menu_sum'] = 'sum';
+$lang['menu_sociedad'] = 'sociedad';
+$lang['menu_socios'] = 'socios';
+$lang['menu_socios'] = 'socios';
+$lang['menu_novedades'] = 'novedades';
+$lang['menu_tesis'] = 'tesis';
+$lang['menu_llamados'] = 'llamados';
+$lang['menu_inscripcion'] = 'inscripci&oacute;n';
+$lang['menu_enlaces'] = 'enlaces';
+$lang['menu_contacto'] = 'contacto';
+$lang['menu_footer'] = 'Instituto de Investigaciones Biológicas Clemente Estable (IIBCE)</br>Avenida Italia 3318 · Montevideo, Uruguay CP 11600<br>Tel (598) 2487 1616 | Fax (598) 2487 5461 - <a href="mailto:infosumuy@sumuy.org.uy?subject=Consulta desde el sitio web">infosumuy@sumuy.org.uy</a>';

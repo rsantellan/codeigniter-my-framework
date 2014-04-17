@@ -132,3 +132,18 @@ function startFancyLinks()
   adminManager.getInstance().startFancyInPage('colorbox_link');
   adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
 }
+
+
+
+$(document).ready(function() { 
+  if($("a.colorbox_link_sort").length > 0)
+  {
+    $("a.colorbox_link_sort").colorbox({
+      'width' : '40%',
+      'height' : '80%',
+      'onClosed' : function(){window.location.reload();},
+      'iframe' : true
+    });
+  }
+  
+});

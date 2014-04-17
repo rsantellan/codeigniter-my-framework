@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS  `llamado` (
+ id int(40) NOT NULL auto_increment,
+ name VARCHAR(255) NOT NULL,
+ document VARCHAR(255) NOT NULL,
+ birthdate VARCHAR(255) NOT NULL,
+ country VARCHAR(255) NOT NULL,
+ nacionality VARCHAR(255) NOT NULL,
+ title VARCHAR(255) NOT NULL,
+ mail VARCHAR(255) NOT NULL,
+ institution VARCHAR(255) NOT NULL,
+ address VARCHAR(255) NOT NULL,
+ phone VARCHAR(255) NOT NULL,
+ emailinstitucion VARCHAR(255) NOT NULL,
+ postnumber VARCHAR(255) NOT NULL,
+ countryinstitution VARCHAR(255) NOT NULL,
+ website VARCHAR(255) NOT NULL,
+ position VARCHAR(255) NOT NULL,
+ investigation VARCHAR(255) NOT NULL,
+ tutor VARCHAR(255) NOT NULL,
+ cvuy VARCHAR(255) NOT NULL,
+ comments TEXT NOT NULL,
+ PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
