@@ -86,6 +86,12 @@
                         <a href="<?php echo site_url('llamados/index');?>"><i class="fa fa-fw fa-bars"></i> Llamados</a>
                     </li>
                     <li>
+                      <a href="<?php echo site_url('language/index');?>"><i class="fa fa-fw fa-keyboard-o"></i>Textos</a>
+                    </li>
+                    <li>
+                      <a href="<?php echo site_url('contacto/contactoadmin');?>"><i class="fa fa-fw fa-envelope"></i>Contacto</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>

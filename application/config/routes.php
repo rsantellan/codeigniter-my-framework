@@ -48,6 +48,8 @@ $route["novedades-(:num).html"] = 'sumuy/novedades/$1';
 $route["novedad/(:num)/(:any).html"] = 'sumuy/novedad/$1/$2';
 $route["tesis.html"] = 'sumuy/tesis';
 $route["llamados.html"] = 'sumuy/llamados';
+$route["contacto.html"] = 'sumuy/contacto';
+$route["enlaces.html"] = 'sumuy/enlaces';
 /*
 $route["^(en|es)"] = 'celsius/index/$1';
 $route["^(en|es)/categoria/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';

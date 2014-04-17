@@ -10,8 +10,6 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-lg-10">
-        <?php //echo form_error('nombre'); ?>
-        <?php //echo form_error('descripcion'); ?>
         <?php
           $this->load->view('form');
         ?>

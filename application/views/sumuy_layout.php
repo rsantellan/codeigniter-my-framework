@@ -86,8 +86,8 @@
             <li><a href="<?php echo site_url('tesis.html');?>" class="<?php echo ($menu == 'tesis')? 'current' : '';?>" ><?php echo lang('menu_tesis');?></a></li>
             <li><a href="<?php echo site_url('llamados.html');?>" class="<?php echo ($menu == 'llamados')? 'current' : '';?>" ><?php echo lang('menu_llamados');?></a></li>
             <li><a href="/inscripcion.php" class="<?php echo ($menu == 'inscripcion')? 'current' : '';?>" ><?php echo lang('menu_inscripcion');?></a></li>
-            <li><a href="/enlaces.php" class="<?php echo ($menu == 'enlaces')? 'current' : '';?>" ><?php echo lang('menu_enlaces');?></a></li>
-            <li style="margin-right:0;"><a href="/contacto.php" class="<?php echo ($menu == 'contacto')? 'current' : '';?>" ><?php echo lang('menu_contacto');?></a></li>
+            <li><a href="<?php echo site_url('enlaces.html');?>" class="<?php echo ($menu == 'enlaces')? 'current' : '';?>" ><?php echo lang('menu_enlaces');?></a></li>
+            <li style="margin-right:0;"><a href="<?php echo site_url('contacto.html');?>" class="<?php echo ($menu == 'contacto')? 'current' : '';?>" ><?php echo lang('menu_contacto');?></a></li>
           </ul>                                   
         </nav>
       </header>

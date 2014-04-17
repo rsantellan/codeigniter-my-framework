@@ -12,6 +12,9 @@ if (!defined('BASEPATH'))
  * @author Rodrigo Santellan
  */
 class contactoadmin extends MY_Controller{
+  
+  private $layout = 'admin/layout_bootstrap';
+  
   function __construct()
   {
     parent::__construct();
@@ -34,60 +37,31 @@ class contactoadmin extends MY_Controller{
 	$this->addJquery();
   }
   
-  /*function index(){
-      $this->load->model('contacto/mail_db');
-      $this->data['list'] = $this->mail_db->retrieveAllMailDbData();
-      
-      $funcion_list = array();
-      
-      foreach($this->data['list'] as $key => $funcion)
-      {
-        $row_list = array();
-        foreach($funcion as $row)
-        {
-          $row_list[] = $this->load->view('contacto/contacto_admin_row', array('row' => $row), true);
-        }
-        $funcion_list[$key] = $row_list;
-        //var_dump($funcion);
-        //var_dump($key);
-      }
-      
-      $this->data['content_rows'] = $funcion_list;
-      $this->data['content'] = "contacto/contacto_admin";
-      
-      $this->addJquery();
-      $this->addColorbox();
-      //$this->addModuleJavascript("actaadmin", "list.js");
-      $this->load->view("admin/layout", $this->data);
-    }*/
-    
-    function index(){
-      $this->load->model('contacto/mail_db');
-      $this->data['list'] = $this->mail_db->retrieveAllMailDbData();
-      $this->data['content'] = "contacto/contactoadmin/list";
-      
-      $this->addJquery();
-      $this->addColorbox();
-      $this->addModuleJavascript("admin", "admin-basic-list.js");
-      $this->load->view("admin/layout", $this->data);
-    }
+  function index(){
+    $this->load->model('contacto/mail_db');
+    $this->data['list'] = $this->mail_db->retrieveAllMailDbData();
+    $this->data['content'] = "contacto/contactoadmin/list";
+
+    $this->addBootstrapDataTable();
+    $this->addAdminBasicJs();
+    $this->addModuleJavascript('admin', 'start-datatable.js');
+    $this->load->view($this->layout, $this->data);
+  }
     
     function addContacto()
     {
       $this->load->model('contacto/mail_db');
-      $this->data['use_grid_16'] = false;
       $this->data['content'] = "contacto/contactoadmin/add";
       $this->data['object'] = new $this->mail_db;
-      $this->load->view("admin/layout", $this->data);
+      $this->load->view($this->layout, $this->data);
     }
     
     function editContacto($id)
     {
       $this->load->model('contacto/mail_db');
-      $this->data['use_grid_16'] = false;
       $this->data['content'] = "contacto/contactoadmin/edit";
       $this->data['object'] = $this->mail_db->getById($id);
-      $this->load->view("admin/layout", $this->data);
+      $this->load->view($this->layout, $this->data);
     }
     
     function saveContacto()
@@ -130,19 +104,17 @@ class contactoadmin extends MY_Controller{
       }
       else
       {
-    if($obj->isNew())
+        if($obj->isNew())
         {
-          $this->data['use_grid_16'] = false;
           $this->data['content'] = "contacto/contactoadmin/add";
           $this->data['object'] = $obj;
-          $this->load->view("admin/layout", $this->data);
+          $this->load->view($this->layout, $this->data);
         }
         else
         {
-          $this->data['use_grid_16'] = false;
           $this->data['content'] = "contacto/contactoamdin/edit";
           $this->data['object'] = $obj;
-          $this->load->view("admin/layout", $this->data);
+          $this->load->view($this->layout, $this->data);
         }
       }
     }

@@ -1,5 +1,4 @@
 <?php // Change the css classes to suit your needs    
-
 $attributes = array('class' => '', 'id' => '');
 echo form_open('novedades/save', $attributes); ?>
 

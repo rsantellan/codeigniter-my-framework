@@ -1,14 +1,27 @@
-<div class="grid_16">
-  <h2>Agregar Contacto</h2>
-  <?php echo form_error('direccion'); ?>
-  <?php echo form_error('tipo'); ?>
-  <?php echo form_error('nombre'); ?>
-  <?php echo form_error('funcion'); ?>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Agregar Contacto</h1>
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
-<?php
-  $this->load->view('contacto/contactoadmin/form');
-?>
-
-<hr/>
-
-<a href="<?php echo site_url('contacto/contactoadmin/index'); ?>"> Volver al indice </a>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-10">
+        <?php
+          //$this->load->view('form');
+          $this->load->view('contacto/contactoadmin/form');
+        ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <a class="btn btn-info" href="<?php echo site_url('contacto/contactoadmin/index'); ?>"> Volver al indice </a>
+  </div>
+</div>

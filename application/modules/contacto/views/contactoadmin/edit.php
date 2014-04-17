@@ -1,26 +1,32 @@
-<div class="grid_16">
-  <h2>Editar Contacto</h2>
-  <?php echo form_error('direccion'); ?>
-  <?php echo form_error('tipo'); ?>
-  <?php echo form_error('nombre'); ?>
-  <?php echo form_error('funcion'); ?>
-  <?php
-   if($this->session->flashdata('salvado') == "ok"):
-  ?>
-  	<p id="salvado_ok" class="success">Contacto salvado</p>
-  	
-  	<script type="text/javascript">
- 		$(document).ready(function() {
- 			$("#salvado_ok").fadeOut(3000);
- 		});
- 	</script>
-  <?php endif; ?>  
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Editar Contacto</h1>
+    <?php if($this->session->flashdata('salvado') == "ok"): ?>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Contacto salvado
+    </div>
+    <?php endif;?>
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
-
-<?php if(!is_null($object)): ?>
-<?php
-  $this->load->view('contacto/contactoadmin/form');
-?>
-<?php endif; ?>
-<hr/>
-<a href="<?php echo site_url('contacto/contactoadmin/index'); ?>"> Volver al indice </a>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-10">
+        <?php
+          $this->load->view('contacto/contactoadmin/form');
+        ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <a class="btn btn-info" href="<?php echo site_url('contacto/contactoadmin/index'); ?>"> Volver al indice </a>
+  </div>
+</div>

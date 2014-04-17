@@ -93,6 +93,67 @@ class sumuy extends MY_Controller{
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function enlaces()
+  {
+    $this->data['menu'] = "enlaces";
+    $this->loadI18n("enlaces", $this->getLanguageFile(), FALSE, TRUE, "", "sumuy");
+    $this->data['content'] = 'enlaces';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function contacto()
+  {
+    $this->data['mail'] = false;
+    $this->data['menu'] = "contacto";
+    $this->loadI18n("contacto", $this->getLanguageFile(), FALSE, TRUE, "", "sumuy");
+    $this->data['content'] = 'contacto';
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->load->helper('url');
+
+    $this->form_validation->set_rules('nombre_apellido', 'nombre_apellido', 'required|max_length[255]');
+    $this->form_validation->set_rules('mail', 'mail', 'required|valid_email|max_length[255]');
+    $this->form_validation->set_rules('tel', 'tel', 'max_length[255]');
+    $this->form_validation->set_rules('comment', 'comment', 'required');
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    if ($this->form_validation->run() !== FALSE) {
+      // build array for the model
+
+      $form_data = array(
+          'nombre_apellido' => set_value('nombre_apellido'),
+          'mail' => set_value('mail'),
+          'tel' => set_value('tel'),
+          'comment' => set_value('comment'),          
+      );
+      $this->load->model('contacto/mail_db');
+      $return = $this->mail_db->retrieveContactMailInfo();
+      $this->load->library('email');
+
+      $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+      $this->email->to($return['to']); 
+      if(isset($return['cc']))
+      {
+        $this->email->cc($return['cc']); 
+      }
+      if(isset($return['bcc']))
+      {
+        $this->email->bcc($return['bcc']);
+      }
+
+      $this->email->reply_to($form_data['mail'], $form_data['nombre_apellido']);
+
+      $this->email->subject('[SUMUY WEB]Contacto desde el sitio web');
+      $message = $this->load->view('mail_contacto', $form_data, true);
+      $this->email->message($message); 
+
+      $this->email->send();
+      $this->data['mail'] = true;
+      //Debug
+      //echo $this->email->print_debugger();die;
+    }
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function llamados()
   {
     $this->data['mail'] = false;
