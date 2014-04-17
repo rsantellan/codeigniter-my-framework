@@ -38,8 +38,9 @@
 |
 */
 
-$route['default_controller'] = "celsius";
-$route[""] = 'celsius/index';
+$route['default_controller'] = "sumuy";
+$route[""] = 'sumuy/index';
+/*
 $route["^(en|es)"] = 'celsius/index/$1';
 $route["^(en|es)/categoria/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';
 $route["^(en|es)/category/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';
@@ -97,7 +98,7 @@ $route["^(en|es)/buscar"] = 'celsius/search/$1';
 $route["^(en|es)/search"] = 'celsius/user/$1';
 $route["^(en|es)/intranet.html"] = 'celsius/intranet/$1';
 $route["^(en|es)/intranet.html"] = 'celsius/intranet/$1';
-
+*/
 //$route["^(en|es)/usuario-editar.html"] = 'celsius/useredit/$1';
 //$route["^(en|es)/user-edit.html"] = 'celsius/useredit/$1';
 /*
