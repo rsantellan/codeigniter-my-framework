@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2014 at 05:58 PM
+-- Generation Time: Apr 21, 2014 at 05:28 PM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
 -- PHP Version: 5.5.3-1ubuntu2.3
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `sumuy`
 --
-CREATE DATABASE IF NOT EXISTS `sumuy` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `sumuy`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +27,6 @@ USE `sumuy`;
 -- Table structure for table `albumcontent`
 --
 
-DROP TABLE IF EXISTS `albumcontent`;
 CREATE TABLE IF NOT EXISTS `albumcontent` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `path` varchar(256) DEFAULT NULL,
@@ -44,15 +42,15 @@ CREATE TABLE IF NOT EXISTS `albumcontent` (
   `ordinal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_albumcontent_album` (`album_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `albumcontent`
 --
 
 INSERT INTO `albumcontent` (`id`, `path`, `basepath`, `name`, `type`, `contenttype`, `url`, `code`, `description`, `extradata`, `album_id`, `ordinal`) VALUES
-(22, 'assets/uploads/5/ComputerDesktopWallpapersCollection429_012.jpg', '/home/rodrigo/proyectos/ci/my-framework-prototype/branches/sumuy/', 'ComputerDesktopWallpapersCollection429_012.jpg', 'jpg', 'content-image', NULL, NULL, NULL, NULL, 5, 1),
-(23, 'assets/uploads/5/ComputerDesktopWallpapersCollection429_013.jpg', '/home/rodrigo/proyectos/ci/my-framework-prototype/branches/sumuy/', 'ComputerDesktopWallpapersCollection429_013.jpg', 'jpg', 'content-image', NULL, NULL, NULL, NULL, 5, 2);
+(24, 'assets/uploads/17/ComputerDesktopWallpapersCollection429_003.jpg', '/home/rodrigo/proyectos/ci/my-framework-prototype/branches/sumuy/', 'ComputerDesktopWallpapersCollection429_003.jpg', 'jpg', 'content-image', NULL, NULL, NULL, NULL, 17, 1),
+(25, 'assets/uploads/17/ComputerDesktopWallpapersCollection429_004.jpg', '/home/rodrigo/proyectos/ci/my-framework-prototype/branches/sumuy/', 'ComputerDesktopWallpapersCollection429_004.jpg', 'jpg', 'content-image', NULL, NULL, NULL, NULL, 17, 2);
 
 -- --------------------------------------------------------
 
@@ -60,7 +58,6 @@ INSERT INTO `albumcontent` (`id`, `path`, `basepath`, `name`, `type`, `contentty
 -- Table structure for table `albums`
 --
 
-DROP TABLE IF EXISTS `albums`;
 CREATE TABLE IF NOT EXISTS `albums` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
@@ -68,18 +65,24 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `obj_class` varchar(64) DEFAULT NULL,
   `atype` varchar(64) NOT NULL DEFAULT 'images',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `albums`
 --
 
 INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
-(2, 'default', 3, 'novedad', 'images'),
-(3, 'default', 4, 'novedad', 'images'),
-(4, 'default', 5, 'novedad', 'images'),
-(5, 'default', 6, 'novedad', 'images'),
-(6, 'default', 7, 'novedad', 'images');
+(8, 'default', 9, 'novedad', 'images'),
+(9, 'default', 10, 'novedad', 'images'),
+(10, 'default', 11, 'novedad', 'images'),
+(11, 'default', 12, 'novedad', 'images'),
+(12, 'default', 13, 'novedad', 'images'),
+(13, 'default', 14, 'novedad', 'images'),
+(14, 'default', 15, 'novedad', 'images'),
+(15, 'default', 16, 'novedad', 'images'),
+(16, 'default', 17, 'novedad', 'images'),
+(17, 'default', 18, 'novedad', 'images'),
+(18, 'default', 19, 'novedad', 'images');
 
 -- --------------------------------------------------------
 
@@ -87,7 +90,6 @@ INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
 -- Table structure for table `ci_sessions`
 --
 
-DROP TABLE IF EXISTS `ci_sessions`;
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `session_id` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `ip_address` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '0',
@@ -100,10 +102,53 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inscripcion`
+--
+
+CREATE TABLE IF NOT EXISTS `inscripcion` (
+  `id` int(40) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `document` varchar(255) NOT NULL,
+  `birthdate` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `nacionality` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `institution` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `emailinstitucion` varchar(255) NOT NULL,
+  `postnumber` varchar(255) NOT NULL,
+  `countryinstitution` varchar(255) NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `investigation` varchar(255) NOT NULL,
+  `cvuy` varchar(255) NOT NULL,
+  `comments` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inscripcionarchivo`
+--
+
+CREATE TABLE IF NOT EXISTS `inscripcionarchivo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `inscripcion_id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `filepath` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `inscripcion_id` (`inscripcion_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `language_keys`
 --
 
-DROP TABLE IF EXISTS `language_keys`;
 CREATE TABLE IF NOT EXISTS `language_keys` (
   `key` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -190,7 +235,6 @@ INSERT INTO `language_keys` (`key`, `filename`, `comment`, `module`) VALUES
 -- Table structure for table `llamado`
 --
 
-DROP TABLE IF EXISTS `llamado`;
 CREATE TABLE IF NOT EXISTS `llamado` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -228,7 +272,6 @@ INSERT INTO `llamado` (`id`, `name`, `document`, `birthdate`, `country`, `nacion
 -- Table structure for table `login_attempts`
 --
 
-DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) COLLATE utf8_bin NOT NULL,
@@ -243,7 +286,6 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Table structure for table `mail_db`
 --
 
-DROP TABLE IF EXISTS `mail_db`;
 CREATE TABLE IF NOT EXISTS `mail_db` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `direccion` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -267,24 +309,62 @@ INSERT INTO `mail_db` (`id`, `direccion`, `tipo`, `nombre`, `funcion`) VALUES
 -- Table structure for table `novedades`
 --
 
-DROP TABLE IF EXISTS `novedades`;
 CREATE TABLE IF NOT EXISTS `novedades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `copete` text COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
   `ordinal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `novedades`
 --
 
-INSERT INTO `novedades` (`id`, `nombre`, `descripcion`, `ordinal`) VALUES
-(4, 't 23423', 'I was intrigued to read this recent article in The Guardian about public libraries&amp;rsquo; new role as community problem solvers. If you read carefully into this article you&amp;rsquo;ll notice the author talks about libraries becoming more involved with &quot;proactive community engagement.&quot;&lt;br /&gt;&lt;br /&gt;This means that libraries are looking to community members as partners to help solve community problems. In the open source community, we&amp;rsquo;re familiar with how well these methods can work. In open source, different players contribute to group projects according to their own personal strengths. The results can be far greater than anyone originally imagines.&lt;br /&gt;&lt;br /&gt;View the complete collection of articles for Open Library Week&lt;br /&gt;&lt;br /&gt;Back in 1996, I had an experience at a public library in Washington DC that gave me a taste of this. At that time I was volunteer teaching an Introduction to Internet class at the Chevy Chase Neighborhood Library. One day a medical doctor and his 3rd grade daughter showed up to the class. &quot;My daughter wants to learn to create web pages,&quot; the kindly doctor said. &quot;I don&amp;rsquo;t know how to build web pages, so my job is to find someone who does.&quot; I responded, &quot;If no one else shows up for the Internet training today, I&amp;rsquo;ll be happy to teach your daughter how to build web pages.&quot;&lt;br /&gt;&lt;br /&gt;As it happened, the doctor and his daughter were my only students that day, and we had a fabulous learning session on basic HTML. I was also able to explain to this youngster the importance of her protecting her personal privacy. She walked home that day with her own personal web page on a floppy disk, and with a basic understanding of HTML, delivered to her from her public library.&lt;br /&gt;&lt;br /&gt;On that day, this parent expected more from his public library, and his public library delivered. Not via any of their professional staff, but via a volunteer relationship they had cultivated and nurtured. If you&amp;rsquo;re interested in learning more about the idea of expecting more from your public library, this short, engaging book is a must read: Expect More: Demanding Better Libraries For Today&amp;rsquo;s Complex World (free download).&lt;br /&gt;&lt;br /&gt;How can you help your own public library move forward using open source methods?&lt;br /&gt;&lt;br /&gt;A great first step is to help organize a series of lightning talks, which are in some ways short TED talks. Some of you might know this talk format as &quot;ignite talks&quot; or &quot;pecha kucha.&quot; When community members come to the library to share their most passionate ideas, community fabric is formed. After the event, the conversations that happen as people walk out of the library can move the community forward. All of a sudden, the sharing of ideas moves from within the library walls to the library parking lot, and beyond. &lt;br /&gt;&lt;br /&gt;Another way of open sourcing your public library is to promote awareness about the maker movement and what that movement offers community. I&amp;rsquo;ve shared some tips for that in this recent MAKE magazine blog post: A Librarian&amp;rsquo;s Guide to Boosting the Maker Movement.&lt;br /&gt;&lt;br /&gt;One other step you can take to bring open source methods to your public library is to study and share best practices of how human beings in the past worked together to accomplish shared goals. I was interested to read a practice of the Wright Brothers where one brother woke up a few hours earlier than the other brother to help prepare for the day. The two then spent the day conducting flying experiments at Kitty Hawk. Then after the first brother went to sleep early, the other brother spent time analyzing the results of their experiments. By using this time-shifting collaborative method, the Wright Brothers were able to comfortably work a long work day, with both brothers getting a full night&amp;rsquo;s sleep. (Read more: To Conquer the Air: The Wright Brothers and the Great Race for Flight by James Tobin). The Wright Brothers (and their sister Katharine) were collaborative work-hackers as well as outstanding physical engineers.&lt;br /&gt;&lt;br /&gt;One thing our public libraries need more of is ideas about social innovators. Strike up a conversation with your own library staff (or Friends of the Library members) and see what transpires. From little acorns great oaks grow.', 2),
-(5, '423423', 'Libraries of all types have the same questions about open source software that are asked by technologists in other fields. Does open source make sense for me? What open source packages mesh well with the skills already in my organization? Where can I go to get training, documentation, hosting, and/or contract software development for a specific open source package?&lt;br /&gt;&lt;br /&gt;With funding from the Andrew W. Mellon Foundation, we set out to build tools that help libraries answer these questions. These questions and answers may be useful to others as well.&lt;br /&gt;&lt;br /&gt;View the complete collection of articles for Open Library Week&lt;br /&gt;&lt;br /&gt;In 2012, LYRASIS launched the FOSS4Lib site with this tag line: &quot;Helping libraries decide if and which open source software is right for them.&quot; With that tag line, you could probably guess that the site has two overarching components. The first is a set of decision support tools that help libraries decide if open source is right for them. Libraries are encouraged to start with a 40 question survey that helps them think about the way they run software. And because many smaller libraries do not have in-house IT support, another tool lists a series of questions they can ask their IT support provider. We know that open source is free to adopt but not free of costs, so we also provide descriptions of factors that libraries should track to create a clearer understanding of how the cost of open source compares to proprietary solutions. Lastly, libraries need a software selection methodology that puts open source on par with proprietary options.&lt;br /&gt;Open source options and decision-making tools&lt;br /&gt;&lt;br /&gt;The second part of the FOSS4Lib site is a registry of open source packages for libraries and related to libraries. There are, of course, many such registries out there; this one is for software specific to libraries and describes software using terms that libraries would use. We built the registry based on a similar tool from the neuroimaging informatics field. The registry is like an open wiki&amp;mdash;anyone can sign up for an account, then add and edit information that they know about software packages, releases, events, and service providers.&lt;br /&gt;&lt;br /&gt;Updates of registry information are available through RSS feeds and are automatically posted to Twitter. The software registry is just that&amp;mdash;pointers to software packages and their communities&amp;rsquo; resources. We realized that sites like GitHub, SourceForge, Google Code, and the like are already providing hosting sites for projects. We want the registry to be the one place a person could go to find details about open source projects for libraries no matter where the projects are hosted.&lt;br /&gt;&lt;br /&gt;Coming soon to the FOSS4Lib site is a series of case studies on how libraries made the decision to adopt open source and documents from an upcoming symposium on how open source projects in cultural heritage organizations can find sustainability. Keep watch on the site announcements through the RSS feed or Twitter account @FOSS4Lib for details.&lt;br /&gt;FOSS4Lib is built using open source&lt;br /&gt;&lt;br /&gt;And, of course, FOSS4Lib is built using open source. We use the Drupal content management system and customized it with the content types and functionality needed to make the registry useful. Although the grant funding has ended, LYRASIS&amp;mdash;a non-profit association of libraries in the United States&amp;mdash;is committed to maintaining the site for the benefit of all.&lt;br /&gt;&lt;br /&gt;Libraries have a natural affinity to fundamental tenants of the open source community. Both recognize the power of collective action and the value that open communication brings to a community. Each sees the benefit of building on the work of others and the importance of taking steps to make that happen. FOSS4Lib is a bridge between these two communities.', 0),
-(6, 'Soy una noticia de farandula', 'Wanda Nara y Maxi L&amp;oacute;pez est&amp;aacute;n nuevamente en guerra por el bozal legal que el futbolista le aplic&amp;oacute; a la rubia con el aval de la Justicia y que determin&amp;oacute; que la mayor de las Nara deber&amp;iacute;a pagar una multa de 450 mil d&amp;oacute;lares.&lt;br /&gt;&lt;br /&gt;En medio de todo este esc&amp;aacute;ndalo, la Miss Italia Melissa Castiglioni, a quien se la involucra sentimentalmente con Maxi L&amp;oacute;pez, habl&amp;oacute; en AM (Telefe) sobre su v&amp;iacute;nculo con el delantero de la Sampdoria.&lt;br /&gt;&lt;br /&gt;&quot;Nos conocimos el mes pasado. Yo estaba cenando con amigos y nos quedamos charlando. Despu&amp;eacute;s salimos solos y fue un gal&amp;aacute;n conmigo, hasta me trajo flores&quot;, arranc&amp;oacute; la italiana.&lt;br /&gt;&lt;br /&gt;&quot;Maxi me pas&amp;oacute; a buscar en la Ferrari y cenamos en un restaurante de sushi. Me gusta como chico, pero su situaci&amp;oacute;n es muy delicada. Me cont&amp;oacute; varias veces que est&amp;aacute; preocupado por sus hijos y que le molesta que tanto Wanda como Mauro (Icardi) suban fotos permanentemente a la redes sociales&quot;, agreg&amp;oacute;,&lt;br /&gt;&lt;br /&gt;Tras referirse a la situaci&amp;oacute;n familiar de Maxi apunt&amp;oacute; contra Wanda Nara y fue contunedente:&amp;nbsp; &quot;No es considerada una chica linda, para m&amp;iacute; es fea&quot;.&lt;br /&gt;&lt;br /&gt;Melissa no quiso hablar demasiado sobre su relaci&amp;oacute;n con el futbolista. &quot;Habr&amp;aacute; que ver qu&amp;eacute; pasa&quot;, reflexion&amp;oacute;, pero reconoci&amp;oacute; que &quot;Maxi es hermoso&quot;.', 3),
-(7, 'Polemica!', 'Sergio P&amp;eacute;rez es la persona a la que aproximadamente una semana se le impidi&amp;oacute; viajar en un taxi al que subi&amp;oacute; en plaza Cuba, inform&amp;oacute; Canal 10.&lt;br /&gt;&lt;br /&gt;&quot;Venia de Colonia. par&amp;eacute; un taxi y la perra se subi&amp;oacute;. El chofer me dijo que bajara ya a la perra sino arrancaba y la dejaba tirada por ah&amp;iacute;&quot;, declar&amp;oacute; P&amp;eacute;rez a El Pa&amp;iacute;s.&lt;br /&gt;&lt;br /&gt;Desde 2013, los ciegos y sus perros gu&amp;iacute;as pueden ingresar a los lugares p&amp;uacute;blicos. a los lugares privados de acceso p&amp;uacute;blico y a establecimientos o transportes de uso p&amp;uacute;blico, seg&amp;uacute;n un decreto firmado por el presidente Jos&amp;eacute; Mujica. El decreto indica que la Comisi&amp;oacute;n Honoraria de Bienestar Animal ser&amp;aacute; la que certifique si un perro est&amp;aacute; adiestrado y recomienda que se haga en base a criterios de la Federaci&amp;oacute;n Internacional de Escuelas de Perros Gu&amp;iacute;a.&lt;br /&gt;&lt;br /&gt;La gremial del taxi indic&amp;oacute; que la Intendencia de Montevideo &quot;solamente ha concedido la habilitaci&amp;oacute;n y autorizaci&amp;oacute;n, en forma expresa a 4 perros gu&amp;iacute;as&quot;, los que &quot;se encuentran debidamente identificados con el carn&amp;eacute;s que portan sus usuarios&quot;.&lt;br /&gt;&lt;br /&gt;Agreg&amp;oacute; que el perro que acompa&amp;ntilde;aba al denunciante no es uno de estos cuatro animales habilitados, por lo que entiende &quot;injusta la agresi&amp;oacute;n&quot; de P&amp;eacute;rez el &quot;a nuestro servicio de Radio Taxi y al conjunto de integrantes de nuestro gremio&quot;&lt;br /&gt;&lt;br /&gt;P&amp;eacute;rez en cambio dijo que la IMM no est&amp;aacute; facultada para expedir pases libres a perros lazarillos. &quot;No tiene gente capacitada para controlarlo. Quien deber&amp;iacute;a tomar esa medida es la Comisi&amp;oacute;n Honoraria de Bienestar Animal, pero estamos esperando una reuni&amp;oacute;n porque no tienen definido qu&amp;eacute; distintivo le van a poner a los animales&quot;.&lt;br /&gt;&lt;br /&gt;&amp;nbsp;&lt;br /&gt;&lt;br /&gt;A&amp;ntilde;adi&amp;oacute; que la Asociaci&amp;oacute;n Uruguaya Perros de Asistencia para Ciegos que &amp;eacute;l integra solicit&amp;oacute; una audiencia a la Instituci&amp;oacute;n de Derechos Humanos &quot;para plantear que no se est&amp;aacute; cumpliendo con la normativa&quot;.&lt;br /&gt;&lt;br /&gt;Otra es la posici&amp;oacute;n de la Fundaci&amp;oacute;n de Apoyo y Promoci&amp;oacute;n del Perro de Asistencia (Fundappas), responsable de la tra&amp;iacute;da desde el exterior de los cinco perros gu&amp;iacute;as entrenados bajo normativa internacional que hay en Uruguay.&lt;br /&gt;&lt;br /&gt;Alberto Calcagno, integrante de esta fundaci&amp;oacute;n, record&amp;oacute; que el decreto 2878/10 de la IMM autoriza a a las personas con discapacidad visual a viajar en el transporte colectivo con caninos entrenados que cumplan con los requisitos necesarios.&lt;br /&gt;&lt;br /&gt;Afirm&amp;oacute; que Tr&amp;aacute;nsito de la comuna le pidi&amp;oacute; a Fundappas la documentaci&amp;oacute;n que acredita la formaci&amp;oacute;n de los perros que llegaron del exterior, as&amp;iacute; se hizo y la IMM lo comunic&amp;oacute; a las empresas de transporte. &quot;Si alguien sube y no esta en esa lista no se lo puede llevar, y es porque ese perro no esta acreditado, no sabemos si fue adiestrado como corresponde, si puede agredir a alguien&quot;, acot&amp;oacute;.', 4);
+INSERT INTO `novedades` (`id`, `nombre`, `copete`, `descripcion`, `ordinal`) VALUES
+(10, 'calendario de cursos', 'Está disponible el calendario de cursos aceptados por la Subárea Microbiología de PEDECIBA (Biología) para el segundo semestre del 2013', '&lt;h3&gt;Est&amp;aacute; disponible el calendario de cursos aceptados por la Sub&amp;aacute;rea Microbiolog&amp;iacute;a de PEDECIBA (Biolog&amp;iacute;a) para el segundo semestre del 2013&lt;/h3&gt;\n&lt;table cellpadding=&quot;0&quot;&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;NOMBRE DEL CURSO&lt;/th&gt; &lt;th&gt;COORDINADOR/ES&lt;/th&gt; &lt;th&gt;FECHA INICIO&lt;/th&gt; &lt;th&gt;DURACI&amp;Oacute;N&lt;/th&gt; &lt;th&gt;CR&amp;Eacute;DITOS&lt;/th&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;strong&gt;Bacterias y Hongos End&amp;oacute;fitos Nativos&lt;/strong&gt;&lt;/td&gt;\n&lt;td&gt;Dra.Margarita Sicardi&lt;/td&gt;\n&lt;td&gt;26/08/2013&lt;/td&gt;\n&lt;td&gt;4 sem.&lt;/td&gt;\n&lt;td&gt;1&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;strong&gt;Principios y Aplicaciones de Microscop&amp;iacute;a&lt;/strong&gt;&lt;/td&gt;\n&lt;td&gt;Dras.AlejandraKun/Anabel Fern&amp;aacute;ndez/Marita Castell&amp;oacute;&lt;/td&gt;\n&lt;td&gt;05/08/2013&lt;/td&gt;\n&lt;td&gt;15 d&amp;iacute;as&lt;/td&gt;\n&lt;td&gt;1&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;strong&gt;Obtenci&amp;oacute;n y Analisis de Datos&lt;/strong&gt;&lt;/td&gt;\n&lt;td&gt;Dr.WalterNorbis&lt;/td&gt;\n&lt;td&gt;06/08/2013&lt;/td&gt;\n&lt;td&gt;4 meses&lt;/td&gt;\n&lt;td&gt;15&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;strong&gt;Respuesta de los Ecosistemas Acu&amp;aacute;ticos e Impactos Antropog&amp;eacute;nicos&lt;/strong&gt;&lt;/td&gt;\n&lt;td&gt;Dra.ClaudiaPiccini&lt;/td&gt;\n&lt;td&gt;5/11/2013&lt;/td&gt;\n&lt;td&gt;10 d&amp;iacute;as&lt;/td&gt;\n&lt;td&gt;7&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;&lt;strong&gt;Biolog&amp;iacute;a Parasitaria&lt;/strong&gt;&lt;/td&gt;\n&lt;td&gt;Dr.Carlos Carmona&lt;/td&gt;\n&lt;td&gt;19/08/2013&lt;/td&gt;\n&lt;td&gt;14 sem.&lt;/td&gt;\n&lt;td&gt;12&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;', 1),
+(11, 'Listado de becas aprobadas en el llamado a apoyo para Congresos Internacionales 2013:', 'Ingresé para ver el listado completo', '&lt;p&gt;Adalgisa Mart&amp;iacute;nez&lt;br /&gt;Virginia Ferreira&lt;br /&gt;Ignacio Ferr&amp;eacute;s&lt;br /&gt;Natalia Bajsa&lt;br /&gt;Gabriela Jorc&amp;iacute;n&lt;br /&gt;Loreley Castelli&lt;br /&gt;Federico Rosconi&lt;br /&gt;Mar&amp;iacute;a In&amp;eacute;s Lapaz&lt;/p&gt;', 2),
+(12, '1er. ENCUENTRO DE VIROLOGOS DEL URUGUAY', 'Con el fin de conocernos y poder programar actividades conjuntas en base a saber lo que estamos haciendo cada uno, los virologos del Uruguay, hemos programado reunirnos por primera vez, el dia 16 de diciembre del presente año, en el Hotel Holiday Inn.', '&lt;p&gt;Con el fin de conocernos y poder programar actividades conjuntas en  base a saber lo que estamos haciendo cada uno, los virologos del  Uruguay, hemos programado reunirnos por primera vez, el dia 16 de  diciembre del presente a&amp;ntilde;o, en el Hotel Holiday Inn.&lt;/p&gt;\n&lt;p&gt;Entendemos que pueden existir colegas que a pesar de que  no trabajen en virolog&amp;iacute;a pueda interesarles asistir a las  presentaciones, por tanto realizaremos dos tipos de llamados a fin de  contemplar las opciones y poder coordinar la log&amp;iacute;stica del encuentro.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;1)&lt;/strong&gt; Quienes trabajan en Virolog&amp;iacute;a y van a  realizar presentaci&amp;oacute;n, enviar hasta el 20 de Noviembre a la siguiente  direcci&amp;oacute;n de correo: &lt;a href=&quot;mailto:encuentrovirologos2013@gmail.com&quot;&gt;encuentrovirologos2013@gmail.com&lt;/a&gt;, el titulo del trabajo, los autores (subrayando quien realizara la presentaci&amp;oacute;n)  y la instituci&amp;oacute;n correspondiente.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;2)&lt;/strong&gt; Quienes est&amp;eacute;n interesados en  participar de la presentaciones, enviar su inscripci&amp;oacute;n hasta el d&amp;iacute;a 29  de noviembre a la siguiente direcci&amp;oacute;n: &lt;a href=&quot;http://sumuy.org.uy/encuentrovirologos2013@gmail.com&quot;&gt;encuentrovirologos2013@gmail.com&lt;/a&gt;.&lt;/p&gt;\n&lt;p&gt;Comit&amp;eacute; Organizador&lt;br /&gt;1er.  Encuentro de Virologos del Uruguay&lt;br /&gt;2013&lt;/p&gt;', 3),
+(13, '¡¡¡¡ ATENCION !!!!', 'A partir del lunes 18 de noviembre estará abierto el colectivo en RedPagos nº 38574 Sociedad Uruguaya de Microbiología (SUM) para realizar el pago de las anualidades. ', '&lt;p&gt;A partir del lunes 18 de noviembre estar&amp;aacute; abierto el colectivo en  RedPagos n&amp;ordm; 38574 Sociedad Uruguaya de Microbiolog&amp;iacute;a (SUM) para realizar  el pago de las anualidades.&lt;/p&gt;\n&lt;p&gt;Aquellos interesados en hacerse socios de la SUM  tambi&amp;eacute;n podr&amp;aacute;n hacerlo enviando un correo electr&amp;oacute;nico a la direcci&amp;oacute;n de  contacto y realizando el pago en dicho colectivo.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;IMPORTANTE: Se debe indicar Nombre completo seguido por &quot;cuota&quot; o &quot;anualidad&quot;&lt;/strong&gt;&lt;/p&gt;', 4),
+(14, 'XV Jornadas Argentinas de Microbiología', '&lt;p&gt;14 - 16 de agosto, 2014&lt;br /&gt;C&amp;oacute;rdoba, Argentina&lt;/p&gt;\n&lt;p&gt;Por m&amp;aacute;s informaci&amp;oacute;n:&lt;a href=&quot;http://microbiologia2014.com.ar/website/&quot; target=&quot;blank&quot;&gt;microbiologia2014.com.ar/web', '&lt;p&gt;14 - 16 de agosto, 2014&lt;br /&gt;C&amp;oacute;rdoba, Argentina&lt;/p&gt;\n&lt;p&gt;Por m&amp;aacute;s informaci&amp;oacute;n:&lt;a href=&quot;http://microbiologia2014.com.ar/website/&quot; target=&quot;blank&quot;&gt;microbiologia2014.com.ar/website/&lt;/a&gt;&lt;/p&gt;', 5),
+(15, 'Hospital-Acquired Infections and Antimicrobial Resistance - Regional Course for Latin America', 'This course is brought to you through a joint effort of the American  Society for Microbiology, the Society for Worldwide Medical Exchange,  and the C&amp;aacute;tedra de Enfermedades Infecciosas, Facultad de Medicina,  Universidad de la Republica, Urugua', '&lt;p&gt;This course is brought to you through a joint effort of the American  Society for Microbiology, the Society for Worldwide Medical Exchange,  and the C&amp;aacute;tedra de Enfermedades Infecciosas, Facultad de Medicina,  Universidad de la Republica, Uruguay.&lt;/p&gt;\n&lt;p&gt;This will be a two-month interactive online course focused on clinical practice.&lt;br /&gt;Online Coursework: July 25 &amp;ndash; September 15, 2014&lt;br /&gt;This course will consist of approximately 26 study hours.&lt;/p&gt;\n&lt;p&gt;For more information please visit:&lt;a href=&quot;http://www.infectology2014.com/Home.aspx&quot; target=&quot;blank&quot;&gt;www.infectology2014.com&lt;/a&gt;&lt;/p&gt;', 6),
+(16, 'XIX LANCEFIELD INTERNATIONAL SYMPOSIUM ON STREPTOCOCCI AND STREPTOCOCCAL DISEASES', 'November 9-12, 2014 // Buenos Aires, Argentina', '&lt;p&gt;NOVEMBER 9-12, 2014 // BUENOS AIRES, ARGENTINA&lt;/p&gt;\n&lt;p&gt;Chairman: H.A. Lopardo (Argentina)&lt;br /&gt;Co-chairperson: L.M. Teixeira (Brazil)&lt;br /&gt;Co-President: G. Orefici (Italy)&lt;br /&gt;Co-President: A. Boccazzi (Italy)&lt;br /&gt;Vice-chairpersons: M. Mollerach (Argentina), A. Jasir (ECDC)&lt;/p&gt;\n&lt;p&gt;30 APRIL  Abstract submission deadline&lt;/p&gt;\n&lt;p&gt;&lt;a href=&quot;http://www.lancefield2014.com&quot; target=&quot;blank&quot;&gt;www.lancefield2014.com&lt;/a&gt;&lt;/p&gt;\n&lt;p&gt;E-mail: &lt;a href=&quot;mailto:lancefield2014@gmail.com&quot;&gt;lancefield2014@gmail.com&lt;/a&gt;&lt;/p&gt;', 7),
+(17, 'APOYO A PROYECTOS DE INVESTIGACIÓN PARA ESTUDIANTES DE GRADO (APIPE)', '&lt;p&gt;La SUM tiene el agrado de informar la Apertura del primer llamado de  Apoyo para Proyectos de Investigaci&amp;oacute;n Para Estudiantes de grado.&lt;/p&gt;\n&lt;p&gt;El per&amp;iacute;odo de inscripci&amp;oacute;n ser&amp;aacute; del 8 al 27 de abril de  2014 inclusive y las bases del llamado se encuentran disponibles en esta  p&amp;aacute;gina.&lt;/p&gt;', '&lt;p&gt;La SUM tiene el agrado de informar la Apertura del primer llamado de  Apoyo para Proyectos de Investigaci&amp;oacute;n Para Estudiantes de grado.&lt;/p&gt;\n&lt;p&gt;El per&amp;iacute;odo de inscripci&amp;oacute;n ser&amp;aacute; del 8 al 27 de abril de  2014 inclusive y las bases del llamado se encuentran disponibles en esta  p&amp;aacute;gina.&lt;/p&gt;', 8),
+(18, 'I ENCUENTRO NACIONAL DE JÓVENES MICROBIÓLOGOS', '&lt;p&gt;2 - 3 de Octubre 2014&lt;/p&gt;\n&lt;p&gt;La SUM te invita a participar del 1er encuentro de j&amp;oacute;venes investigadores en el &amp;aacute;rea de la Microbiolog&amp;iacute;a&lt;/p&gt;\n&lt;p&gt;El objetivo de este encuentro es fomentar el  intercambio entre estudiantes de grado en la &amp;uacute;ltima etapa de su carrera,  profesionales reci&amp;eacute;n recibidos y estudiantes de posgrado, con miras a  la creaci&amp;oacute;n de redes de investigadores nacionales.&lt;/p&gt;', '&lt;p&gt;2 - 3 de Octubre 2014&lt;/p&gt;\n&lt;p&gt;La SUM te invita a participar del 1er encuentro de j&amp;oacute;venes investigadores en el &amp;aacute;rea de la Microbiolog&amp;iacute;a&lt;/p&gt;\n&lt;p&gt;El objetivo de este encuentro es fomentar el  intercambio entre estudiantes de grado en la &amp;uacute;ltima etapa de su carrera,  profesionales reci&amp;eacute;n recibidos y estudiantes de posgrado, con miras a  la creaci&amp;oacute;n de redes de investigadores nacionales.&lt;/p&gt;', 9),
+(19, 'apoyo a proyectos de investigación', 'APOYO A PROYECTOS DE INVESTIGACI&amp;Oacute;N PARA ESTUDIANTES DE GRADO (APIPE)&lt;br /&gt;La  SUM tiene el agrado de informar la Apertura del primer llamado de Apoyo  para Proyectos de Investigaci&amp;oacute;n Para Estudiantes de grado.', 'APOYO A PROYECTOS DE INVESTIGACI&amp;Oacute;N PARA ESTUDIANTES DE GRADO (APIPE)&lt;br /&gt;La  SUM tiene el agrado de informar la Apertura del primer llamado de Apoyo  para Proyectos de Investigaci&amp;oacute;n Para Estudiantes de grado.', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tesis`
+--
+
+CREATE TABLE IF NOT EXISTS `tesis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `subtitulo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `orientadores` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `tribunal` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `defensa` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `academica` varchar(255) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `ordinal` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `tesis`
+--
+
+INSERT INTO `tesis` (`id`, `titulo`, `subtitulo`, `orientadores`, `tribunal`, `defensa`, `academica`, `ordinal`) VALUES
+(3, 'Factores que afectan la composición y diversidad de la comunidad de bacterias endófitas en arroz (Oryza sativa)', 'Tesis de Doctorado en Química de Lucía Ferrando', 'Ana Fernández Scavino', 'Silvia Batista, Fátima Moreira, Margarita Sicardi', '17 de abril de 2013', '', 1),
+(4, 'Epidemiología de los principales patógenos de interés apícola en Uruguay', 'Tesis de Maestría: Matilde Anido', 'Dra. Karina Antúnez y Dr. Pablo Zunino', 'Dr. Juan Arbiza, Dra. Inés Ponce de León, Dr. Ciro Invernizzi', '21 de junio de 2013', '', 2),
+(5, 'Rol de endófitos en reacciones biocatalíticas mediadas por vegetales. Identificación y caracterización de nuevos biocatalizadores', 'Tesis de Doctorado en Química de Paula Rodríguez Bonnecarrere', 'David Gonzalez y Sonia Rodríguez', 'Dr. Ignacio Carrera, Dr. Adolfo Iribarren (UNQ, Bs.As.), Dra.Matilde Soubes', '27 de Junio de 2013', 'Pilar Menéndez', 3),
+(6, 'Costo Biológico de la Expresión de B-lactamasas en Salmonella entericaserovar Typhimurium', 'Tesis de Maestría: Nicolás Cordeiro', 'Dra. Lucía Yim', 'Dr. Pablo Zunino, Dra. Fernanda Azpiroz, Dr. Gabriel Gutkind', '3 de julio de 2013', '', 4),
+(7, 'Evaluación de la capacidad probiótica de una cepa de Lactobacillus murinus y su uso en el tratamiento de diarreas virales en caninos', 'Tesis de Maestría en Salud Animal de Luis Delucchi', 'Dr. Pablo Zunino', 'Dres. Celia Tasende (Presidente y Revisora de Aspectos Formales de la Tesis), Fernando Dutra y Gustavo Varela', '1 de agosto de 2013', '', 5),
+(8, 'Aproximaciones de genómica estructura y funcional en tripanosomátidos', 'Tesis Doctorado, PEDECIBA Biología de Pablo Smircich', 'Dra. Beatriz Garat. Co-director: Dr. Najib El-Sayed', 'Dr. Fernando Alvarez, Dr. José Sotelo, Dr. Gustavo Cerqueira', '29 de agosto de 2013', '', 6),
+(9, 'Evaluación y optimización de las propiedades bioquímicas, genéticas y moleculares de las lipasas de Pseudomonas y prospección de nuevas enzimas lipolíticas para biocatálisis', 'Tesis de Doctorado en Química de Paola Panizza', 'Pilar Díaz (Universidad de Barcelona) y Sonia Rodríguez (Facultad de Química, UdelaR)', 'Dra. Anita Marsaioli (UNICAMP, Campinas, Brasil), Dra. Laura Franco-Fraguas, Dra. Matilde Soubes', '11 de Setiembre de 2013', '', 7),
+(10, 'Sistemas de adquisición de hierro mediados por sideróforos en Herbaspirillum seropedicae Z67', 'Tesis de Doctorado, PEDECIBA Biología de Federico Rosconi', 'Dra. Elena Fabiano y Q. F. Alicia Arias', 'Dr. Jorge Monza, Dra. Ana Fernández, Dr. Pablo Zunino', '20 de setiembre de 2013', '', 8);
 
 -- --------------------------------------------------------
 
@@ -292,7 +372,6 @@ INSERT INTO `novedades` (`id`, `nombre`, `descripcion`, `ordinal`) VALUES
 -- Table structure for table `user_autologin`
 --
 
-DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -308,7 +387,6 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- Table structure for table `user_profiles`
 --
 
-DROP TABLE IF EXISTS `user_profiles`;
 CREATE TABLE IF NOT EXISTS `user_profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -323,7 +401,6 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -348,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-04-17 15:41:12', '2012-08-20 18:05:44', '2014-04-17 18:41:12');
+(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-04-21 16:57:58', '2012-08-20 18:05:44', '2014-04-21 19:57:58');
 
 --
 -- Constraints for dumped tables
@@ -359,6 +436,13 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned
 --
 ALTER TABLE `albumcontent`
   ADD CONSTRAINT `fk_albumcontent_album` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `inscripcionarchivo`
+--
+ALTER TABLE `inscripcionarchivo`
+  ADD CONSTRAINT `fk_inscripcion_archivo` FOREIGN KEY (`inscripcion_id`) REFERENCES `inscripcion` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

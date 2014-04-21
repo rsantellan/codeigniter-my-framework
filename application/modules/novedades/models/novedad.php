@@ -17,6 +17,7 @@ class novedad extends MY_Model{
   
     private $id;
     private $nombre;
+    private $copete;
     private $descripcion;
     
     function __construct()
@@ -41,6 +42,14 @@ class novedad extends MY_Model{
       $this->nombre = $nombre;
     }    
     
+    public function getCopete() {
+      return $this->copete;
+    }
+
+    public function setCopete($copete) {
+      $this->copete = $copete;
+    }
+
     public function getDescripcion($decode = true) {
       if(!$decode)
       {
@@ -89,6 +98,7 @@ class novedad extends MY_Model{
           $aux->setId($obj->id);
           $aux->setNombre($obj->nombre);
           $aux->setDescripcion($obj->descripcion);
+          $aux->setCopete($obj->copete);
           $salida[] = $aux;
         }
         return $salida;
@@ -147,6 +157,7 @@ class novedad extends MY_Model{
       $data["nombre"] = $this->getNombre();
       $data["ordinal"] = $this->retrieveLastOrder();
       $data["descripcion"] = $this->getDescripcion();
+      $data["copete"] = $this->getCopete();
       $this->db->insert($this->getTablename(), $data);
       $id = $this->db->insert_id(); 
       if(!is_null($id) && $id != 0)
@@ -162,7 +173,8 @@ class novedad extends MY_Model{
     {
       $data = array(
           'nombre' => $this->getNombre(),
-          "descripcion" => $this->getDescripcion()
+          "descripcion" => $this->getDescripcion(),
+          "copete" => $this->getCopete(),
        );
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
@@ -184,6 +196,7 @@ class novedad extends MY_Model{
           $aux->setId($obj->id);
           $aux->setNombre($obj->nombre);
           $aux->setDescripcion($obj->descripcion);
+          $aux->setCopete($obj->copete);
           return $aux;
         }
         return $obj;
@@ -240,23 +253,5 @@ class novedad extends MY_Model{
       return $salida;
     }
     
-    public function retrieveSearchNovedadesTags($text)
-    {
-      //SELECT n.id, n.nombre, n.descripcion FROM novedades n where n.id IN (SELECT tn.id_novedad FROM tags_novedades tn where tn.id_tag IN (SELECT t.id FROM tags t where t.name LIKE '%at%'))
-      $sql = "SELECT n.id, n.nombre, n.descripcion FROM novedades n ";
-      $sql.= "where n.id IN (SELECT tn.id_novedad FROM tags_novedades tn ";
-      $sql.= "where tn.id_tag IN (SELECT t.id FROM tags t where t.name LIKE '%".$this->db->escape_like_str($text)."%'))";
-      $query = $this->db->query($sql);
-      
-      $salida = array();
-      foreach($query->result() as $obj)
-      {
-        $aux = new novedad();
-        $aux->setId($obj->id);
-        $aux->setNombre($obj->nombre);
-        $aux->setDescripcion($obj->descripcion);
-        $salida[$obj->id] = $aux;
-      }
-      return $salida;
-    }    
+        
 }

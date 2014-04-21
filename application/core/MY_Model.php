@@ -29,6 +29,17 @@ class MY_Model extends CI_Model{
     $this->table_name = $tablename;
   }
 
+  public function getSimpleId($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->limit('1');
+    $query = $this->db->get($this->getTablename());
+    if( $query->num_rows() == 1 ){
+      return $query->row();
+    }
+    return NULL;
+  }
+  
   public function simpleDeleteById($id){
     $this->db->where('id', $id);
     $this->db->delete($this->getTablename());

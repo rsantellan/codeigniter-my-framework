@@ -26,7 +26,7 @@
       ?>
       <div class="listado_novedades">
         <h3><?php echo $novedad->nombre;?></h3>
-        <p><?php echo word_limiter(html_purify(html_entity_decode($novedad->descripcion)), 60); ?></p>
+        <p><?php echo word_limiter(html_purify(html_entity_decode($novedad->copete)), 60); ?></p>
         <a href="<?php echo site_url('novedad/'.$url_help);?>" class="ver_mas"><?php echo lang('novedades_vermas');?></a><div class="clear"></div>
       </div><!--LISTADO NOVEDAD-->  
     <?php endforeach; ?>

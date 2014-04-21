@@ -46,8 +46,11 @@ $route["socios.html"] = 'sumuy/socios';
 $route["novedades.html"] = 'sumuy/novedades';
 $route["novedades-(:num).html"] = 'sumuy/novedades/$1';
 $route["novedad/(:num)/(:any).html"] = 'sumuy/novedad/$1/$2';
+$route["descargar/(:num)/(:any).html"] = 'sumuy/descargar/$1/$2';
 $route["tesis.html"] = 'sumuy/tesis';
+$route["tesis-(:num).html"] = 'sumuy/tesis/$1';
 $route["llamados.html"] = 'sumuy/llamados';
+$route["inscripcion.html"] = 'sumuy/inscripcion';
 $route["contacto.html"] = 'sumuy/contacto';
 $route["enlaces.html"] = 'sumuy/enlaces';
 /*

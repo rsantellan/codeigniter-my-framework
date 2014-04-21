@@ -19,7 +19,7 @@
                   Nombre
                 </th>
                 <th>
-                  Descripción
+                  Copete
                 </th>
                 <th>
                   Acciones
@@ -45,8 +45,7 @@
                     <?php echo ($object->nombre); ?>
                   </td>
                   <td>
-                    <?php $aux = html_purify(html_entity_decode($object->descripcion));
-                    ?>
+                    <?php $aux = html_purify(html_entity_decode($object->copete)); ?>
                     <?php echo character_limiter($aux, 100); ?>
                   </td>
                   <td>

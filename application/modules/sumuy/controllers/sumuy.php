@@ -85,12 +85,35 @@ class sumuy extends MY_Controller{
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
-  public function tesis()
+  public function tesis($page = 1)
   {
+    if($page < 0 || (int) $page == 0)
+          $page = 1;
+    $rows = 8;
     $this->data['menu'] = "tesis";
     $this->loadI18n("tesis", $this->getLanguageFile(), FALSE, TRUE, "", "sumuy");
+    
+    $this->load->model('tesises/tesis');
+    
+    $records = $this->tesis->countAllRecords();
+    $this->data['listado'] = $this->tesis->retrieveAll($rows, $rows * ($page - 1));
+    $this->data['cantidad'] = $records;
+    $this->data['pages'] = ceil($records / $rows);
+    $this->data['page'] = $page;
+    
     $this->data['content'] = 'tesis';
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  
+  public function descargar($id, $nombre){
+    $this->load->model('upload/albumcontent');
+    $file = $this->albumcontent->getFile($id);
+    $aux = $file; //[0];
+    $this->load->helper('download');
+    $data = file_get_contents($aux->basepath.$aux->path); // Read the file's contents
+    $name = $aux->name;
+    force_download($name, $data);
   }
   
   public function enlaces()
@@ -242,6 +265,140 @@ class sumuy extends MY_Controller{
               $this->email->message($mail); 
               $this->email->send();
             }
+    }
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function inscripcion()
+  {
+    $this->data['mail'] = false;
+    $this->data['menu'] = "inscripcion";
+    $this->loadI18n("inscripcion", $this->getLanguageFile(), FALSE, TRUE, "", "sumuy");
+    $this->data['content'] = 'inscripcion';
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
+    $this->form_validation->set_rules('document', 'document', 'required|max_length[255]');			
+    $this->form_validation->set_rules('birthdate', 'birthdate', 'max_length[255]');			
+    $this->form_validation->set_rules('country', 'country', 'max_length[255]');			
+    $this->form_validation->set_rules('nacionality', 'nacionality', 'max_length[255]');			
+    $this->form_validation->set_rules('title', 'title', 'max_length[255]');			
+    $this->form_validation->set_rules('mail', 'mail', 'required|valid_email|max_length[255]');			
+    $this->form_validation->set_rules('institution', 'institution', 'max_length[255]');			
+    $this->form_validation->set_rules('address', 'address', 'max_length[255]');			
+    $this->form_validation->set_rules('phone', 'phone', 'max_length[255]');			
+    $this->form_validation->set_rules('emailinstitucion', 'emailinstitucion', 'valid_email|max_length[255]');			
+    $this->form_validation->set_rules('postnumber', 'postnumber', 'max_length[255]');			
+    $this->form_validation->set_rules('countryinstitution', 'countryinstitution', 'max_length[255]');			
+    $this->form_validation->set_rules('website', 'website', 'max_length[255]');			
+    $this->form_validation->set_rules('position', 'position', 'max_length[255]');			
+    $this->form_validation->set_rules('investigation', 'investigation', 'max_length[255]');			
+    $this->form_validation->set_rules('cvuy', 'cvuy', 'max_length[255]');			
+    $this->form_validation->set_rules('comments', 'comments', '');
+
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    $errores = array();
+    if ($this->form_validation->run() == FALSE) 
+    {
+      //No pasas las validaciones
+    }
+    else
+    {
+      // build array for the model
+			
+			$form_data = array(
+                'name' => set_value('name'),
+                'document' => set_value('document'),
+                'birthdate' => set_value('birthdate'),
+                'country' => set_value('country'),
+                'nacionality' => set_value('nacionality'),
+                'title' => set_value('title'),
+                'mail' => set_value('mail'),
+                'institution' => set_value('institution'),
+                'address' => set_value('address'),
+                'phone' => set_value('phone'),
+                'emailinstitucion' => set_value('emailinstitucion'),
+                'postnumber' => set_value('postnumber'),
+                'countryinstitution' => set_value('countryinstitution'),
+                'website' => set_value('website'),
+                'position' => set_value('position'),
+                'investigation' => set_value('investigation'),
+                'cvuy' => set_value('cvuy'),
+                'comments' => set_value('comments')
+            );
+			// run insert model to write data to db
+            $this->load->model('inscripciones/inscripcion');
+            $this->load->model('inscripciones/inscripcionarchivo');
+            
+            $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";
+            $config['allowed_types'] = 'pdf|doc|docx';
+            $this -> load -> library('upload', $config);
+            
+            $upload_data = array();
+            
+            for($i=1; $i < 6; $i++)
+            {
+              $name = 'sendfile'.$i;
+              //var_dump($name);
+              if(isset($_FILES[$name]) && !empty($_FILES[$name]['name']))
+              {
+                if (!$this->upload->do_upload($name)) {
+                  $errores[$name] = $this->upload->display_errors();
+                  $this->upload->clean_errors();
+                } else {
+                  $upload_data[$name] = $this->upload->data();
+                }
+              }
+            }
+
+            if(count($errores) == 0)
+            {
+              $saved = $this->inscripcion->save($form_data);
+              if($saved != 0)
+              {
+                $sendEmailAttachs = array();
+                foreach($upload_data as $uData)
+                {
+                  $archivo = new $this->inscripcionarchivo;
+                  $archivo->setInscripcionId($saved);
+                  $archivo->setFilename($uData['file_name']);
+                  $archivo->setFilepath($uData['file_path']);
+                  $archivo->save();
+                  $sendEmailAttachs[] = $archivo;
+                }
+
+
+                $this->data['mail'] = true;
+                $this->load->model('contacto/mail_db');
+                $this->load->library('email');
+                $return = $this->mail_db->retrieveContactMailInfo();
+                $this->load->library('email');
+
+                $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+                $this->email->to($return['to']); 
+                if(isset($return['cc']))
+                {
+                  $this->email->cc($return['cc']); 
+                }
+                if(isset($return['bcc']))
+                {
+                  $this->email->bcc($return['bcc']);
+                }
+
+                $this->email->reply_to($form_data['mail'], $form_data['name']);
+
+                $this->email->subject('[SUMUY WEB] Formulario de inscripcion');
+                $mail = $this->load->view('mail_inscripcion', $form_data, true);
+                $this->email->message($mail); 
+                foreach($sendEmailAttachs as $attach)
+                {
+                  $this->email->attach($attach->getFilepath().$attach->getFilename());
+                }
+                $this->email->send();
+              }
+            }
+            
+            
     }
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
