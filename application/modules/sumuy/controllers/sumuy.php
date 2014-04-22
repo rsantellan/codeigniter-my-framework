@@ -124,6 +124,48 @@ class sumuy extends MY_Controller{
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function recomendar()
+  {
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->load->helper('url');
+    $this->form_validation->set_rules('site_url', 'site_url', 'required');
+    $this->form_validation->set_rules('senderName', 'Quien lo envia', 'required');
+    $this->form_validation->set_rules('senderEmail', 'Mail de quien lo envia', 'required|valid_email|max_length[255]');
+    $this->form_validation->set_rules('recieverName', 'Nombre de quien lo recibe', 'required');
+    $this->form_validation->set_rules('recieverEmail', 'Mail de quien lo recibe', 'required|valid_email|max_length[255]');
+    $this->form_validation->set_rules('message', 'Mensaje', 'required');
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    if ($this->form_validation->run() !== FALSE) 
+    {
+      $this->load->model('contacto/mail_db');
+      $return = $this->mail_db->retrieveContactMailInfo();
+      $this->load->library('email');
+
+      $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+      //$this->email->to(set_value('recieverEmail'), set_value('recieverName'));
+      $this->email->to('rsantellan@gmail.com', set_value('recieverName'));
+      if(isset($return['cc']))
+      {
+        //$this->email->cc(set_value('senderEmail'), set_value('senderName'));
+      }
+      
+
+      $this->email->reply_to(set_value('senderEmail'), set_value('senderName'));
+
+      $this->email->subject(sprintf('%s quiere que veas esta pagina de SUM', set_value('senderName')));
+      $message = set_value('message').set_value('site_url');//$this->load->view('mail_contacto', $form_data, true);
+      $this->email->message($message); 
+      $this->email->send();
+      echo "Mail enviado con exito";
+    }
+    else
+    {
+      echo validation_errors();
+    }
+    
+  }
+  
   public function contacto()
   {
     $this->data['mail'] = false;
@@ -400,6 +442,7 @@ class sumuy extends MY_Controller{
             
             
     }
+    $this->data['errores'] = $errores;
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 }

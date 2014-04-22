@@ -14,10 +14,10 @@
           <strong>Fecha de defensa:</strong> <?php echo $tesis->defensa;?></p>
       </div><!--TESIS-->
     <?php endforeach;?>
-    <a href="#" class="recomendar">recomendar</a>
+    <a href="javascript:void(0);" class="recomendar inline" id="recomendar" title="Recomendar">recomendar</a>
     
     <?php if($pages > 1): ?>
-    <div class="paginado">
+    <div class="paginado paginado_tesis">
       <?php for ($i = 1; $i <= $pages; $i++): ?>
           <?php if($i == $page): ?>
               <a class="current" href="javascript:void(0)"><?php echo $i;?></a>
@@ -27,12 +27,21 @@
       <?php endfor; ?>
     </div>                  
     <?php endif; ?>
-    <!--<div class="paginado paginado_tesis">
-      <a href="#" class="current">1</a> - <a href="/tesis_page2.php">2</a>
-    </div> -->                                               
+                                      
   </div><!--LEFT HOME-->
   <div class="content_right">
     <img src="<?php echo base_url(); ?>assets/sumuy/images/tesis_1.jpg" class="img_doble">
     <img src="<?php echo base_url(); ?>assets/sumuy/images/tesis_2.jpg">
   </div><!--RIGHT HOME-->
 </div><!--CONTENT-->
+<?php echo $this->load->view('sumuy/recomendar', array('site_url' =>site_url($this->uri->uri_string())));?>
+
+<script src="<?php echo base_url(); ?>assets/sumuy/js/parsley.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/sumuy/js/es.js"></script>
+<script src="<?php echo base_url(); ?>assets/sumuy/js/jquery.colorbox-min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/sumuy/css/colorbox.css">
+<script>
+  $(function(){
+    $("#recomendar").colorbox({inline:true, href:"#recomendar_container"});
+  });
+</script>

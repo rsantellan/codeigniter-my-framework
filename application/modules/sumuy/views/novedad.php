@@ -13,6 +13,18 @@
       <?php endforeach;?>
     </ul>
     <?php endif; ?>
-    <a href="#" class="recomendar">recomendar</a>
+    <a href="javascript:void(0);" class="recomendar inline" id="recomendar" title="Recomendar">recomendar</a>
   </div><!--NOVEDADES DESARROLLO-->
 </div><!--CONTENT-->
+
+<?php echo $this->load->view('sumuy/recomendar', array('site_url' =>site_url($this->uri->uri_string())));?>
+
+<script src="<?php echo base_url(); ?>assets/sumuy/js/parsley.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/sumuy/js/es.js"></script>
+<script src="<?php echo base_url(); ?>assets/sumuy/js/jquery.colorbox-min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/sumuy/css/colorbox.css">
+<script>
+  $(function(){
+    $("#recomendar").colorbox({inline:true, href:"#recomendar_container"});
+  });
+</script>
