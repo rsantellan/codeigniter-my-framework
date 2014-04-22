@@ -117,7 +117,7 @@
     <!-- Page-Level Demo Scripts - Blank - Use for reference -->
 
     <?php if($tinymce_on): ?>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/tiny_mce/tiny_mce_src.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/tinymce/tinymce.min.js"></script>
     <?php endif; ?>
     
     <?php if($colorbox_on): ?>
