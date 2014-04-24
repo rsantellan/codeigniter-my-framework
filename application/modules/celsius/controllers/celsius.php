@@ -329,6 +329,40 @@ class celsius extends MY_Controller {
     $this->data['content'] = 'congresos';
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
+  
+  public function congreso($lang, $id, $slug)
+  {
+	if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    $this->data['menu'] = 'congresos';
+    $this->data['submenu'] = 'congresos';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('congresos.html', 'congress.html');
+    $this->loadI18n("congresos", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	$title = $this->lang->line('title_congresos');
+	
+	$this->load->model('congress/ocongress');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+    
+	$this->appendTitle($title);
+	$object = $this->ocongress->getById($id, $lang);
+	$this->data['object'] = $object;
+	$this->data['media'] = $object->retrieveAlbumsContents(array($id), 'default', $object->getObjectClass());
+	$this->data['content'] = 'congreso';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
 
   public function category($lang, $id, $slug) 
   {

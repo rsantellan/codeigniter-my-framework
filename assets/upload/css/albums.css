@@ -36,13 +36,13 @@
 }
 
 .file_detail{
-  width: 400px;
+  width: 460px;
   position:relative;
 }
 
 .file_detail .file_image{
   float: left;
-  width: 100%;
+  width: 60%;
 }
 
 .file_detail .file_data{

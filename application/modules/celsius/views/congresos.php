@@ -1,12 +1,14 @@
 <div class="content_site content_internas_seccion_iniciada">
   <?php echo $this->load->view('navegacionprivada') ?>
   <?php
-    $startUrl = "events";
+    $startUrl = "congress";
+	$congress_url = 'congress';
     if($lang !== 'en')
     {
-        $startUrl = 'eventos';
+		$congress_url = 'congresos';
+        $startUrl = 'congresos';
     }
-    $url_help = $lang."/".$startUrl."/%s.html";
+    $url_help = $lang."/".$congress_url."/%s/%s.html";
     ?>
   <ul class="content">
     <?php 
@@ -19,6 +21,7 @@
     ?>
     <?php foreach($objectlist as $object): ?>
       <?php 
+		$urlused = sprintf($url_help, $object->id, $object->slug);
         if(!is_null($object->avatar))
         {
           $urlBig = thumbnail_image(base_url(), $object->avatar->getPath() , $widthGaleria, $heightGaleria, $imgType);
@@ -30,7 +33,7 @@
       ?>
     
     <li>
-      <a class="fancybox" href="<?php echo $urlBig;?>" data-fancybox-group="gallery" title="<?php echo $object->description;?>">
+      <a class="fancybox" href="<?php echo site_url($urlused);?>" title="<?php echo $object->description;?>">
         <div class="card-back">
           <h2><?php echo $object->description;?></h2>
           <p><?php echo $object->name;?></br><?php echo $object->members;?></p>
@@ -85,7 +88,7 @@
 			/*
 			 *  Simple image gallery. Uses default settings
 			 */
-			$('.fancybox').fancybox();
+			//$('.fancybox').fancybox();
 			/*
 			 *  Different effects
 			 */
