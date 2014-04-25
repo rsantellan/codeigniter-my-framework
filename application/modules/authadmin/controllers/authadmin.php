@@ -81,6 +81,7 @@ class Authadmin extends MY_Controller {
 	 * you want to insert a non-database field (for example a counter or static image)
 	 */
 	$aColumns = array('Usuario', 'Mail', 'Permiso', 'Activo', 'Baneado', 'Creado el', 'Acciones');
+	$filterColumns = array('username', 'email', 'profile', 'activated', 'banned', 'created', 'Acciones');
 	
 	/* Indexed column (used for fast and accurate table cardinality) */
 	$sIndexColumn = "Mail";
@@ -120,19 +121,14 @@ class Authadmin extends MY_Controller {
 	
 	if($this->input->get('iSortCol_0'))
 	{
-	  $sOrder .= "ORDER BY  ";
+	  $sOrder .= "";
 	  for ( $i=0 ; $i<intval( $this->input->get('iSortingCols') ) ; $i++ )
 	  {
 		$auxSortCol = intval($this->input->get('iSortCol_'.$i));
 		if($this->input->get('bSortable_'.$auxSortCol) == 'true')
 		{
-		  $sOrder .= $aColumns[$auxSortCol]. ''.mysql_real_escape_string($this->input->get('sSortDir_'.$i));
+		  $sOrder .= $filterColumns[$auxSortCol]. ' '.$this->input->get('sSortDir_'.$i);
 		}
-	  }
-	  $sOrder = substr_replace( $sOrder, "", -2 );
-	  if ( $sOrder == "ORDER BY" )
-	  {
-		  $sOrder = "";
 	  }
 	}
 	
@@ -144,11 +140,11 @@ class Authadmin extends MY_Controller {
 	 * on very large tables, and MySQL's regex functionality is very limited
 	 */
 	$sWhere = $this->input->get('sSearch');
-	
 	$rResult = $this->users->retrieveTable($iDisplayLength, $iDisplayLength * ($iDisplayStart), $sOrder, $sWhere);
-	$iFilteredTotal = count($rResult);
-	$iTotal = $this->users->retrieveCount($sWhere);
 	
+	$iTotal = $this->users->retrieveCount($sWhere);
+	$iFilteredTotal = $iTotal;//count($rResult);
+    
 	/*
 	 * Output
 	 */
@@ -161,21 +157,25 @@ class Authadmin extends MY_Controller {
 	
 	foreach($rResult as $object)
 	{
-	  
-	  $row = array(
-		  'Usuario' => $object->username, 
-		  'Mail' => $object->email, 
-		  'Permiso' => $object->profile,  
-		  'Activo' => ($object->activated == 1)? "Si" : "No", 
-		  'Baneado' => ($object->banned == 1)? "Si" : "No", 
-		  'Creado el' => $object->created, 
-		  'Acciones' => 'safasd',
+	  $show_delete = true;
+      if ($this->tank_auth->get_user_id() == $object->id) {
+        $show_delete = false;
+      }
+      $row = array(
+		  $object->username, 
+		  $object->email, 
+		  $object->profile,  
+		  ($object->activated == 1)? "Si" : "No", 
+		  ($object->banned == 1)? "Si" : "No", 
+		  $object->created, 
+		  $this->load->view('authadmin/user_actions', array('user' => $object, 'delete' => $show_delete), true),
 		);
-	  
-	  $output['aaData'][] = $row;
+        $output['aaData'][] = $row;
 	}
 	
-	
+	header('Cache-Control: no-cache');
+    header('Pragma: no-cache');
+    header('Content-type: application/json');
 	echo json_encode( $output );
 	die(0);
   }

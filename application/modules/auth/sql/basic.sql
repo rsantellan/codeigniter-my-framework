@@ -95,5 +95,7 @@ ADD `profile` VARCHAR( 255 ) NOT NULL ;
 ALTER TABLE `users` ADD `mutualista` VARCHAR( 255 ) NOT NULL DEFAULT '',
 ADD `medicamentos` VARCHAR( 255 ) NOT NULL DEFAULT '';
 
+ALTER TABLE `users` CHANGE `mutualista` `mutualista` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '', CHANGE `medicamentos` `medicamentos` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '';
+
 ALTER TABLE `users` CHANGE `especialidad` `especialidad` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '',
-CHANGE `cjp` `cjp` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT ''
+CHANGE `cjp` `cjp` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '';

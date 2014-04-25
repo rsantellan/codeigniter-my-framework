@@ -457,9 +457,14 @@ class Users extends CI_Model
 	{
 	  $this->db->order_by($order);
 	}
-	
 	$this->db->limit($limit, $offset);
-	
+	if($where !== "")
+    {
+      $this->db->like('username', $where);
+      $this->db->or_like('email', $where);
+      $this->db->or_like('profile', $where);
+    }
+    
 	$query = $this->db->get('users');
 	return $query->result();
   }

@@ -54,10 +54,19 @@
         $('#table_data').fadeIn('slow');
         $('#usuarios_loader').hide();
         $('#table_data').dataTable({
+            
+          "aoColumns": [
+              { "sWidth": "25%" },
+              { "sWidth": "15%" },
+              { "sWidth": "5%" },
+              { "sWidth": "5%" },
+              { "sWidth": "5%" },
+              { "sWidth": "5%" },
+              { "sWidth": "35%" },
+            ],
 			"bProcessing": true,
 			"bServerSide": true,
 			"sAjaxSource": "<?php echo site_url('authadmin/indexPopulation');?>",
-            "aaSorting": [],
             "oLanguage" : {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",
