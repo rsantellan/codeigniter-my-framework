@@ -14,27 +14,11 @@
 <table id="table_data" style="display: none">
   <thead>
     <tr>
-      <th>
-        Usuario
+	  <?php foreach($headers as $h): ?>
+	  <th>
+        <?php echo $h;?>
       </th>
-      <th>
-        Mail
-      </th>
-      <th>
-        Permiso
-      </th>
-      <th>
-        Activo
-      </th>
-      <th>
-        Baneado
-      </th>
-      <th>
-        Creado el
-      </th>
-      <th>
-        Acciones
-      </th>
+	  <?php endforeach; ?>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +54,9 @@
         $('#table_data').fadeIn('slow');
         $('#usuarios_loader').hide();
         $('#table_data').dataTable({
+			"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": "<?php echo site_url('authadmin/indexPopulation');?>",
             "aaSorting": [],
             "oLanguage" : {
                 "sProcessing":     "Procesando...",

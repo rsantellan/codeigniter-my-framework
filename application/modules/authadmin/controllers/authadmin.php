@@ -52,8 +52,10 @@ class Authadmin extends MY_Controller {
     $this->load->model('auth/users');
     $this->load->library('tank_auth', true, NULL, 'auth');
 
+	$this->data['headers'] = array('Usuario', 'Mail', 'Permiso', 'Activo', 'Baneado', 'Creado el', 'Acciones');
     //$pass = $this->tank_auth->hashPassword('Cnea.Adm1n1strador');
     //var_dump($pass);
+	/*
     $this->data['user_list'] = $this->users->listUsers();
     $rows = array();
     foreach ($this->data['user_list'] as $user) {
@@ -65,14 +67,119 @@ class Authadmin extends MY_Controller {
       $mData['delete'] = $show_delete;
       $view = $this->load->view('authadmin/user_row', $mData, true);
       $rows[] = $view;
-    }
-    $this->data['user_rows'] = $rows;
+    }*/
+    $this->data['user_rows'] = array();//$rows;
 
     $this->data['content'] = "authadmin/user_list";
     //$this->load->view('authadmin/user_list', $data);
     $this->load->view("admin/layout", $this->data);
   }
 
+  public function indexPopulation()
+  {
+	/* Array of database columns which should be read and sent back to DataTables. Use a space where
+	 * you want to insert a non-database field (for example a counter or static image)
+	 */
+	$aColumns = array('Usuario', 'Mail', 'Permiso', 'Activo', 'Baneado', 'Creado el', 'Acciones');
+	
+	/* Indexed column (used for fast and accurate table cardinality) */
+	$sIndexColumn = "Mail";
+	
+	/* DB table to use */
+	$sTable = "user";
+	
+	
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * If you just want to use the basic configuration for DataTables with PHP server-side, there is
+	 * no need to edit below this line
+	 */
+	
+	$this->load->model('auth/users');
+	
+	
+	/* 
+	 * Paging
+	 */
+	$sLimit = "";
+	$iDisplayStart = $this->input->get('iDisplayStart', NULL);
+	$iDisplayLength = $this->input->get('iDisplayLength', NULL);
+	
+	//var_dump($iDisplayStart);
+	//var_dump($iDisplayLength);
+	
+	/*
+	die;
+	if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' )
+	{
+		$sLimit = "LIMIT ".mysql_real_escape_string( $_GET['iDisplayStart'] ).", ".
+			mysql_real_escape_string( $_GET['iDisplayLength'] );
+	}
+	*/
+	
+	$sOrder = "";
+	
+	if($this->input->get('iSortCol_0'))
+	{
+	  $sOrder .= "ORDER BY  ";
+	  for ( $i=0 ; $i<intval( $this->input->get('iSortingCols') ) ; $i++ )
+	  {
+		$auxSortCol = intval($this->input->get('iSortCol_'.$i));
+		if($this->input->get('bSortable_'.$auxSortCol) == 'true')
+		{
+		  $sOrder .= $aColumns[$auxSortCol]. ''.mysql_real_escape_string($this->input->get('sSortDir_'.$i));
+		}
+	  }
+	  $sOrder = substr_replace( $sOrder, "", -2 );
+	  if ( $sOrder == "ORDER BY" )
+	  {
+		  $sOrder = "";
+	  }
+	}
+	
+	
+	/* 
+	 * Filtering
+	 * NOTE this does not match the built-in DataTables filtering which does it
+	 * word by word on any field. It's possible to do here, but concerned about efficiency
+	 * on very large tables, and MySQL's regex functionality is very limited
+	 */
+	$sWhere = $this->input->get('sSearch');
+	
+	$rResult = $this->users->retrieveTable($iDisplayLength, $iDisplayLength * ($iDisplayStart), $sOrder, $sWhere);
+	$iFilteredTotal = count($rResult);
+	$iTotal = $this->users->retrieveCount($sWhere);
+	
+	/*
+	 * Output
+	 */
+	$output = array(
+		"sEcho" => intval($this->input->get('sEcho')),
+		"iTotalRecords" => $iTotal,
+		"iTotalDisplayRecords" => $iFilteredTotal,
+		"aaData" => array()
+	);
+	
+	foreach($rResult as $object)
+	{
+	  
+	  $row = array(
+		  'Usuario' => $object->username, 
+		  'Mail' => $object->email, 
+		  'Permiso' => $object->profile,  
+		  'Activo' => ($object->activated == 1)? "Si" : "No", 
+		  'Baneado' => ($object->banned == 1)? "Si" : "No", 
+		  'Creado el' => $object->created, 
+		  'Acciones' => 'safasd',
+		);
+	  
+	  $output['aaData'][] = $row;
+	}
+	
+	
+	echo json_encode( $output );
+	die(0);
+  }
+  
   /**
    * Register user on the site sending email
    *

@@ -450,6 +450,24 @@ class Users extends CI_Model
 		}
 		return FALSE;    
   }  
+  
+  public function retrieveTable($limit, $offset, $order, $where)
+  {
+	if($order !== "")
+	{
+	  $this->db->order_by($order);
+	}
+	
+	$this->db->limit($limit, $offset);
+	
+	$query = $this->db->get('users');
+	return $query->result();
+  }
+  
+  public function retrieveCount($where)
+  {
+	return $this->db->count_all('users');
+  }
 }
 
 /* End of file users.php */
