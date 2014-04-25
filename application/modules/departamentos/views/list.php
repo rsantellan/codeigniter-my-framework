@@ -20,7 +20,7 @@
         <?php echo ($object->name); ?>
       </td>
       <td>
-        <?php echo character_limiter(html_purify(html_entity_decode($object->description)), 100); ?>
+        <?php echo word_limiter(html_purify(html_entity_decode($object->description)), 100); ?>
       </td>
       <td>
         <a href="<?php echo site_url("departamentos/edit/".$object->id);?>">

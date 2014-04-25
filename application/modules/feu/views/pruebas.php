@@ -71,7 +71,7 @@
             <!-- end Standard Table -->
         </div>
         <?php if(count($listadoYears) > 1): ?>
-		<div>
+		<div class="full-width columns">
 		  <h4><?php echo lang("prueba_last_years"); ?></h4>
 		</div>
         <?php
@@ -79,8 +79,9 @@
           if($pruebaCorta){
             $url = 'pruebas-cortas/%s';
           }
+          
         ?>
-		<div>
+		<div class="full-width columns">
 		  <ul class="square-list">
 			<?php foreach($listadoYears as $year):?>
 			<li>
