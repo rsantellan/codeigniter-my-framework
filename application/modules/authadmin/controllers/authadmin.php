@@ -259,15 +259,23 @@ class Authadmin extends MY_Controller {
     $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
     $this->form_validation->set_rules('password', 'Contraseña', 'trim|required|xss_clean|min_length[' . $this->config->item('password_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('password_max_length', 'tank_auth') . ']|alpha_dash');
     $this->form_validation->set_rules('confirm_password', 'Repetir contraseña', 'trim|required|xss_clean|matches[password]');
-    $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|required|xss_clean|max_length[255]');
-    $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
     $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
     $this->form_validation->set_rules('mutualista', 'Mutualista', 'max_length[255]');
     $this->form_validation->set_rules('medicamentos', 'Medicamentos', 'max_length[255]');
     $this->form_validation->set_rules('permisos', 'Permisos', 'required|max_length[255]');
     $data['errors'] = array();
-
+	if($this->input->post('permisos') == 'medico')
+	{
+	  $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|required|xss_clean|max_length[255]');
+	  $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
+	}
+	else
+	{
+	  $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|xss_clean|max_length[255]');
+	  $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|xss_clean|max_length[255]');
+	}
+	
     if ($this->form_validation->run()) {        // validation ok
       if (!is_null($data = $this->tank_auth->create_user(
                       $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '', 
