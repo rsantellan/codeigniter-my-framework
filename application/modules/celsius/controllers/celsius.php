@@ -289,6 +289,40 @@ class celsius extends MY_Controller {
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
 
+  public function evento($lang, $id, $slug)
+  {
+	if (!$this->isLogged()) {
+      //Si no esta logeado se tiene que ir a loguear
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    if($this->data['user']->profile !== 'admin' &&  $this->data['user']->profile !== 'medico')
+    {
+      $this->session->set_userdata('url_to_direct_on_login', '');
+      redirect($lang);
+    }
+    $this->data['menu'] = 'eventos';
+    $this->data['submenu'] = 'eventos';
+    $this->setLang($lang);
+    $this->loadMenuData();
+    $this->changeUrlData('eventos.html', 'events.html');
+    $this->loadI18n("eventos", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
+	$title = $this->lang->line('title_eventos');
+	
+	$this->load->model('events/event');
+    $this->load->helper('upload/mimage');
+    $this->load->library('upload/mupload');
+    $this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+    
+	$object = $this->event->getById($id, $lang);
+	$this->appendTitle($title. ' - '.$object->getName());
+	$this->data['object'] = $object;
+	$this->data['media'] = $object->retrieveAlbumsContents(array($id), 'default', $object->getObjectClass());
+	$this->data['content'] = 'evento';
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   public function congresos($lang, $page = 1) {
     if (!$this->isLogged()) {
       //Si no esta logeado se tiene que ir a loguear
@@ -356,8 +390,8 @@ class celsius extends MY_Controller {
     $this->load->helper('text');
     $this->load->helper('htmlpurifier');
     
-	$this->appendTitle($title);
 	$object = $this->ocongress->getById($id, $lang);
+	$this->appendTitle($title. ' - '.$object->getName());
 	$this->data['object'] = $object;
 	$this->data['media'] = $object->retrieveAlbumsContents(array($id), 'default', $object->getObjectClass());
 	$this->data['content'] = 'congreso';

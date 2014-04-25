@@ -15,21 +15,10 @@
             $imgType = 3;
             $width = 165;
             $height = 110;
-            $widthGaleria = 600;
-            $heightGaleria = 400;
-            $urlBig = "";
     ?>
     <?php foreach($objectlist as $object): ?>
       <?php 
 		$urlused = sprintf($url_help, $object->id, $object->slug);
-        if(!is_null($object->avatar))
-        {
-          $urlBig = thumbnail_image(base_url(), $object->avatar->getPath() , $widthGaleria, $heightGaleria, $imgType);
-        }
-        else
-        {
-          $urlBig = base_url()."assets/images/noimage.png";
-        }
       ?>
     
     <li>

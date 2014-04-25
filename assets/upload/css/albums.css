@@ -36,18 +36,19 @@
 }
 
 .file_detail{
-  width: 460px;
+  width: 550px;
+  min-height: 300px;
   position:relative;
 }
 
 .file_detail .file_image{
   float: left;
-  width: 60%;
+  width: 50%;
 }
 
 .file_detail .file_data{
-/*  float: left;*/
-  width: 100%;
+  float: left;
+  width: 50%;
 }
 
 .file_detail .file_data .title{

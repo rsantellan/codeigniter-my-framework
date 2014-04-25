@@ -88,3 +88,22 @@ function startUploadFancyLinks()
   });
   adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
 }
+
+function saveFileDescription(form){
+  $("#album_description_save").hide();
+  $.ajax({
+	  url: $(form).attr('action'),
+	  data: $(form).serialize(),
+	  type: 'post',
+	  dataType: 'json',
+	  success: function(json){
+		
+	  }
+	  , 
+	  complete: function()
+	  {
+		$("#album_description_save").show();
+	  }
+  });
+  return false;
+}

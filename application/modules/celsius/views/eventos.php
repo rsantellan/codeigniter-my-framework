@@ -1,36 +1,27 @@
 <div class="content_site content_internas_seccion_iniciada">
   <?php echo $this->load->view('navegacionprivada') ?>
   <?php
-    $startUrl = "events";
+	$event_url=  'events';
     if($lang !== 'en')
     {
-        $startUrl = 'eventos';
+		$event_url = 'eventos';
     }
-    $url_help = $lang."/".$startUrl."/%s.html";
+    $url_help = $lang."/".$event_url."/%s/%s.html";
     ?>
   <ul class="content">
     <?php 
             $imgType = 3;
             $width = 165;
             $height = 110;
-            $widthGaleria = 600;
-            $heightGaleria = 400;
-            $urlBig = "";
+
     ?>
     <?php foreach($objectlist as $object): ?>
       <?php 
-        if(!is_null($object->avatar))
-        {
-          $urlBig = thumbnail_image(base_url(), $object->avatar->getPath() , $widthGaleria, $heightGaleria, $imgType);
-        }
-        else
-        {
-          $urlBig = base_url()."assets/images/noimage.png";
-        }
+        $urlused = sprintf($url_help, $object->id, $object->slug);
       ?>
     
     <li>
-      <a class="fancybox" href="<?php echo $urlBig;?>" data-fancybox-group="gallery" title="<?php echo $object->description;?>">
+      <a class="fancybox" href="<?php echo site_url($urlused);?>" title="<?php echo $object->description;?>">
         <div class="card-back">
           <h2><?php echo $object->description;?></h2>
           <p><?php echo $object->name;?></br><?php echo $object->members;?></p>
@@ -75,19 +66,7 @@
 
       <?php endif; ?>    
     <?php endfor; ?>
-  <!--	<a href="#" class="current">1</a> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a>-->
     </div><!--paginado-->	
 
   <?php endif;?>
 </div>
-<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			 *  Simple image gallery. Uses default settings
-			 */
-			$('.fancybox').fancybox();
-			/*
-			 *  Different effects
-			 */
-		});
-</script>
