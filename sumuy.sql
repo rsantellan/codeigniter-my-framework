@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2014 at 05:28 PM
--- Server version: 5.5.35-0ubuntu0.13.10.2
+-- Generation Time: Apr 25, 2014 at 04:41 PM
+-- Server version: 5.5.37-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.3
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `albumcontent`
 --
 
+DROP TABLE IF EXISTS `albumcontent`;
 CREATE TABLE IF NOT EXISTS `albumcontent` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `path` varchar(256) DEFAULT NULL,
@@ -58,6 +59,7 @@ INSERT INTO `albumcontent` (`id`, `path`, `basepath`, `name`, `type`, `contentty
 -- Table structure for table `albums`
 --
 
+DROP TABLE IF EXISTS `albums`;
 CREATE TABLE IF NOT EXISTS `albums` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
@@ -65,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `obj_class` varchar(64) DEFAULT NULL,
   `atype` varchar(64) NOT NULL DEFAULT 'images',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `albums`
@@ -82,7 +84,8 @@ INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
 (15, 'default', 16, 'novedad', 'images'),
 (16, 'default', 17, 'novedad', 'images'),
 (17, 'default', 18, 'novedad', 'images'),
-(18, 'default', 19, 'novedad', 'images');
+(18, 'default', 19, 'novedad', 'images'),
+(19, 'default', 20, 'novedad', 'images');
 
 -- --------------------------------------------------------
 
@@ -90,6 +93,7 @@ INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
 -- Table structure for table `ci_sessions`
 --
 
+DROP TABLE IF EXISTS `ci_sessions`;
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `session_id` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `ip_address` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '0',
@@ -105,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 -- Table structure for table `inscripcion`
 --
 
+DROP TABLE IF EXISTS `inscripcion`;
 CREATE TABLE IF NOT EXISTS `inscripcion` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -126,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `inscripcion` (
   `cvuy` varchar(255) NOT NULL,
   `comments` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -134,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `inscripcion` (
 -- Table structure for table `inscripcionarchivo`
 --
 
+DROP TABLE IF EXISTS `inscripcionarchivo`;
 CREATE TABLE IF NOT EXISTS `inscripcionarchivo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `inscripcion_id` int(11) NOT NULL,
@@ -141,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `inscripcionarchivo` (
   `filepath` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `inscripcion_id` (`inscripcion_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -149,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `inscripcionarchivo` (
 -- Table structure for table `language_keys`
 --
 
+DROP TABLE IF EXISTS `language_keys`;
 CREATE TABLE IF NOT EXISTS `language_keys` (
   `key` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -235,6 +242,7 @@ INSERT INTO `language_keys` (`key`, `filename`, `comment`, `module`) VALUES
 -- Table structure for table `llamado`
 --
 
+DROP TABLE IF EXISTS `llamado`;
 CREATE TABLE IF NOT EXISTS `llamado` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -257,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `llamado` (
   `cvuy` varchar(255) NOT NULL,
   `comments` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `llamado`
@@ -272,13 +280,14 @@ INSERT INTO `llamado` (`id`, `name`, `document`, `birthdate`, `country`, `nacion
 -- Table structure for table `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) COLLATE utf8_bin NOT NULL,
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -286,6 +295,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Table structure for table `mail_db`
 --
 
+DROP TABLE IF EXISTS `mail_db`;
 CREATE TABLE IF NOT EXISTS `mail_db` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `direccion` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -293,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `mail_db` (
   `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `funcion` varchar(255) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'contacto',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `mail_db`
@@ -309,6 +319,7 @@ INSERT INTO `mail_db` (`id`, `direccion`, `tipo`, `nombre`, `funcion`) VALUES
 -- Table structure for table `novedades`
 --
 
+DROP TABLE IF EXISTS `novedades`;
 CREATE TABLE IF NOT EXISTS `novedades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -340,6 +351,7 @@ INSERT INTO `novedades` (`id`, `nombre`, `copete`, `descripcion`, `ordinal`) VAL
 -- Table structure for table `tesis`
 --
 
+DROP TABLE IF EXISTS `tesis`;
 CREATE TABLE IF NOT EXISTS `tesis` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -372,6 +384,7 @@ INSERT INTO `tesis` (`id`, `titulo`, `subtitulo`, `orientadores`, `tribunal`, `d
 -- Table structure for table `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -387,6 +400,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- Table structure for table `user_profiles`
 --
 
+DROP TABLE IF EXISTS `user_profiles`;
 CREATE TABLE IF NOT EXISTS `user_profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -401,6 +415,7 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -425,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-04-21 16:57:58', '2012-08-20 18:05:44', '2014-04-21 19:57:58');
+(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-04-22 13:37:31', '2012-08-20 18:05:44', '2014-04-22 16:37:31');
 
 --
 -- Constraints for dumped tables
