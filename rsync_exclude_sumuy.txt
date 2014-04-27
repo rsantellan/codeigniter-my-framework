@@ -1,0 +1,64 @@
+assets/cache/*
+assets/uploads/*
+#Cambiar siempre la primera vez
+application/config/database.php
+assets/admin/js/tiny_mce/plugins/jfilebrowser/js/config.js
+assets/admin/js/tiny_mce/plugins/jfilebrowser/include/config.php
+application/logs/log*
+application/libraryNoSeUsa
+application/modules/banners
+application/modules/basiclink
+application/modules/blog
+application/modules/categorias
+application/modules/categories
+application/modules/celsius
+application/modules/clubes
+application/modules/congress
+application/modules/departamentos
+application/modules/documents
+application/modules/events
+application/modules/feu
+application/modules/galerias
+application/modules/historicosadmin
+application/modules/jornadas
+application/modules/jornadatemas
+application/modules/laboratorios
+application/modules/news
+application/modules/presentations
+application/modules/products
+application/modules/proyectos
+application/modules/pruebas
+application/modules/radios
+application/modules/roche
+application/modules/sitio
+application/modules/studycases
+application/modules/tags
+application/modules/testmulti
+application/modules/trabajaconnosotros
+application/modules/veterinariosadmin
+application/modules/welcome
+
+assets/celsius
+assets/js/roche
+assets/css/roche
+assets/images/roche
+captcha/*
+*.sql
+rsync_exclude.txt
+rsync_exclude_feu.txt
+rsync_exclude_sumuy.txt.txt
+
+# SCM files
+.svn
+
+#Metalizadora
+#rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
+
+#Roche
+#rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude.txt" -e "ssh -p22" ./ metaliza@198.15.85.113:/home/metaliza/public_html/beta
+
+#Feu local
+rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude_feu.txt" ./ /home/rodrigo/proyectos/beta
+
+#Sumuy local
+rsync --dry-run -azC --force --delete --progress --exclude-from="rsync_exclude_sumuy.txt" ./ /home/rodrigo/proyectos/beta
