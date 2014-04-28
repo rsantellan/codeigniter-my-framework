@@ -30,10 +30,10 @@ class mimagickexec {
     {
       throw new Exception("Invalid thumbnail type check class imagickExecThumbnailTypes");
     }
-    log_message('error', "el tipo es el siguiente: ".$type);
+    log_message('info', "el tipo es el siguiente: ".$type);
     //die('aca');
     //var_dump($cacheFile);
-    log_message('error',$cacheFile);
+    log_message('info',$cacheFile);
     $config = array();
     $config['image_library'] = 'imagemagick';
     $config['source_image'] = $file;
@@ -87,7 +87,8 @@ class mimagickexec {
     //	Did it work?
     if ($retval > 0)
     {
-        $this->set_error('imglib_image_process_failed');
+        log_message('log_message', 'imglib_image_process_failed');
+        //$this->set_error('imglib_image_process_failed');
         return FALSE;
     }
     // Set the file to 777
