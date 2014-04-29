@@ -26,7 +26,7 @@
         </dl>       
 </div><!--menu productos-->
 <div class="clear"></div> 
-<?php if(isset($usedProduct)): ?>
+<?php if(isset($usedProduct) && $usedProduct->exists): ?>
 <div id="product_content" class="content_site content_internas">
   <h2 class="productos"><?php echo $usedProduct->name?></h2>
     <hr>

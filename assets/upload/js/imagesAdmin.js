@@ -87,6 +87,7 @@ function startUploadFancyLinks()
       }
   });
   adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
+  adminManager.getInstance().startFancyInPage('colorbox_link');
 }
 
 function saveFileDescription(form){
