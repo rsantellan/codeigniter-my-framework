@@ -35,6 +35,15 @@ echo form_open($url, $attributes); ?>
         <label><?php echo lang('contacto_email');?></label><input type="email" name="email" value="<?php echo set_value('email'); ?>">
         <label><?php echo lang('contacto_empresa');?></label><input type="text" name="empresa" value="<?php echo set_value('empresa'); ?>">
         <label><?php echo lang('contacto_cargo');?></label><input type="text" name="cargo" value="<?php echo set_value('cargo'); ?>">
+        <label><?php echo lang('contacto_motivo');?></label>
+		<?php 
+		  $motivos = array(
+			  0 => lang('contacto_motivo_negocios'),
+			  1 => lang('contacto_motivo_ventas'),
+			  2 => lang('contacto_motivo_otras'),
+		  );
+		?>
+		<?php echo form_dropdown('motivo', $motivos, set_value('motivo')); ?>
       </div><!-- form contacto block -->
       <div class="form_contacto_block">
         <label class="label_consulta"><?php echo lang('contacto_consulta');?></label>

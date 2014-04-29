@@ -31,3 +31,7 @@ $lang['contacto_cargo']='Cargo';
 $lang['contacto_consulta']='Consulta';
 $lang['contacto_enviar']='enviar';
 $lang['contacto_campos_obligatorios']='Los campos marcados con (*) son obligatorios';
+$lang['contacto_motivo']='motivo de consultar';
+$lang['contacto_motivo_negocios']='Negocios con el exterior y Parteners';
+$lang['contacto_motivo_ventas']='Ventas';
+$lang['contacto_motivo_otras']='Otras consultas';

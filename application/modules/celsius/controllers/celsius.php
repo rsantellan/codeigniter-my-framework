@@ -871,11 +871,12 @@ class celsius extends MY_Controller {
     $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');
     $this->form_validation->set_rules('empresa', 'empresa', 'max_length[255]');
     $this->form_validation->set_rules('cargo', 'cargo', 'max_length[255]');
+    $this->form_validation->set_rules('motivo', 'motivo', 'integer|required');
     $this->form_validation->set_rules('consulta', 'consulta', 'required');
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
     if ($this->form_validation->run() !== FALSE) {
       // build array for the model
-
+	  $motivo = set_value('motivo');
       $form_data = array(
           'motivo' => set_value('motivo'),
           'nombre' => set_value('nombre'),
@@ -891,8 +892,20 @@ class celsius extends MY_Controller {
           'consulta' => set_value('consulta')
       );
       $this->load->model('contacto/mail_db');
-      $return = $this->mail_db->retrieveContactMailInfo();
-      $this->load->library('email');
+	  
+	  switch ($motivo) {
+		case 0:
+		  $return = $this->mail_db->retrieveMailInfoByFuncion('contactonegocios');
+		  break;
+		case 1:
+		  $return = $this->mail_db->retrieveMailInfoByFuncion('contactoventas');
+		  break;
+		default:
+		  $return = $this->mail_db->retrieveContactMailInfo();
+		  break;
+	  }
+      
+	  $this->load->library('email');
 
       $this->email->from($return['from']['direccion'], $return['from']['nombre']);
       $this->email->to($return['to']); 
