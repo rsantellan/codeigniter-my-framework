@@ -74,6 +74,7 @@ function startUploadFancyLinks()
 {
   //var album_id = null;
   $.colorbox.remove();
+  //console.info($(".colorbox_link_upload"));
   $(".colorbox_link_upload").colorbox({
       'width' : '40%',
       'height' : '80%',
@@ -89,5 +90,27 @@ function startUploadFancyLinks()
         */
       }
   });
+  //console.info($('.colorbox_link_iframe'));
+  //console.info($('.colorbox_link'));
   adminManager.getInstance().startFancyIframeInPage('colorbox_link_iframe');
+  adminManager.getInstance().startFancyInPage('colorbox_link');
+}
+
+function saveFileDescription(form){
+  $("#album_description_save").hide();
+  $.ajax({
+	  url: $(form).attr('action'),
+	  data: $(form).serialize(),
+	  type: 'post',
+	  dataType: 'json',
+	  success: function(json){
+		
+	  }
+	  , 
+	  complete: function()
+	  {
+		$("#album_description_save").show();
+	  }
+  });
+  return false;
 }

@@ -7,8 +7,10 @@
     <ul>
       <?php foreach($media as $mediacontent): ?>
       <li>
-        <a href="<?php echo site_url('descargar/'.$mediacontent->ac_id.'/'.url_title($mediacontent->ac_name, '-', TRUE) . ".html");?>"><?php echo $mediacontent->ac_name;?></a>
-          <?php //var_dump($mediacontent);?>
+        <?php if($mediacontent->ac_contenttype == 'content-document'): ?>
+        <img src="<?php echo base_url(); ?>assets/sumuy/images/pdf_icon.jpg" />
+        <?php endif; ?>
+        <a class="novedad_link" href="<?php echo site_url('descargar/'.$mediacontent->ac_id.'/'.url_title($mediacontent->ac_name, '-', TRUE) . ".html");?>"><?php echo $mediacontent->ac_name;?></a>
       </li>
       <?php endforeach;?>
     </ul>

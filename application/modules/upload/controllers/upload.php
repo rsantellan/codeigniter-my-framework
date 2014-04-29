@@ -515,6 +515,38 @@ class Upload extends MY_Controller {
 	$this->load->view("upload/file_detail", $data);
   }
 
+  public function saveFileDescription() {
+	
+	if (!$this->isLogged()) {
+	  //Si no esta logeado se tiene que ir a loguear
+	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
+	  redirect('auth/login');
+	}
+    else
+    {
+      $user = $this->getLoggedUserData();
+      if(isset($user->profile) && $user->profile !== 'admin')
+      {
+        $this->session->set_flashdata("permission", "No tiene los permisos suficientes");
+        redirect('');
+      }
+    }
+	$fileId = $this->input->post('id');
+	$this->load->model('upload/albumcontent');
+	$file = $this->albumcontent->getFile($fileId, true);
+	$ok = "ERROR";
+	if($file)
+	{
+	  $file->setDescription($this->input->post('description'));
+	  $file->updateDescription();
+	  $ok = "OK";
+	}
+	$salida = array();
+	$salida['response'] = $ok;
+	$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($salida));
+  }
   public function deleteFile($fileId) {
 	if (!$this->isLogged()) {
 	  //Si no esta logeado se tiene que ir a loguear

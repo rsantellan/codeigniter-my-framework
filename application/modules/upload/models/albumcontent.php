@@ -295,6 +295,14 @@ class albumcontent extends MY_Model{
     $this->db->update($this->getTablename(), $data);
   }
   
+  function updateDescription()
+  {
+    $data = array(
+              'description' => $this->getDescription()
+           );
+    $this->db->where('id', $this->getId());
+    $this->db->update($this->getTablename(), $data);
+  }
   
   /***
    * 
