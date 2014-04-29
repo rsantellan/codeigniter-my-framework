@@ -10,7 +10,7 @@
     ?>
     <div class="novedades_left_destacado">
       <h3><?php echo $destacada->nombre;?></h3>
-      <?php if(!is_null($destacada->avatar)): ?>
+      <?php if(!is_null($destacada->avatar) && $destacada->avatar->getType() != 'pdf' && $destacada->avatar->getType() != 'doc' && $destacada->avatar->getType() != 'docx'): ?>
           <img alt="<?php echo $destacada->nombre;?>" src="<?php echo thumbnail_image(base_url(), $destacada->avatar->getPath() , $width, $height, $imgType); ?>" />
           <?php else: ?>
           <img src="<?php echo base_url(); ?>assets/sumuy/images/destacado_novedades.jpg">
