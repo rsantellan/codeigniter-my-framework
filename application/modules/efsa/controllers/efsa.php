@@ -59,6 +59,28 @@ class efsa extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function docencia()
+  {
+	$this->data['menu'] = 'docencia';
+	$this->data['content'] = 'docencia';
+	$this->loadI18n("docencia", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function docenciagrado($type)
+  {
+	$this->data['menu'] = 'docencia';
+	$this->data['content'] = 'docenciagrado';
+	$this->loadI18n("docencia", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->model('integrantes/integrante');
+	$this->load->helper('upload/mimage');
+	$this->load->library('upload/mupload');
+	$this->load->model('efsadocencias/efsadocencia');
+	$this->data['list'] = $this->efsadocencia->retrieveAll(null, null, false, true, $type);
+	$this->data['type'] = $type;
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
   
 }
 

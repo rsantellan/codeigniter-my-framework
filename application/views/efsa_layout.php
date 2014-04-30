@@ -43,7 +43,7 @@
 				<li class="integrantes"><a href="<?php echo site_url('integrantes.html');?>" <?php if($menu == 'integrantes'):?> class="current"<?php endif;?>><?php echo lang('menu_integrantes');?></a></li>
 				<li class="investigacion"><a href="/investigacion.php" <?php if($menu == 'investigacion'):?> class="current"<?php endif;?>><?php echo lang('menu_investigacion');?></a></li>
 				<li class="publicaciones"><a href="<?php echo site_url('publicaciones.html');?>" <?php if($menu == 'publicaciones'):?> class="current"<?php endif;?>><?php echo lang('menu_publicaciones');?></a></li>
-				<li class="short docencia"><a href="/docencia.php" <?php if($menu == 'docencia'):?> class="current"<?php endif;?>><?php echo lang('menu_docencia');?></a></li>
+				<li class="short docencia"><a href="<?php echo site_url('docencia.html');?>" <?php if($menu == 'docencia'):?> class="current"<?php endif;?>><?php echo lang('menu_docencia');?></a></li>
 				<li class="divulgacion"><a href="/extension.php" <?php if($menu == 'extension'):?> class="current"<?php endif;?>><?php echo lang('menu_extension');?></a></li>
 				<li class="short contacto"><a href="/contacto.php" <?php if($menu == 'contacto'):?> class="current"<?php endif;?>><?php echo lang('menu_contacto');?></a></li>
 			</ul>

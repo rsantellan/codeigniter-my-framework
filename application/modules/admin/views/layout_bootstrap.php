@@ -78,7 +78,7 @@
                         <a href="<?php echo site_url('publicaciones/index');?>"><i class="fa fa-fw fa-bars"></i> Publicaciones</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('inscripciones/index');?>"><i class="fa fa-fw fa-bars"></i> Inscripciones</a>
+                        <a href="<?php echo site_url('efsadocencias/index');?>"><i class="fa fa-fw fa-bars"></i> Docencia</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('tesises/index');?>"><i class="fa fa-fw fa-ellipsis-v"></i> Tesis</a>
