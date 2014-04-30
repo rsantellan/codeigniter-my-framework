@@ -17,7 +17,7 @@ $root = rtrim($_SERVER['DOCUMENT_ROOT'],'/'); // don't touch this configuration
 //   |    |   |    |-   |-      |- thumbs <- folder of thumbs [must have the write permission]
 
 $base_url=""; //url base of site if you want only relative url leave empty
-$upload_dir = '/assets/uploads/tiny'; // path from base_url to upload base dir
+$upload_dir = '/assets/uploads/tiny/'; // path from base_url to upload base dir
 $current_path = '../../../uploads/tiny/'; // relative path from filemanager folder to upload files folder
 
 $MaxSizeUpload=100; //Mb
