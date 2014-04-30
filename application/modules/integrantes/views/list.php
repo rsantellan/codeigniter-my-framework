@@ -70,7 +70,7 @@
                     <a class="btn btn-default" href="<?php echo site_url("integrantes/edit/" . $object->id); ?>">
                       Editar
                     </a>
-                    <a class="btn btn-danger" href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("novedades/delete/".$object->id);?>');">
+                    <a class="btn btn-danger" href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("integrantes/delete/".$object->id);?>');">
                       Eliminar
                     </a>
                   </td>

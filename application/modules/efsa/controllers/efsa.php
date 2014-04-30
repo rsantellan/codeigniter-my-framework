@@ -30,7 +30,7 @@ class efsa extends MY_Controller{
 	$this->data['content'] = 'integrantes';
 	$this->load->model('integrantes/integrante');
 	$this->load->helper('upload/mimage');
-    $this->load->library('upload/mupload');
+	$this->load->library('upload/mupload');
 	$this->data['list'] = $this->integrante->retrieveAll(null, null, false, true, $type);
 	$this->data['type'] = $type;
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
@@ -41,11 +41,22 @@ class efsa extends MY_Controller{
 	$this->loadI18n("integrantes", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
 	$this->load->model('integrantes/integrante');
 	$this->load->helper('upload/mimage');
-    $this->load->library('upload/mupload');
+	$this->load->library('upload/mupload');
 	$this->load->helper('text');
-    $this->load->helper('htmlpurifier');
+	$this->load->helper('htmlpurifier');
 	$this->data['object'] = $this->integrante->getById($id, false, true);
 	$this->load->view('efsa/integrante', $this->data);
+  }
+  
+  public function publicaciones($type)
+  {
+	$this->data['menu'] = 'publicaciones';
+	$this->data['content'] = 'publicaciones';
+	$this->loadI18n("publicaciones", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->model('publicaciones/publicacion');
+	$this->data['list'] = $this->publicacion->retrieveAccordeon($type);
+	$this->data['type'] = $type;
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
   

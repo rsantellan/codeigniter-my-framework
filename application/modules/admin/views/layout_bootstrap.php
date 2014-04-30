@@ -75,7 +75,7 @@
                         <a href="<?php echo site_url('integrantes/index');?>"><i class="fa fa-fw fa-book"></i> Integrantes</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('llamados/index');?>"><i class="fa fa-fw fa-bars"></i> Llamados</a>
+                        <a href="<?php echo site_url('publicaciones/index');?>"><i class="fa fa-fw fa-bars"></i> Publicaciones</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('inscripciones/index');?>"><i class="fa fa-fw fa-bars"></i> Inscripciones</a>

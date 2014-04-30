@@ -44,6 +44,8 @@ $route["integrantes.html"] = 'efsa/integrantes/1';
 $route["estudiantes.html"] = 'efsa/integrantes/2';
 $route["investigadores-invitados.html"] = 'efsa/integrantes/3';
 $route["integrante/(:num)/(:any).html"] = 'efsa/integrante/$1/$2';
+$route["publicaciones.html"] = 'efsa/publicaciones/1';
+$route["publicaciones-libros.html"] = 'efsa/publicaciones/2';
 /*
 $route["sum.html"] = 'sumuy/sum';
 $route["sociedad.html"] = 'sumuy/sociedad';
