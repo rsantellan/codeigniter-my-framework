@@ -88,6 +88,12 @@
                 <td>comentarios</td>
                 <td><strong><?php echo $object->comments; ?></strong></td>
               </tr>
+              <?php foreach($media as $file): ?>
+                <tr>
+                  <td>Archivo</td>
+                  <td><strong><a href='<?php echo site_url('llamados/archivo/'.$file->id);?>'><?php echo $file->filename; ?></a></strong></td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>

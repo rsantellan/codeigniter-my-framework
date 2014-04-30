@@ -21,3 +21,16 @@ CREATE TABLE IF NOT EXISTS  `llamado` (
  comments TEXT NOT NULL,
  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS `llamadoarchivo`;
+CREATE TABLE IF NOT EXISTS `llamadoarchivo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `llamado_id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `filepath` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `llamado_id` (`llamado_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `llamadoarchivo`
+  ADD CONSTRAINT `fk_llamado_archivo` FOREIGN KEY (`llamado_id`) REFERENCES `llamado` (`id`);

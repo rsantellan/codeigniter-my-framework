@@ -26,7 +26,7 @@
       <?php echo form_error('tutor'); ?>
       <?php echo form_error('cvuy'); ?>
       
-      <form id="llamadosform" action='<?php echo site_url($this->uri->uri_string());?>' method='POST' data-parsley-validate>
+      <form id="llamadosform" action='<?php echo site_url($this->uri->uri_string());?>' method='POST' enctype="multipart/form-data" data-parsley-validate>
         <input type="text" name="name" placeholder="<?php echo lang('llamados_nombre');?>" value="<?php echo set_value('name'); ?>" data-parsley-required  />
         <input type="text" name="document" placeholder="<?php echo lang('llamados_ci');?>" value="<?php echo set_value('document'); ?>"  data-parsley-required />
         <input type="text" name="birthdate" placeholder="<?php echo lang('llamados_birthdate');?>" value="<?php echo set_value('birthdate'); ?>"  />
@@ -44,6 +44,17 @@
         <input type="text" name="position" placeholder="<?php echo lang('llamados_position');?>" value="<?php echo set_value('position'); ?>" />
         <input type="text" name="investigation" placeholder="<?php echo lang('llamados_investigation');?>" value="<?php echo set_value('investigation'); ?>" />
         <input type="text" name="tutor" placeholder="<?php echo lang('llamados_tutor');?>" value="<?php echo set_value('tutor'); ?>"  />
+        <label><?php echo lang('llamados_adjuntar_recibo');?>(1)</label><input type="file" class="browse" name="sendfile1" />
+        <label><?php echo lang('llamados_adjuntar_recibo');?>(2)</label><input type="file" class="browse" name="sendfile2" />
+        <label><?php echo lang('llamados_adjuntar_recibo');?>(3)</label><input type="file" class="browse" name="sendfile3" />
+        <label><?php echo lang('llamados_adjuntar_recibo');?>(4)</label><input type="file" class="browse" name="sendfile4" />
+        <label><?php echo lang('llamados_adjuntar_recibo');?>(5)</label><input type="file" class="browse" name="sendfile5" />
+        <?php 
+        if(count($errores) > 0):
+          foreach($errores as $uError):
+            echo $uError;
+          endforeach;
+        endif; ?>
         <input type="text" name="cvuy" placeholder="<?php echo lang('llamados_cvuy');?>" value="<?php echo set_value('cvuy'); ?>"  />
         <?php echo form_textarea( array( 'name' => 'comments', 'rows' => '8', 'value' => set_value('comments'), 'placeholder' => lang('llamados_comentarios') ) )?>
         <input type="submit" class="submit" value="enviar" />

@@ -36,9 +36,21 @@ class llamados extends MY_Controller{
   
   function show($id)
   {
+    $this->load->model('llamados/llamadoarchivo');
     $this->data['object'] = $this->llamado->getById($id, false);
+    $this->data['media'] = $this->llamadoarchivo->getByLlamado($id);
     $this->data['content'] = "llamados/show";
     $this->load->view($this->layout, $this->data);
+  }
+  
+  public function archivo($id){
+    $this->load->model('llamados/llamadoarchivo');
+    $file = $this->llamadoarchivo->getSimpleId($id);
+
+    $this->load->helper('download');
+    $data = file_get_contents($file->filepath.$file->filename); // Read the file's contents
+    $name = $file->filename;
+    force_download($name, $data);
   }
   
   function delete($id)

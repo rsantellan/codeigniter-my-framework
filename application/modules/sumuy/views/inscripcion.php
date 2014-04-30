@@ -4,7 +4,7 @@
     <p class="copete_forms">
       <?php echo lang('inscripcion_texto');?>
     </p>                                                
-    <a href="#" class="descargar">descargar bases</a> 
+    
 
     <?php if (!$mail): ?>
       <?php echo form_error('name'); ?>
@@ -44,16 +44,15 @@
         <input type="text" name="position" placeholder="<?php echo lang('inscripcion_position');?>" value="<?php echo set_value('position'); ?>" />
         <input type="text" name="investigation" placeholder="<?php echo lang('inscripcion_investigation');?>" value="<?php echo set_value('investigation'); ?>" />
         <label><?php echo lang('inscripcion_adjuntar_recibo');?>(1)</label><input type="file" class="browse" name="sendfile1" />
-        <label><?php echo lang('inscripcion_adjuntar_recibo');?>(2)</label><input type="file" class="browse" name="sendfile2" />
-        <label><?php echo lang('inscripcion_adjuntar_recibo');?>(3)</label><input type="file" class="browse" name="sendfile3" />
-        <label><?php echo lang('inscripcion_adjuntar_recibo');?>(4)</label><input type="file" class="browse" name="sendfile4" />
-        <label><?php echo lang('inscripcion_adjuntar_recibo');?>(5)</label><input type="file" class="browse" name="sendfile5" />
+        <div class="clear"></div>
+        <p>
         <?php 
         if(count($errores) > 0):
           foreach($errores as $uError):
             echo $uError;
           endforeach;
         endif; ?>
+        </p>
         <input type="text" name="cvuy" placeholder="<?php echo lang('inscripcion_cvuy');?>" value="<?php echo set_value('cvuy'); ?>"  />
         <?php echo form_textarea( array( 'name' => 'comments', 'rows' => '8', 'value' => set_value('comments'), 'placeholder' => lang('inscripcion_comentarios') ) )?>
         <input type="submit" class="submit" value="enviar" />

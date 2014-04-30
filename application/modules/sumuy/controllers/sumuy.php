@@ -248,6 +248,7 @@ class sumuy extends MY_Controller{
     $this->form_validation->set_rules('comments', 'comments', '');
 
     $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    $errores = array();
     
     if ($this->form_validation->run() == FALSE) 
     {
@@ -278,36 +279,78 @@ class sumuy extends MY_Controller{
                 'cvuy' => set_value('cvuy'),
                 'comments' => set_value('comments')
             );
-			// run insert model to write data to db
-            $this->load->model('llamados/llamado');
-            $saved = $this->llamado->save($form_data);
-            if($saved)
+            
+            $config['upload_path'] = FCPATH."assets".DIRECTORY_SEPARATOR."protectedfiles";
+            $config['allowed_types'] = 'pdf|doc|docx';
+            $this -> load -> library('upload', $config);
+            
+            $upload_data = array();
+            
+            for($i=1; $i < 6; $i++)
             {
-              $this->data['mail'] = true;
-              $this->load->model('contacto/mail_db');
-              $this->load->library('email');
-              $return = $this->mail_db->retrieveContactMailInfo();
-              $this->load->library('email');
-
-              $this->email->from($return['from']['direccion'], $return['from']['nombre']);
-              $this->email->to($return['to']); 
-              if(isset($return['cc']))
+              $name = 'sendfile'.$i;
+              //var_dump($name);
+              if(isset($_FILES[$name]) && !empty($_FILES[$name]['name']))
               {
-                $this->email->cc($return['cc']); 
+                if (!$this->upload->do_upload($name)) {
+                  $errores[$name] = $this->upload->display_errors();
+                  $this->upload->clean_errors();
+                } else {
+                  $upload_data[$name] = $this->upload->data();
+                }
               }
-              if(isset($return['bcc']))
-              {
-                $this->email->bcc($return['bcc']);
-              }
-
-              $this->email->reply_to($form_data['mail'], $form_data['name']);
-
-              $this->email->subject('[SUMUY WEB] Formulario de llamado');
-              $mail = $this->load->view('mail_llamados', $form_data, true);
-              $this->email->message($mail); 
-              $this->email->send();
             }
+            if(count($errores) == 0)
+            {
+              // run insert model to write data to db
+              $this->load->model('llamados/llamado');
+              $this->load->model('llamados/llamadoarchivo');
+              $saved = $this->llamado->save($form_data);
+              if($saved)
+              {
+                $sendEmailAttachs = array();
+                foreach($upload_data as $uData)
+                {
+                  $archivo = new $this->llamadoarchivo;
+                  $archivo->setLlamadoId($saved);
+                  $archivo->setFilename($uData['file_name']);
+                  $archivo->setFilepath($uData['file_path']);
+                  $archivo->save();
+                  $sendEmailAttachs[] = $archivo;
+                }
+                
+                $this->data['mail'] = true;
+                $this->load->model('contacto/mail_db');
+                $this->load->library('email');
+                $return = $this->mail_db->retrieveContactMailInfo();
+                $this->load->library('email');
+
+                $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+                $this->email->to($return['to']); 
+                if(isset($return['cc']))
+                {
+                  $this->email->cc($return['cc']); 
+                }
+                if(isset($return['bcc']))
+                {
+                  $this->email->bcc($return['bcc']);
+                }
+
+                $this->email->reply_to($form_data['mail'], $form_data['name']);
+
+                $this->email->subject('[SUMUY WEB] Formulario de llamado');
+                $mail = $this->load->view('mail_llamados', $form_data, true);
+                $this->email->message($mail); 
+                foreach($sendEmailAttachs as $attach)
+                {
+                  $this->email->attach($attach->getFilepath().$attach->getFilename());
+                }
+                $this->email->send();
+              }
+            }
+			
     }
+    $this->data['errores'] = $errores;
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
@@ -377,22 +420,13 @@ class sumuy extends MY_Controller{
             $this -> load -> library('upload', $config);
             
             $upload_data = array();
-            
-            for($i=1; $i < 6; $i++)
-            {
-              $name = 'sendfile'.$i;
-              //var_dump($name);
-              if(isset($_FILES[$name]) && !empty($_FILES[$name]['name']))
-              {
-                if (!$this->upload->do_upload($name)) {
-                  $errores[$name] = $this->upload->display_errors();
-                  $this->upload->clean_errors();
-                } else {
-                  $upload_data[$name] = $this->upload->data();
-                }
-              }
+            $name = 'sendfile1';
+            if (!$this->upload->do_upload($name)) {
+              $errores[$name] = $this->upload->display_errors();
+              $this->upload->clean_errors();
+            } else {
+              $upload_data[$name] = $this->upload->data();
             }
-
             if(count($errores) == 0)
             {
               $saved = $this->inscripcion->save($form_data);

@@ -20,3 +20,4 @@ $lang['llamados_investigation'] = 'l&iacute;nea de investigaci&oacute;n';
 $lang['llamados_tutor'] = 'nombre del tutor (si corresponde)';
 $lang['llamados_cvuy'] = 'link a cvuy (indicador)';
 $lang['llamados_comentarios'] = 'comentarios';
+$lang['llamados_adjuntar_recibo'] = 'adjuntar material solicitado';
