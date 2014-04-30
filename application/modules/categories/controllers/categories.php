@@ -32,6 +32,7 @@ class categories extends MY_Controller{
           redirect('');
         }
       }
+      $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
 //	  $this->output->enable_profiler(TRUE);  
     }
     
@@ -106,6 +107,7 @@ class categories extends MY_Controller{
       {
         //Como es valido lo salvo
         $id = $obj->save();
+        $this->cache->delete('categorieslist-'.$lang);
         $this->session->set_flashdata("salvado", "ok");
         redirect('categories/edit/'.$lang."/".$id);
       }
@@ -133,6 +135,8 @@ class categories extends MY_Controller{
     {
       $this->load->model('categories/category');
       $result = $this->category->deleteById($id);
+      $this->cache->delete('categorieslist-es');
+      $this->cache->delete('categorieslist-en');
       $salida['response'] = "OK";
       $this->output
        ->set_content_type('application/json')

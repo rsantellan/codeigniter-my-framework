@@ -97,23 +97,7 @@ class category extends MY_Model{
   }
   public function retrieveAll($returnObjects = FALSE, $lang = 'es', $order = 'ordinal')
   {
-    /*
-    $sql = 'select category.id, category.ordinal, category_translation.lang, category_translation.name, category_translation.slug from category left outer join category_translation on category.id = category_translation.id where category_translation.lang = ? order by category_translation.name desc';
-    $data = $this->db->query($sql, $lang);
-    $salida = array();
-    foreach($data->result() as $object)
-    {
-      if($returnObjects)
-      {
-        
-      }
-      else
-      {
-        
-      }
-    }
-    var_dump($data->result());
-    */
+
     $this->db->order_by($order, "desc");
     $query = $this->db->get($this->getTablename());
     $salida = array();
@@ -123,11 +107,11 @@ class category extends MY_Model{
     }
     if($returnObjects)
     {
-      usort($salida, 'category::compareObjects');
+      uasort($salida, 'category::compareObjects');
     }
     else
     {
-      usort($salida, 'category::compareStd');
+      uasort($salida, 'category::compareStd');
     }
     return $salida;
   }
