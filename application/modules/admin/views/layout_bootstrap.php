@@ -72,7 +72,7 @@
                         <a href="<?php echo site_url('admin/index');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('novedades/index');?>"><i class="fa fa-fw fa-book"></i> Noticias</a>
+                        <a href="<?php echo site_url('integrantes/index');?>"><i class="fa fa-fw fa-book"></i> Integrantes</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('llamados/index');?>"><i class="fa fa-fw fa-bars"></i> Llamados</a>

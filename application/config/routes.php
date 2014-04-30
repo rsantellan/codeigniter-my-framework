@@ -38,8 +38,13 @@
 |
 */
 
-$route['default_controller'] = "sumuy";
-$route[""] = 'sumuy/index';
+$route['default_controller'] = "efsa";
+$route[""] = 'efsa/index';
+$route["integrantes.html"] = 'efsa/integrantes/1';
+$route["estudiantes.html"] = 'efsa/integrantes/2';
+$route["investigadores-invitados.html"] = 'efsa/integrantes/3';
+$route["integrante/(:num)/(:any).html"] = 'efsa/integrante/$1/$2';
+/*
 $route["sum.html"] = 'sumuy/sum';
 $route["sociedad.html"] = 'sumuy/sociedad';
 $route["socios.html"] = 'sumuy/socios';
@@ -53,7 +58,8 @@ $route["llamados.html"] = 'sumuy/llamados';
 $route["inscripcion.html"] = 'sumuy/inscripcion';
 $route["contacto.html"] = 'sumuy/contacto';
 $route["enlaces.html"] = 'sumuy/enlaces';
-$route["recomendar.html"] = 'sumuy/recomendar';
+$route["recomendar.html"] = 'sumuy/recomendar'; 
+ */
 /*
 $route["^(en|es)"] = 'celsius/index/$1';
 $route["^(en|es)/categoria/(:num)/(:any).html"] = 'celsius/category/$1/$2/$3';
