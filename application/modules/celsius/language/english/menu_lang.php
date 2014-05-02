@@ -36,4 +36,6 @@ $lang['menu_login_close']='Cerrar sesi&oacute;n';
 $lang['menu_novedades_medicas']='novedades m&eacute;dicas';
 $lang['menu_intranet']='Red Interna';
 $lang["menu_contacto"] = "Contact";
-/* End of file menu_lang.php */
+$lang["menu_trabaja"] = "trabaj&aacute; con nosotros";
+$lang["menu_productos"] = "Productos";
+$lang["menu_buscar"] = "Buscar";

@@ -1,7 +1,7 @@
 <div class="menu_productos">
   <span><?php echo $category->name;?> |</span>
         <dl class="dropdown">
-            <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" >Seleccione el producto</dt>
+            <dt id="three-ddheader" onmouseover="ddMenu('three',1)" onmouseout="ddMenu('three',-1)" ><?php echo lang('producto_seleccione');?></dt>
                 <dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
                     <ul>
                       <?php 

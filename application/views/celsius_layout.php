@@ -88,7 +88,7 @@
 				  <dt>|</dt>
 			  </dl>             
 			  <dl class="dropdown">
-				  <dt id="two-ddheader" onmouseover="ddMenu('two',1)" onmouseout="ddMenu('two',-1)" <?php if($menu == 'productos'):?> class="submenu current"<?php endif;?>>Productos</dt>
+				  <dt id="two-ddheader" onmouseover="ddMenu('two',1)" onmouseout="ddMenu('two',-1)" <?php if($menu == 'productos'):?> class="submenu current"<?php endif;?>><?php echo lang('menu_productos');?></dt>
 					  <dd id="two-ddcontent" onmouseover="cancelHide('two')" onmouseout="ddMenu('two',-1)">
 						  <ul>
 							<?php
@@ -126,7 +126,7 @@
 				  <dt>|</dt>
 			  </dl>              
 			  <dl class="dropdown">
-				  <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'trabaja-con-nosotros' : 'work-with-us').".html");?>" <?php if($menu == 'trabajar_lab'):?> class="current"<?php endif;?>>trabaj&aacute; con nosotros</a></dt>
+				  <dt><a href="<?php echo site_url($lang."/".(($lang =='es')?'trabaja-con-nosotros' : 'work-with-us').".html");?>" <?php if($menu == 'trabajar_lab'):?> class="current"<?php endif;?>><?php echo lang('menu_trabaja');?></a></dt>
 			  </dl> 
 			  <dl class="dropdown">
 				  <dt>|</dt>
@@ -156,7 +156,7 @@
 	  </header>
 	  <div class="buscador">
         <form method="GET" action="<?php echo site_url($lang."/".(($lang =='es')?'buscar' : 'search'));?>">
-          <input type="text" name="q" value="Buscar">  
+          <input type="text" name="q" value="<?php echo lang('menu_buscar');?>">  
           <input type="submit" value="" class="submit_search">
         </form>
 	  </div><!-- buscador -->		
