@@ -99,3 +99,5 @@ ALTER TABLE `users` CHANGE `mutualista` `mutualista` VARCHAR(255) CHARACTER SET 
 
 ALTER TABLE `users` CHANGE `especialidad` `especialidad` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '',
 CHANGE `cjp` `cjp` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '';
+
+ALTER TABLE `users` ADD `last_updated` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `modified`;

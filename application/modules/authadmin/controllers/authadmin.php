@@ -105,18 +105,6 @@ class Authadmin extends MY_Controller {
 	$iDisplayStart = $this->input->get('iDisplayStart', NULL);
 	$iDisplayLength = $this->input->get('iDisplayLength', NULL);
 	
-	//var_dump($iDisplayStart);
-	//var_dump($iDisplayLength);
-	
-	/*
-	die;
-	if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' )
-	{
-		$sLimit = "LIMIT ".mysql_real_escape_string( $_GET['iDisplayStart'] ).", ".
-			mysql_real_escape_string( $_GET['iDisplayLength'] );
-	}
-	*/
-	
 	$sOrder = "";
 	
 	if($this->input->get('iSortCol_0'))
@@ -254,7 +242,7 @@ class Authadmin extends MY_Controller {
   
   /**
    * Edit user basic data
-   * @param type $id
+   * @param Integer $id
    */
   function edit($id) {
     $this->config->load('tank_auth', false, false, 'auth');
@@ -266,27 +254,29 @@ class Authadmin extends MY_Controller {
       $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
     }
     $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
-    $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|required|xss_clean|max_length[255]');
-    $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
     $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
+    $this->form_validation->set_rules('mutualista', 'Mutualista', 'max_length[255]');
+    $this->form_validation->set_rules('medicamentos', 'Medicamentos', 'max_length[255]');
     $this->form_validation->set_rules('permisos', 'Permisos', 'required|max_length[255]');
+    $data['errors'] = array();
+	if($this->input->post('permisos') == 'medico')
+	{
+	  $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|required|xss_clean|max_length[255]');
+	  $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
+	}
+	else
+	{
+	  $this->form_validation->set_rules('especialidad', 'Especialidad', 'trim|xss_clean|max_length[255]');
+	  $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|xss_clean|max_length[255]');
+	}
     $data['errors'] = array();
     $valid = false;
     //var_dump($user);
     $oldUsername = $user->username;
     if ($this->form_validation->run()) {        // validation ok
         $valid = true;
-      
-//      if (!is_null($data = $this->tank_auth->create_user(
-//                      $use_username ? $this->form_validation->set_value('username', 'tank_auth') : '', $this->form_validation->set_value('email'), $this->form_validation->set_value('password'), false, $this->form_validation->set_value('especialidad'), $this->form_validation->set_value('cjp'), $this->form_validation->set_value('direccion'), $this->form_validation->set_value('telefono'), $this->form_validation->set_value('permisos')
-//              ))) {         // success
-//        $this->_show_message($this->lang->line('auth_message_registration_completed_2') . ' ' . anchor('/auth/login/', 'Login'));
-//      } else {
-//        $errors = $this->tank_auth->get_error_message();
-//        foreach ($errors as $k => $v)
-//          $data['errors'][$k] = $this->lang->line($v);
-//      }
+
     }
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
@@ -298,6 +288,8 @@ class Authadmin extends MY_Controller {
       $user->direccion = set_value('direccion');
       $user->telefono = set_value('telefono');
       $user->profile = set_value('permisos');
+      $user->mutualista = set_value('mutualista');
+      $user->medicamentos = set_value('medicamentos');
     }
     //var_dump($user);
     if($valid)
@@ -321,6 +313,9 @@ class Authadmin extends MY_Controller {
             'direccion' => $user->direccion,
             'telefono' => $user->telefono,
             'profile' => $user->profile,
+			'mutualista' => $user->mutualista,
+			'medicamentos' => $user->medicamentos,
+			'last_updated' => date('Y-m-d H:i:s'),
         );
         $counter = $this->users->edit($data, $id);
         if($counter > 0)

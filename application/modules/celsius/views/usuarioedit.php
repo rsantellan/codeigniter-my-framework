@@ -45,6 +45,22 @@ $telefono = array(
 	'maxlength'	=> 80,
 	'size'	=> 80,
 );
+
+$mutualista = array(
+	'name'	=> 'mutualista',
+	'id'	=> 'mutualista',
+	'value'	=> $user->mutualista,
+	'maxlength'	=> 255,
+	'size'	=> 80,
+);
+
+$medicamentos = array(
+	'name'	=> 'medicamentos',
+	'id'	=> 'medicamentos',
+	'value'	=> $user->mutualista,
+	'maxlength'	=> 255,
+	'size'	=> 80,
+);
 $attributes= array('class' => 'editUserform', 'style' => 'background-color: #FFFFFF;', 'onsubmit' => 'return sendUserEditForm(this);');
 ?>
 <?php echo form_open('celsius/saveEditUser', $attributes); ?>
@@ -65,6 +81,12 @@ $attributes= array('class' => 'editUserform', 'style' => 'background-color: #FFF
     <div class="clear"></div>
     <label for="<?php echo $telefono['id']?>"><?php echo lang('usuario_phone');?></label>
     <?php echo form_input($telefono); ?>
+	<div class="clear"></div>
+	<label for="<?php echo $mutualista['id']?>"><?php echo lang('usuario_mutualista');?></label>
+    <?php echo form_input($mutualista); ?>
+	<div class="clear"></div>
+	<label for="<?php echo $medicamentos['id']?>"><?php echo lang('usuario_medicamento');?></label>
+    <?php echo form_input($medicamentos); ?>
 <div class="clear"></div>
 <?php echo form_submit(array('id' => 'guardarEdit', 'name' => 'guardar'), 'Guardar'); ?>
 <?php echo form_close(); ?>

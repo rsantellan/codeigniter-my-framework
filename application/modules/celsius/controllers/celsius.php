@@ -28,7 +28,19 @@ class celsius extends MY_Controller {
     $this->data['user'] = NULL;
     if($this->data['isLogged'])
     {
-      $this->data['user'] = $this->getLoggedUserData();
+	  $loggedUserData = $this->getLoggedUserData();
+      $this->data['user'] = $loggedUserData;
+	  if($loggedUserData->profile == 'medico')
+	  {
+		$format = 'Y-m-d H:i:s';
+		$dateLastUpdated = DateTime::createFromFormat($format, $loggedUserData->last_updated);
+		$dateNow = new DateTime();
+		$diff = $dateNow->diff($dateLastUpdated)->format("%a");
+		if($diff > 30)
+		{
+		  //var_dump($diff);
+		}
+	  }
     }
     $this->data['englishurl'] = '';
     $this->data['spanishurl'] = '';
@@ -1081,6 +1093,8 @@ class celsius extends MY_Controller {
     $this->form_validation->set_rules('cjp', 'Número de Caja Profesional', 'trim|required|xss_clean|max_length[255]');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
     $this->form_validation->set_rules('telefono', 'Teléfono', 'max_length[255]');
+	$this->form_validation->set_rules('mutualista', 'Mutualista', 'max_length[255]');
+    $this->form_validation->set_rules('medicamentos', 'Medicamentos', 'max_length[255]');
     $data['errors'] = array();
     $valid = false;
     $oldUsername = $user->username;
@@ -1097,6 +1111,8 @@ class celsius extends MY_Controller {
       $user->direccion = set_value('direccion');
       $user->telefono = set_value('telefono');
       $user->profile = set_value('permisos');
+	  $user->mutualista = set_value('mutualista');
+      $user->medicamentos = set_value('medicamentos');
     }
     //var_dump($user);
     if($valid)
@@ -1118,7 +1134,10 @@ class celsius extends MY_Controller {
             'especialidad' => $user->especialidad,
             'cjp' => $user->cjp,
             'direccion' => $user->direccion,
-            'telefono' => $user->telefonos
+            'telefono' => $user->telefono,
+			'mutualista' => $user->mutualista,
+			'medicamentos' => $user->medicamentos,
+			'last_updated' => date('Y-m-d H:i:s'),
         );
         $counter = $this->users->edit($data, $id);
         //var_dump($counter);

@@ -8,3 +8,5 @@ $lang['usuario_edit'] = 'Editar Informaci&oacute;n';
 $lang['usuario_cambiar_pass'] = 'Cambiar contraseña';
 $lang['usuario_direccion'] = 'Dirección:';
 $lang['usuario_cpj'] = 'Número de Caja Profesional *:';
+$lang['usuario_mutualista'] = 'Mutualista:';
+$lang['usuario_medicamento'] = 'Medicamentos:';
