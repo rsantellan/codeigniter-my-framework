@@ -108,7 +108,8 @@ h5{
 	font-style: italic;
 	}
 	.novedades_home_img h5{
-		margin-top: 20px;
+		float:left;
+		margin: 0 0 0 10px;
 		}
 p{
 	font-size: 12px;
@@ -1810,3 +1811,33 @@ a.listado_links{
   margin-bottom: 5px;
   display: block;
 }    
+
+/* Formulario de edicion del usuario 
+================================================== */
+form.editUserform label{
+  font-size: 13px;
+  margin: 5px;
+}
+
+form.editUserform input{
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border: 1px solid #023b81;
+  margin-bottom: 10px;
+  padding: 0 3px;
+  color: #57585a;
+  font-family: 'myriad_proregular';
+  height: 18px;
+}
+
+form.editUserform input.editSubmit{
+  border:none !important;
+  font-family: 'myriad_probold' !important;
+  font-size: 12px !important;
+  cursor:pointer !important;
+  background: none !important;
+  color:#023b81 !important;
+}

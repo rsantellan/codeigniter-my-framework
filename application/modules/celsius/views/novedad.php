@@ -1,5 +1,5 @@
 <?php 
-	$imgType = 2;
+	$imgType = 3;
 	$width = 350;
 	$height = 345;
 ?>

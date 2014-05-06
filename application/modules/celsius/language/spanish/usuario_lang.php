@@ -10,3 +10,4 @@ $lang['usuario_direccion'] = 'Dirección:';
 $lang['usuario_cpj'] = 'Número de Caja Profesional *:';
 $lang['usuario_mutualista'] = 'Mutualista:';
 $lang['usuario_medicamento'] = 'Medicamentos:';
+$lang['usuario_guardar'] = 'Guardar';

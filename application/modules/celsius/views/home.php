@@ -9,7 +9,7 @@
     {
         $startUrl = 'novedad';
     }
-    $imgType = 1;
+    $imgType = 3;
 	$width = 55;
 	$height = 70;
   ?>

@@ -88,7 +88,7 @@ $attributes= array('class' => 'editUserform', 'style' => 'background-color: #FFF
 	<label for="<?php echo $medicamentos['id']?>"><?php echo lang('usuario_medicamento');?></label>
     <?php echo form_input($medicamentos); ?>
 <div class="clear"></div>
-<?php echo form_submit(array('id' => 'guardarEdit', 'name' => 'guardar'), 'Guardar'); ?>
+<?php echo form_submit(array('id' => 'guardarEdit', 'name' => 'guardar', 'class' => 'editSubmit'), lang('usuario_guardar')); ?>
 <?php echo form_close(); ?>
 <div class="errores" id="formeditusuarioserrores" style="height: 70px; background-color: white; color: red">
   
