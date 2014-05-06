@@ -90,7 +90,7 @@ class mupload {
     {
       //log_message("INFO", " El supuesto path es: ". $path);
       $path = $this->retrieveDocumentsFilesPath($path);
-      $aux = $width."x".$height."_".$type;
+      $aux = 'm_'.$width."x".$height."_".$type;
       $file_path = $this->returnBasicCachePath($path);// $this->get_path_of_file($mPath);
       $file_name = $this->get_file_of_path($path);
       $mPath = $file_path.DIRECTORY_SEPARATOR.$aux.DIRECTORY_SEPARATOR.$file_name;
@@ -121,28 +121,64 @@ class mupload {
       //log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
       //log_message("INFO", " El supuesto path es: ". $path);
       //log_message("INFO", " El supuesto cache path es: ". $mPath);
-      if(class_exists("Imagick"))
-      {
-        $CI =& get_instance();
-        $CI->load->library('mimagick', true, NULL, 'mImagick');
-        $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
-      }
-      else
-      {
-        if($this->exec_enabled())
+	  $use_moo_library = true;
+	  if(!in_array(strtoupper($this->get_file_extension($path)),array('JPG', 'JPEG', 'PNG', 'GIF')))
+	  {
+		$use_moo_library = false;
+	  }
+	  if($use_moo_library)
+	  {
+		$CI =& get_instance();
+		$CI->load->library('image_moo');
+		/*
+		 * Based on: http://www.matmoo.com/digital-dribble/codeigniter/image_moo/
+  const NORMAL = 1;
+  const FIT = 2;
+  const FIXED = 3;
+  const CROP = 4;
+		 */
+		switch ($type) {
+		  case 1:
+		  case 2:
+			$CI->image_moo->load($path)->resize($width, $height)->save($mPath);
+			break;
+		  case 3:
+			$CI->image_moo->load($path)->resize($width, $height, TRUE)->save($mPath);
+			break;
+		  case 4:
+			$CI->image_moo->load($path)->resize_crop($width, $height)->save($mPath);
+			break;
+		  default:
+			$CI->image_moo->load($path)->resize($width, $height)->save($mPath);
+			break;
+		}
+		
+	  }
+	  else
+	  {
+		if(class_exists("Imagick"))
 		{
 		  $CI =& get_instance();
-          $CI->load->library('mimagickexec', true, NULL, 'mImagickExec');
-          $CI->mimagickexec->basicThumbnail($path, $mPath, $type, $width, $height); 
+		  $CI->load->library('mimagick', true, NULL, 'mImagick');
+		  $CI->mimagick->basicThumbnail($path, $mPath, $type, $width, $height); 
 		}
-		else 
+		else
 		{
-		  $CI =& get_instance();
-          $CI->load->library('mgd', true, NULL, 'mgd');
-          $CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height);
+		  if($this->exec_enabled())
+		  {
+			$CI =& get_instance();
+			$CI->load->library('mimagickexec', true, NULL, 'mImagickExec');
+			$CI->mimagickexec->basicThumbnail($path, $mPath, $type, $width, $height); 
+		  }
+		  else 
+		  {
+			$CI =& get_instance();
+			$CI->load->library('mgd', true, NULL, 'mgd');
+			$CI->mgd->basicThumbnail($path, $mPath, $type, $width, $height);
+		  }
 		}
-         
-      }
+	  }
+      
     }
 
 	function exec_enabled() {
