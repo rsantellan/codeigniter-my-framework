@@ -48,6 +48,12 @@ $route["publicaciones.html"] = 'efsa/publicaciones/1';
 $route["publicaciones-libros.html"] = 'efsa/publicaciones/2';
 $route["docencia.html"] = 'efsa/docencia';
 $route["docencia-postgrado.html"] = 'efsa/docenciagrado/1';
+$route["docencia-grado.html"] = 'efsa/docenciagrado/2';
+$route["docencia/descarga/(:num).html"] = 'efsa/descargar/$1';
+$route["extension.html"] = 'efsa/extension';
+$route["extension-listado.html"] = 'efsa/extensionlistado';
+$route["extension/descarga/(:num).html"] = 'efsa/descargar/$1';
+$route["investigacion.html"] = 'efsa/investigacion';
 /*
 $route["sum.html"] = 'sumuy/sum';
 $route["sociedad.html"] = 'sumuy/sociedad';

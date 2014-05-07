@@ -1,0 +1,6 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+$lang['extension_titulo'] = 'extensión';
+$lang['extension_texto'] = '<p>En extensión universitaria, tenemos como principal objetivo generar instancias de interacción con la ciudadanía, otros sectores de la educación, entidades públicas vinculadas con la gestión del agua y los recursos acuáticos, y el sector productivo relacionado con el uso del agua. De esta forma queremos contribuir con información científica a la formación de opinión de la sociedad y a la creación de herramientas para una mejor gestión y uso de los recursos acuáticos. </p>
+				<p>Consideramos que una sociedad debidamente informada sobre temas tan relevantes como la calidad del agua y la salud de los ecosistemas acuáticos tendrá mayor capacidad de exigir medidas de contralor a las autoridades correspondientes, al tiempo que quienes tienen la responsabilidad de gestionar dichos recursos podrán implementar mejores medidas de uso, manejo y protección del recurso agua y la biodiversidad que ésta sustenta. </p>';
+$lang['extension_ver_listado'] = 'ver listado';
+$lang['extension_descargar'] = 'más info >';

@@ -81,7 +81,10 @@
                         <a href="<?php echo site_url('efsadocencias/index');?>"><i class="fa fa-fw fa-bars"></i> Docencia</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('tesises/index');?>"><i class="fa fa-fw fa-ellipsis-v"></i> Tesis</a>
+                        <a href="<?php echo site_url('efsaextensiones/index');?>"><i class="fa fa-fw fa-ellipsis-v"></i> Extensiones</a>
+                    </li>
+					<li>
+                        <a href="<?php echo site_url('efsaproyectos/index');?>"><i class="fa fa-fw fa-ellipsis-v"></i> Proyectos</a>
                     </li>
                     <li>
                       <a href="<?php echo site_url('language/index');?>"><i class="fa fa-fw fa-keyboard-o"></i>Textos</a>

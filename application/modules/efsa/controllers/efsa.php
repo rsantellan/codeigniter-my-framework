@@ -75,12 +75,54 @@ class efsa extends MY_Controller{
 	$this->load->model('integrantes/integrante');
 	$this->load->helper('upload/mimage');
 	$this->load->library('upload/mupload');
+	$this->load->helper('text');
+    $this->load->helper('htmlpurifier');
 	$this->load->model('efsadocencias/efsadocencia');
 	$this->data['list'] = $this->efsadocencia->retrieveAll(null, null, false, true, $type);
 	$this->data['type'] = $type;
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function descargar($fileId)
+  {
+	
+	$this->load->model('upload/albumcontent');
+    $file = $this->albumcontent->getFile($fileId);
+	$aux = $file;//[0];
+    $this->load->helper('download');
+    $data = file_get_contents($aux->basepath.$aux->path); // Read the file's contents
+    $name = $aux->name;
+    force_download($name, $data);
+	die(0);
+  }
+  
+  public function extension()
+  {
+	$this->data['menu'] = 'extension';
+	$this->data['content'] = 'extension';
+	$this->loadI18n("extension", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function extensionlistado()
+  {
+	$this->data['menu'] = 'extension';
+	$this->data['content'] = 'extensionlistado';
+	$this->loadI18n("extension", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+	$this->load->model('efsaextensiones/efsaextension');
+	$this->data['list'] = $this->efsaextension->retrieveAll(null, null, false, true);
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function investigacion()
+  {
+	$this->data['menu'] = 'investigacion';
+	$this->data['content'] = 'investigacion';
+	$this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
   
 }
 

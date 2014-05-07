@@ -608,36 +608,39 @@ article.listados{
 	.integrantes_more{
 		float: right;
 		}
-	article.listados ul{
+	article.listados div{
 		margin-top: 1px;
 		list-style-type: none;
 		}
-		article.listados ul li a{
+		article.listados div a{
 			color: #000000;
 			text-decoration: none;
 			}
-		article.listados ul li.integrantes_name{
+		article.listados div.integrantes_name{
 			font-weight:600;
 			font-size: 16px; 
 			}
-		article.listados ul li.investigaciones_name,
-		article.listados ul li.cursos_name{
+		article.listados div.integrantes_text{
+			font-weight:normal; 
+			}
+		article.listados div.investigaciones_name,
+		article.listados div.cursos_name{
 			font-weight:600;
 			font-size: 15px; 	
 			line-height: 17px;
 			margin-bottom: 6px;		
 			}
-			article.listados ul li.cursos_name_link{
+			article.listados div.cursos_name_link{
 				float: right;
 				}
-				article.listados ul li.cursos_name_link a{
+				article.listados div.cursos_name_link a{
 					color: #53668D;
 					text-decoration: none;
 					font-size: 14px;
 					text-transform: uppercase;
 					font-weight:600;
 					}
-		article.listados ul li.integrantes_campo{
+		article.listados div.integrantes_campo{
 			text-transform: uppercase;
 			font-weight: 600;
 			}

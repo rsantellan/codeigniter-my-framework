@@ -121,7 +121,7 @@ class mupload {
       //log_message("INFO", "Los parametros que estoy pasando son, width: ". $width. " | height : ".$height);
       //log_message("INFO", " El supuesto path es: ". $path);
       //log_message("INFO", " El supuesto cache path es: ". $mPath);
-	  $use_moo_library = true;
+	  $use_moo_library = false;
 	  if(!in_array(strtoupper($this->get_file_extension($path)),array('JPG', 'JPEG', 'PNG', 'GIF')))
 	  {
 		$use_moo_library = false;
