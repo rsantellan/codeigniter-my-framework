@@ -7,7 +7,7 @@
   <div class="content_int">
 	<div class="bg_titles bg_titles_investigaciones">
 		<h1 class="float_left"><?php echo lang('investigacion_titulo');?> | <?php echo lang('investigacion_tesis_titulo');?></h1>
-		<div class="sub_links"><a href="/facilidades.php" ><?php echo lang('investigacion_facilidades_titulo');?></a><span>|</span><a href="<?php echo site_url('proyectos-en-marcha.html');?>"><?php echo lang('investigacion_proyectos_titulo');?></a></div>
+		<div class="sub_links"><a href="<?php echo site_url('facilidades.html');?>" ><?php echo lang('investigacion_facilidades_titulo');?></a><span>|</span><a href="<?php echo site_url('proyectos-en-marcha.html');?>"><?php echo lang('investigacion_proyectos_titulo');?></a></div>
 	</div>
 	
 	<?php foreach($list as $tesis): ?>

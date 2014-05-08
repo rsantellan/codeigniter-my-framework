@@ -163,6 +163,16 @@ class efsa extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function facilidades()
+  {
+	$this->data['menu'] = 'investigacion';
+	$this->data['content'] = 'facilidades';
+	$this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+    $this->load->model('efsalaboratorios/efsalaboratorio');
+    $this->data['list'] = $this->efsalaboratorio->retrieveAll(null, null, false);
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
 }
 
 

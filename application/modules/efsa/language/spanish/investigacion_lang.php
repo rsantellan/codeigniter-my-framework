@@ -9,3 +9,10 @@ $lang['investigacion_texto'] = '<p>El área de trabajo que abordamos se enfoca e
 $lang['investigacion_ver_listado'] = 'ver investigaciones';
 $lang['proyecto_ver_mas'] = 'ver más >';
 $lang['tesis_descargar'] = 'descargar resumen';
+
+$lang['investigacion_facilidades_texto'] = '<p>Nuestras actividades de investigación y docencia se realizan principalmente en el Centro Universitario de la Región Este, en el Instituto de Investigaciones Biológicas Clemente Estable (Laboratorios de Etología Ecología y Evolución y de Microbiología) y en la Facultad de Ciencias (Secciones Limnología y Oceanografía-Ecología Marina). </p>																																																																																										
+        <p>Provisoriamente gran parte de los trabajos experimentales se realizan en laboratorios del CURE emplazados en el predio de PROBIDES (Programa de Conservación de la Biodiversidad y Desarrollo Sustentable en los Humedales del Este), próximo a la ciudad de Rocha. En 2014 contaremos con laboratorios ubicados en el nuevo edificio del CURE – Sede Rocha.</p>
+        <p>Algunos de los laboratorios con los que contamos: Laboratorio Biología Molecular, Laboratorio de cultivos organismos acuáticos y Laboratorio de Microscopía. Dichos laboratorios están equipados con diversos equipos nuevos y de vanguardia con los que realizamos investigaciones en áreas tales como la ecología y fisiología de organismos acuáticos, biología molecular y calidad de agua. Este equipamiento ha sido financiado a través de programas de apoyo de la Universidad de la República, de PEDECIBA Biología y Geociencias, y programas internacionales como Marie Curie y Max Planc Institute</p>';
+
+$lang['investigacion_facilidades_texto_imagenes'] = 'Laboratorios del CURE ubicados en PROBIDES';
+$lang['investigacion_facilidades_laboratorios_titulos'] = 'Para conocer sobre nuestro laborotarios se puede ingresar en los siguientes items:';
