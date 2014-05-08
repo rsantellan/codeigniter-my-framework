@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2014 at 07:39 AM
+-- Generation Time: May 08, 2014 at 07:58 AM
 -- Server version: 5.5.37
 -- PHP Version: 5.3.10-1ubuntu3.11
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `albumcontent`
 --
 
+DROP TABLE IF EXISTS `albumcontent`;
 CREATE TABLE IF NOT EXISTS `albumcontent` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `path` varchar(256) DEFAULT NULL,
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `albumcontent` (
   `ordinal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_albumcontent_album` (`album_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `albumcontent`
@@ -53,7 +54,10 @@ INSERT INTO `albumcontent` (`id`, `path`, `basepath`, `name`, `type`, `contentty
 (2, 'assets/uploads/2/direcciones.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'direcciones.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 2, 1),
 (3, 'assets/uploads/3/mailProblema.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'mailProblema.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 3, 1),
 (4, 'assets/uploads/7/fondoPNG.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'fondoPNG.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 7, 1),
-(5, 'assets/uploads/8/softwaresources.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'softwaresources.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 8, 1);
+(5, 'assets/uploads/8/softwaresources.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'softwaresources.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 8, 1),
+(8, 'assets/uploads/11/mailProblema.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'mailProblema.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 11, 1),
+(9, 'assets/uploads/12/direcciones.png', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'direcciones.png', 'png', 'content-image', NULL, NULL, NULL, NULL, 12, 1),
+(10, 'assets/uploads/13/estanteriasabiertas_gusta.jpg', '/home/rodrigo/proyectos/my-framework-prototype/branches/efsa/', 'estanteriasabiertas_gusta.jpg', 'jpg', 'content-image', NULL, NULL, NULL, NULL, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -61,6 +65,7 @@ INSERT INTO `albumcontent` (`id`, `path`, `basepath`, `name`, `type`, `contentty
 -- Table structure for table `albums`
 --
 
+DROP TABLE IF EXISTS `albums`;
 CREATE TABLE IF NOT EXISTS `albums` (
   `id` smallint(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
@@ -68,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `obj_class` varchar(64) DEFAULT NULL,
   `atype` varchar(64) NOT NULL DEFAULT 'images',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `albums`
@@ -79,7 +84,11 @@ INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
 (2, 'default', 2, 'integrante', 'images'),
 (3, 'default', 3, 'integrante', 'images'),
 (7, 'default', 1, 'efsadocencia', 'images'),
-(8, 'default', 2, 'efsadocencia', 'images');
+(8, 'default', 2, 'efsadocencia', 'images'),
+(10, 'default', 2, 'efsaextension', 'images'),
+(11, 'default', 3, 'efsaextension', 'images'),
+(12, 'default', 1, 'efsaproyecto', 'images'),
+(13, 'default', 1, 'efsatesis', 'images');
 
 -- --------------------------------------------------------
 
@@ -87,6 +96,7 @@ INSERT INTO `albums` (`id`, `name`, `obj_id`, `obj_class`, `atype`) VALUES
 -- Table structure for table `ci_sessions`
 --
 
+DROP TABLE IF EXISTS `ci_sessions`;
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `session_id` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `ip_address` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '0',
@@ -102,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 -- Table structure for table `efsadocencia`
 --
 
+DROP TABLE IF EXISTS `efsadocencia`;
 CREATE TABLE IF NOT EXISTS `efsadocencia` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -116,8 +127,77 @@ CREATE TABLE IF NOT EXISTS `efsadocencia` (
 --
 
 INSERT INTO `efsadocencia` (`id`, `name`, `description`, `ordinal`, `tipo`) VALUES
-(1, 'daslkdj safld sfjklsdajf dsa', 'fadsfk jsadlf jsadlkf jsdlkf jasdlfsadfsa', 1, 1),
+(1, 'daslkdj safld sfjklsdajf dsa', 'fadsfk jsadlf jsadlkf jsdlkf jasdlfsadfsa&lt;br /&gt;&lt;br /&gt;fasfdsfsad', 1, 1),
 (2, '534534', 'gdsgdfgj lkd gfjsdlkgsdfgds', 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `efsaextension`
+--
+
+DROP TABLE IF EXISTS `efsaextension`;
+CREATE TABLE IF NOT EXISTS `efsaextension` (
+  `id` int(40) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `link` varchar(255) DEFAULT '',
+  `ordinal` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `efsaextension`
+--
+
+INSERT INTO `efsaextension` (`id`, `name`, `description`, `link`, `ordinal`) VALUES
+(2, 'est 2', 'sonfoasdfs&lt;br /&gt;a&lt;br /&gt;fasd&lt;br /&gt;fasdfsadfas', 'http://efsa.framework', 2),
+(3, 'pepe', 'el pistolreo', '', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `efsaproyecto`
+--
+
+DROP TABLE IF EXISTS `efsaproyecto`;
+CREATE TABLE IF NOT EXISTS `efsaproyecto` (
+  `id` int(40) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `responsables` text,
+  `description` text,
+  `ordinal` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `efsaproyecto`
+--
+
+INSERT INTO `efsaproyecto` (`id`, `name`, `responsables`, `description`, `ordinal`) VALUES
+(1, 'test 1', 'fdslakjf sadlf&lt;br /&gt;fasdfadsfdsa', 'fsladfjasdlkf&lt;br /&gt;&lt;br /&gt;fasdfalskdjf sadlkfjsadfas&lt;br /&gt;&lt;img src=&quot;../../assets/uploads/tiny/proyectos/direcciones.png&quot; alt=&quot;Direcciones&quot; width=&quot;250&quot; height=&quot;250&quot; /&gt;', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `efsatesis`
+--
+
+DROP TABLE IF EXISTS `efsatesis`;
+CREATE TABLE IF NOT EXISTS `efsatesis` (
+  `id` int(40) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `ordinal` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `efsatesis`
+--
+
+INSERT INTO `efsatesis` (`id`, `name`, `description`, `ordinal`) VALUES
+(1, 'test', 'fsdfsdfsd', 1);
 
 -- --------------------------------------------------------
 
@@ -125,6 +205,7 @@ INSERT INTO `efsadocencia` (`id`, `name`, `description`, `ordinal`, `tipo`) VALU
 -- Table structure for table `integrante`
 --
 
+DROP TABLE IF EXISTS `integrante`;
 CREATE TABLE IF NOT EXISTS `integrante` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -153,6 +234,7 @@ INSERT INTO `integrante` (`id`, `name`, `title`, `location`, `contact`, `area`, 
 -- Table structure for table `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) COLLATE utf8_bin NOT NULL,
@@ -167,6 +249,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Table structure for table `publicacion`
 --
 
+DROP TABLE IF EXISTS `publicacion`;
 CREATE TABLE IF NOT EXISTS `publicacion` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `description` text,
@@ -193,6 +276,7 @@ INSERT INTO `publicacion` (`id`, `description`, `ordinal`, `tipo`, `letter`) VAL
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -219,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`, `mutualista`, `medicamentos`) VALUES
-(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-04-30 05:46:05', '2012-08-20 18:05:44', '2014-04-30 08:46:05', '', '');
+(2, 'admin', '$P$BLcJ/R6.B4IG93UnZunn14heHtRclr.', 'rsantellan@gmail.com', 1, 0, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2014-05-07 06:36:18', '2012-08-20 18:05:44', '2014-05-07 09:36:18', '', '');
 
 -- --------------------------------------------------------
 
@@ -227,6 +311,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned
 -- Table structure for table `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -242,6 +327,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- Table structure for table `user_profiles`
 --
 
+DROP TABLE IF EXISTS `user_profiles`;
 CREATE TABLE IF NOT EXISTS `user_profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,

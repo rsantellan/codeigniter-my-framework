@@ -124,6 +124,45 @@ class efsa extends MY_Controller{
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function proyectos()
+  {
+	$this->data['menu'] = 'investigacion';
+	$this->data['content'] = 'proyectos';
+	$this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->helper('upload/mimage');
+	$this->load->library('upload/mupload');
+	$this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+	$this->load->model('efsaproyectos/efsaproyecto');
+	$this->data['list'] = $this->efsaproyecto->retrieveAll(null, null, false, true);
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function proyecto($id, $slug)
+  {
+	$this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->model('efsaproyectos/efsaproyecto');
+	$this->load->helper('upload/mimage');
+	$this->load->library('upload/mupload');
+	$this->load->helper('text');
+	$this->load->helper('htmlpurifier');
+	$this->data['object'] = $this->efsaproyecto->getById($id, false, true);
+	$this->load->view('efsa/proyecto', $this->data);
+  }
+  
+  public function tesis()
+  {
+	$this->data['menu'] = 'investigacion';
+	$this->data['content'] = 'tesis';
+	$this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->model('efsatesises/efsatesis');
+	$this->load->helper('text');
+    $this->load->helper('htmlpurifier');
+	$this->load->model('efsaproyectos/efsaproyecto');
+	$this->data['list'] = $this->efsatesis->retrieveAll(null, null, false, true);
+	$this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
 }
 
 

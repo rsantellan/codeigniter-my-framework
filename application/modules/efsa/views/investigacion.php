@@ -11,7 +11,7 @@
 	<div class="texts">
 	  <?php echo lang('investigacion_texto');?>
 	</div><!-- texts -->	
-	<a href="<?php echo site_url('extension-listado.html');?>" class="botones bt_investigacion"><?php echo lang('investigacion_ver_listado');?></a>													
+	<a href="<?php echo site_url('proyectos-en-marcha.html');?>" class="botones bt_investigacion"><?php echo lang('investigacion_ver_listado');?></a>													
   </div><!-- content_int -->	
   <div class="clear"></div>
   <?php echo $this->load->view('efsa/footer') ?>

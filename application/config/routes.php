@@ -54,6 +54,10 @@ $route["extension.html"] = 'efsa/extension';
 $route["extension-listado.html"] = 'efsa/extensionlistado';
 $route["extension/descarga/(:num).html"] = 'efsa/descargar/$1';
 $route["investigacion.html"] = 'efsa/investigacion';
+$route["proyectos-en-marcha.html"] = 'efsa/proyectos';
+$route["proyecto/(:num)/(:any).html"] = 'efsa/proyecto/$1/$2';
+$route["tesis-posgrado.html"] = 'efsa/tesis';
+$route["tesis/descarga/(:num).html"] = 'efsa/descargar/$1';
 /*
 $route["sum.html"] = 'sumuy/sum';
 $route["sociedad.html"] = 'sumuy/sociedad';
