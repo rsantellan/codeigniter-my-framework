@@ -173,6 +173,79 @@ class efsa extends MY_Controller{
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
   }
   
+  public function facilidad($id, $slug)
+  {
+    $this->loadI18n("investigacion", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+	$this->load->model('efsalaboratorios/efsalaboratorio');
+	$this->load->helper('upload/mimage');
+	$this->load->library('upload/mupload');
+	$this->load->helper('text');
+	$this->load->helper('htmlpurifier');
+	$this->data['object'] = $this->efsalaboratorio->getById($id, false, true);
+	$this->load->view('efsa/facilidad', $this->data);
+  }
+  
+  public function contactook()
+  {
+    $this->data['menu'] = 'contacto';
+	$this->data['content'] = 'contactook';
+    $this->loadI18n("contacto", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
+  public function contacto()
+  {
+    $this->data['menu'] = 'contacto';
+	$this->data['content'] = 'contacto';
+    $this->loadI18n("contacto", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
+    
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->load->helper('url');
+    $this->data['messageSend'] = false;
+    $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
+    $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[255]');			
+    $this->form_validation->set_rules('message', 'message', 'required|max_length[1000]');
+
+    $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+    
+    if ($this->form_validation->run() !== FALSE)
+    {
+      $form_data = array(
+                        'nombre' => set_value('name'),
+                        'email' => set_value('email'),
+                        'comentario' => set_value('message')
+                    );
+      $data['form_data'] = $form_data;
+      $this->load->model('contacto/mail_db');
+      $return = $this->mail_db->retrieveContactMailInfo();
+      //Con estos datos preparo un email para enviar.
+      $this->load->library('email');
+      $this->email->from($return['from']['direccion'], $return['from']['nombre']);
+      $this->email->to($return['to']); 
+      if(isset($return['cc']))
+      {
+        $this->email->cc($return['cc']); 
+      }
+      if(isset($return['bcc']))
+      {
+        $this->email->bcc($return['bcc']);
+      }
+
+      $this->email->reply_to($form_data['email'], $form_data['nombre']);
+      $this->email->subject('[EFSA]Contacto desde el sitio web');
+      $message = $this->load->view('contactomail', $form_data, true);
+      $this->email->message($message); 
+
+      $this->email->send();
+      //Debug
+      //echo $this->email->print_debugger();die;
+      redirect('contacto-enviado.html');
+    }
+    
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+  }
+  
 }
 
 

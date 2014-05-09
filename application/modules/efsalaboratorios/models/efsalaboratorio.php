@@ -138,7 +138,7 @@ class efsalaboratorio extends MY_Model{
       return $this->getId();
     }
     
-    public function getById($id, $return_obj = true, $avatar = false)
+    public function getById($id, $return_obj = true)
     {
       $this->db->where('id', $id);
       $this->db->limit('1');
@@ -150,13 +150,6 @@ class efsalaboratorio extends MY_Model{
         {
 		  return $this->createObjectFromStd($obj);
         }
-		else
-		{
-		  if($avatar)
-		  {
-			$obj->avatar = $this->retrieveAvatar("default", $obj->id);
-		  }
-		}
         return $obj;
       } else {
         // None

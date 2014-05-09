@@ -45,7 +45,7 @@
 				<li class="publicaciones"><a href="<?php echo site_url('publicaciones.html');?>" <?php if($menu == 'publicaciones'):?> class="current"<?php endif;?>><?php echo lang('menu_publicaciones');?></a></li>
 				<li class="short docencia"><a href="<?php echo site_url('docencia.html');?>" <?php if($menu == 'docencia'):?> class="current"<?php endif;?>><?php echo lang('menu_docencia');?></a></li>
 				<li class="divulgacion"><a href="<?php echo site_url('extension.html');?>" <?php if($menu == 'extension'):?> class="current"<?php endif;?>><?php echo lang('menu_extension');?></a></li>
-				<li class="short contacto"><a href="/contacto.php" <?php if($menu == 'contacto'):?> class="current"<?php endif;?>><?php echo lang('menu_contacto');?></a></li>
+				<li class="short contacto"><a href="<?php echo site_url('contacto.html');?>" <?php if($menu == 'contacto'):?> class="current"<?php endif;?>><?php echo lang('menu_contacto');?></a></li>
 			</ul>
 		</menu>
 	  </nav>

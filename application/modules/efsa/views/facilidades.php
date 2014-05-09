@@ -19,13 +19,9 @@
         <p><?php echo lang('investigacion_facilidades_laboratorios_titulos');?></p>
         <ul class="facilidades">
             <?php foreach($list as $facilidad): ?>
-              
+              <?php $url_help = "facilidad/".$facilidad->id . "/" . url_title($facilidad->name, '-', TRUE) . ".html";?>
+              <li><a href="<?php echo site_url($url_help);?>" class="fancybox fancybox.iframe"><?php echo $facilidad->name;?></a></li>
             <?php endforeach; ?>
-            <li><a href="lab_bio_molecular_iframe.php" class="fancybox fancybox.iframe">Laboratorio de Biología Molecular</a></li>
-            <li><a href="lab_cultivos_org_iframe.php" class="fancybox fancybox.iframe">Laboratorio de Cultivos organismos acuáticos</a></li>
-            <li><a href="lab_microscopia_iframe.php" class="fancybox fancybox.iframe">Laboratorio de Microscopía</a></li>
-            <li><a href="eq_analitico_iframe.php" class="fancybox fancybox.iframe">Equipamiento analítico</a></li>
-            <li><a href="eq_muestreo_iframe.php" class="fancybox fancybox.iframe">Equipamiento para muestreo</a></li>
         </ul>
 	</div><!-- textos internos -->
 	  

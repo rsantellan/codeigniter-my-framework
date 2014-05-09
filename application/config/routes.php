@@ -59,6 +59,10 @@ $route["proyecto/(:num)/(:any).html"] = 'efsa/proyecto/$1/$2';
 $route["tesis-posgrado.html"] = 'efsa/tesis';
 $route["tesis/descarga/(:num).html"] = 'efsa/descargar/$1';
 $route["facilidades.html"] = 'efsa/facilidades';
+$route["facilidad/(:num)/(:any).html"] = 'efsa/facilidad/$1/$2';
+$route["contacto.html"] = 'efsa/contacto';
+$route["contacto-enviado.html"] = 'efsa/contactook';
+
 /*
 $route["sum.html"] = 'sumuy/sum';
 $route["sociedad.html"] = 'sumuy/sociedad';
