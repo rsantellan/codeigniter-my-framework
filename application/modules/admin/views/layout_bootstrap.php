@@ -33,7 +33,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url('admin/index');?>"><img src="<?php echo base_url(); ?>assets/images/logo-small.png"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -67,6 +66,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                         <!-- /input-group -->
+                        <img src="<?php echo base_url(); ?>assets/images/logo-small.png">
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/index');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
