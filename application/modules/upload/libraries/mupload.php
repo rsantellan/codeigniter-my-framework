@@ -308,19 +308,22 @@ class mupload {
     {
       $cache_dir = $this->returnBasicCachePath($path);
       $file_name = $this->get_file_of_path($path);
-      $list = scandir($cache_dir);
-      foreach($list as $dir)
+      if(is_dir($cache_dir))
       {
-        if($dir != "." && $dir != ".." && $dir != ".svn")
-        {
-          $aux = $cache_dir.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$file_name;
-          if(file_exists($aux))
-          {
-            unlink($aux);
-          }
-          
-        } 
+	  $list = scandir($cache_dir);
+	  foreach($list as $dir)
+	  {
+	    if($dir != "." && $dir != ".." && $dir != ".svn")
+	    {
+	      $aux = $cache_dir.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$file_name;
+	      if(file_exists($aux))
+	      {
+		unlink($aux);
+	      }
+	    } 
+	  } 
       }
+      
     }
     
     public function getFolders($path = LOCAL_PATH){

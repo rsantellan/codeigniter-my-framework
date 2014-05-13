@@ -30,12 +30,12 @@ echo form_open('integrantes/save', $attributes); ?>
 <div class="form-group <?php echo ($errorContact)? 'has-error' : '';?>">
     <label for="contact">Contacto</label>
 	<input class="form-control" type="text" name="contact" maxlength="255" value="<?php echo $object->getContact() ?>" />
-    <p class="help-block"><?php echo ($errorContact)? $errorContact : 'Requerido';?></p>
+    <p class="help-block"><?php echo ($errorContact)? $errorContact : '';?></p>
 </div>
 <div class="form-group <?php echo ($errorArea)? 'has-error' : '';?>">
     <label for="area">Area</label>
 	<input class="form-control" type="text" name="area" maxlength="255" value="<?php echo $object->getArea() ?>" />
-    <p class="help-block"><?php echo ($errorArea)? $errorArea : 'Requerido';?></p>
+    <p class="help-block"><?php echo ($errorArea)? $errorArea : '';?></p>
 </div>
 <div class="form-group <?php echo ($errortipo)? 'has-error' : '';?>">
     <label for="tipo">Tipo</label>

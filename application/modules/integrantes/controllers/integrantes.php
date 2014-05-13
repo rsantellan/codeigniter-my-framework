@@ -77,8 +77,8 @@ class integrantes extends MY_Controller{
       $this->form_validation->set_rules('nombre', 'nombre', 'required|max_length[255]');
       $this->form_validation->set_rules('title', 'title', 'max_length[255]');
       $this->form_validation->set_rules('location', 'location', 'required|max_length[255]');
-      $this->form_validation->set_rules('contact', 'contacto', 'required|valid_email|max_length[255]');
-      $this->form_validation->set_rules('area', 'area', 'required|max_length[255]');
+      $this->form_validation->set_rules('contact', 'contacto', 'valid_email|max_length[255]');
+      $this->form_validation->set_rules('area', 'area', 'max_length[255]');
       $this->form_validation->set_rules('tipo', 'tipo', 'required|integer');
       $this->form_validation->set_rules('description', 'description', 'required|trim|max_length[65535]');
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');

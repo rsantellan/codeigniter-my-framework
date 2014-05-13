@@ -36,7 +36,7 @@
                       $height = 100;
                       ?>
                     <?php if(!is_null($object->avatar)): ?>
-                      <img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getPath() , $width, $height, $imgType); ?>" />
+                      <img alt="<?php echo $object->name;?>" src="<?php echo thumbnail_image(base_url(), $object->avatar->getBasepath().$object->avatar->getPath() , $width, $height, $imgType); ?>" />
                       <?php else: ?>
                       <img src="<?php echo base_url();?>assets/images/noimage.png" class="img_servicios" width="<?php echo $width;?>" height="<?php echo $height;?>"/>
                   <?php endif; ?>
