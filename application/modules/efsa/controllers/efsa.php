@@ -54,6 +54,8 @@ class efsa extends MY_Controller{
 	$this->data['content'] = 'publicaciones';
 	$this->loadI18n("publicaciones", $this->getLanguageFile(), FALSE, TRUE, "", "efsa");
 	$this->load->model('publicaciones/publicacion');
+	$this->load->helper('text');
+	$this->load->helper('htmlpurifier');
 	$this->data['list'] = $this->publicacion->retrieveAccordeon($type);
 	$this->data['type'] = $type;
 	$this->load->view($this->DEFAULT_LAYOUT, $this->data);

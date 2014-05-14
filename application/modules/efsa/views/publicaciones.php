@@ -23,7 +23,7 @@
   		<div>
   		  <ul>
 			  <?php foreach ($data as $obj): ?>
-				<li><?php echo $obj->description; ?></li>
+				<li><?php echo html_purify(html_entity_decode($obj->description, ENT_COMPAT | 0, 'UTF-8')); ?></li>
 			  <?php endforeach; ?>
   		  </ul>
   		</div>

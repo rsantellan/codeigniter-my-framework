@@ -132,7 +132,7 @@ class publicacion extends MY_Model{
           'description' => $this->getDescription(),
           'ordinal' => $this->retrieveLastOrder(),
           "tipo" => $this->getTipo(),
-          "letter" => strtolower(substr(trim(strip_tags($this->getDescription())), 0,1)),
+          "letter" => strtolower(substr(trim(strip_tags($this->getDescription(false))), 0,1)),
        );
 	  
       $this->db->insert($this->getTablename(), $data);
@@ -142,11 +142,14 @@ class publicacion extends MY_Model{
     
     private function edit()
     {
-      $data = array(
+      $using_string = str_replace("&lt;/strong&gt;", "", str_replace("&lt;strong&gt;", "", $this->getDescription())); 
+	  
+	  $data = array(
           'description' => $this->getDescription(),
           'tipo' => $this->getTipo(),
-		  "letter" => strtolower(substr(trim(strip_tags($this->getDescription())), 0,1)),
+		  "letter" => strtolower(substr(trim($using_string), 0,1)),
        );
+
       $this->db->where('id', $this->getId());
       $this->db->update($this->getTablename(), $data);
       
@@ -185,7 +188,7 @@ class publicacion extends MY_Model{
 	  $data = $this->db->query($sql_letters, array($type)); 
 	  $resultados = $data->result();
 	  $retorno = array();
-	  $sql_publicacion = 'select id, description from publicacion where tipo = ? and letter = ? order by description asc';
+	  $sql_publicacion = 'select id, description from publicacion where tipo = ? and letter = ? order by ordinal desc';
 	  foreach($resultados as $letter)
 	  {
 		$resultadoLetra = $this->db->query($sql_publicacion, array($type, $letter->letter))->result();
