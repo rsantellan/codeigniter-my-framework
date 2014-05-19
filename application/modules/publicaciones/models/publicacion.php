@@ -126,13 +126,20 @@ class publicacion extends MY_Model{
       }
     }
     
+    
+    private function retrieveLetterToSave()
+    {
+	$using_string = str_replace("&lt;/strong&gt;", "", str_replace("&lt;strong&gt;", "", $this->getDescription())); 
+	return strtolower(substr(trim($using_string), 0,1));
+    }
+    
     private function saveNew()
     {
       $data = array(
           'description' => $this->getDescription(),
           'ordinal' => $this->retrieveLastOrder(),
           "tipo" => $this->getTipo(),
-          "letter" => strtolower(substr(trim(strip_tags($this->getDescription(false))), 0,1)),
+          "letter" => $this->retrieveLetterToSave(),
        );
 	  
       $this->db->insert($this->getTablename(), $data);
@@ -142,12 +149,11 @@ class publicacion extends MY_Model{
     
     private function edit()
     {
-      $using_string = str_replace("&lt;/strong&gt;", "", str_replace("&lt;strong&gt;", "", $this->getDescription())); 
-	  
-	  $data = array(
+        
+      $data = array(
           'description' => $this->getDescription(),
           'tipo' => $this->getTipo(),
-		  "letter" => strtolower(substr(trim($using_string), 0,1)),
+	  "letter" => $this->retrieveLetterToSave(),
        );
 
       $this->db->where('id', $this->getId());

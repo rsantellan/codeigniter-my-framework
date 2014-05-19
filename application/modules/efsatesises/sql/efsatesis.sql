@@ -5,3 +5,5 @@ CREATE TABLE IF NOT EXISTS `efsatesis` (
   `ordinal` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `efsatesis` DROP `name`;

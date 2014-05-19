@@ -13,7 +13,6 @@
 	<?php foreach($list as $tesis): ?>
 	<article class="listados">
 	  <div class="cursos_info">
-		<div class="cursos_name"><?php echo $tesis->name;?></div>	
 		<div class="cursos_text"><?php echo html_purify(html_entity_decode(($tesis->description)));?></div>
 		<div class="cursos_name_link">
 		  <?php if(!is_null($tesis->avatar)): ?>

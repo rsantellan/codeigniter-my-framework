@@ -27,7 +27,12 @@
 		<h1 class="float_left"><?php echo lang('investigacion_facilidades_titulo');?> | <?php echo $object->name;?></h1>
 	</div>
 	<div class="lightbox_texts">
-	  <?php echo html_purify(html_entity_decode($object->description, ENT_COMPAT | 0, 'UTF-8')); ?>
+	<?php
+		$aux = $object->description;
+		$aux = str_replace('../../assets', base_url().'assets', $object->description);
+		$aux = str_replace('../assets', base_url().'assets', $aux);
+	  ?>
+	  <?php echo html_purify(html_entity_decode($object->aux, ENT_COMPAT | 0, 'UTF-8')); ?>
 	</div>
   </body>
 </html>

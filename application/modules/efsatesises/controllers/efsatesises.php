@@ -74,7 +74,6 @@ class efsatesises extends MY_Controller{
       // Get ID from form
       $id = $this->input->post('id', true);
       
-      $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');
       $this->form_validation->set_rules('description', 'description', 'required|trim|max_length[65535]');
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -83,11 +82,9 @@ class efsatesises extends MY_Controller{
       {
         $is_valid = true;
       }
-      $name = set_value('name');
       $description = html_escape(set_value('description'), ENT_COMPAT | 0, 'UTF-8');
       //var_dump($nombre);
       $obj = new $this->efsatesis;
-	  $obj->setName($name);
 	  $obj->setDescription($description);
       $obj->setId($id);
 	  

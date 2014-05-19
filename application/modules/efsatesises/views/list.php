@@ -13,7 +13,7 @@
             <thead>
               <tr>
                 <th>
-                  Nombre
+                  Descripción
                 </th>
                 <th>
                   Acciones
@@ -24,7 +24,8 @@
               <?php foreach ($list as $object): ?>
                 <tr id="table_row_<?php echo $object->id;?>">
 				  <td>
-                    <?php echo $object->name; ?>
+                    <?php $aux = html_purify(html_entity_decode($object->description)); ?>
+                    <?php echo character_limiter($aux, 100); ?>
                   </td>
 				  <td>
                     <a class="btn btn-default" href="<?php echo site_url("efsatesises/edit/" . $object->id); ?>">

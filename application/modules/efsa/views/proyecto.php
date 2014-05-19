@@ -37,7 +37,13 @@
 	</article><!-- integrantes -->
 	</div><!-- integrantes box-->
 	<div class="lightbox_texts">
-	  <?php echo html_purify(html_entity_decode($object->description, ENT_COMPAT | 0, 'UTF-8')); ?>
+	  <?php
+		$aux = $object->description;
+		$aux = str_replace('../../assets', base_url().'assets', $object->description);
+		$aux = str_replace('../assets', base_url().'assets', $aux);
+	  ?>
+		
+	  <?php echo html_purify(html_entity_decode($aux, ENT_COMPAT | 0, 'UTF-8')); ?>
 	</div>
   </body>
 </html>

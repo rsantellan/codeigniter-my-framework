@@ -40,6 +40,11 @@
           </table>
         </div>
         <a class="btn btn-primary" href="<?php echo site_url("efsalaboratorios/add"); ?>">Agregar</a>
+        <!--
+        <a class="colorbox_link iframe" href="<?php echo site_url("ordenable/sort/efsalaboratorios/efsalaboratorio/name");?>" >
+          Ordenar
+        </a>
+        -->
       </div>
     </div>
   </div>

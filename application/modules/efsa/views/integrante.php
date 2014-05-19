@@ -24,7 +24,17 @@
   </head>
   <body style="background:none;">
 	<div class="bg_titles_lbox bg_titles_integrantes">
-		<h1 class="float_left">INTEGRANTES | DOCENTES</h1>
+		<h1 class="float_left"> 
+		<?php if((int) $object->tipo == 1): ?>
+			<?php echo lang('integrantes_docentes_titulo');?>
+		<?php else: ?>
+			<?php if((int) $object->tipo == 2): ?>
+				<?php echo lang('integrantes_estudiantes_titulo');?>
+			<?php else: ?>
+				<?php echo lang('integrantes_invitados_titulo');?>
+			<?php endif;?>
+		<?php endif;?>
+		</h1>
 	</div>
 	<div class="integrantes_box">
 	<article class="listados">

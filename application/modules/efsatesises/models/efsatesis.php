@@ -15,7 +15,6 @@ class efsatesis extends MY_Model{
   
   
     private $id;
-	private $name;
     private $description;
     
     function __construct()
@@ -32,24 +31,16 @@ class efsatesis extends MY_Model{
       $this->id = $id;
     }
 
-	public function getName() {
-	  return $this->name;
-	}
+    public function getDescription($decode = true) {
+      if(!$decode) return $this->description;
+      return html_entity_decode($this->description, ENT_COMPAT | 0, 'UTF-8');
+    }
 
-	public function setName($name) {
-	  $this->name = $name;
-	}
-
-	public function getDescription($decode = true) {
-	  if(!$decode) return $this->description;
-	  return html_entity_decode($this->description, ENT_COMPAT | 0, 'UTF-8');
-	}
-
-	public function setDescription($description) {
-	  $this->description = $description;
-	}
-	
-	function retrieveAll($number = NULL, $offset = NULL, $returnObjects = FALSE, $retrieveAvatar = FALSE)
+    public function setDescription($description) {
+      $this->description = $description;
+    }
+    
+    function retrieveAll($number = NULL, $offset = NULL, $returnObjects = FALSE, $retrieveAvatar = FALSE)
     {
       $this->db->order_by("ordinal", "desc");
 	  $query = null;
@@ -63,7 +54,7 @@ class efsatesis extends MY_Model{
       }
       if(!$returnObjects)
       {
-		if(!$retrieveAvatar)
+	if(!$retrieveAvatar)
         {
           return $query->result();
         }
@@ -87,14 +78,13 @@ class efsatesis extends MY_Model{
       }
     }
 
-	private function createObjectFromStd($obj)
-	{
-	  $aux = new efsatesis();
-	  $aux->setId(($obj->id));
-	  $aux->setName(($obj->name));
-	  $aux->setDescription($obj->description);
-	  return $aux;
-	}
+    private function createObjectFromStd($obj)
+    {
+      $aux = new efsatesis();
+      $aux->setId(($obj->id));
+      $aux->setDescription($obj->description);
+      return $aux;
+    }
     
     
     function retrieveLastOrder()
@@ -127,7 +117,6 @@ class efsatesis extends MY_Model{
     private function saveNew()
     {
       $data = array(
-          'name' => $this->getName(),
           'description' => $this->getDescription(),
           'ordinal' => $this->retrieveLastOrder(),
        );
@@ -146,7 +135,6 @@ class efsatesis extends MY_Model{
     private function edit()
     {
       $data = array(
-		  'name' => $this->getName(),
           'description' => $this->getDescription(),
        );
       $this->db->where('id', $this->getId());
@@ -165,15 +153,15 @@ class efsatesis extends MY_Model{
         $obj = $query->row();        
         if($return_obj)
         {
-		  return $this->createObjectFromStd($obj);
+	  return $this->createObjectFromStd($obj);
         }
-		else
-		{
-		  if($avatar)
-		  {
-			$obj->avatar = $this->retrieveAvatar("default", $obj->id);
-		  }
-		}
+	else
+	{
+	  if($avatar)
+	  {
+	    $obj->avatar = $this->retrieveAvatar("default", $obj->id);
+	  }
+	}
         return $obj;
       } else {
         // None
@@ -185,7 +173,4 @@ class efsatesis extends MY_Model{
     {
       return get_class($this);
     }
-	
-	
-    
 }
