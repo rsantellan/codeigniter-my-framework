@@ -3,7 +3,7 @@
   <h3><?php echo $object->getName();?></h3>
   <ul class="content">
     <?php 
-            $imgType = 3;
+            $imgType = 1;
             $width = 165;
             $height = 110;
             $widthGaleria = 600;
@@ -17,7 +17,7 @@
       ?>
     
     <li>
-       <a class="fancybox" href="<?php echo $urlBig;?>" data-fancybox-group="gallery" title="<?php echo $object->ac_name;?>">
+       <a class="fancybox" href="<?php echo $urlBig;?>" data-fancybox-group="gallery" title="<?php echo $object->ac_description;?>">
         <div class="card-back">
           <p><?php echo $object->ac_description;?></p>
         </div>

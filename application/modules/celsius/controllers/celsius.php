@@ -30,17 +30,18 @@ class celsius extends MY_Controller {
     {
 	  $loggedUserData = $this->getLoggedUserData();
       $this->data['user'] = $loggedUserData;
-	  if($loggedUserData->profile == 'medico')
-	  {
+	  //if($loggedUserData->profile == 'medico')
+	  //{
 		$format = 'Y-m-d H:i:s';
+        var_dump($loggedUserData);
 		$dateLastUpdated = DateTime::createFromFormat($format, $loggedUserData->last_updated);
 		$dateNow = new DateTime();
 		$diff = $dateNow->diff($dateLastUpdated)->format("%a");
 		if($diff > 30)
 		{
-		  //var_dump($diff);
+		  var_dump($diff);
 		}
-	  }
+	  //}
     }
     $this->data['englishurl'] = '';
     $this->data['spanishurl'] = '';

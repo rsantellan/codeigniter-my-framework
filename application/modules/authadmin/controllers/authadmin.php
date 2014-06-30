@@ -251,7 +251,8 @@ class Authadmin extends MY_Controller {
     $this->load->model('auth/users');
     $user = $this->users->retrieve_user_by_id($id);
     if ($use_username) {
-      $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
+      //$this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
+      $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']');
     }
     $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
     $this->form_validation->set_rules('direccion', 'Dirección', 'max_length[255]');
@@ -356,7 +357,8 @@ class Authadmin extends MY_Controller {
     $use_username = $this->config->item('use_username', 'tank_auth');
 
     if ($use_username) {
-      $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
+      //$this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']|alpha_dash');
+      $this->form_validation->set_rules('username', 'Usuario', 'trim|required|xss_clean|min_length[' . $this->config->item('username_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('username_max_length', 'tank_auth') . ']');
     }
     $this->form_validation->set_rules('email', 'Correo electronico', 'trim|required|xss_clean|valid_email');
     $this->form_validation->set_rules('password', 'Contraseña', 'trim|required|xss_clean|min_length[' . $this->config->item('password_min_length', 'tank_auth') . ']|max_length[' . $this->config->item('password_max_length', 'tank_auth') . ']|alpha_dash');

@@ -107,7 +107,8 @@ h5{
 	color: #001d47;
 	font-style: italic;
 	}
-	.novedades_home_img h5{
+	.novedades_home_img h5,
+	.novedades_home_center h5{
 		float:left;
 		margin: 0 0 0 10px;
 		}
@@ -417,11 +418,13 @@ nav.nav_seccion_iniciada{
 	padding: 0 15px;
 	height: 220px;
 	margin-bottom: 20px;
+	position: relative;
 	}
 	.novedades_home_center{
 		border-left: 1px solid #001d47;
 		border-right: 1px solid #001d47;
 		width: 228px;
+		position: relative;
 		}
 	.novedades_home img{
 		width: auto;
@@ -454,6 +457,9 @@ nav.nav_seccion_iniciada{
 		color: #001d47;
 		display: block;
 		text-decoration: none;
+		position: absolute;
+		bottom:0;
+		right:10px;
 		}
 		a.ver_mas:hover{
 			text-decoration: none;
@@ -675,6 +681,7 @@ table.productos{
 	padding-bottom: 10px;
 	border-bottom: 1px solid #57585a;
 	overflow: hidden;
+	position: relative;
 	}
 .novedad_listado_img{
 	width: 250px;
@@ -686,10 +693,13 @@ table.productos{
 	width: 500px;
 	float: left;
 	}
+	.novedad_listado_text p{
+		margin-bottom: 5px;
+		}
 	.novedad_listado_text h1{
 		font-size: 14px;
 		color: #57585a;
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 		font-style: normal;
 		}
 .novedad_listado_a{
@@ -698,7 +708,10 @@ table.productos{
 	color: #57585a;
 	text-decoration: none;
 	display: block;
-	float: right;
+	/*float: right;*/
+	position: absolute;
+	bottom: 15px;
+	right: 10px;
 	}
 	.novedad_listado_a img{
 		margin-left: 10px;
@@ -717,7 +730,8 @@ body.iframe{
 	background: #FFFFFF;
 	}
 	.wrapper_iframe img{
-		margin:0 15px 20px 0;
+		margin:15px auto;
+		display: block;
 		}
 	.wrapper_iframe h1{
 		margin-bottom: 15px;
@@ -1814,11 +1828,22 @@ a.listado_links{
 
 /* Formulario de edicion del usuario 
 ================================================== */
+form.editUserform,
+form.changepassform {
+	padding:10px; 
+	}
 form.editUserform label{
   font-size: 13px;
   margin: 5px;
+  float: left;
+  width: 70px;
 }
-
+form.changepassform label{
+  font-size: 13px;
+  margin: 5px;
+  float: left;
+  width: 100px;
+}
 form.editUserform input{
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -1831,13 +1856,31 @@ form.editUserform input{
   color: #57585a;
   font-family: 'myriad_proregular';
   height: 18px;
+  width: 250px;
 }
-
-form.editUserform input.editSubmit{
+form.changepassform input{
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border: 1px solid #023b81;
+  margin-bottom: 10px;
+  padding: 0 3px;
+  color: #57585a;
+  font-family: 'myriad_proregular';
+  height: 18px;
+  width: 200px;
+}
+form.editUserform input.editSubmit,
+form.changepassform input#changePass{
   border:none !important;
   font-family: 'myriad_probold' !important;
   font-size: 12px !important;
   cursor:pointer !important;
   background: none !important;
   color:#023b81 !important;
+  float: right;
+  width: auto;
+  font-size: 15px !important;
 }
