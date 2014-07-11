@@ -28,6 +28,8 @@
 		<!-- slide -->
     	<script src="<?php echo base_url(); ?>assets/celsius/js/jquery.featureCarousel.min.js" type="text/javascript" charset="utf-8"></script>		
 
+        <!-- Users js -->
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/celsius/js/users.js"></script>
 	</head>
   <body>
     <div class="wrapper">
@@ -189,12 +191,19 @@
 			  <img src="<?php echo base_url(); ?>assets/celsius/images/facebook.jpg">
 			</a>
 		  </div><!-- datos_footer -->
-		  <!-- <div class="mail_footer">
-			<a href="<?php echo site_url($lang."/".(($lang =='es')?'contacto' : 'contact').".html");?>">
-			  <img src="<?php echo base_url(); ?>assets/celsius/images/mail.jpg">
-			</a>
-		  </div>mail_footer -->
 		</footer>
       </div>
+    
+      <?php if($openUserInfo): ?>
+      <div style="display: none" id="formularioUsuario">
+        <?php $this->load->view('usuarioedit');?>
+      </div>
+      <a id="my_hidden_link" href="#formularioUsuario" style="display: none">Oculto</a>
+      <script type="text/javascript">
+          $(document).ready(function() {
+              $("#my_hidden_link").fancybox().trigger('click');
+          });
+      </script>
+      <?php endif ?>
   </body>
 </html>

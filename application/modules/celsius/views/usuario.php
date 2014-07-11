@@ -32,43 +32,6 @@
     
   });
   
-  function sendUserEditForm(form)
-  {
-      $('#guardarEdit').hide();
-      $("#formeditusuarioserrores").html(' ');
-      $.ajax({
-          url: $(form).attr('action'),
-          data: $(form).serialize(),
-          type: 'post',
-          dataType: 'json',
-          success: function(json){
-              if(json.response == "OK")
-              {
-                window.location.reload();
-              }
-              else
-              {
-                //console.log(json.errores)
-                if(json.errores.form !== 'false')
-                {
-                  console.log(json.errores.form);
-                  jQuery.each(json.errores.form, function(i, val) {
-                    $("#formeditusuarioserrores").append(document.createTextNode(" - " + val));
-                  });
-                }
-              }
-              
-              
-          }
-          , 
-          complete: function()
-          {
-            $('#guardarEdit').show();
-          }
-      });
-      return false;
-  }
-  
   function changePassForm(form)
   {
       $('#guardarEdit').hide();

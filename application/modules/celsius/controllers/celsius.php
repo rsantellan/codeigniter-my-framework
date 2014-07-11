@@ -26,6 +26,7 @@ class celsius extends MY_Controller {
     $this->data['errores'] = array();
     $this->data['isLogged'] = $this->isLogged();
     $this->data['user'] = NULL;
+    $this->data['openUserInfo'] = false;
     if($this->data['isLogged'])
     {
 	  $loggedUserData = $this->getLoggedUserData();
@@ -33,13 +34,13 @@ class celsius extends MY_Controller {
 	  //if($loggedUserData->profile == 'medico')
 	  //{
 		$format = 'Y-m-d H:i:s';
-        var_dump($loggedUserData);
-		$dateLastUpdated = DateTime::createFromFormat($format, $loggedUserData->last_updated);
+        $dateLastUpdated = DateTime::createFromFormat($format, $loggedUserData->last_updated);
 		$dateNow = new DateTime();
 		$diff = $dateNow->diff($dateLastUpdated)->format("%a");
 		if($diff > 30)
 		{
-		  var_dump($diff);
+          $this->data['openUserInfo'] = true;
+          $this->loadI18n("usuario", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
 		}
 	  //}
     }
