@@ -87,9 +87,9 @@ class presentations extends MY_Controller{
       $this->load->model('presentations/presentation');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "presentations/edit";
-      $this->data['countries'] = $this->presentation->retrieveAllCountries();
-      $this->data['types'] = $this->presentation->retrieveCountryType();
-      $this->data['compuestos'] = $this->presentation->retrieveCompuestos();
+      //$this->data['countries'] = $this->presentation->retrieveAllCountries();
+      //$this->data['types'] = $this->presentation->retrieveCountryType();
+      //$this->data['compuestos'] = $this->presentation->retrieveCompuestos();
       $object = $this->presentation->getById($id, $this->getLang(), true, false, true);
       $this->data['object'] = $object;
       $this->loadProduct($object->getProductId());
@@ -152,6 +152,7 @@ class presentations extends MY_Controller{
       }
       else
       {
+		$this->loadProduct($productId);
         if($obj->isNew())
         {
           $this->data['use_grid_16'] = false;

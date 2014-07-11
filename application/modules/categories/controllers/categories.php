@@ -33,13 +33,13 @@ class categories extends MY_Controller{
         }
       }
       $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-//	  $this->output->enable_profiler(TRUE);  
+	  //$this->output->enable_profiler(TRUE);  
     }
     
     function index($lang = 'es'){
       $this->setLang($lang);
       $this->load->model('categories/category');
-      $this->data['objects_list'] = $this->category->retrieveAll(false, $this->getLang());
+      $this->data['objects_list'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal');
       $this->data['content'] = "categories/list";
       //$this->load->helper('upload/mimage');
       //$this->load->library('upload/mupload');
@@ -87,6 +87,7 @@ class categories extends MY_Controller{
       $lang = $this->input->post('lang', true);
       $this->setLang($lang);
       $this->form_validation->set_rules('name', 'name', 'required|max_length[255]');			
+      $this->form_validation->set_rules('onlyExterior', 'onlyExterior', '');			
         
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
       
@@ -96,9 +97,10 @@ class categories extends MY_Controller{
         $is_valid = true;
       }
       $name = set_value('name');
-      //var_dump($nombre);
+	  $onlyExterior = (int) set_value('onlyExterior');
       $obj = new $this->category;
       $obj->setName($name);
+	  $obj->setOnlyexterior($onlyExterior);
 	  $obj->setLang($lang);
       $obj->setId($id);
       //var_dump($obj);

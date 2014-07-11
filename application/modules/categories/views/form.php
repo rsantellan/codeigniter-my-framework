@@ -6,14 +6,19 @@ echo form_open('categories/save', $attributes); ?>
 <input id="id" type="hidden" name="id"  value="<?php echo $object->getId() ?>"  />
 <input id="id" type="hidden" name="lang"  value="<?php echo $lang ?>"  />
 
-
-
 <div class="grid_5">
   <p>
     <label for="nombre">Nombre <small>Requerido</small></label>
     <input type="text" name="name" maxlength="255" value="<?php echo $object->getName() ?>" />
   </p>
 </div>
+<div class="grid_5">
+  <p>
+    <label for="onlyExterior">Solo en el exterior</label>
+	<input type="checkbox" value="1" name="onlyExterior" <?php echo ($object->getOnlyExterior() == 1)? 'checked="checked"' : "";?> />
+  </p>
+</div>
+<div class='clear'></div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

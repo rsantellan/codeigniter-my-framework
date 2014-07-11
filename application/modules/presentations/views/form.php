@@ -34,6 +34,7 @@ echo form_open('presentations/save', $attributes); ?>
     <input type="text" name="action" maxlength="255" value="<?php echo $object->getAction() ?>" />
   </p>
 </div>
+<!--
 <div class="clear"></div>
 <div class="grid_5">
   <p>
@@ -47,6 +48,7 @@ echo form_open('presentations/save', $attributes); ?>
     <input type="text" name="presentacionexterior" maxlength="255" value="<?php echo $object->getExteriorPresentation() ?>" />
   </p>
 </div>
+-->
 <div class="clear"></div>
 <div class="grid_16">
   <p class="submit">

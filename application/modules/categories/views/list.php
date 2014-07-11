@@ -13,6 +13,9 @@
       <th>
         Nombre
       </th>
+	  <th>
+        Solo en el exterior
+      </th>
       <th>
         Acciones
       </th>
@@ -27,6 +30,9 @@
       <td>
         <?php echo ($object->name); ?>
       </td>
+	  <td>
+		<?php echo ($object->onlyexterior)? "Si": "No";?>
+	  </td>
       <td>
         <a href="<?php echo site_url("categories/edit/".$lang."/".$object->id);?>">
           Editar

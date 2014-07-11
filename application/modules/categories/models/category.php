@@ -18,6 +18,7 @@ class category extends MY_Model{
   private $name;
   private $lang;
   private $exists = false;
+  private $onlyexterior = 0;
   
   function __construct()
   {
@@ -65,6 +66,14 @@ class category extends MY_Model{
       $this->exists = $exists;
   }
 
+  public function getOnlyexterior() {
+	return $this->onlyexterior;
+  }
+
+  public function setOnlyexterior($alsoexterior) {
+	$this->onlyexterior = $alsoexterior;
+  }
+
   public function getTranslation($id, $lang, $returnObject = true)
   {
       $this->db->where('id', $id);
@@ -95,15 +104,24 @@ class category extends MY_Model{
         return $aux;
       }
   }
-  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $order = 'ordinal')
+  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $order = 'ordinal', $notExterior = false)
   {
 
     $this->db->order_by($order, "desc");
+	if($notExterior){
+	  $this->db->where('onlyexterior', 0);
+	}
     $query = $this->db->get($this->getTablename());
     $salida = array();
     foreach($query->result() as $obj)
     {
-        $salida[$obj->id] = $this->getTranslation($obj->id, $lang, $returnObjects);
+		$aux = $this->getTranslation($obj->id, $lang, $returnObjects);
+		if ($returnObjects) {
+		  $aux->setOnlyexterior($obj->onlyexterior);
+		}else{
+		  $aux->onlyexterior = $obj->onlyexterior;
+		}
+        $salida[$obj->id] = $aux;
     }
     if($returnObjects)
     {
@@ -169,9 +187,14 @@ class category extends MY_Model{
     {
         $data = array();
         $data["ordinal"] = $this->retrieveLastOrder();
+		$data["onlyexterior"] = $this->getOnlyexterior();
         $this->db->insert($this->getTablename(), $data);
         $id = $this->db->insert_id(); 
     }
+	else
+	{
+	  $this->editObject();
+	}
     
     
     $dataTranslation = array(
@@ -184,8 +207,16 @@ class category extends MY_Model{
     return $id;
   }
 
+  private function editObject() {
+    $data = array();
+    $data["onlyexterior"] = $this->getOnlyexterior();
+    $this->db->where('id', $this->getId());
+    $this->db->update($this->getTablename(), $data);
+  }
+  
   private function edit()
   {
+	$this->editObject();
     $data = array(
 		'name' => $this->getName(),
 		'slug' => $this->createSlug('slug', $this->getName(), 'category_translation', $this->getId(), 'lang', $this->getLang()),
@@ -199,7 +230,19 @@ class category extends MY_Model{
   
   public function getById($id, $lang = 'es', $return_obj = true)
     {
-      return $this->getTranslation($id, $lang, $return_obj);
+      $aux = $this->getTranslation($id, $lang, $return_obj);
+	  $this->db->where('id', $id);
+	  $this->db->limit('1');
+	  $query = $this->db->get($this->getTablename());
+	  if ($query->num_rows() == 1) {
+		$obj = $query->row();
+		if ($return_obj) {
+		  $aux->setOnlyexterior($obj->onlyexterior);
+		}else{
+		  $aux->onlyexterior = $obj->onlyexterior;
+		}
+	  }
+	  return $aux;
     }  
     
     public function getObjectClass()

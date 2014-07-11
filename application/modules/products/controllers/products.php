@@ -61,7 +61,7 @@ class products extends MY_Controller{
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "products/add";
 	  $this->load->model('categories/category');
-	  $this->data['categories'] = $this->category->retrieveAll(false, $this->getLang());
+	  $this->data['categories'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal', true);
       $this->data['object'] = new $this->product;
 	  $this->load->view("admin/layout", $this->data);
     }
@@ -72,7 +72,7 @@ class products extends MY_Controller{
       $this->addUploadModuleAssets();
       $this->addModuleJavascript("admin", "adminManager.js");
       $this->load->model('categories/category');
-	  $this->data['categories'] = $this->category->retrieveAll(false, $this->getLang());
+	  $this->data['categories'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal', true);
       $this->load->model('products/product');
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "products/edit";

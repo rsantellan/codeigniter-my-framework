@@ -53,7 +53,7 @@ class celsius extends MY_Controller {
     $cache_key = 'categorieslist-' . $this->getLang();
     $categoriesList = $this->cache->get($cache_key);
     if (!$categoriesList) {
-      $categoriesList = $this->category->retrieveAll(false, $this->getLang());
+      $categoriesList = $this->category->retrieveAll(false, $this->getLang(), 'ordinal', true);
       $this->cache->save($cache_key, $categoriesList, 300);
     }
     $this->data['menuCategoryList'] = $categoriesList;
