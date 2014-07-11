@@ -483,10 +483,23 @@ class celsius extends MY_Controller {
     $this->appendTitle($title);
     $this->loadI18n("presenciaexterior", $this->getLanguageFile(), FALSE, TRUE, "", "celsius");
     $this->data['content'] = 'presencia';
-    $this->load->model('products/product');
-    $this->load->model('presentations/presentation');
-    $this->data['countries'] = $this->presentation->retrieveAllCountries();
+    $this->load->model('exteriorproducts/exteriorproduct');
+	$this->load->model('categories/category');
+	$this->data['categories_list'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal');
+	$this->data['countries'] = $this->exteriorproduct->retrieveAllCountries();
+	$this->data['presence_types'] = $this->exteriorproduct->retrieveCountryType();
+	$exteriorProduct = $this->exteriorproduct->retrieveAll(true, 'category_id, name', true);
     $tableData = array();
+	foreach($exteriorProduct as $product){
+	  if(!isset($tableData[$product->getCategoryId()])){
+		$tableData[$product->getCategoryId()] = array();
+	  }
+	  $tableData[$product->getCategoryId()][] = $product; 
+	}
+	$this->data['tableData'] = $tableData;
+    $this->load->view($this->DEFAULT_LAYOUT, $this->data);
+	return;
+	die;
     foreach($this->data['menuCategoryList'] as $category)
     {
 //      var_dump($category);

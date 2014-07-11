@@ -42,22 +42,30 @@
         $num = 0;
       ?>
       <?php foreach($tableData[$categoria->id] as $data): ?>
+	  
       <tr>
-        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->product;?><?php //var_dump($data);?></td>
-        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->genericname;?></td>
-        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->presentation;?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->getName();?><?php //var_dump($data);?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->getGenericName();?></td>
+        <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->getPresentation();?></td>
+        
+		<?php 
+		  
+		  if($data->getCompuesto() != ""){
+			$compuestosList[$data->getCompuesto()] = $data->getCompuesto();
+		  }
+		  $indexCountry = 0;
+		  foreach ($countries as $country): 
+		?>
+		<td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>">
+		  <?php if($data->hasCountry($country->id)): ?>
+			  <?php echo $data->getPresencetype();?>
+		  <?php endif; ?>
+		  
+		  
+		</td>
         <?php 
-        $indexCountry = 0;
-        foreach($data->countries as $rep): 
-          if(isset($rep['compuesto']))
-          {
-            $compuestosList[$rep['compuesto']] = $rep['compuesto'];
-          }
-        ?>
-          <td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($data->countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>"><?php echo $rep['presencia'];?></td>
-        <?php
-        $indexCountry++;
-        endforeach; 
+			$indexCountry++;
+		  endforeach;
         $num++;
         ?>
 <!--        <td class="td_notas td_color_oscuro td_border_none"></td>-->
