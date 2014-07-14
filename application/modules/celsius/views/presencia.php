@@ -54,11 +54,13 @@
 			$compuestosList[$data->getCompuesto()] = $data->getCompuesto();
 		  }
 		  $indexCountry = 0;
-		  foreach ($countries as $country): 
+          foreach ($countries as $country): 
 		?>
 		<td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>">
-		  <?php if($data->hasCountry($country->id)): ?>
-			  <?php echo $data->getPresencetype();?>
+		  <?php 
+            $countryData = $data->retrieveCountry($country->id);
+            if($countryData !== null): ?>
+			  <?php echo $countryData->presencetype;?>
 		  <?php endif; ?>
 		  
 		  

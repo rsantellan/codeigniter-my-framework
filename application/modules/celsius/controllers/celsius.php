@@ -500,6 +500,9 @@ class celsius extends MY_Controller {
     $this->load->view($this->DEFAULT_LAYOUT, $this->data);
 	return;
 	die;
+    
+    
+    
     foreach($this->data['menuCategoryList'] as $category)
     {
 //      var_dump($category);

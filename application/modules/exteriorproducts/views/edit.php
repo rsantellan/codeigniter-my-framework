@@ -25,4 +25,85 @@
 
 <hr/>
 
+
+<h3>Paises:</h3>
+<div id="countries_container">
+<?php 
+foreach($object->getCountries() as $country):
+  $this->load->view('countrycontainer', array(
+      'countryId' => $country->country_id, 
+      'countryName' => $countries_list[$country->country_id]->name,
+      'type' => $presence_types[$country->presencetype],
+      'productId' => $object->getId(),
+      ));
+endforeach;
+?>
+</div>
+<div id="country_form_container" class="hidden">
+  <form action="<?php echo site_url('exteriorproducts/addCountry'); ?>" id="country_form" onsubmit="return sendCountryForm(this)">
+    <input type="hidden" name="productId" value="<?php echo $object->getId();?>" />
+    <label for="country">País:</label>
+    
+    <select name="country" id="country">
+      <?php foreach($countries_list as $country): ?>
+        <option value="<?php echo $country->id;?>"><?php echo $country->name;?></option>
+      <?php endforeach; ?>
+    </select>
+    <div class="clear"></div>
+    <label for="presencetype">Tipo de presencia <small>Requerido</small></label>
+	<select name="presencetype" id="presencetype">
+      <?php foreach($presence_types as $key => $value): ?>
+        <option value="<?php echo $key;?>" <?php echo ($object->getPresencetype() == $key)? "selected='selected'" : "";?>><?php echo $value;?></option>
+      <?php endforeach; ?>
+    </select>
+    <div class="clear"></div>
+    <input type="submit" value="Agregar" />
+  </form>
+</div>
+<hr/>
 <a href="<?php echo site_url('exteriorproducts/index'); ?>"> Volver al listado </a>
+
+<script type="text/javascript">
+  function sendCountryForm(form)
+  {
+    $.ajax({
+        url: $(form).attr('action'),
+        data: $(form).serialize(),
+        type: 'post',
+        dataType: 'json',
+        success: function(json)
+        {
+          if(json.response == 'OK')
+          {
+            $('#countries_container').append(json.html);
+          }
+        }, 
+        complete: function()
+        {
+
+        }
+      });
+    return false;
+  }
+  
+  function removeCountry(countryId, url)
+  {
+    $.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json',
+        success: function(json)
+        {
+          $('#country_container_'+countryId).remove();
+        }, 
+        complete: function()
+        {
+
+        }
+      });
+    return false;
+  }
+  $(document).ready(function() {
+        startFancyLinks();
+    });
+</script>

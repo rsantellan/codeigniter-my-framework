@@ -102,9 +102,22 @@ class exteriorproduct extends MY_Model{
 	return false;
   }
   
-  public function addCountry($countryId)
+  public function retrieveCountry($countryId)
   {
-	$this->countries[$countryId] = $countryId;
+    if(isset($this->countries[$countryId]))
+	{
+	  return $this->countries[$countryId];
+	}
+	return NULL;
+  }
+  
+  public function addCountry($countryId, $countryObject)
+  {
+	$this->countries[$countryId] = $countryObject;
+  }
+  
+  public function getCountries(){
+    return $this->countries;
   }
   
   public function saveCountries($id, $countriesList)
@@ -168,7 +181,7 @@ class exteriorproduct extends MY_Model{
 		  $queryCountries = $this->db->get('product_country');
 		  foreach($queryCountries->result() as $countryProduct)
 		  {
-			$aux->addCountry($countryProduct->country_id);
+			$aux->addCountry($countryProduct->country_id, $countryProduct);
 		  }  
 		}
         $salida[$obj->id] = $aux;
@@ -202,7 +215,6 @@ class exteriorproduct extends MY_Model{
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
 		'category_id' => $this->getCategoryid(),
-		'presencetype' => $this->getPresencetype(),
 		'presentation' => $this->getPresentation(),
 		'compuesto' => $this->getCompuesto(),
 	);
@@ -218,7 +230,6 @@ class exteriorproduct extends MY_Model{
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
 		'category_id' => $this->getCategoryid(),
-		'presencetype' => $this->getPresencetype(),
 		'presentation' => $this->getPresentation(),
 		'compuesto' => $this->getCompuesto(),
 	);
@@ -245,7 +256,8 @@ class exteriorproduct extends MY_Model{
 			$queryCountries = $this->db->get('product_country');
 			foreach($queryCountries->result() as $countryProduct)
 			{
-			  $aux->addCountry($countryProduct->country_id);
+              var_dump($countryProduct);
+              $aux->addCountry($countryProduct->country_id, $countryProduct);
 			}  
 		  }
           return $aux;
@@ -264,7 +276,7 @@ class exteriorproduct extends MY_Model{
       $aux->setCategoryid($row->category_id);
 	  $aux->setCompuesto($row->compuesto);
 	  $aux->setGenericname($row->genericname);
-	  $aux->setPresencetype($row->presencetype);
+	  //$aux->setPresencetype($row->presencetype);
 	  $aux->setPresentation($row->presentation);
 	  return $aux;
 	}
@@ -272,5 +284,27 @@ class exteriorproduct extends MY_Model{
     public function getObjectClass()
     {
       return get_class($this);
+    }
+    
+    public function saveCountry($productId, $countryId, $presencetype)
+    {
+      $data = array();
+      $data["product_id"] = $productId;
+      $data["country_id"] = $countryId;
+      $data["presencetype"] = $presencetype;
+      $this->db->insert('product_country', $data);
+      $rows = $this->db->affected_rows();
+      
+      if($rows > 0){
+        return true;
+      }
+      return false;
+    }
+    
+    public function removeCountry($productId, $countryId)
+    {
+      $this->db->where('product_id', $productId);
+      $this->db->where('country_id', $countryId);
+      $this->db->delete('product_country');
     }
 }
