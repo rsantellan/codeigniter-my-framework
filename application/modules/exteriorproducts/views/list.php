@@ -15,9 +15,6 @@
         Categoria
       </th>
 	  <th>
-        Tipo de presencia
-      </th>
-	  <th>
         Compuesto
       </th>
       <th>
@@ -39,9 +36,6 @@
       </td>
 	  <td>
         <?php echo ($categories_list[$object->category_id]->name); ?>
-      </td>
-	  <td>
-        <?php echo ($object->presencetype); ?>
       </td>
 	  <td>
         <?php echo ($object->compuesto); ?>

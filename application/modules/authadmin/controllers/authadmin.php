@@ -811,4 +811,121 @@ class Authadmin extends MY_Controller {
     }
     return $password;
   }
+  
+  function proccesEmpleadosExcel()
+  {
+	redirect('admin/index');die;
+    $usuariosErroneos = array();
+    $usuariosOK = 0;
+	$totalUsuarios = 0;
+	$file_path = FCPATH."celsius.xls";
+	//load our new PHPExcel library
+	$this->load->library('excel');
+	$objReader = PHPExcel_IOFactory::createReader('Excel5');
+	$objPHPExcel = $objReader->load($file_path);
+	$sheetData = $objPHPExcel->getActiveSheet();
+	$first = true;
+	
+	$this->load->helper(array('url', 'text', 'string'));
+	foreach ($sheetData->getRowIterator() as $row) {
+	  $cellIterator = $row->getCellIterator();
+	  $cellIterator->setIterateOnlyExistingCells(false); // This loops all cells,
+	  // even if it is not set.
+	  // By default, only cells
+	  // that are set will be
+	  // iterated.
+	  if(!$first)
+	  {
+		$user = array();
+		$cellIndex = 0;
+		foreach ($cellIterator as $cell) {
+		  switch ($cellIndex) {
+			case 0:
+				$user['nombre'] = $cell->getValue();
+			  break;
+			case 5:
+				$user['email'] = $cell->getValue();
+			  break;
+			case 2:
+				$user['password'] = $cell->getValue();
+			  break;
+			default:
+			  break;
+		  }
+		  $cellIndex++;
+		}
+		if($user['email'] == "" || !$this->form_validation->valid_email($user['email'])){
+		  $data = strtolower(url_title(convert_accented_characters($user['nombre']), "-"));
+		  $user['email'] = $data.'@email.com';
+		}
+		
+		//var_dump($user['cjp']);
+		if($this->form_validation->valid_email($user['email']) &&
+		   $this->form_validation->required($user['nombre']) 
+		  )
+		{
+		  $user['profile'] = 'empleado';
+		  //var_dump($user);die;
+		 $data = $this->tank_auth->create_user(
+			  $user['nombre'],
+			  $user['email'],
+			  $user['password'],
+			  false,
+			  '',
+			  '',
+			  '',
+			  '',
+			  $user['profile']
+			);
+		  if($data !== NULL)
+		  {
+			$usuariosOK++;
+		  }
+		  else
+		  {
+			  $error = $this->tank_auth->get_error_message();
+			  //
+			  $this->loadI18n("tank_auth", $this->getLanguageFile(), FALSE, TRUE, "", "auth");
+			  $this->lang->load('tank_auth');
+			  if(is_array($error)){
+				  $aux_error = '';
+				  foreach($error as $aError)
+				  {
+					  $aux_error .= $this->lang->line($aError).'. ';
+				  }
+				  $error = $aux_error;
+				  //$user['error'] = implode('. ', $user['error']);
+			  }
+			  $user['error'] = $error;
+			  $usuariosErroneos[] = $user;
+		  }
+		}
+		else
+		{
+		  $error = '';
+		  if(!$this->form_validation->valid_email($user['email']))
+			$error .= 'Mail invalido. ';  
+		  if(!$this->form_validation->required($user['nombre']))
+			$error .= 'Nombre es requerido. ';  
+		  
+		  $user['error'] = $error;  
+		  $usuariosErroneos[] = $user;
+		}
+		$totalUsuarios++;
+	  }
+	  else
+	  {
+		$first = false;
+	  }
+	}
+	
+	$this->data['erroresListado'] = $usuariosErroneos;  
+	$this->data['usuariosOK'] = $usuariosOK;  
+	$this->data['use_grid_16'] = false;
+	var_dump($usuariosErroneos);
+	echo '<hr/>';
+	var_dump($usuariosOK);
+	echo '<hr/>';
+	var_dump($totalUsuarios);
+  }
 }
