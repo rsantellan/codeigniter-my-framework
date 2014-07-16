@@ -96,10 +96,14 @@
     <?php if(isset($user) && ($user->profile == 'admin' ||  $user->profile == 'medico') && (count($medicdata) > 0)): ?>
       <h5><?php echo lang('producto_literatura');?></h5>
       <?php foreach($medicdata as $lit): ?>
-      <?php //var_dump($lit);?>
+      <?php 
+		$urlDownloadProspecto = $lang.'/archivo/'.$lit->ac_id.'.html';
+		if($lang == 'en')
+			$urlDownloadProspecto = $lang.'/archive/'.$lit->ac_id.'.html';  
+		?>
         <div class="literatura">
           <img src="<?php echo base_url(); ?>assets/celsius/images/pdf_icon.jpg">
-          <a href="#"><?php echo $lit->ac_name;?></a>
+          <a href="<?php echo site_url($urlDownloadProspecto);?>"><?php echo $lit->ac_name;?></a>
         </div>
       <?php endforeach; ?>
     <?php endif;?>

@@ -1,4 +1,9 @@
-<h3>Listado de Productos del exterior</h3>
+<h3>Listado de Productos del exterior[<?php echo ($lang == 'es')? "Español" : "Ingles";?>]
+    <?php $otherLang = ($lang == 'es')? "en" : "es"; ?>
+    <a href="<?php echo site_url('exteriorproducts/index/'.$otherLang); ?>">
+        <img src="<?php echo base_url();?>assets/celsius/images/<?php echo $otherLang;?>.png" width="25px" height="25px"/>
+    </a>
+</h3>
 <table id="table_data">
   <thead>
     <tr>
@@ -41,7 +46,7 @@
         <?php echo ($object->compuesto); ?>
       </td>
       <td>
-        <a href="<?php echo site_url("exteriorproducts/edit/".$object->id);?>">
+        <a href="<?php echo site_url("exteriorproducts/edit/".$lang."/".$object->id);?>">
           Editar
         </a>
         <a href="javascript:void(0)" onclick="return adminManager.getInstance().deleteTableRow(<?php echo $object->id;?>, 'Esta seguro de querer eliminar?', '<?php echo site_url("exteriorproducts/delete/".$object->id);?>');">
@@ -55,7 +60,7 @@
 </table>
 
 <hr/>
-<a href="<?php echo site_url("exteriorproducts/add");?>">
+<a href="<?php echo site_url("exteriorproducts/add/".$lang);?>">
   Agregar
 </a>
 

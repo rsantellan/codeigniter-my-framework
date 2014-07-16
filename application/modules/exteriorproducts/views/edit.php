@@ -1,5 +1,5 @@
 <div class="grid_16">
-  <h2>Editar Producto exterior</h2>
+  <h2>Editar Producto exterior[<?php echo ($lang == 'es')? "Español" : "Ingles";?>]</h2>
     <?php echo form_error('name'); ?>
 	<?php echo form_error('genericname'); ?>
 	<?php echo form_error('presentation'); ?>
@@ -61,7 +61,7 @@ endforeach;
   </form>
 </div>
 <hr/>
-<a href="<?php echo site_url('exteriorproducts/index'); ?>"> Volver al listado </a>
+<a href="<?php echo site_url('exteriorproducts/index/'.$lang); ?>"> Volver al listado </a>
 
 <script type="text/javascript">
   function sendCountryForm(form)

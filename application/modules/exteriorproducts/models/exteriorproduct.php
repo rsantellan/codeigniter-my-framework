@@ -22,6 +22,8 @@ class exteriorproduct extends MY_Model{
   private $presencetype;
   private $compuesto;
   private $countries = array();
+  private $exists = false;
+  private $lang;
   
   function __construct()
   {
@@ -93,6 +95,22 @@ class exteriorproduct extends MY_Model{
 	$this->compuesto = $compuesto;
   }
 
+  public function getExists() {
+      return $this->exists;
+  }
+
+  public function setExists($exists) {
+      $this->exists = $exists;
+  }
+  
+  public function getLang() {
+	return $this->lang;
+  }
+
+  public function setLang($lang) {
+	$this->lang = $lang;
+  }  
+  
   public function hasCountry($countryId)
   {
 	if(isset($this->countries[$countryId]))
@@ -150,7 +168,7 @@ class exteriorproduct extends MY_Model{
   }
   
   
-  public function retrieveAll($returnObjects = FALSE, $orderBy = NULL, $loadCountries = false)
+  public function retrieveAll($returnObjects = FALSE, $lang = 'es', $orderBy = NULL, $loadCountries = false)
   {
 	if($orderBy !== NULL)
 	{
@@ -158,23 +176,17 @@ class exteriorproduct extends MY_Model{
 	}
 	else
 	{
-	  $this->db->order_by("name", "desc");
+	  $this->db->order_by("id", "desc");
 	}
     
     $query = $this->db->get($this->getTablename());
-    
-    if(!$returnObjects)
-    {
-      
-	  return $query->result();
-      
-    }
-    else
-    {
-      $salida = array();
-      foreach($query->result() as $obj)
-      {
-        $aux = $this->createObject($obj);
+	$salida = array();
+    foreach($query->result() as $obj)
+	{
+	  $aux = $this->getTranslation($obj->id, $lang, $returnObjects);
+	  if($returnObjects)
+	  {
+		$aux->setCategoryid($obj->category_id);
 		if($loadCountries)
 		{
 		  $this->db->where('product_id', $obj->id);
@@ -184,10 +196,53 @@ class exteriorproduct extends MY_Model{
 			$aux->addCountry($countryProduct->country_id, $countryProduct);
 		  }  
 		}
-        $salida[$obj->id] = $aux;
+	  }
+	  else
+	  {
+		$aux->category_id = $obj->category_id;
+	  }
+	  $salida[$obj->id] = $aux;
+	}
+	return $salida;
+  }
+  
+  public function getTranslation($id, $lang, $returnObject = true)
+  {
+      $this->db->where('id', $id);
+      $this->db->where('lang', $lang);
+      $this->db->limit('1');
+      $query = $this->db->get('product_exterior_translation');
+      if( $query->num_rows() == 1 ){
+        $obj = $query->row();        
+        if($returnObject)
+        {
+          return $this->createObject($obj);
+        }
+        $obj->exists = true;
+        return $obj;
+      } else {
+        if($returnObject)
+        {
+          $aux = new exteriorproduct();
+          $aux->setId($id);
+		  $aux->setName('');
+		  $aux->setLang('');
+		  $aux->setCompuesto('');
+		  $aux->setGenericname('');
+		  $aux->setPresentation('');
+		  $aux->setCategoryid(0);
+		  $aux->setExists(false);
+          return $aux;
+        }
+        $aux = new stdClass();
+        $aux->id = $id;
+        $aux->name = "";
+        $aux->genericname = '';
+        $aux->compuesto = '';
+        $aux->presentation = '';
+        $aux->exists = false;
+        return $aux;
       }
-      return $salida;
-    }
   }
   
   public function isNew(){
@@ -205,42 +260,71 @@ class exteriorproduct extends MY_Model{
     }
     else
     {
-      return $this->edit();
+	  $obj = $this->getTranslation($this->getId(), $this->getLang(), false);
+      if(!$obj->exists)
+      {
+          return $this->saveNew($this->getId());
+      }
+      else
+      {
+          return $this->edit();
+      }
     }
   }
   
-  private function saveNew()
+  private function saveNew($id = NULL)
   {
-    $data = array(
+	if($id === null)
+	{
+	  $data = array(
+		'category_id' => $this->getCategoryid(),
+	  );
+	  $this->db->insert($this->getTablename(), $data);
+	  $id = $this->db->insert_id();
+	}
+	else
+	{
+	  $this->editObject();
+	}
+    $dataTranslation = array(
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
-		'category_id' => $this->getCategoryid(),
+		'lang' => $this->getLang(),
+		'id' =>$id,
 		'presentation' => $this->getPresentation(),
 		'compuesto' => $this->getCompuesto(),
 	);
-    $this->db->insert($this->getTablename(), $data);
-    $id = $this->db->insert_id();
-    
+    $this->db->insert($this->getTablename()."_translation", $dataTranslation);
     return $id;
   }
 
+  private function editObject() {
+    $data = array(
+		'category_id' => $this->getCategoryid(),
+	  );
+    $this->db->where('id', $this->getId());
+    $this->db->update($this->getTablename(), $data);
+  }
+  
   private function edit()
   {
+	$this->editObject();
     $data = array(
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
-		'category_id' => $this->getCategoryid(),
 		'presentation' => $this->getPresentation(),
 		'compuesto' => $this->getCompuesto(),
 	);
     $this->db->where('id', $this->getId());
-    $this->db->update($this->getTablename(), $data);
+    $this->db->where('lang', $this->getLang());
+    $this->db->update($this->getTablename()."_translation", $data);
 
     return $this->getId();
   }
   
-  public function getById($id, $return_obj = true, $loadCountries = true)
-    {
+  public function getById($id, $lang = 'es', $return_obj = true, $loadCountries = true)
+  {
+	  $aux =  $this->getTranslation($id, $lang, $return_obj);
       $this->db->where('id', $id);
       $this->db->limit('1');
       $query = $this->db->get($this->getTablename());
@@ -249,20 +333,20 @@ class exteriorproduct extends MY_Model{
         $obj = $query->row();        
         if($return_obj)
         {
-		  $aux = $this->createObject($obj);
+		  $aux->setCategoryid($obj->category_id);
 		  if($loadCountries)
 		  {
 			$this->db->where('product_id', $id);
 			$queryCountries = $this->db->get('product_country');
 			foreach($queryCountries->result() as $countryProduct)
 			{
-              var_dump($countryProduct);
               $aux->addCountry($countryProduct->country_id, $countryProduct);
 			}  
 		  }
           return $aux;
         }
-        return $obj;
+		$aux->category_id = $obj->category_id;
+        return $aux;
       } else {
         // None
         return NULL;
@@ -273,10 +357,9 @@ class exteriorproduct extends MY_Model{
 	  $aux = new exteriorproduct();
 	  $aux->setId($row->id);
 	  $aux->setName($row->name);
-      $aux->setCategoryid($row->category_id);
+	  $aux->setLang($row->lang);
 	  $aux->setCompuesto($row->compuesto);
 	  $aux->setGenericname($row->genericname);
-	  //$aux->setPresencetype($row->presencetype);
 	  $aux->setPresentation($row->presentation);
 	  return $aux;
 	}

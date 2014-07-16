@@ -35,15 +35,15 @@ class exteriorproducts extends MY_Controller{
 	  //$this->output->enable_profiler(TRUE);  
     }
     
-    function index(){
+    function index($lang = 'es'){
       
-	  $this->setLang('es');
+	  $this->setLang($lang);
       $this->load->model('exteriorproducts/exteriorproduct');
       $this->load->model('categories/category');
       $this->data['categories_list'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal');
 	  $this->data['countries_list'] = $this->exteriorproduct->retrieveAllCountries();
 	  $this->data['presence_types'] = $this->exteriorproduct->retrieveCountryType();
-      $this->data['objects_list'] = $this->exteriorproduct->retrieveAll(false);
+      $this->data['objects_list'] = $this->exteriorproduct->retrieveAll(false, $this->getLang());
 	  
       $this->data['content'] = "exteriorproducts/list";
       $this->load->helper('text');
@@ -58,8 +58,9 @@ class exteriorproducts extends MY_Controller{
       $this->load->view("admin/layout", $this->data);
     }
     
-    function add()
+    function add($lang)
     {
+	  $this->setLang($lang);
       $this->load->model('categories/category');
 	  $this->load->model('exteriorproducts/exteriorproduct');
 	  $this->setLang('es');
@@ -74,11 +75,11 @@ class exteriorproducts extends MY_Controller{
       $this->load->view("admin/layout", $this->data);
     }
     
-    function edit($id)
+    function edit($lang, $id)
     {
+	  $this->setLang($lang);
 	  $this->load->model('categories/category');
 	  $this->load->model('exteriorproducts/exteriorproduct');
-	  $this->setLang('es');
       $this->data['categories_list'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal');
 	  $this->data['countries_list'] = $this->exteriorproduct->retrieveAllCountries();
 	  $this->data['presence_types'] = $this->exteriorproduct->retrieveCountryType();
@@ -86,7 +87,7 @@ class exteriorproducts extends MY_Controller{
       $this->addColorbox();
       $this->data['use_grid_16'] = false;
       $this->data['content'] = "exteriorproducts/edit";
-      $this->data['object'] = $this->exteriorproduct->getById($id);
+      $this->data['object'] = $this->exteriorproduct->getById($id, $lang);
       $this->load->view("admin/layout", $this->data);
     }
     
@@ -96,8 +97,8 @@ class exteriorproducts extends MY_Controller{
       $this->load->model('exteriorproducts/exteriorproduct');
       // Get ID from form
       $id = $this->input->post('id', true);
-      
-      
+      $lang = $this->input->post('lang', true);
+      $this->setLang($lang);
       $this->form_validation->set_rules('name', 'Nombre', 'required|max_length[255]');			
       $this->form_validation->set_rules('genericname', 'Nombre generico', 'max_length[255]');
       $this->form_validation->set_rules('categoryid', 'Categoria', 'required');
@@ -119,6 +120,7 @@ class exteriorproducts extends MY_Controller{
 	  $presentation = set_value('presentation');
 	  $compuesto = set_value('compuesto');
       $obj = new $this->exteriorproduct;
+	  $obj->setLang($lang);
       $obj->setName($name);
       $obj->setGenericname($genericname);
 	  $obj->setCategoryid($categoryid);
@@ -145,7 +147,7 @@ class exteriorproducts extends MY_Controller{
         $id = $obj->save();
 		//$obj->saveCountries($id, $paises);
         $this->session->set_flashdata("salvado", "ok");
-        redirect('exteriorproducts/edit/'.$id);
+        redirect('exteriorproducts/edit/'.$lang."/".$id);
       }
       else
       {

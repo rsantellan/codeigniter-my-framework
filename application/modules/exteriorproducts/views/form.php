@@ -2,9 +2,8 @@
 
 $attributes = array('class' => '', 'id' => '');
 echo form_open('exteriorproducts/save', $attributes); ?>
-
 <input id="id" type="hidden" name="id"  value="<?php echo $object->getId() ?>"  />
-
+<input id="id" type="hidden" name="lang"  value="<?php echo $lang ?>"  />
 
 
 <div class="grid_5">
