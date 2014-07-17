@@ -292,7 +292,6 @@ class exteriorproduct extends MY_Model{
 		'lang' => $this->getLang(),
 		'id' =>$id,
 		'presentation' => $this->getPresentation(),
-		'compuesto' => $this->getCompuesto(),
 	);
     $this->db->insert($this->getTablename()."_translation", $dataTranslation);
     return $id;
@@ -313,7 +312,6 @@ class exteriorproduct extends MY_Model{
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
 		'presentation' => $this->getPresentation(),
-		'compuesto' => $this->getCompuesto(),
 	);
     $this->db->where('id', $this->getId());
     $this->db->where('lang', $this->getLang());
@@ -358,7 +356,6 @@ class exteriorproduct extends MY_Model{
 	  $aux->setId($row->id);
 	  $aux->setName($row->name);
 	  $aux->setLang($row->lang);
-	  $aux->setCompuesto($row->compuesto);
 	  $aux->setGenericname($row->genericname);
 	  $aux->setPresentation($row->presentation);
 	  return $aux;
@@ -369,12 +366,13 @@ class exteriorproduct extends MY_Model{
       return get_class($this);
     }
     
-    public function saveCountry($productId, $countryId, $presencetype)
+    public function saveCountry($productId, $countryId, $presencetype, $compuesto)
     {
       $data = array();
       $data["product_id"] = $productId;
       $data["country_id"] = $countryId;
       $data["presencetype"] = $presencetype;
+      $data["compuesto"] = $compuesto;
       $this->db->insert('product_country', $data);
       $rows = $this->db->affected_rows();
       

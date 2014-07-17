@@ -488,7 +488,7 @@ class celsius extends MY_Controller {
 	$this->data['categories_list'] = $this->category->retrieveAll(false, $this->getLang(), 'ordinal');
 	$this->data['countries'] = $this->exteriorproduct->retrieveAllCountries();
 	$this->data['presence_types'] = $this->exteriorproduct->retrieveCountryType();
-	$exteriorProduct = $this->exteriorproduct->retrieveAll(true, 'category_id, name', true);
+	$exteriorProduct = $this->exteriorproduct->retrieveAll(true, $lang, 'category_id, id', true);
     $tableData = array();
 	foreach($exteriorProduct as $product){
 	  if(!isset($tableData[$product->getCategoryId()])){
@@ -503,7 +503,7 @@ class celsius extends MY_Controller {
     
     
     
-    foreach($this->data['menuCategoryList'] as $category)
+    foreach($this->data['categories_list'] as $category)
     {
 //      var_dump($category);
 //      echo '<hr/>';

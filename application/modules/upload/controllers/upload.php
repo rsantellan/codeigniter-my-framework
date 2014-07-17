@@ -592,7 +592,7 @@ class Upload extends MY_Controller {
     }
 	$this->load->model('upload/albumcontent');
 	$file = $this->albumcontent->getFile($fileId);
-	$aux = $file[0];
+	$aux = $file;
 	$this->load->helper('download');
 	$data = file_get_contents($aux->path); // Read the file's contents
 	$name = $aux->name;

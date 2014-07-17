@@ -3,7 +3,7 @@
   <h3><?php echo lang('presencia_titulo'); ?></h3>
   <?php echo lang('presencia_texto'); ?>
 </div><!-- content -->
-<?php foreach ($menuCategoryList as $categoria): 
+<?php foreach ($categories_list as $categoria): 
   if(isset($tableData[$categoria->id])):
     $compuestosList = array();
 ?>
@@ -49,21 +49,26 @@
         <td class="<?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?>"><?php echo $data->getPresentation();?></td>
         
 		<?php 
-		  
+		  /*
 		  if($data->getCompuesto() != ""){
 			$compuestosList[$data->getCompuesto()] = $data->getCompuesto();
 		  }
+          */
 		  $indexCountry = 0;
           foreach ($countries as $country): 
-		?>
-		<td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo (isset($rep['compuesto']))? 'td_mark' : ''?>">
-		  <?php 
+            $htmlType = "";
+            $compuestoMark = false;
             $countryData = $data->retrieveCountry($country->id);
-            if($countryData !== null): ?>
-			  <?php echo $countryData->presencetype;?>
-		  <?php endif; ?>
-		  
-		  
+              if($countryData !== null){
+                if($countryData->compuesto != ""){
+                  $compuestosList[$countryData->compuesto] = $countryData->compuesto;
+                  $compuestoMark = true;
+                }
+                $htmlType = $countryData->presencetype;
+              }
+		?>
+		<td class="td_notas <?php echo ($num % 2 == 0)? 'td_color_oscuro': 'td_color_claro';?> <?php echo (count($countries) -1 == $indexCountry)? 'td_border_none' : ''?> <?php echo ($compuestoMark)? 'td_mark' : ''?>">
+            <?php echo $htmlType?>
 		</td>
         <?php 
 			$indexCountry++;

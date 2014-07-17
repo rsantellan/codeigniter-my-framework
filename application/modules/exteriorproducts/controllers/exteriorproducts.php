@@ -128,19 +128,6 @@ class exteriorproducts extends MY_Controller{
 	  $obj->setPresentation($presentation);
 	  $obj->setCompuesto($compuesto);
       $obj->setId($id);
-      
-//	  $paises = array();
-//      if(isset($_POST['countryid']))
-//      {
-//		$paises = $_POST['countryid'];
-//		foreach($paises as $pais)
-//		{
-//		  $obj->addCountry($pais);
-//		}
-//		
-//        
-//      }
-//	  //var_dump($paises);die;
       if($is_valid)
       {
         //Como es valido lo salvo
@@ -190,12 +177,13 @@ class exteriorproducts extends MY_Controller{
       $productId = $this->input->post('productId');
       $presencetype = $this->input->post('presencetype');
       $country = $this->input->post('country');
+      $compuesto = $this->input->post('compuesto');
       $this->load->model('exteriorproducts/exteriorproduct');
       //die;
       $response = false;
       $html = '';
       try{
-        $response = $this->exteriorproduct->saveCountry($productId, $country, $presencetype);
+        $response = $this->exteriorproduct->saveCountry($productId, $country, $presencetype, $compuesto);
         $countries = $this->exteriorproduct->retrieveAllCountries();
         $types = $this->exteriorproduct->retrieveCountryType();
         $data = array(
@@ -203,6 +191,7 @@ class exteriorproducts extends MY_Controller{
           'countryName' => $countries[$country]->name,
           'type' => $types[$presencetype],
           'productId' => $productId,
+          'compuesto' => $compuesto,
           );
         $html = $this->load->view("countrycontainer", $data, true);
       }catch(Exception $e)

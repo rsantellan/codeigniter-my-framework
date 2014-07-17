@@ -36,13 +36,6 @@ echo form_open('exteriorproducts/save', $attributes); ?>
   </p>
 </div>
 <div class="clear"></div>
-<div class="grid_5">
-  <p>
-    <label for="compuesto">Compuesto</label>
-    <input type="text" name="compuesto" maxlength="255" value="<?php echo $object->getCompuesto() ?>" />
-  </p>
-</div>
-<div class="clear"></div>
 <div class="grid_16">
   <p class="submit">
     <?php echo form_submit( 'submit', 'Guardar'); ?>

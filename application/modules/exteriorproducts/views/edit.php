@@ -34,6 +34,7 @@ foreach($object->getCountries() as $country):
       'countryId' => $country->country_id, 
       'countryName' => $countries_list[$country->country_id]->name,
       'type' => $presence_types[$country->presencetype],
+      'compuesto' => $country->compuesto,
       'productId' => $object->getId(),
       ));
 endforeach;
@@ -56,6 +57,9 @@ endforeach;
         <option value="<?php echo $key;?>" <?php echo ($object->getPresencetype() == $key)? "selected='selected'" : "";?>><?php echo $value;?></option>
       <?php endforeach; ?>
     </select>
+    <div class="clear"></div>
+    <label for="compuesto">Compuesto</label>
+    <input type="text" id="compuesto" name="compuesto" />
     <div class="clear"></div>
     <input type="submit" value="Agregar" />
   </form>

@@ -19,9 +19,6 @@
 	  <th>
         Categoria
       </th>
-	  <th>
-        Compuesto
-      </th>
       <th>
         Acciones
       </th>
@@ -41,9 +38,6 @@
       </td>
 	  <td>
         <?php echo ($categories_list[$object->category_id]->name); ?>
-      </td>
-	  <td>
-        <?php echo ($object->compuesto); ?>
       </td>
       <td>
         <a href="<?php echo site_url("exteriorproducts/edit/".$lang."/".$object->id);?>">

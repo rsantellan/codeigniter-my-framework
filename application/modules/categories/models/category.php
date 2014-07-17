@@ -100,6 +100,7 @@ class category extends MY_Model{
         $aux = new stdClass();
         $aux->id = $id;
         $aux->name = "";
+        $aux->slug = '-';
         $aux->exists = false;
         return $aux;
       }
