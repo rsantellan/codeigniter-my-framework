@@ -11,16 +11,27 @@ class Upload extends MY_Controller {
   }
 
   function changepaths() {
-	die('not allowed here');
+    //var_dump(FCPATH);
+	//die('not allowed here');
 	if (!$this->isLogged()) {
 	  //Si no esta logeado se tiene que ir a loguear
 	  $this->session->set_userdata('url_to_direct_on_login', 'admin/index');
 	  redirect('auth/login');
 	}
-	$new_path = "/soy/un/test/de/lo/que/deberia/ser";
-	$old_path = "/home/rodrigo/proyectos/ci/my-framework-prototype/branches/feu";
+	$new_path = FCPATH;
+	//$old_path = "/home/rodrigo/proyectos/ci/my-framework-prototype/branches/feu";
 	$this->load->model('albumcontent');
 	$contents = $this->albumcontent->retrieveAll();
+    if(count($contents) == 0){
+      die('no path to change');
+    }
+    $aux = $contents[0];
+    $pathParts = explode('assets', $aux->path);
+    $old_path = $pathParts[0];
+    if($old_path == $new_path){
+      die('old path and new path are the same');
+    }
+    //die('not allowed here');
 	foreach ($contents as $content) {
 
 	  echo $content->path;
