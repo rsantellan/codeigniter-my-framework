@@ -1,6 +1,6 @@
 <?php
 //swith para las clases de los tipo de archivos
-switch($archivo['extension']){
+switch(strtolower($archivo['extension'])){
     case 'jpg':
     case 'jpeg':
     case 'gif':

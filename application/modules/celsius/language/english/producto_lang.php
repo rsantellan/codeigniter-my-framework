@@ -1,10 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
-$lang["producto_receta"] = "Receta";
-$lang["producto_presentacion"] = "Presentaci&oacute;n";
-$lang["producto_principio_activo"] = "Principio Activo";
-$lang["producto_accion"] = "Acci&oacute;n";
-$lang["producto_especialidad"] = "Especialidad";
-$lang["producto_literatura"] = "Literatura M&eacute;dica";
-$lang["producto_prospecto"] = "Prospecto";
-$lang["producto_no_hay_resultados"] = "No hay resultados";
-$lang["producto_seleccione"] = "Seleccione el producto";
+$lang['producto_receta']='Prescription';
+$lang['producto_presentacion']='Presentation';
+$lang['producto_principio_activo']='Active Ingredient';
+$lang['producto_accion']='Action';
+$lang['producto_especialidad']='Specialty';
+$lang['producto_literatura']='Medical literature';
+$lang['producto_prospecto']='leaflet';
+$lang['producto_no_hay_resultados']='No results';
+$lang['producto_seleccione']='Select the product<br />';
+$lang["producto_busqueda_titulo"] = "Search results:";
+/* End of file producto_lang.php */

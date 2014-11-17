@@ -1,9 +1,10 @@
 <?php if(count($archivos) > 0){ ?>
     <ul class="imag_list_ul">
     <?php $i = 1; ?>
+    
     <?php foreach($archivos as $archivo):
         //swith para las clases de los tipo de archivos
-        switch($archivo['extension']){
+        switch(strtolower($archivo['extension'])){
             case 'jpg':
             case 'jpeg':
             case 'gif':

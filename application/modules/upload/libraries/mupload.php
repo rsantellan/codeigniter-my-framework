@@ -26,7 +26,10 @@ class mupload {
             }
 			return $path.DIRECTORY_SEPARATOR;
 		}
-		$folders = $pieces = explode(DIRECTORY_SEPARATOR, $path);
+        $auxPathFull = str_replace(FCPATH, "", $path);
+        log_message("debug", "Directorio a chequear que exista: ". $auxPathFull);
+        
+		$folders = $pieces = explode(DIRECTORY_SEPARATOR, $auxPathFull);
         
         $list_of_paths = array();
         array_push($list_of_paths, $path);
@@ -35,14 +38,14 @@ class mupload {
         while(count($folders) > 0 && !$finish)
         {
           $auxPath = implode(DIRECTORY_SEPARATOR, $folders);
-          log_message("debug", "Directorio a chequear que exista: ". $auxPath);
-          if(is_dir($auxPath))
+          log_message("debug", "Directorio a chequear que exista: ". FCPATH.$auxPath);
+          if(is_dir(FCPATH.$auxPath))
           {
             $finish = true;
           }
           else
           {
-            array_push($list_of_paths, $auxPath);
+            array_push($list_of_paths, FCPATH.$auxPath);
           }
           unset($folders[count($folders) - 1]);
         }
@@ -82,6 +85,7 @@ class mupload {
       }
       $cachePath = $this->returnCacheImage($path, $width, $height, $type);
       $mPath = str_replace(FCPATH, "", $cachePath);
+      $mPath = str_replace('\\', '/', $mPath);
       log_message("debug", $mPath);
       return $basepath.$mPath;
       

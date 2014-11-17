@@ -16,7 +16,10 @@ echo form_open_multipart($url, $attributes); ?>
         <label><?php echo lang('trabajaconnosotros_pais');?></label><input type="text" name="pais" value="<?php echo set_value('pais'); ?>"><div class="clear"></div>
         <label class="label_tel"><?php echo lang('trabajaconnosotros_telefono');?></label><input type="text" name="phone" class="input_tel" value="<?php echo set_value('phone'); ?>"/><div class="clear"></div>
         <label><?php echo lang('trabajaconnosotros_fax');?></label><input type="text" name="fax" value="<?php echo set_value('fax'); ?>"/><div class="clear"></div>
-        <label class="label_adjuntarcv"><?php echo lang('trabajaconnosotros_cv');?></label><input type="file" class="input_adjuntarcv" name="cv"><span><?php echo lang('trabajaconnosotros_cv_type');?></span><div class="clear"></div>
+        <label class="label_adjuntarcv"><?php echo lang('trabajaconnosotros_cv');?></label>
+        <span><?php echo lang('trabajaconnosotros_cv_type');?></span>
+        <div class="clear"></div>
+        <input type="file" class="input_adjuntarcv" name="cv"><div class="clear"></div>
         <label class="label_codv"><?php echo lang('trabajaconnosotros_codigo_verificador');?></label><input type="text" name="codigo" class="input_codv"><div class="clear"></div>
         <div class="captcha">
           <?php echo $captchaImage;  // this will show the captcha image?>

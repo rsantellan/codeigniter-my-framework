@@ -1,20 +1,9 @@
 <div class="content_site content_internas">
-  <h2>Resultados de b&uacute;squeda<span> / <?php echo $query;?> </span></h2>
+  <h2><?php echo lang('producto_busqueda_titulo');?><span> / <?php echo $query;?> </span></h2>
   <hr class="titulos">
-  <?php //var_dump($products); ?>
-  <?php //var_dump($menuCategoryList);?>
   <?php foreach($products as $product): 
-    $category = NULL;
-    $prodCat = array_pop($product->categories);
-    
-    foreach($menuCategoryList as $mCat)
-    {
-      if($mCat->id == $prodCat)
-      {
-        $category = $mCat;
-      }
-    }
-    $urlCategoriaProduct = $lang.'/categoria-producto/';
+    $category = $menuCategoryList[array_pop($product->categories)];
+  $urlCategoriaProduct = $lang.'/categoria-producto/';
     if($lang == 'en')
       $urlCategoriaProduct = $lang.'/category-product/';
     $urlCategoriaProduct .= $category->id.'/'.$category->slug.'/'.$product->id.'/'.$product->slug.'.html';  

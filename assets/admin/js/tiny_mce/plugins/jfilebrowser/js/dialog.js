@@ -16,6 +16,7 @@ var jFileBrowserDialog = {
         type = form.type.value;
         dir = form.directorio.value;
         path = form.path.value;
+        console.log(type);
 		if(type == 1){
             title = form.title.value;
             alt = form.alt.value;
@@ -45,8 +46,9 @@ var jFileBrowserDialog = {
                     method: 'post',
                     parameters: 'width=' + ancho + '&height=' + alto + '&directory=' + dir + '&name=' + title,
                     onSuccess: function (response){
+                        console.info(response);
                         path = response.responseText;
-                        //console.info(path);
+                        console.info(path);
 						html = '<img src="' + path +'" title="' + title +'" alt="' + alt +'" ' + style + ' height="' + alto +'" width="' + ancho +'" />';
 						//console.info(html);
                         tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
