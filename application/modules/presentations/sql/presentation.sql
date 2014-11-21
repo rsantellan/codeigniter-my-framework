@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `presentation_translation` (
   `slug` varchar(255) NOT NULL,
   `activecomponent` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL,
+  `productname` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`,`lang`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

@@ -17,6 +17,13 @@ echo form_open('presentations/save', $attributes); ?>
 </div>
 <div class="grid_5">
   <p>
+    <label for="productname">Nombre Producto<small>Requerido</small></label>
+    <input type="text" name="productname" maxlength="255" value="<?php echo $object->getProductname() ?>" />
+  </p>
+</div>
+<div class="clear"></div>
+<div class="grid_5">
+  <p>
     <label for="genericname">Nombre Generico<small>Requerido</small></label>
     <input type="text" name="genericname" maxlength="255" value="<?php echo $object->getGenericname() ?>" />
   </p>

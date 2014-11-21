@@ -67,7 +67,7 @@
 
         ?>
       <tr>
-        <td class="producto_nombre"><?php echo ($first)?$usedProduct->name: '';?></td>
+        <td class="producto_nombre"><?php echo $presentation->productname;?></td>
         <td><?php echo $presentation->name;?></td>
         <td><?php echo $presentation->activecomponent;?></td>
         <td><?php echo $presentation->action;?></td>

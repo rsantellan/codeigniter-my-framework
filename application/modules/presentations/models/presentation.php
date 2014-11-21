@@ -18,6 +18,7 @@ class presentation extends MY_Model{
   private $slug;
   private $name;
   private $genericname;
+  private $productname;
   private $activeComponent;
   private $action;
   //private $receta = 0;
@@ -79,6 +80,14 @@ class presentation extends MY_Model{
 
   public function setGenericname($genericname) {
     $this->genericname = $genericname;
+  }
+
+  public function getProductname() {
+    return $this->productname;
+  }
+
+  public function setProductname($productname) {
+    $this->productname = $productname;
   }
 
   public function getActiveComponent() {
@@ -163,6 +172,7 @@ class presentation extends MY_Model{
 		  $aux->setGenericname("");
           $aux->setAction('');
           $aux->setActiveComponent('');
+          $aux->setProductname('');
           $aux->setProductId(0);
           $aux->setExists(false);
           return $aux;
@@ -172,6 +182,7 @@ class presentation extends MY_Model{
         $aux->name = "";
         $aux->slug = '';
         $aux->genericname = '';
+        $aux->productname = '';
         $aux->activecomponent = '';
         $aux->action = '';
         $aux->nombre_exterior = '';
@@ -213,6 +224,7 @@ class presentation extends MY_Model{
     $aux->setLang($obj->lang);
     $aux->setSlug($obj->slug);
     $aux->setGenericname($obj->genericname);
+    $aux->setProductname($obj->productname);
     $aux->setActiveComponent($obj->activecomponent);
     $aux->setAction($obj->action);
 	$aux->setExteriorName($obj->nombre_exterior);
@@ -283,6 +295,7 @@ class presentation extends MY_Model{
 		'lang' => $this->getLang(),
 		'name' => $this->getName(),
 		'genericname' => $this->getGenericname(),
+		'productname' => $this->getProductname(),
 		'activecomponent' => $this->getActiveComponent(),
 		'action' => $this->getAction(),
 		'nombre_exterior' => $this->getExteriorName(),
@@ -316,6 +329,7 @@ class presentation extends MY_Model{
 		'activecomponent' => $this->getActiveComponent(),
 		'action' => $this->getAction(),
 		'nombre_exterior' => $this->getExteriorName(),
+        'productname' => $this->getProductname(),
 		'presentacion_exterior' => $this->getExteriorPresentation(),
 		'slug' => $this->createSlug('slug', $this->getName(), 'presentation_translation', $this->getId(), 'lang', $this->getLang()),
  	);

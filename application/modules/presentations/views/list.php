@@ -14,6 +14,9 @@
         Presentación
       </th>
       <th>
+        Nombre producto
+      </th>
+      <th>
         Nombre generico
       </th>
       <th>
@@ -35,6 +38,9 @@
       </td>
       <td>
         <?php echo ($object->name); ?>
+      </td>
+      <td>
+        <?php echo ($object->productname);?>
       </td>
       <td>
         <?php echo ($object->genericname);?>

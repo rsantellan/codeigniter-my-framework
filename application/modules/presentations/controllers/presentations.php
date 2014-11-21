@@ -113,6 +113,7 @@ class presentations extends MY_Controller{
       $this->form_validation->set_rules('action', 'action', 'required|max_length[255]');			
       $this->form_validation->set_rules('nombreexterior', 'nombreexterior', 'max_length[255]');			
       $this->form_validation->set_rules('presentacionexterior', 'presentacionexterior', 'max_length[255]');			
+      $this->form_validation->set_rules('productname', 'productname', 'max_length[255]');			
       
       //var_dump($_POST['categorias']);die;  
       $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
@@ -128,6 +129,7 @@ class presentations extends MY_Controller{
 	  $activeComponent = set_value('activecomponent');
 	  $nombreexterior = set_value('nombreexterior');
 	  $presentacionexterior = set_value('presentacionexterior');
+	  $productname = set_value('productname');
       //var_dump($nombre);
       $obj = new $this->presentation;
       $obj->setName($name);
@@ -139,6 +141,7 @@ class presentations extends MY_Controller{
       $obj->setActiveComponent($activeComponent);
 	  $obj->setExteriorName($nombreexterior);
 	  $obj->setExteriorPresentation($presentacionexterior);
+      $obj->setProductname($productname);
 	  //$obj->setReceta($receta);
       //var_dump($obj);
       
